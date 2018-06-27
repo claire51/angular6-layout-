@@ -8,8 +8,8 @@ const routes: Routes = [
 
   { path: 'dashboard', component: MyDashboardComponent },
   { path: 'datatable', component: MyTableComponent },
-  {
-    loadChildren: 'app/profile/profile.module#ProfileModule', path: 'profile'
+  { path: 'profile',
+    loadChildren: '../app/profile/profile.module#ProfileModule'
   },
   {
     path: '',
