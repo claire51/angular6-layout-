@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AuthGuardGuard } from './guard/auth-guard.guard';
+import { AuthService } from './auth.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,7 +41,7 @@ import { environment } from '../environments/environment';
     MatSelectModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [AuthGuardGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
