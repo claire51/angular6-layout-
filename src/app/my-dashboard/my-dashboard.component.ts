@@ -1,15 +1,34 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UseAccounts } from '../model/Accounts';
+import {AuthService} from '../auth.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'my-dashboard',
   templateUrl: './my-dashboard.component.html',
   styleUrls: ['./my-dashboard.component.css']
 })
-export class MyDashboardComponent {
+export class MyDashboardComponent  implements  OnInit {
   cards = [
-    { title: 'Card 1', cols: 2, rows: 1 },
-    { title: 'Card 2', cols: 1, rows: 1 },
-    { title: 'Card 3', cols: 1, rows: 2 },
-    { title: 'Card 4', cols: 1, rows: 1 }
+    { title: 'Saving Account ', balance: 500, cols: 2, rows: 1 },
+    { title: 'Checking Account',  balance: 500, cols: 1, rows: 1 }
   ];
-}
+  users = new UseAccounts();
+  transfervalue: number;
+
+  constructor( public auth: AuthService , public dialog: MatDialog) {
+this.transfervalue = 0;
+  }
+
+  ngOnInit() {
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
+
+
+
+  }

@@ -10,7 +10,7 @@ import {AuthService} from './auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'EXXON';
+  title = 'EXXON Bank Account';
   isLoggedIn$: Observable<boolean>;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)

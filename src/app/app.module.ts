@@ -7,9 +7,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MyNavComponent } from './my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatSelectModule, MatIconModule, MatListModule,  MatInputModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule } from '@angular/material';
+import { MatToolbarModule, MatDialogModule, MatButtonModule, MatSidenavModule, MatSelectModule, MatIconModule,
+MatListModule, MatInputModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 import { MyTableComponent } from './my-table/my-table.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -19,7 +19,6 @@ import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
-    MyNavComponent,
     MyDashboardComponent,
     MyTableComponent,
     LoginComponent
@@ -36,6 +35,7 @@ import { LoginComponent } from './login/login.component';
     MatIconModule,
     MatListModule,
     MatGridListModule,
+    MatDialogModule,
     MatCardModule,
     MatMenuModule,
     MatInputModule,
