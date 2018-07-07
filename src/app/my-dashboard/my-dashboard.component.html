@@ -16,13 +16,14 @@
 
             <br>
             <br>
-            <br>
-            <br>
-            <button mat-raised-button (click)="openDialog()">Pick one</button>
-            You chose: <i>{{transfervalue}}</i>
-            <li *ngIf="transfervalue">
-              You chose: <i>{{transfervalue}}</i>
-            </li>
+            <form  (ngSubmit)="calculate()" >
+                <input type="number" id="amount" placeholder="Please Enter Amount " [(ngModel)]="transfervalue"
+                       name="amounts"   required />
+
+              <button mat-raised-button color="primary" type="submit"  >Submit</button>
+            </form>
+<br>
+            <span style="color: red">{{message2}}</span>
 
           </div>
         </mat-card-content>
@@ -38,6 +39,15 @@
         <mat-card-content class="dashboard-card-content">
           <div>
             <span style="font-weight: bolder">Account Balance: {{auth.userAccount.checkingBalance}}</span>
+            <br>
+            <br>
+            <form (ngSubmit)="calculate2()" >
+              <input type="number" id="amount2" placeholder="Please Enter Amount " [(ngModel)]="transfervalue2"
+                     name="amounts2"   required />
+
+              <button mat-raised-button color="primary" type="submit"  >Submit</button>
+            </form>
+            <span style="color: red">{{message}}</span>
           </div>
         </mat-card-content>
       </mat-card>
