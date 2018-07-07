@@ -16,19 +16,13 @@ export class MyDashboardComponent  implements  OnInit {
   users = new UseAccounts();
   transfervalue: number;
 
-  constructor( public auth: AuthService , public dialog: MatDialog) {
+  constructor( public auth: AuthService ) {
 this.transfervalue = 0;
   }
 
   ngOnInit() {
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '250px',
-      data: {name: this.name, animal: this.animal}
-
-    });
 
 
 
