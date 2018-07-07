@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AuthGuardGuard } from './guard/auth-guard.guard';
 import { AuthService } from './auth.service';
 import { ReactiveFormsModule , FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { LoginComponent } from './login/login.component';
   ],
   imports: [
    FormsModule ,
+    FlexLayoutModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,

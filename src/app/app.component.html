@@ -2,22 +2,9 @@
 <!--<my-nav></my-nav>-->
 
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    #drawer
-    class="sidenav"
-    fixedInViewport="true"
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="!(isHandset$ | async)"
-  >
-    <div *ngIf="isLoggedIn$ | async as isAuthenticated">
-      <mat-toolbar color="primary">Menu</mat-toolbar>
-      <mat-nav-list>
-        <a mat-list-item routerLink="/dashboard">Account</a>
-      </mat-nav-list>
-    </div>
-  </mat-sidenav>
+
   <mat-sidenav-content>
+
     <mat-toolbar color="primary" class="fixedtop">
       <button
         type="button"
@@ -36,7 +23,10 @@
         <button mat-button routerLink="/login">Login</button>
       </ng-template>
 
-    </mat-toolbar>
+      <div #drawer>
+        <mat-toolbar color="primary">Menu</mat-toolbar>
+      </div>
+ </mat-toolbar>
     <div class="bodycontent">
       <div style="padding-top:20px;padding-bottom:20px;">
         <router-outlet></router-outlet>
