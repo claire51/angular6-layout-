@@ -14,16 +14,27 @@ import {UseAccounts} from './model/Accounts';
 })
 export class AuthService {
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  message: string;
   allAccounts: Array<UseAccounts> = [ {
-    savingsBalance: 100,
-    checkingBalance: 500,
-    user: 'kelvin',
-    pass: 'muish'
+    savingsBalance: 0,
+    checkingBalance: 1000000000,
+    user: 'tstark',
+    pass: 'FEman'
   }, {
-    savingsBalance: 300,
-    checkingBalance: 400,
-    user: 'pato',
-    pass: 'nugu'
+    savingsBalance: 1337.37,
+    checkingBalance: 420,
+    user: 'bwidow',
+    pass: 'gunsgunsgunsguns'
+  }, {
+    savingsBalance: 12,
+    checkingBalance: 5.92,
+    user: 'spiderman',
+    pass: 'doeswhateveraspidercan'
+  }, {
+    savingsBalance: 0,
+    checkingBalance: 0,
+    user: 'rastley',
+    pass: 'NEVERGONNAtellaLIE'
   }
   ];
   userAccount = new UseAccounts();

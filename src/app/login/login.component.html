@@ -4,15 +4,15 @@
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <p>Please login to continue</p>
         <mat-form-field class="full-width-input">
-          <input matInput placeholder="User" formControlName="userName" required>
+          <input matInput placeholder="User" formControlName="userName" pattern="[a-z]{1,200}" required >
           <mat-error *ngIf="isFieldInvalid('userName')">
-            Please inform your user
+            use lower case alpha character
           </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width-input">
           <input matInput type="password" placeholder="Password" formControlName="password" required>
           <mat-error *ngIf="isFieldInvalid('userName')">
-            Please inform your password
+            Enter valid password
           </mat-error>
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit">Login</button>
