@@ -4,17 +4,18 @@ import { AuthGuardGuard } from './guard/auth-guard.guard';
 import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { MyTableComponent } from './my-table/my-table.component';
-
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
 
   { path: 'dashboard', component: MyDashboardComponent, canActivate: [AuthGuardGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'datatable', component: MyTableComponent },
+  { path: '', component: HomeComponent },
   { path: 'profile',
     loadChildren: '../app/profile/profile.module#ProfileModule'
   },
-  { path: '**', redirectTo: ''},
+  { path: '**', redirectTo: '' }
   {
     path: '',
     redirectTo: '',

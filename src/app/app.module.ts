@@ -9,44 +9,33 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatDialogModule, MatButtonModule, MatSidenavModule, MatSelectModule, MatIconModule,
-MatListModule, MatInputModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule } from '@angular/material';
+
 import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 import { MyTableComponent } from './my-table/my-table.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './login/login.component';
+import { AppMaterialModule } from './app-material/app-material.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MyDashboardComponent,
     MyTableComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
-   FormsModule ,
-    FlexLayoutModule,
     BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
+    FlexLayoutModule,
+    AppMaterialModule,
+   FormsModule ,
+    ReactiveFormsModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatGridListModule,
-    MatDialogModule,
-    MatCardModule,
-    MatMenuModule,
-    MatInputModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatFormFieldModule,
-    MatSelectModule,
+
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [AuthGuardGuard, AuthService],
