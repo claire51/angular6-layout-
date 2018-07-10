@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'profile',
     loadChildren: '../app/profile/profile.module#ProfileModule'
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
   {
     path: '',
     redirectTo: '',

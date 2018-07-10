@@ -1,4 +1,4 @@
-<div style="height: 100vh;">
+<div >
   <mat-toolbar color="primary" class="fixedtop">
     <mat-toolbar-row>
       <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
@@ -26,10 +26,13 @@
                   routerLink="/login">message
         </mat-icon>
         <ng-template #elsesignup>
-         <span class="header_text"> <button mat-fab color="primary"> Sign Up </button>
-     </span>
+          <a href="#" mat-list-item>
+            <mat-icon>verified_user</mat-icon>
+            Sign Up
+          </a>
+         <!--<span class="header_text"> <button mat-fab color="primary"> Sign Up </button>-->
+     <!--</span>-->
         </ng-template>
-
 
       </div>
     </mat-toolbar-row>
@@ -51,10 +54,9 @@
                   routerLink="/login">message
         </mat-icon>
         <ng-template #elsesignup>
-         <span class="header_text"> <button mat-fab color="primary">Sign Up</button>
+          <span class="header_text"> <button mat-fab color="primary"> Sign Up</button>
      </span>
         </ng-template>
-
         <a href="#" mat-list-item>
           <mat-icon>lock</mat-icon>
           My Account
