@@ -13,7 +13,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-content: stretch;
-  background-color: #1da290;
+  background-color: red;
   //height: 200px;
   -webkit-clip-path: polygon(0 5%, 0 0, 100% 0, 100% 41%);
   clip-path: polygon(0 5%, 0 0, 100% 0, 100% 41%);
@@ -21,6 +21,7 @@
 
 .container3{
   display:flex;
+  height: 5%;
   background-color:purple;
 }
 
