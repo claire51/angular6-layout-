@@ -1,5 +1,5 @@
 md-card {
-  max-width: 50%;
+  max-width: 100%;
   text-align: center;
 
 }
@@ -12,12 +12,12 @@ md-card {
 
 .container{
   display: flex;
-  padding-top: 9%;
+  padding-top: 5%;
   width:100%;
   flex-direction:column;
 
 }
-.logindiv{
+.signup-div1{
   flex: auto;
   margin-top: 2%;
   max-width: 500px;

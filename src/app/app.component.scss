@@ -1,59 +1,39 @@
-
-.bodycontent{
-  overflow: hidden;
-  bottom:0;
-  left:0;
-  right:0;
-  top :0;
-  display: flex;
+.sidenav-container {
+  height: 100%;
 }
-.fixedtop{
+
+.sidenav {
+  width: 200px;
+}
+
+.mat-toolbar.mat-primary {
   position: fixed;
+  top: 0;
+  //position: fixed;
   z-index: 2;
-
 }
 
-.example-icon {
-  padding: 0 14px;
-}
 
-.example-spacer {
-  flex: 1 1 auto;
-}
-
-.header_text
-{
+.header_text {
   font-family: sans-serif;
   font-size: 28px;
   font-weight: bold;
 
 }
-.header_container{
-  height: 100%;
-}
-
-
-
-//new
-
-.sidenav-container {
-  height: 100%;
-
-
-}
-
-.sidenav {
-  width: 200px;
-  box-shadow: 3px 0 6px rgba(0,0,0,.24);
-}
-
-.bodycontent{
-  overflow: hidden;
-  bottom:0;
-  left:0;
-  right:0;
-  top:64px;
-}
 .logo{
 height: 100px;
+}
+.menudiv{
+  display: flex;
+  width: 100%;
+}
+.barmenu{
+
+  flex: 1;
+  //justify-content: right;
+  margin: auto;
+  align-items: baseline;
+  align-content: flex-end;
+  align-content: space-between;
+  margin-left: 40%;
 }
