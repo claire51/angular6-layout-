@@ -17,6 +17,7 @@ import { environment } from '../environments/environment';
 import { LoginComponent } from './login/login.component';
 import { AppMaterialModule } from './app-material/app-material.module';
 import { HomeComponent } from './home/home.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HomeComponent } from './home/home.component';
     MyDashboardComponent,
     MyTableComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

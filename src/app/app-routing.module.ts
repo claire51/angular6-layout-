@@ -5,6 +5,7 @@ import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { MyTableComponent } from './my-table/my-table.component';
 import { HomeComponent } from './home/home.component';
+import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
 
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'datatable', component: MyTableComponent },
   { path: '', component: HomeComponent },
+  { path: 'signup', component: SignupComponent },
   { path: 'profile',
     loadChildren: '../app/profile/profile.module#ProfileModule'
   },

@@ -29,7 +29,7 @@
                 routerLink="/login">message
       </mat-icon>
       <ng-template #elsesignup>
-          <span class="header_text"> <button mat-fab color="primary"> Sign Up</button>
+          <span class="header_text"> <button mat-fab color="primary" routerLink="/signup"> Sign Up</button>
      </span>
       </ng-template>
 
@@ -53,7 +53,7 @@
                 routerLink="/login">message
       </mat-icon>
       <ng-template #elsesignupb>
-        <a href="#" mat-list-item>
+        <a routerLink="/signup" mat-list-item>
           <mat-icon>lock</mat-icon>
          Sign Up
         </a>
