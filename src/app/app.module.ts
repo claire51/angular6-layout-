@@ -4,6 +4,8 @@ import { AuthGuardGuard } from './guard/auth-guard.guard';
 import { AuthService } from './auth.service';
 import { ReactiveFormsModule , FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,7 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { AppMaterialModule } from './app-material/app-material.module';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
-
+import {Configuration} from './app.constants';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +34,7 @@ import { SignupComponent } from './signup/signup.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     FlexLayoutModule,
     AppMaterialModule,
    FormsModule ,
@@ -40,7 +43,7 @@ import { SignupComponent } from './signup/signup.component';
 
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [AuthGuardGuard, AuthService],
+  providers: [AuthGuardGuard, AuthService, Configuration],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

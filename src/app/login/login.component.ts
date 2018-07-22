@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {AuthService} from '../auth.service';
-
+import {DataService} from '../services/data.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,9 +9,11 @@ import {AuthService} from '../auth.service';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
+  public values: any[];
   private formSubmitAttempt: boolean;
-  constructor(    private fb: FormBuilder,
-                  private authService: AuthService) { }
+  constructor(    private fb: FormBuilder, private authService: AuthService ,
+                  vcr: ViewContainerRef , private dataService: DataService) {
+  }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -32,4 +34,18 @@ export class LoginComponent implements OnInit {
     }
     this.formSubmitAttempt = true;
   }
+
+FindAllUser() {
+  this.dataService
+    .getAll<any[]>()
+    .subscribe((data: any[]) => this.values = data,
+      error => () => {
+     console.log('something went wrong');
+      },
+      () => {
+        console.log('success');
+      });
+
+}
+
 }
