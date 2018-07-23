@@ -2,11 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
-import {Configuration} from '../app.constants';
-import {User} from '../model/User';
+import { catchError} from 'rxjs/operators';
 import {Router} from '@angular/router';
-
-
+import {ModelBase} from '../model/model.base';
 
 
 
@@ -15,59 +13,50 @@ import {Router} from '@angular/router';
 })
 export class DataService {
 
-  private actionUrl: string;
-  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  message: string;
+  url: string;
 
-  constructor(private http: HttpClient, private _configuration: Configuration, private router: Router) {
-    this.actionUrl = _configuration.ServerWithApiUrl + 'values/';
+  constructor(private http: HttpClient) {
   }
-  isAuthenticated() {
-    return this.loggedIn.asObservable();
+  getAll() {
+    console.log(this.url, 'url');
+    return this.http.get(this.url)
+      .pipe(catchError(this.handleError));
   }
-  // login
-  login(user: User) {
-    if (user.userName !== '' && user.password !== '' ) {
-      // this.userAccount =  this.allAccounts.filter(item => item.user === user.userName && item.pass === user.password )[0];
-      // console.log(this.userAccount);
-      // if (this.userAccount) {
-        this.loggedIn.next(true);
-        this.router.navigate(['/dashboard']);
-      // }
+
+  delete(id: number) {
+    return this.http.delete(this.url + id)
+      .catch(this.handleError);
+  }
+
+  update(resource: ModelBase) {
+    console.log(resource);
+    return this.http.put(this.url + resource.id, JSON.stringify(resource))
+      .catch(this.handleError);
+  }
+
+  create(resource) {
+    return this.http.post(this.url, JSON.stringify(resource))
+      .catch(this.handleError);
+  }
+
+  handleError = (error: Response) => {
+
+    if (error.status === 404) {
+      return Observable.throw(new NotFoundError(error, this.resourceName));
     }
+
+    if (error.status === 401) {
+      return Observable.throw(new UnAuthorizedError(error, this.resourceName));
+    }
+
+    if (error.status === 400) {
+      return Observable.throw(new BadRequestError(error, this.resourceName));
+    }
+
+    return Observable.throw(new UnknownError(error))
+
   }
-
-  logout() {
-    this.loggedIn.next(false);
-    this.router.navigate(['/login']);
-  }
-
-  public getAll<T>(): Observable<T> {
-    return this.http.get<T>(this.actionUrl);
-  }
-
-  public getSingle<T>(id: number): Observable<T> {
-    return this.http.get<T>(this.actionUrl + id);
-  }
-
-  public add<T>(itemName: string): Observable<T> {
-    const toAdd = JSON.stringify({ ItemName: itemName });
-
-    return this.http.post<T>(this.actionUrl, toAdd);
-  }
-
-  public update<T>(id: number, itemToUpdate: any): Observable<T> {
-    return this.http
-      .put<T>(this.actionUrl + id, JSON.stringify(itemToUpdate));
-  }
-
-  public delete<T>(id: number): Observable<T> {
-    return this.http.delete<T>(this.actionUrl + id);
-  }
-
-
 }
-
 
 @Injectable()
 export class CustomInterceptor implements HttpInterceptor {
