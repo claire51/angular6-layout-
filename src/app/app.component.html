@@ -10,7 +10,11 @@
     <mat-nav-list>
       <a href="#" mat-list-item>
         <mat-icon>notifications</mat-icon>
-        Services
+        Personal
+      </a>
+      <a href="#" mat-list-item>
+        <mat-icon>notifications</mat-icon>
+        Business
       </a>
       <span class="header_text">
         <button mat-button routerLink="/login">Login</button>
@@ -46,12 +50,14 @@
       <!--<span>basic</span>-->
       <!--<span class="header_text">MLINZI</span>-->
       <div class="menudiv">
-      <div style="flex: 1"><img src="./../assets/images/logo.png" class="logo" alt="MLINZI" ></div>
-      <div fxShow="true" class="barmenu" fxHide.lt-md="true"  >
+      <div ><img src="./../assets/images/logo.png" class="logo" alt="MLINZI" ></div>
+      <div fxShow="true" class="barmenu" fxHide.lt-md="true"   >
         <!-- The following menu items will be hidden on both SM and XS screen sizes -->
         <a href="#" mat-button >
-          <mat-icon>notifications</mat-icon>
-          Services
+          Personal
+        </a>
+        <a href="#" mat-button >
+          Business
         </a>
         <!--login-->
         <span class="header_text">
@@ -67,7 +73,8 @@
                   routerLink="/login">message
         </mat-icon>
         <ng-template #elsesignup>
-          <span class="header_text"> <button mat-fab color="primary" routerLink="/signup"> Sign Up</button>
+          <span class="header_text">
+            <button mat-button  [color]="'purple'" routerLink="/signup"> Creat Account</button>
      </span>
         </ng-template>
 

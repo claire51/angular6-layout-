@@ -2,25 +2,31 @@
   display: flex;
   width:100%;
   flex-direction: row;
-  background-color: #1da290;
+  background-color: blue;
 align-items: center;
   padding-top:9%;
 }
-.container2{
+.containerB{
   display: flex;
-  height: 100px;
-  margin-top: -0.5%;
+  width:100%;
   flex-direction: row;
-  background-color: #1da290;
-  -webkit-clip-path: polygon(0 5%, 0 0, 100% 0, 100% 41%);
-  clip-path: polygon(0 5%, 0 0, 100% 0, 100% 41%);
+  background-color: white;
+  align-items: center;
+  padding-top:9%;
 }
+
+
+
 .container3{
   display:flex;
   height: 5%;
   background-color:purple;
 }
-
+.divb-1{
+  flex: auto;
+  text-align: center;
+  background-color: white;
+}
 
 .div1_selection{
   flex: 3;
@@ -46,12 +52,20 @@ justify-content: right;
   margin-top: 5%;
 }
 
-
-
+.divb_selection1{
+  flex: 1;
+  background-size: 100% 100%;
+  background-color: white;
+}
+.divb_selection2{
+  flex: 1;
+  background-size: 100% 100%;
+  background-color: white;
+}
 
 .spanA{
-  font-size: 70px;
-  font-weight: 400;
+  font-size: 50px;
+  font-weight: 300;
   //text-align: right;
 }
 .spanb{
@@ -69,4 +83,13 @@ justify-content: right;
 .button_font{
   font-size: 50px;
   font-weight: bold;
+}
+
+
+//button customized
+.mat-purple {
+  background-color: purple;
+  color: #fff;
+  height: 50px;
+  width: 150px;
 }

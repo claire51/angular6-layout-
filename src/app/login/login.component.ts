@@ -35,17 +35,17 @@ export class LoginComponent implements OnInit {
     this.formSubmitAttempt = true;
   }
 
-FindAllUser() {
-  this.dataService
-    .getAll<any[]>()
-    .subscribe((data: any[]) => this.values = data,
-      error => () => {
-     console.log('something went wrong');
-      },
-      () => {
-        console.log('success');
-      });
-
-}
+// FindAllUser() {
+//   this.dataService
+//     .getAll<any[]>()
+//     .subscribe((data: any[]) => this.values = data,
+//       error => () => {
+//      console.log('something went wrong');
+//       },
+//       () => {
+//         console.log('success');
+//       });
+//
+// }
 
 }

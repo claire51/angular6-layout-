@@ -20,20 +20,35 @@
   font-weight: bold;
 
 }
+
+
+
+
+
+
 .logo{
 height: 100px;
 }
 .menudiv{
   display: flex;
   width: 100%;
+
 }
 .barmenu{
 
   flex: 1;
   //justify-content: right;
   margin: auto;
-  align-items: baseline;
+  //align-items: baseline;
   align-content: flex-end;
   align-content: space-between;
   margin-left: 40%;
+}
+
+
+//button customized
+.mat-purple {
+  background-color: purple;
+  color: #fff;
+  height: 40px;
 }
