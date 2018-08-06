@@ -4,7 +4,7 @@ import { MatToolbarModule, MatDialogModule, MatButtonModule,
   MatSidenavModule, MatSelectModule, MatIconModule,
   MatListModule, MatInputModule, MatGridListModule, MatCardModule,
   MatMenuModule, MatTableModule, MatPaginatorModule,
-  MatSortModule, MatFormFieldModule , MatBadgeModule } from '@angular/material';
+  MatSortModule, MatFormFieldModule , MatBadgeModule ,MatDividerModule} from '@angular/material';
 
 
 
@@ -25,7 +25,8 @@ import { MatToolbarModule, MatDialogModule, MatButtonModule,
     MatSortModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatDividerModule
   ]
 })
 export class AppMaterialModule {}
