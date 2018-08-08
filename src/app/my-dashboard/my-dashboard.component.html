@@ -1,56 +1,65 @@
-<div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile  [colspan]="2" [rowspan]="1">
+<div id="escrow" class="escrow-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div  class="escrow-div"  >
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-          <span style="font-weight: bolder ; font-size: large">Saving Account</span>
+          <span style="font-weight: bolder ; font-size: large ; text-align: center">Create Transaction</span>
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <div>
-            <span style="font-weight: bolder">User  Name: {{auth.userAccount.user}}</span><br>
-            <br>
-            <span style="font-weight: bolder">Account Balance: {{auth.userAccount.savingsBalance}}</span>
+          <div style="justify-content: center">
+            <mat-horizontal-stepper [linear]="isLinear" #stepper>
+              <mat-step [stepControl]="firstFormGroup">
+                <form [formGroup]="firstFormGroup">
+                  <ng-template matStepLabel>Buyer AND SELLER DETAIL</ng-template>
+                  <mat-form-field>
+                    <input matInput type="tel" placeholder="Buyer Mobile No" formControlName="buyer_mobl" required>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput type="email" placeholder="Buyer Email" formControlName="buyer_email" required>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput type="tel" placeholder="Seller Mobile No" formControlName="seller_mobl" required>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput type="email" placeholder="Seller Email" formControlName="seller_email" required>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput type="tel" placeholder="Agent Mobile No" formControlName="agent_mobl" required>
+                  </mat-form-field>
+                  <div>
+                    <button mat-button matStepperNext>Next</button>
+                  </div>
+                </form>
+              </mat-step>
+              <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                  <ng-template matStepLabel>TRANSACTION DETAIL</ng-template>
+                  <mat-form-field>
+                    <input matInput placeholder="Address" formControlName="secondCtrl" required>
+                  </mat-form-field>
+                  <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                  </div>
+                </form>
+              </mat-step>
+              <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                You are now done.
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button (click)="stepper.reset()">Reset</button>
+                </div>
+              </mat-step>
+            </mat-horizontal-stepper>
 
-            <br>
-            <br>
-            <form  (ngSubmit)="calculate()" >
-                <input type="number" id="amount" placeholder="Please Enter Amount " [(ngModel)]="transfervalue"
-                       name="amounts"   required />
 
-              <button mat-raised-button color="primary" type="submit"  >Submit</button>
-            </form>
-<br>
-            <span style="color: red">{{message2}}</span>
+
 
           </div>
         </mat-card-content>
       </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile  [colspan]="2" [rowspan]="1">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            <span style="font-weight: bolder ; font-size: large">Checking Account</span>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>
-            <span style="font-weight: bolder">Account Balance: {{auth.userAccount.checkingBalance}}</span>
-            <br>
-            <br>
-            <form (ngSubmit)="calculate2()" >
-              <input type="number" id="amount2" placeholder="Please Enter Amount " [(ngModel)]="transfervalue2"
-                     name="amounts2"   required />
 
-              <button mat-raised-button color="primary" type="submit"  >Submit</button>
-            </form>
-            <span style="color: red">{{message}}</span>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+  </div>
 </div>

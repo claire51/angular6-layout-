@@ -1,21 +1,33 @@
-.grid-container {
-  margin: 20px;
+.escrow-container{
+  display: flex;
+  width:100%;
+  height: 100%;
+  background-color: white;
+  align-items: center;
+  padding-top:4%;
+  flex-wrap: wrap;
+
+}
+
+.escrow-div{
+  flex: auto;
+  justify-content: center;
+  padding-top: 2%;
+  height: 100%;
+align-content: center;
+
 }
 
 .dashboard-card {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
+  align-content: center;
 }
 
 .more-button {
-  position: absolute;
-  top: 5px;
-  right: 10px;
 }
 
 .dashboard-card-content {
   text-align: center;
+  align-content: center;
+
+  width: 400px;
 }

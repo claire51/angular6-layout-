@@ -13,13 +13,13 @@ import {UseAccounts} from './model/Accounts';
   providedIn: 'root',
 })
 export class AuthService {
-  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   message: string;
   allAccounts: Array<UseAccounts> = [ {
     savingsBalance: 0,
     checkingBalance: 1000000000,
     user: 'tstark',
-    pass: 'FEman'
+    pass: 'kevo'
   }, {
     savingsBalance: 1337.37,
     checkingBalance: 420,
@@ -54,7 +54,7 @@ export class AuthService {
   }
 
   logout() {
-    this.loggedIn.next(false);
+    this.loggedIn.next(true);
     this.router.navigate(['/login']);
   }
 }
