@@ -12,23 +12,33 @@ export class MyDashboardComponent  implements  OnInit {
     { title: 'Checking Account',  balance: 500, cols: 1, rows: 1 }
   ];
 
-  isLinear = false;
+  isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  buyer = true;
+  broker = true;
 
   constructor( public auth: AuthService , private _formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      buyer_mobl: ['', Validators.required],
-      buyer_email: ['', Validators.required],
-      seller_mobl: ['', Validators.required],
-      seller_email: ['', Validators.required],
-      agent_mobl: ['', Validators.required]
+      mobile_No: ['' , Validators.required],
+      buyer_Fullname: ['', Validators.required],
+      buyer_Idno: ['' ],
+      buyer_Email: [''],
+      seller_Email: ['']
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      agent_mobl: [''],
+      agent_email: [''],
+
+      del_cntry: ['' , Validators.required],
+      del_cnty: ['' , Validators.required],
+      del_twn: ['' , Validators.required],
+      del_strt: ['' , Validators.required],
+      del_ln: [''],
+      del_cmt: ['']
     });
   }
 

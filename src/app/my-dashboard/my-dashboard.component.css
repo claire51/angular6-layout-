@@ -28,6 +28,13 @@ align-content: center;
 .dashboard-card-content {
   text-align: center;
   align-content: center;
+  flex-direction: row;
 
-  width: 400px;
+  width: 80%;padding-left: 5%;
+
+}
+.escrow-form{
+  width: 350px;
+  align-content: center;
+
 }
