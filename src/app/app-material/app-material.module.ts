@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 
-import { MatToolbarModule, MatDialogModule, MatButtonModule,
+import {
+  MatToolbarModule, MatDialogModule, MatButtonModule,
   MatSidenavModule, MatSelectModule, MatIconModule,
   MatListModule, MatInputModule, MatGridListModule, MatCardModule,
   MatMenuModule, MatTableModule, MatPaginatorModule,
-  MatSortModule, MatFormFieldModule , MatBadgeModule, MatDividerModule,
-  MatStepperModule, MatCheckboxModule} from '@angular/material';
+  MatSortModule, MatFormFieldModule, MatBadgeModule, MatDividerModule,
+  MatStepperModule, MatCheckboxModule, MatProgressBarModule, MatProgressSpinnerModule, MatSliderModule, MatSnackBarModule, MatTooltipModule
+} from '@angular/material';
 
 
 
@@ -29,7 +31,15 @@ import { MatToolbarModule, MatDialogModule, MatButtonModule,
     MatBadgeModule,
     MatDividerModule,
     MatStepperModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+
+    MatListModule,
+    MatMenuModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatSliderModule,
+    MatSnackBarModule,
+    MatTooltipModule
 
   ]
 })
