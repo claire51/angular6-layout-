@@ -2,6 +2,8 @@ import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {AuthService} from '../auth.service';
 import {DataService} from '../services/data.service';
+import {CrudService} from '../services/crud.service';
+import {User} from "../model/User";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,9 +12,10 @@ import {DataService} from '../services/data.service';
 export class LoginComponent implements OnInit {
   form: FormGroup;
   public values: any[];
+  user: user;
   private formSubmitAttempt: boolean;
   constructor(    private fb: FormBuilder, private authService: AuthService ,
-                  vcr: ViewContainerRef , private dataService: DataService) {
+                  vcr: ViewContainerRef , private dataService: DataService, private crudeService: CrudService) {
   }
 
   ngOnInit() {
@@ -34,6 +37,20 @@ export class LoginComponent implements OnInit {
     }
     this.formSubmitAttempt = true;
   }
+  login(user: User) {
+    if (user.userName !== '' && user.password !== '' ) {
+       this.crudeService.save(user);
+      // console.log(this.userAccount);
+      this.this.crudeService.save(user).subscribe(
+        data => this.user = data)
+
+      if (this.user) {
+        this.loggedIn.next(true);
+        this.router.navigate(['/dashboard']);
+      }
+    }
+  }
+
 
 // FindAllUser() {
 //   this.dataService
