@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -10,8 +9,7 @@ import {AuthService} from '../auth.service';
 export class SignupComponent implements OnInit {
   form: FormGroup;
   private formSubmitAttempt: boolean;
-  constructor(    private fb: FormBuilder,
-                  private authService: AuthService) { }
+  constructor(    private fb: FormBuilder) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -33,7 +31,6 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      this.authService.login(this.form.value);
     }
     this.formSubmitAttempt = true;
   }

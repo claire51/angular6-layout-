@@ -1,71 +1,48 @@
-import { Http, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
 
-import { CrudOperations } from './crud-operations.interface';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-export abstract class CrudService<T, ID> implements CrudOperations<T, ID> {
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+import {Resource} from '../model/Resource';
 
-  protected base: string;
-  protected http: Http;
-  protected options: RequestOptions;
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
-  constructor(
-    base: string,
-    http: Http,
-    options?: RequestOptions
-  ) {
-    this.base = base;
-    this.http = http;
-    this.options = options;
+export abstract class CrudService<T extends Resource> {
+
+   constructor(
+    private http: HttpClient,
+    private url: string,
+    private endpoint: string) { }
+
+  getHeroes (): Observable<T[]> {
+    return this.http.get<T[]>(`${this.url}/${this.endpoint}`)
+      .pipe(
+        tap(heroes => this.log('fetched heroes')),
+        catchError(this.handleError('getHeroes', []))
+      );
+  }
+// .map(resp=>resp.json() as T[]);
+
+  private handleError<M> (operation = 'operation', result?: M) {
+    return (error: any): Observable<M> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as M);
+    };
   }
 
-  save(t: T) {
-    return this.http.post(this.base, t, this.options)
-      .map(this.extractData)
-      .catch(this.handleError);
-  }
-
-  update(id: ID, t: T) {
-    return this.http.put(this.base + "/" + id, t, this.options)
-      .map(this.extractData)
-      .catch(this.handleError);
-  }
-
-  findOne(id: ID) {
-    return this.http.get(this.base + "/" + id, this.options)
-      .map(this.extractData)
-      .catch(this.handleError);
-  }
-
-  findAll() {
-    return this.http.get(this.base, this.options)
-      .map(this.extractData)
-      .catch(this.handleError);
-  }
-
-  delete(id: ID) {
-    return this.http.delete(this.base + '/' + id, this.options)
-		 	.map(this.extractData)
-      .catch(this.handleError);
-	}
-
-  protected extractData(res: Response) {
-    let body = res.json() || '';
-    return body;
-  }
-
-  protected handleError(error: Response | any) {
-    let msg: string;
-    if( error instanceof Response) {
-      msg = error.json() || '';
-    } else {
-      msg = error.message ? error.message : error.toString();
-    }
-
-    return Observable.throw(msg);
+  private log(message: string) {
+    console.log(
+      message
+    );
   }
 
 }
