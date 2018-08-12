@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {RegisterService} from '../localService/register.service';
+
+import {Profile} from '../model/profile';
+import {RegistrationResponse} from '../model/registrationResponse';
+import {tap} from 'rxjs/internal/operators';
 
 @Component({
   selector: 'app-signup',
@@ -8,18 +13,20 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
   form: FormGroup;
+  profile: Profile;
+  registrationresponse: any;
   private formSubmitAttempt: boolean;
-  constructor(    private fb: FormBuilder) { }
+  constructor(    private fb: FormBuilder , private registeruser: RegisterService) { }
 
   ngOnInit() {
     this.form = this.fb.group({
-      firstname: ['', Validators.required],
-      middlename: ['', Validators.required],
-      lastname: ['', Validators.required],
-      phone: ['', Validators.required],
+      first_name: ['', Validators.required],
+      middle_name: ['', Validators.required],
+      last_name: ['', Validators.required],
+      phone_number: ['', Validators.required],
+      national_id: ['', Validators.required],
       email: ['', Validators.required],
-      idnumber: ['', Validators.required],
-      passowrd: ['', Validators.required]
+      password: ['', Validators.required]
     });
   }
   isFieldInvalid(field: string) {
@@ -31,7 +38,19 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
+      this.add(this.form.value);
     }
-    this.formSubmitAttempt = true;
+    this.formSubmitAttempt = true
+    console.log('eeeeeeeeeee');
+  }
+
+  add(profile: Profile): void {
+    this.registeruser.create(profile)
+      .subscribe(
+        registrationresponse => this.registrationresponse = registrationresponse);
+    .tap();
   }
 }
+
+
+

@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
   }
   login(user: User) {
     if (user.userName !== '' && user.password !== '' ) {
-      this.kevolService.getHeroes().subscribe(
+      this.kevolService.getdata().subscribe(
       useAccounts => this.useAccounts = useAccounts);
     }
   }

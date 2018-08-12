@@ -22,7 +22,9 @@ import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
 import {Configuration} from './app.constants';
 import { ApitestComponent } from './apitest/apitest.component';
-import {KevolService} from './services/kevol.service'
+import {KevolService} from './services/kevol.service';
+import {RegisterService} from './localService/register.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,7 @@ import {KevolService} from './services/kevol.service'
 
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [AuthGuardGuard, AuthService, Configuration, KevolService],
+  providers: [AuthGuardGuard, AuthService, Configuration, KevolService, RegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

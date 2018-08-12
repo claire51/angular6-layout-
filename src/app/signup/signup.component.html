@@ -5,27 +5,33 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <p>Sign up </p>
           <mat-form-field class="full-width-input">
-            <input matInput placeholder="First Name" formControlName="firstname" pattern="[a-z]{1,200}" required >
-            <mat-error *ngIf="isFieldInvalid('firstname')">
+            <input matInput placeholder="First Name" formControlName="first_name" pattern="[a-z]{1,200}" required >
+            <mat-error *ngIf="isFieldInvalid('first_name')">
               Enter Your First Name
             </mat-error>
           </mat-form-field>
           <mat-form-field class="full-width-input">
-            <input matInput placeholder="Middle Name" formControlName="middlename" required>
-            <mat-error *ngIf="isFieldInvalid('middlename')">
+            <input matInput placeholder="Middle Name" formControlName="middle_name" required>
+            <mat-error *ngIf="isFieldInvalid('middle_name')">
               Enter Your Middle Name
             </mat-error>
           </mat-form-field>
           <mat-form-field class="full-width-input">
-            <input matInput placeholder="Last Name" formControlName="lastname" required>
-            <mat-error *ngIf="isFieldInvalid('lastname')">
+            <input matInput placeholder="Last Name" formControlName="last_name" required>
+            <mat-error *ngIf="isFieldInvalid('last_name')">
               Enter valid Last name
             </mat-error>
           </mat-form-field>
           <mat-form-field class="full-width-input">
-            <input matInput  type="tel" placeholder="Phone Number " formControlName="phone" required>
-            <mat-error *ngIf="isFieldInvalid('phone')">
+            <input matInput  type="tel" placeholder="Phone Number " formControlName="phone_number" required>
+            <mat-error *ngIf="isFieldInvalid('phone_number')">
               Enter valid  Mobile Number
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width-input">
+            <input matInput type="password"  placeholder="ID Number" formControlName="national_id" required>
+            <mat-error *ngIf="isFieldInvalid('national_id')">
+              Enter valid ID Number
             </mat-error>
           </mat-form-field>
           <mat-form-field class="full-width-input">
@@ -35,17 +41,12 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field class="full-width-input">
-            <input matInput type="password"  placeholder="Password" formControlName="passowrd" required>
-            <mat-error *ngIf="isFieldInvalid('passowrd')">
+            <input matInput type="password"  placeholder="Password" formControlName="password" required>
+            <mat-error *ngIf="isFieldInvalid('password')">
               Enter valid Password(Should have atleast 4 character)
             </mat-error>
           </mat-form-field>
-          <mat-form-field class="full-width-input">
-            <input matInput type="password"  placeholder="ID Number" formControlName="idnumber" required>
-            <mat-error *ngIf="isFieldInvalid('idnumber')">
-              Enter valid ID Number
-            </mat-error>
-          </mat-form-field>
+
           <button mat-raised-button color="primary" type="submit">Sign Up</button>
         </form>
       </mat-card-content>
