@@ -3,12 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import {RegistrationResponse} from '../model/registrationResponse';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 export class GeneriCrudService<T> {
+  register: RegistrationResponse ;
   constructor(
     private http: HttpClient,
     private url: string,
@@ -26,7 +28,7 @@ export class GeneriCrudService<T> {
   /** POST: add a new hero to the server */
   create (values: T): Observable<T> {
     return this.http.post<any>(`${this.url}/${this.endpoint}`, values, httpOptions).pipe(
-      tap(heroes => this.log('added data')),
+      tap(heroes => this.log('added data', this.heroes)),
       catchError(this.handleError<T>('adding'))
     );
   }

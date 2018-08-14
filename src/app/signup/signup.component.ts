@@ -48,7 +48,7 @@ export class SignupComponent implements OnInit {
     this.registeruser.create(profile)
       .subscribe(
         registrationresponse => this.registrationresponse = registrationresponse);
-    .tap();
+    console.log(this.registrationresponse);
   }
 }
 
