@@ -4,6 +4,8 @@
       <mat-card-content>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <p>Sign up </p>
+          <p style="color: red">{{error}}</p>
+
           <mat-form-field class="full-width-input">
             <input matInput placeholder="First Name" formControlName="first_name" pattern="[a-z]{1,200}" required >
             <mat-error *ngIf="isFieldInvalid('first_name')">
