@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import { AuthGuardGuard } from './guard/auth-guard.guard';
 import { AuthService } from './auth.service';
 import { ReactiveFormsModule , FormsModule } from '@angular/forms';
@@ -48,7 +48,9 @@ import {RegisterService} from './localService/register.service';
 
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [AuthGuardGuard, AuthService, Configuration, KevolService, RegisterService],
+  providers: [AuthGuardGuard,
+      AuthService, Configuration,
+    KevolService, RegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

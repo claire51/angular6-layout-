@@ -5,6 +5,7 @@ import {RegisterService} from '../localService/register.service';
 import {Profile} from '../model/profile';
 import {RegistrationResponse} from '../model/registrationResponse';
 import {tap} from 'rxjs/internal/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -14,9 +15,10 @@ import {tap} from 'rxjs/internal/operators';
 export class SignupComponent implements OnInit {
   form: FormGroup;
   profile: Profile;
-  registrationresponse: any;
+  registrationresponse: RegistrationResponse;
+  error: string;
   private formSubmitAttempt: boolean;
-  constructor(    private fb: FormBuilder , private registeruser: RegisterService) { }
+  constructor(    private fb: FormBuilder , private registeruser: RegisterService, private router: Router) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -40,15 +42,22 @@ export class SignupComponent implements OnInit {
     if (this.form.valid) {
       this.add(this.form.value);
     }
-    this.formSubmitAttempt = true
-    console.log('eeeeeeeeeee');
+    this.formSubmitAttempt = true;
   }
 
   add(profile: Profile): void {
-    this.registeruser.create(profile)
-      .subscribe(
-        registrationresponse => this.registrationresponse = registrationresponse);
-    console.log(this.registrationresponse);
+    this.error =null;
+    this.registeruser.create(profile).subscribe((newHeroWithId) => {
+      this.registrationresponse = newHeroWithId;
+      if ( this.registrationresponse.status === 'ok') {
+        this.router.navigate(['/login']);
+      }
+      console.log(this.registrationresponse.status);
+    }, (response: Response) => {
+      if (response.status <= 500) {
+        this.error = 'account with that email exist';
+      }
+    });
   }
 }
 
