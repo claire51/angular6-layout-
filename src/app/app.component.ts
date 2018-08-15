@@ -3,6 +3,7 @@ import {map} from 'rxjs/operators';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Observable} from 'rxjs';
 import {AuthService} from './auth.service';
+import {ProgressBarService} from './services/progress-bar.service';
 
 @Component({
   selector: 'app-root',
@@ -12,17 +13,21 @@ import {AuthService} from './auth.service';
 export class AppComponent implements OnInit {
   title = 'EXXON Bank Account';
   isLoggedIn$: Observable<boolean>;
+  progressBarMode: string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
     );
 
-  constructor(private breakpointObserver: BreakpointObserver , public auth: AuthService) {
+  constructor(private breakpointObserver: BreakpointObserver , public auth: AuthService,  private progressBarService: ProgressBarService) {
   }
 
   ngOnInit() {
     this.isLoggedIn$ = this.auth.isAuthenticated();
+    this.progressBarService.updateProgressBar$.subscribe((mode: string) => {
+      this.progressBarMode = mode;
+    });
   }
 
   onLogout() {

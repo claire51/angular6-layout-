@@ -1,29 +1,35 @@
-import { BrowserModule } from '@angular/platform-browser';
-import {ErrorHandler, NgModule} from '@angular/core';
-import { AuthGuardGuard } from './guard/auth-guard.guard';
-import { AuthService } from './auth.service';
-import { ReactiveFormsModule , FormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpClientModule } from '@angular/common/http';
+import {BrowserModule} from '@angular/platform-browser';
+import { NgModule} from '@angular/core';
+import {AuthGuardGuard} from './guard/auth-guard.guard';
+import {AuthService} from './auth.service';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {HttpClientModule, HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
 
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutModule } from '@angular/cdk/layout';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {LayoutModule} from '@angular/cdk/layout';
+import {APP_CONFIG, AppConfig} from './common/config/app.config';
 
-import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
-import { MyTableComponent } from './my-table/my-table.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-import { LoginComponent } from './login/login.component';
-import { AppMaterialModule } from './app-material/app-material.module';
-import { HomeComponent } from './home/home.component';
-import { SignupComponent } from './signup/signup.component';
+import {MyDashboardComponent} from './my-dashboard/my-dashboard.component';
+import {MyTableComponent} from './my-table/my-table.component';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
+import {LoginComponent} from './login/login.component';
+import {AppMaterialModule} from './app-material/app-material.module';
+import {HomeComponent} from './home/home.component';
+import {SignupComponent} from './signup/signup.component';
 import {Configuration} from './app.constants';
-import { ApitestComponent } from './apitest/apitest.component';
+import {ApitestComponent} from './apitest/apitest.component';
 import {KevolService} from './services/kevol.service';
 import {RegisterService} from './localService/register.service';
+import {ProgressBarService} from './services/progress-bar.service';
+import {TimingInterceptor} from './common/interceptors/timing.interceptor';
+import {ProgressInterceptor} from './common/interceptors/progress.interceptor';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {HttpLoaderFactory} from './app.translate.factory';
 
 @NgModule({
   declarations: [
@@ -42,15 +48,27 @@ import {RegisterService} from './localService/register.service';
     HttpClientModule,
     FlexLayoutModule,
     AppMaterialModule,
-   FormsModule ,
+    FormsModule,
     ReactiveFormsModule,
     LayoutModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
 
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [AuthGuardGuard,
-      AuthService, Configuration,
+    AuthService, Configuration,
+    {provide: APP_CONFIG, useValue: AppConfig},
+    ProgressBarService,
+    {provide: HTTP_INTERCEPTORS, useClass: ProgressInterceptor, multi: true, deps: [ProgressBarService]},
+    {provide: HTTP_INTERCEPTORS, useClass: TimingInterceptor, multi: true},
     KevolService, RegisterService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

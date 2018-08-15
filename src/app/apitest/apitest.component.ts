@@ -3,6 +3,7 @@ import {UseAccounts} from '../model/Accounts';
 import {KevolService} from '../services/kevol.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import {ProgressBarService} from '../services/progress-bar.service';
 
 @Component({
   selector: 'app-apitest',
@@ -12,12 +13,20 @@ import { Location } from '@angular/common';
 export class ApitestComponent implements OnInit {
   useAccounts: Array<UseAccounts>;
   account: UseAccounts;
+  progressBarMode: string;
 
+  color = 'primary';
+  mode = 'determinate';
+  value = 50;
+  bufferValue = 75;
   constructor(private kevolService: KevolService,  private route: ActivatedRoute,
-              private location: Location) {
+              private location: Location, private progressBarService: ProgressBarService) {
   }
 
   ngOnInit() {
+    this.progressBarService.updateProgressBar$.subscribe((mode: string) => {
+      this.progressBarMode = mode;
+    });
     this.getuseraccount();
   }
 

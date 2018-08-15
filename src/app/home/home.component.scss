@@ -1,3 +1,4 @@
+@import "../common/styles/mixins";
 .home_container{
   display: flex;
   width:100%;
@@ -165,6 +166,8 @@ justify-content: center;
   text-align: center;
 }
 
+
+
 .spanA{
   font-size: 60px;
   font-weight: 400;
@@ -207,6 +210,16 @@ justify-content: center;
   color: #fff;
   height: 40px;
 }
+
+.progress-bar {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: calculateRem(5px);
+}
+
+
+
 
 //mobile
 @media all and (max-width: 800px) {

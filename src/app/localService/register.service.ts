@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
-import {CrudService} from '../services/crud.service';
 import {HttpClient} from '@angular/common/http';
-import {Profile} from '../model/profile';
 import {GeneriCrudService} from '../services/generi-crud.service';
 import {RegistrationResponse} from '../model/registrationResponse';
+import {MatSnackBar} from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService extends GeneriCrudService<RegistrationResponse> {
-  constructor(httpClient: HttpClient) {
+  constructor(httpClient: HttpClient,  translateServicem: TranslateService,
+               snackBarm: MatSnackBar) {
     super(
       httpClient,
       'http://api.mlinzi.co.ke:8080/api',
-      'auth/signup');
+      'auth/signup',
+      translateServicem,
+      snackBarm
+    );
   }
 }

@@ -46,7 +46,7 @@ export class SignupComponent implements OnInit {
   }
 
   add(profile: Profile): void {
-    this.error =null;
+    this.error = null;
     this.registeruser.create(profile).subscribe((newHeroWithId) => {
       this.registrationresponse = newHeroWithId;
       if ( this.registrationresponse.status === 'ok') {
