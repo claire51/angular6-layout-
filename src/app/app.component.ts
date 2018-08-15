@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   title = 'EXXON Bank Account';
   isLoggedIn$: Observable<boolean>;
   progressBarMode: string;
-
+  color = 'primary';
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)

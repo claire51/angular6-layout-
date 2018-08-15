@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RegisterService} from '../localService/register.service';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
+
+
 
 import {Profile} from '../model/profile';
 import {RegistrationResponse} from '../model/registrationResponse';
-import {tap} from 'rxjs/internal/operators';
 import {Router} from '@angular/router';
+import {AppConfig} from '../common/config/app.config';
 
 @Component({
   selector: 'app-signup',
@@ -18,7 +21,8 @@ export class SignupComponent implements OnInit {
   registrationresponse: RegistrationResponse;
   error: string;
   private formSubmitAttempt: boolean;
-  constructor(    private fb: FormBuilder , private registeruser: RegisterService, private router: Router) { }
+  constructor(private fb: FormBuilder , private registeruser: RegisterService, private router: Router,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -50,14 +54,22 @@ export class SignupComponent implements OnInit {
     this.registeruser.create(profile).subscribe((newHeroWithId) => {
       this.registrationresponse = newHeroWithId;
       if ( this.registrationresponse.status === 'ok') {
+        this.showSnackBar('AccountCreated Created Succesfully.. Login to continue ');
         this.router.navigate(['/login']);
       }
       console.log(this.registrationresponse.status);
     }, (response: Response) => {
       if (response.status <= 500) {
+        this.showSnackBar('account with that email Already exist ..Try Another');
         this.error = 'account with that email exist';
       }
     });
+  }
+  showSnackBar(name): void {
+      const config: any = new MatSnackBarConfig();
+      config.duration = AppConfig.snackBarDuration;
+      this.snackBar.open(name, 'OK', config);
+    // });
   }
 }
 

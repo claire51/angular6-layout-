@@ -4,7 +4,7 @@ import {AuthGuardGuard} from './guard/auth-guard.guard';
 import {AuthService} from './auth.service';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {HttpClientModule, HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 
 import {AppRoutingModule} from './app-routing.module';
@@ -28,8 +28,6 @@ import {RegisterService} from './localService/register.service';
 import {ProgressBarService} from './services/progress-bar.service';
 import {TimingInterceptor} from './common/interceptors/timing.interceptor';
 import {ProgressInterceptor} from './common/interceptors/progress.interceptor';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {HttpLoaderFactory} from './app.translate.factory';
 
 @NgModule({
   declarations: [
@@ -51,14 +49,6 @@ import {HttpLoaderFactory} from './app.translate.factory';
     FormsModule,
     ReactiveFormsModule,
     LayoutModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-
     ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [AuthGuardGuard,

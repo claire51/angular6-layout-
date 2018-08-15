@@ -1,9 +1,5 @@
 <div class="container"   fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-  <section class="progress-bar">
-    <mat-progress-bar [color]="'primary'" [mode]="progressBarMode">
-    </mat-progress-bar>
-  </section>
-  <div class="logindiv">
+    <div class="logindiv">
   <mat-card>
     <mat-card-content>
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -20,7 +16,12 @@
             Enter valid password
           </mat-error>
         </mat-form-field>
+        <span class="forgotpass">
+            <button mat-button  [color]="'purple'" routerLink="/recover"> Forgot Password</button>
+     </span>
+        <span class="loginbtn">
         <button mat-raised-button color="primary" type="submit">Login</button>
+        </span>
       </form>
     </mat-card-content>
   </mat-card>

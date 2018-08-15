@@ -4,7 +4,7 @@
   width:100%;
   flex-direction: row;
 align-items: center;
-  padding-top:9%;
+  padding-top:5%;
   background-size: 100% 100%;
   background-color: blue;
   height: 500px;
@@ -210,6 +210,13 @@ justify-content: center;
   color: #fff;
   height: 40px;
 }
+
+.mat-blue{
+  background-color: purple;
+  color: blue;
+  height: 40px;
+}
+
 
 .progress-bar {
   display: flex;
