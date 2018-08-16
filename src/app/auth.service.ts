@@ -12,11 +12,13 @@ import {Router} from '@angular/router';
 })
 export class AuthService {
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  showloading: boolean;
   isAuthenticated() {
     return this.loggedIn.asObservable();
   }
 
   constructor( private router: Router) {
+    this.showloading = false;
   }
 
   login() {

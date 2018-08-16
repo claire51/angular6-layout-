@@ -17,11 +17,13 @@ export class PassRecoverComponent implements OnInit {
   public values: any[];
   registrationresponse: RegistrationResponse;
   error: string;
+  status: boolean;
   private formSubmitAttempt: boolean;
   constructor(private fb: FormBuilder, private router: Router,
               private snackBar: MatSnackBar, private recoverservice: Recoverpassword) { }
 
   ngOnInit() {
+    this.status = true;
     this.form = this.fb.group({
       email: ['', Validators.required]
     });
@@ -34,6 +36,7 @@ export class PassRecoverComponent implements OnInit {
   }
   onSubmit() {
     if (this.form.valid) {
+      this.status = false;
       this.requestpass(this.form.value);
     }
     this.formSubmitAttempt = true;
@@ -43,12 +46,14 @@ export class PassRecoverComponent implements OnInit {
     this.recoverservice.recover(recoverpassword).subscribe((newHeroWithId) => {
       this.registrationresponse = newHeroWithId;
       if ( this.registrationresponse.status === 'ok') {
-        this.showSnackBar('Check your Email we have sent the password ');
+        this.showSnackBar('Check your Email we have sent you the password ');
+        this.status = true;
         this.router.navigate(['/login']);
       }
       console.log(this.registrationresponse.status);
     }, (response: Response) => {
       if (response.status <= 500) {
+        this.status = true;
         this.showSnackBar('Account with that Email does not Exist ');
         this.error = 'account with that email does not exist';
       }

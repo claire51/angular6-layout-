@@ -7,6 +7,7 @@ import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 import {AppConfig} from '../common/config/app.config';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
+import {ProgressBarService} from '../services/progress-bar.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,12 +18,16 @@ export class LoginComponent implements OnInit {
   public values: any[];
   tokens: Tokens;
   error: string;
+  color = 'primary';
+  status: boolean;
   private formSubmitAttempt: boolean;
   constructor(private fb: FormBuilder, private loginservice: Login, private authservice: AuthService,
-              private router: Router,  private snackBar: MatSnackBar) {
+              private router: Router,  private snackBar: MatSnackBar, private progressBarService: ProgressBarService) {
   }
 
   ngOnInit() {
+    this.status = true;
+    this.authservice.showloading = false;
     this.form = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -37,6 +42,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
+      this.status = false;
       this.login(this.form.value);
     }
     this.formSubmitAttempt = true;
@@ -50,10 +56,12 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', this.tokens.token);
           localStorage.setItem('expires_in', '' + (Number(0) + this.tokens.expires_in));
           this.authservice.login();
+          this.status = true;
           this.router.navigate(['/dashboard']);
         }
       }, (response: Response) => {
         if (response.status <= 500) {
+          this.status = true;
           this.showSnackBar(' Invalid Password or Username');
           this.error = 'Invalid Password or Username';
         }

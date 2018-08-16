@@ -1,3 +1,5 @@
+@import "../common/styles/mixins";
+
 md-card {
   max-width: 50%;
   text-align: center;
@@ -35,4 +37,9 @@ text-align: left;
   font-weight: bold;
   padding-left: 40%;
   text-align: right;
+}
+.progress-bar {
+  align-content: center;
+  align-items: center;
+  height: calculateRem(5px);
 }

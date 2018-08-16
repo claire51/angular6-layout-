@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
     );
 
   constructor(private breakpointObserver: BreakpointObserver , public auth: AuthService,  private progressBarService: ProgressBarService) {
+    this.auth.showloading = false;
   }
 
   ngOnInit() {

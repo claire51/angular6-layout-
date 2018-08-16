@@ -9,6 +9,7 @@ import {Profile} from '../model/profile';
 import {RegistrationResponse} from '../model/registrationResponse';
 import {Router} from '@angular/router';
 import {AppConfig} from '../common/config/app.config';
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -18,13 +19,16 @@ import {AppConfig} from '../common/config/app.config';
 export class SignupComponent implements OnInit {
   form: FormGroup;
   profile: Profile;
+  status: boolean;
   registrationresponse: RegistrationResponse;
   error: string;
   private formSubmitAttempt: boolean;
   constructor(private fb: FormBuilder , private registeruser: RegisterService, private router: Router,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar, private auth: AuthService) { }
 
   ngOnInit() {
+    this.auth.showloading = false;
+    this.status = true;
     this.form = this.fb.group({
       first_name: ['', Validators.required],
       middle_name: ['', Validators.required],
@@ -43,6 +47,7 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
+    this.status = false;
     if (this.form.valid) {
       this.add(this.form.value);
     }
@@ -55,11 +60,13 @@ export class SignupComponent implements OnInit {
       this.registrationresponse = newHeroWithId;
       if ( this.registrationresponse.status === 'ok') {
         this.showSnackBar('AccountCreated Created Succesfully.. Login to continue ');
+        this.status = true;
         this.router.navigate(['/login']);
       }
       console.log(this.registrationresponse.status);
     }, (response: Response) => {
       if (response.status <= 500) {
+        this.status = true;
         this.showSnackBar('account with that email Already exist ..Try Another');
         this.error = 'account with that email exist';
       }

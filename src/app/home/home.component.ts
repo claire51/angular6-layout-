@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   constructor(private progressBarService: ProgressBarService, private authservice: AuthService) { }
 
   ngOnInit() {
+    this.authservice.showloading = true;
     this.progressBarService.updateProgressBar$.subscribe((mode: string) => {
       this.progressBarMode = mode;
     });
