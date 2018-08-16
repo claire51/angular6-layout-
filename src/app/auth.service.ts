@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {Router} from '@angular/router';
-import {User} from './model/User';
-import {UseAccounts} from './model/Accounts';
 
 
 // why do you need defining window as any?
@@ -13,7 +11,7 @@ import {UseAccounts} from './model/Accounts';
   providedIn: 'root',
 })
 export class AuthService {
-  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isAuthenticated() {
     return this.loggedIn.asObservable();
   }
@@ -21,8 +19,16 @@ export class AuthService {
   constructor( private router: Router) {
   }
 
+  login() {
+    if (localStorage.getItem('token') !== '' ) {
+      this.loggedIn.next(true);
+    }
+  }
+
   logout() {
-    this.loggedIn.next(true);
+    this.loggedIn.next(false);
     this.router.navigate(['/login']);
   }
+
+
 }

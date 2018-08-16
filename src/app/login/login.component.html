@@ -5,24 +5,25 @@
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <p>Please login to continue</p>
         <mat-form-field class="full-width-input">
-          <input matInput placeholder="User" formControlName="userName" pattern="[a-z]{1,200}" required >
-          <mat-error *ngIf="isFieldInvalid('userName')">
-            use lower case alpha character
+          <input matInput type="email" placeholder="Enter your email " formControlName="email"  required >
+          <mat-error *ngIf="isFieldInvalid('email')">
+           Enter valid email
           </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width-input">
-          <input matInput type="password" placeholder="Password" formControlName="password" required>
-          <mat-error *ngIf="isFieldInvalid('userName')">
+          <input matInput type="password" placeholder="Enter your password" formControlName="password" required>
+          <mat-error *ngIf="isFieldInvalid('password')">
             Enter valid password
           </mat-error>
         </mat-form-field>
         <span class="forgotpass">
-            <button mat-button  [color]="'purple'" routerLink="/recover"> Forgot Password</button>
+            <a mat-button  [color]="'purple'" routerLink="/recover" > Forgot Password</a>
      </span>
         <span class="loginbtn">
         <button mat-raised-button color="primary" type="submit">Login</button>
         </span>
       </form>
+
     </mat-card-content>
   </mat-card>
   </div>

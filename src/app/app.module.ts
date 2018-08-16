@@ -28,6 +28,7 @@ import {RegisterService} from './localService/register.service';
 import {ProgressBarService} from './services/progress-bar.service';
 import {TimingInterceptor} from './common/interceptors/timing.interceptor';
 import {ProgressInterceptor} from './common/interceptors/progress.interceptor';
+import {Login} from './localService/login';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import {ProgressInterceptor} from './common/interceptors/progress.interceptor';
     ProgressBarService,
     {provide: HTTP_INTERCEPTORS, useClass: ProgressInterceptor, multi: true, deps: [ProgressBarService]},
     {provide: HTTP_INTERCEPTORS, useClass: TimingInterceptor, multi: true},
-    KevolService, RegisterService],
+    KevolService, RegisterService, Login],
   bootstrap: [AppComponent]
 })
 export class AppModule {

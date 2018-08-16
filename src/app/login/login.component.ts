@@ -1,9 +1,12 @@
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Login} from '../localService/login';
+import {Authrizer} from '../model/authrizer';
+import {Tokens} from '../model/Tokens';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
+import {AppConfig} from '../common/config/app.config';
+import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
-import {KevolService} from '../services/kevol.service';
-import {User} from '../model/User';
-import {UseAccounts} from '../model/Accounts';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,16 +15,16 @@ import {UseAccounts} from '../model/Accounts';
 export class LoginComponent implements OnInit {
   form: FormGroup;
   public values: any[];
-  user: User;
-  useAccounts: Array<UseAccounts>;
+  tokens: Tokens;
+  error: string;
   private formSubmitAttempt: boolean;
-  constructor(    private fb: FormBuilder, private authService: AuthService ,
-                  vcr: ViewContainerRef , private kevolService: KevolService) {
+  constructor(private fb: FormBuilder, private loginservice: Login, private authservice: AuthService,
+              private router: Router,  private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
     this.form = this.fb.group({
-      userName: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -38,25 +41,32 @@ export class LoginComponent implements OnInit {
     }
     this.formSubmitAttempt = true;
   }
-  login(user: User) {
-    if (user.userName !== '' && user.password !== '' ) {
-      this.kevolService.getdata().subscribe(
-      useAccounts => this.useAccounts = useAccounts);
+  login(auther: Authrizer) {
+    if (auther.email !== '' && auther.password !== '' ) {
+      this.error = null;
+      this.loginservice.authrize(auther).subscribe((newHeroWithId) => {
+        this.tokens = newHeroWithId;
+        if ( this.tokens.status === 'ok') {
+          localStorage.setItem('token', this.tokens.token);
+          localStorage.setItem('expires_in', '' + (Number(0) + this.tokens.expires_in));
+          this.authservice.login();
+          this.router.navigate(['/dashboard']);
+        }
+      }, (response: Response) => {
+        if (response.status <= 500) {
+          this.showSnackBar(' Invalid Password or Username');
+          this.error = 'Invalid Password or Username';
+        }
+      });
     }
+  }
+    showSnackBar(name): void {
+      const config: any = new MatSnackBarConfig();
+    config.duration = AppConfig.snackBarDuration;
+    this.snackBar.open(name, 'OK', config);
   }
 
 
-// FindAllUser() {
-//   this.dataService
-//     .getAll<any[]>()
-//     .subscribe((data: any[]) => this.values = data,
-//       error => () => {
-//      console.log('something went wrong');
-//       },
-//       () => {
-//         console.log('success');
-//       });
-//
-// }
+
 
 }

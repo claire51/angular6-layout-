@@ -4,6 +4,8 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 // import {AppConfig} from '../common/config/app.config';
 import {Profile} from '../model/profile';
+import {RecoverPassword} from '../model/RecoverPassword';
+import {Authrizer} from '../model/authrizer';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -27,8 +29,26 @@ export class GeneriCrudService<T> {
       catchError(this.handleError<T>('adding'))
     );
   }
-
-
+  /** POST: add a new hero to the server */
+  recover (values: RecoverPassword): Observable<T> {
+    return this.http.post<T>(`${this.url}/${this.endpoint}`, values, httpOptions).pipe(
+      tap(heroes => this.log('added data')),
+      tap((heroSaved: T) => {
+        console.log('Account Created .. Login to continue');
+      }),
+      catchError(this.handleError<T>('adding'))
+    );
+  }
+  /** POST: add a new hero to the server */
+  authrize (values: Authrizer): Observable<T> {
+    return this.http.post<T>(`${this.url}/${this.endpoint}`, values, httpOptions).pipe(
+      tap(heroes => this.log('logged user')),
+      tap((heroSaved: T) => {
+        console.log('user loggedin .. ');
+      }),
+      catchError(this.handleError<T>('adding'))
+    );
+  }
 
   private handleError<M> (operation = 'operation', result?: M) {
     return (error: any): Observable<M> => {
@@ -39,7 +59,7 @@ export class GeneriCrudService<T> {
    if (error.status <= 500) {
      throw error;
    }   else {
-     alert('Account already exist');
+     alert('Something went wrong try again ...');
    }
  }
       // TODO: better job of transforming error for user consumption
