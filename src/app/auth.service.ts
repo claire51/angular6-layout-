@@ -31,6 +31,8 @@ export class AuthService {
     this.loggedIn.next(false);
     this.router.navigate(['/login']);
   }
-
+  getAuthorizationToken() {
+    return this.localStorage.getItem('token');
+  }
 
 }

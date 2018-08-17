@@ -10,7 +10,6 @@ export class Recoverpassword extends GeneriCrudService<RegistrationResponse> {
   constructor(httpClient: HttpClient) {
     super(
       httpClient,
-      'http://api.mlinzi.co.ke:8080/api',
       'auth/recovery'
     );
   }

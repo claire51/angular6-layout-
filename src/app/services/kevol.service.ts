@@ -7,7 +7,6 @@ export class KevolService extends CrudService<UseAccounts> {
   constructor(httpClient: HttpClient) {
     super(
       httpClient,
-      'https://jsonplaceholder.typicode.com',
       'posts');
   }
   }

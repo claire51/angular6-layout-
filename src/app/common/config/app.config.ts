@@ -13,5 +13,5 @@ export const AppConfig: IAppConfig = {
     heroes: 'https://nodejs-example-app.herokuapp.com/heroes'
   },
   snackBarDuration: 3000,
-  repositoryURL: 'https://github.com/Ismaestro/angular5-example-app'
+  repositoryURL: 'http://api.mlinzi.co.ke:8080/api'
 };

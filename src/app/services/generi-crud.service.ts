@@ -2,7 +2,7 @@
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-// import {AppConfig} from '../common/config/app.config';
+import {AppConfig} from '../common/config/app.config';
 import {Profile} from '../model/profile';
 import {RecoverPassword} from '../model/RecoverPassword';
 import {Authrizer} from '../model/authrizer';
@@ -11,17 +11,19 @@ const httpOptions = {
 };
 
 export class GeneriCrudService<T> {
+  baseurl: string;
   constructor(
     private http: HttpClient,
-    private url: string,
-    private endpoint: string) { }
+    private endpoint: string) {
+    this.baseurl = AppConfig.repositoryURL;
+  }
 
 
 
 
   /** POST: add a new hero to the server */
   create (values: Profile): Observable<T> {
-    return this.http.post<T>(`${this.url}/${this.endpoint}`, values, httpOptions).pipe(
+    return this.http.post<T>(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
       tap(heroes => this.log('added data')),
       tap((heroSaved: T) => {
        console.log('Account Created .. Login to continue');
@@ -31,7 +33,7 @@ export class GeneriCrudService<T> {
   }
   /** POST: add a new hero to the server */
   recover (values: RecoverPassword): Observable<T> {
-    return this.http.post<T>(`${this.url}/${this.endpoint}`, values, httpOptions).pipe(
+    return this.http.post<T>(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
       tap(heroes => this.log('added data')),
       tap((heroSaved: T) => {
         console.log('Account Created .. Login to continue');
@@ -41,7 +43,7 @@ export class GeneriCrudService<T> {
   }
   /** POST: add a new hero to the server */
   authrize (values: Authrizer): Observable<T> {
-    return this.http.post<T>(`${this.url}/${this.endpoint}`, values, httpOptions).pipe(
+    return this.http.post<T>(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
       tap(heroes => this.log('logged user')),
       tap((heroSaved: T) => {
         console.log('user loggedin .. ');

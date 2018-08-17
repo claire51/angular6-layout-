@@ -10,7 +10,6 @@ export class Login extends GeneriCrudService<Tokens> {
   constructor(httpClient: HttpClient) {
     super(
       httpClient,
-      'http://api.mlinzi.co.ke:8080/api',
       'auth/login'
     );
   }
