@@ -19,6 +19,9 @@ const routes: Routes = [
   { path: 'profile',
     loadChildren: '../app/profile/profile.module#ProfileModule'
   },
+  { path: 'recover',
+    loadChildren: '../app/Component/shared.module#SharedModule'
+  },
   { path: '**', redirectTo: '' },
   {
     path: '',

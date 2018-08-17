@@ -16,7 +16,7 @@ export class ApitestComponent implements OnInit {
   progressBarMode: string;
 
   color = 'primary';
-  mode = 'determinate';
+  mode = 'indeterminate';
   value = 50;
   bufferValue = 75;
   constructor(private kevolService: KevolService,  private route: ActivatedRoute,

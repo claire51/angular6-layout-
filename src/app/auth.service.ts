@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {Router} from '@angular/router';
-import {User} from './model/User';
-import {UseAccounts} from './model/Accounts';
 
 
 // why do you need defining window as any?
@@ -13,48 +11,26 @@ import {UseAccounts} from './model/Accounts';
   providedIn: 'root',
 })
 export class AuthService {
-  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
-  // message: string;
-  // allAccounts: Array<UseAccounts> = [ {
-  //   savingsBalance: 0,
-  //   checkingBalance: 1000000000,
-  //   user: 'tstark',
-  //   pass: 'kevo'
-  // }, {
-  //   savingsBalance: 1337.37,
-  //   checkingBalance: 420,
-  //   user: 'bwidow',
-  //   pass: 'gunsgunsgunsguns'
-  // }, {
-  //   savingsBalance: 12,
-  //   checkingBalance: 5.92,
-  //   user: 'spiderman',
-  //   pass: 'doeswhateveraspidercan'
-  // }, {
-  //   savingsBalance: 0,
-  //   checkingBalance: 0,
-  //   user: 'rastley',
-  //   pass: 'NEVERGONNAtellaLIE'
-  // }
-  // ];
-  // userAccount = new UseAccounts();
+  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  showloading: boolean;
   isAuthenticated() {
     return this.loggedIn.asObservable();
   }
-  constructor( private router: Router) { }
-  // login(user: User) {
-  //   if (user.userName !== '' && user.password !== '' ) {
-  //     this.userAccount =  this.allAccounts.filter(item => item.user === user.userName && item.pass === user.password )[0];
-  //     // console.log(this.userAccount);
-  //     if (this.userAccount) {
-  //       this.loggedIn.next(true);
-  //       this.router.navigate(['/dashboard']);
-  //     }
-  //   }
-  // }
+
+  constructor( private router: Router) {
+    this.showloading = false;
+  }
+
+  login() {
+    if (localStorage.getItem('token') !== '' ) {
+      this.loggedIn.next(true);
+    }
+  }
 
   logout() {
-    this.loggedIn.next(true);
+    this.loggedIn.next(false);
     this.router.navigate(['/login']);
   }
+
+
 }

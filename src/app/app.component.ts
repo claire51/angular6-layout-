@@ -11,16 +11,17 @@ import {ProgressBarService} from './services/progress-bar.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'EXXON Bank Account';
+  title = 'MLINZI';
   isLoggedIn$: Observable<boolean>;
   progressBarMode: string;
-
+  color = 'primary';
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
     );
 
   constructor(private breakpointObserver: BreakpointObserver , public auth: AuthService,  private progressBarService: ProgressBarService) {
+    this.auth.showloading = false;
   }
 
   ngOnInit() {

@@ -15,6 +15,7 @@
   border-radius: 4px;
 }
 .progress-bar {
+  margin-top: 61px; width: 100%;
   display: flex;
   align-content: center;
   align-items: center;
@@ -31,7 +32,7 @@
 
 
 
-.heroes li:hover {
+  .heroes li:hover {
   color: #607D8B;
   background-color: #DDD;
   left: .1em;

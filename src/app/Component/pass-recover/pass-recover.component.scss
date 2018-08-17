@@ -1,5 +1,3 @@
-@import "../common/styles/mixins";
-
 md-card {
   max-width: 50%;
   text-align: center;
@@ -25,10 +23,11 @@ md-card {
   max-width: 500px;
 }
 .forgotpass{
-    font-family: sans-serif;
-    font-size: 28px;
-text-align: left;
-  margin-top: -20px;
+
+  font-family: sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: left;
 }
 
 .loginbtn{
@@ -37,9 +36,4 @@ text-align: left;
   font-weight: bold;
   padding-left: 40%;
   text-align: right;
-}
-.progress-bar {
-  align-content: center;
-  align-items: center;
-  height: calculateRem(5px);
 }

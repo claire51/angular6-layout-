@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 import {GeneriCrudService} from '../services/generi-crud.service';
-import {RegistrationResponse} from '../model/registrationResponse';
+import {Tokens} from '../model/Tokens';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterService extends GeneriCrudService<RegistrationResponse> {
+export class Login extends GeneriCrudService<Tokens> {
   constructor(httpClient: HttpClient) {
     super(
       httpClient,
       'http://api.mlinzi.co.ke:8080/api',
-      'auth/signup'
+      'auth/login'
     );
   }
 }

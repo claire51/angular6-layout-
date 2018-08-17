@@ -1,3 +1,4 @@
+
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav
     #drawer
@@ -82,8 +83,13 @@
       </div>
 
       </div>
-
     </mat-toolbar>
+    <section  class="progress-bar" [hidden]='this.auth.showloading' >
+      <mat-progress-bar
+        [color]='color'
+        [mode]="progressBarMode" >
+      </mat-progress-bar>
+    </section>
 
     <!-- Add Content Here -->
         <router-outlet></router-outlet>

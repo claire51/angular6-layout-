@@ -7,10 +7,6 @@ import {AuthService} from '../auth.service';
   styleUrls: ['./my-dashboard.component.css']
 })
 export class MyDashboardComponent  implements  OnInit {
-  cards = [
-    { title: 'Saving Account ', balance: 500, cols: 2, rows: 1 },
-    { title: 'Checking Account',  balance: 500, cols: 1, rows: 1 }
-  ];
 
   isLinear = true;
   firstFormGroup: FormGroup;
