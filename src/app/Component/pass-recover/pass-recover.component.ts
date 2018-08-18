@@ -45,7 +45,7 @@ export class PassRecoverComponent implements OnInit {
     this.error = null;
     this.recoverservice.recover(recoverpassword).subscribe((newHeroWithId) => {
       this.registrationresponse = newHeroWithId;
-      if ( this.registrationresponse.status === 'ok') {
+      if ( this.registrationresponse.status) {
         this.showSnackBar('Check your Email we have sent you the password ');
         this.status = true;
         this.router.navigate(['/login']);

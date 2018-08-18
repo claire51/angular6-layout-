@@ -4,7 +4,7 @@
   height: 100%;
   background-color: white;
   align-items: center;
-  padding-top:4%;
+  padding-top:2%;
   flex-wrap: wrap;
 
 }
@@ -12,7 +12,7 @@
 .escrow-div{
   flex: auto;
   justify-content: center;
-  padding-top: 2%;
+  padding-top: 0%;
   height: 100%;
 align-content: center;
 
@@ -29,12 +29,16 @@ align-content: center;
   text-align: center;
   align-content: center;
   flex-direction: row;
-
-  width: 80%;padding-left: 5%;
+  width: 80%;
+  padding-left: 5%;
 
 }
 .escrow-form{
-  width: 350px;
+  width: 600px;
   align-content: center;
+  padding-left: 30%;
 
+}
+.mat-form-field{
+  width: 500px
 }

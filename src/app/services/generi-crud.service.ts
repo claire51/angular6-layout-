@@ -26,7 +26,6 @@ export class GeneriCrudService<T> {
   /** POST: add a new hero to the server */
   create (values: Profile): Observable<T> {
     return this.http.post<T>(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
-      tap(heroes => this.log('added data')),
       tap((heroSaved: T) => {
        console.log('Account Created .. Login to continue');
       }),
@@ -36,7 +35,6 @@ export class GeneriCrudService<T> {
   /** POST: add a new hero to the server */
   recover (values: RecoverPassword): Observable<T> {
     return this.http.post<T>(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
-      tap(heroes => this.log('added data')),
       tap((heroSaved: T) => {
         console.log('Account Created .. Login to continue');
       }),
@@ -46,7 +44,6 @@ export class GeneriCrudService<T> {
   /** POST: add a new hero to the server */
   authrize (values: Authrizer): Observable<T> {
     return this.http.post<T>(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
-      tap(heroes => this.log('logged user')),
       tap((heroSaved: T) => {
         console.log('user loggedin .. ');
       }),
@@ -62,7 +59,7 @@ export class GeneriCrudService<T> {
 
    if (error.status === 401) {
      this.routerz.navigate(['/login']);
-   }    else if (error.status < 500) {
+   }    else if (error.status <= 500) {
      throw error;
    } else {
      alert('Something went wrong try again ...');

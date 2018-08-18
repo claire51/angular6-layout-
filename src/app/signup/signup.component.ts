@@ -58,12 +58,11 @@ export class SignupComponent implements OnInit {
     this.error = null;
     this.registeruser.create(profile).subscribe((newHeroWithId) => {
       this.registrationresponse = newHeroWithId;
-      if ( this.registrationresponse.status === 'ok') {
+      if ( this.registrationresponse.status) {
         this.showSnackBar('AccountCreated Created Succesfully.. Login to continue ');
         this.status = true;
         this.router.navigate(['/login']);
       }
-      console.log(this.registrationresponse.status);
     }, (response: Response) => {
       if (response.status <= 500) {
         this.status = true;

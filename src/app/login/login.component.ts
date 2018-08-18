@@ -53,9 +53,10 @@ export class LoginComponent implements OnInit {
       this.error = null;
       this.loginservice.authrize(auther).subscribe((newHeroWithId) => {
         this.tokens = newHeroWithId;
-        if ( this.tokens.status === 'ok') {
+        if ( this.tokens.status) {
           localStorage.setItem('token', this.tokens.token);
           localStorage.setItem('expires_in', '' + (Number(0) + this.tokens.expires_in));
+          localStorage.setItem('user', '' + (this.tokens.user));
           this.authservice.login();
           this.status = true;
           this.router.navigate(['/dashboard']);
