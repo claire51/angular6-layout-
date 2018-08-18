@@ -10,9 +10,9 @@ import {ApitestComponent} from './apitest/apitest.component';
 
 const routes: Routes = [
 
-  { path: 'dashboard', component: MyDashboardComponent, canActivate: [AuthGuardGuard]},
+  { path: 'dashboard', component: MyDashboardComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'datatable', component: MyTableComponent },
+  { path: 'datatable', component: MyTableComponent , canActivate: [AuthGuardGuard]},
   { path: '', component: HomeComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'apicontent', component: ApitestComponent },

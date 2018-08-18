@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    localStorage.setItem('token', 'notoken');
     this.isLoggedIn$ = this.auth.isAuthenticated();
     this.progressBarService.updateProgressBar$.subscribe((mode: string) => {
       this.progressBarMode = mode;

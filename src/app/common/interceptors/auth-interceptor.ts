@@ -1,6 +1,9 @@
 import { HttpInterceptor, HttpHandler, HttpRequest} from '@angular/common/http';
 import {AuthService} from '../../auth.service';
-
+import {Injectable} from '@angular/core';
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private auth: AuthService) {
   }
@@ -8,7 +11,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
     // Get the auth token from the service.
     const authToken = this.auth.getAuthorizationToken();
-
     /*
      * The verbose way:
      // Clone the request and replace the original headers with
@@ -18,9 +20,10 @@ export class AuthInterceptor implements HttpInterceptor {
      });
      */
     // Clone the request and set the new header in one step.
-    const authReq = req.clone({setHeaders: {Authorization: authToken}});
-
+    if (authToken !== '' && authToken !== 'notoken') {
+     req = req.clone({setHeaders: {Authorization: authToken}});
+    }
     // send cloned request with header to the next handler.
-    return next.handle(authReq);
+    return next.handle(req);
   }
 }

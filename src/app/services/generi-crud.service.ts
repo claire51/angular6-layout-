@@ -6,6 +6,7 @@ import {AppConfig} from '../common/config/app.config';
 import {Profile} from '../model/profile';
 import {RecoverPassword} from '../model/RecoverPassword';
 import {Authrizer} from '../model/authrizer';
+import {Router} from '@angular/router';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -14,7 +15,8 @@ export class GeneriCrudService<T> {
   baseurl: string;
   constructor(
     private http: HttpClient,
-    private endpoint: string) {
+    private endpoint: string,
+    private routerz: Router) {
     this.baseurl = AppConfig.repositoryURL;
   }
 
@@ -58,9 +60,11 @@ export class GeneriCrudService<T> {
         console.error(error); // log to console instead
       // TODO: send the error to remote logging infrastructure
 
-   if (error.status <= 500) {
+   if (error.status === 401) {
+     this.routerz.navigate(['/login']);
+   }    else if (error.status < 500) {
      throw error;
-   }   else {
+   } else {
      alert('Something went wrong try again ...');
    }
  }

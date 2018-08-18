@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       this.status = false;
+      console.log(this.form.value.email);
       this.login(this.form.value);
     }
     this.formSubmitAttempt = true;

@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   login() {
-    if (localStorage.getItem('token') !== '' ) {
+    if (localStorage.getItem('token') !== '' && localStorage.getItem('token') !== 'notoken') {
       this.loggedIn.next(true);
     }
   }
@@ -32,7 +32,8 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
   getAuthorizationToken() {
-    return this.localStorage.getItem('token');
+    if (localStorage.getItem('token') !== '' ) {
+      return localStorage.getItem('token');
+    }
   }
-
 }
