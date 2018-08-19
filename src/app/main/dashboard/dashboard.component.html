@@ -1,0 +1,70 @@
+<div id="escrow" class="escrow-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div  class="tradeA"  >
+    <div>
+      <p><span class="header_text">
+        Trades
+      </span>
+      </p>
+    </div>
+    <div  class="card-design">
+      <!--<mat-card class="card-design">-->
+        <a mat-button routerLink=".">
+          <i class="material-icons  iconcolor">donut_large</i>
+          Current Trade</a>
+        <a mat-button routerLink=".">
+          <i class="material-icons  iconcolor">assignment_turned_in</i>
+          Completed Trade</a>
+        <a mat-button routerLink=".">
+          <i class="material-icons  iconcolor">highlight_off</i>
+          Cancelled Trade</a>
+      <!--</mat-card>-->
+
+    </div>
+  </div>
+  <div  class="tradeB"  >
+    <div style="text-align: center;">
+      <p><span class="header_textb">
+        Account balance
+      </span>
+    </p>
+    </div>
+
+    <p><span class="header_text-small">
+       Your Escrow Account Balance:ksh {{accountbal}}
+      </span>
+    </p>
+    <p><span class="header_text-bigger">
+       Total Funds Allocated to Your Transactions:ksh {{allocatedbal}}
+      </span>
+    </p>
+    <p><span class="header_text-small">
+      Funds in Escrow Payable to You:ksh {{payablebal}}
+      </span>
+    </p>
+  </div>
+</div>
+<div id="escrow2" class="escrow-container1" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div class="divb-1">
+    <p>
+      <i class="material-icons  bigicon">
+        explore
+      </i>
+    </p>
+    <p><span>Click 'New Trade' to start transaction</span></p>
+  </div>
+</div>
+
+
+<div id="escrow3" class="escrow-container2" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div class="divb-1">
+    <a  class="linkstyle"  mat-button routerLink="/createtrade">
+      <i class="material-icons  iconizer">calendar_view_day</i>
+      New Trade</a>
+    <a mat-button routerLink="." class="linkstyle1" >
+      <i class="material-icons  iconizer">account_circle</i>
+      Update account </a>
+    <a mat-button routerLink="."  class="linkstyle2">
+      <i class="material-icons  iconizer">account_balance_wallet</i>
+      How to Fund Account</a>
+  </div>
+</div>

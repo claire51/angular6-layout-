@@ -1,6 +1,6 @@
 import {Permission, Role} from './Role';
 
-export interface User {
+export class User {
   id: number;
   first_name: string;
   middle_name: string;
@@ -12,6 +12,8 @@ export interface User {
   email: string;
   created_at: string;
   updated_at: string;
-  permissions: Permission[];
-  roles: Role[];
+  permissions: Array<Permission>;
+  roles: Array<Role>;
+  constructor() {
+}
 }

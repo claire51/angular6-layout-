@@ -10,14 +10,14 @@ import {ApitestComponent} from './apitest/apitest.component';
 
 const routes: Routes = [
 
-  { path: 'dashboard', component: MyDashboardComponent},
+  { path: 'createtrade', component: MyDashboardComponent},
   { path: 'login', component: LoginComponent },
   { path: 'datatable', component: MyTableComponent , canActivate: [AuthGuardGuard]},
   { path: '', component: HomeComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'apicontent', component: ApitestComponent },
-  { path: 'profile',
-    loadChildren: '../app/profile/profile.module#ProfileModule'
+  { path: 'dashboard',
+    loadChildren: '../app/main/dashboard.module#DashboardModule'
   },
   { path: 'recover',
     loadChildren: '../app/Component/shared.module#SharedModule'

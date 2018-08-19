@@ -7,6 +7,7 @@ import {Profile} from '../model/profile';
 import {RecoverPassword} from '../model/RecoverPassword';
 import {Authrizer} from '../model/authrizer';
 import {Router} from '@angular/router';
+import {Transactions} from '../model/Transactions';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -41,7 +42,7 @@ export class GeneriCrudService<T> {
       catchError(this.handleError<T>('adding'))
     );
   }
-  /** POST: add a new hero to the server */
+  /** recoverpass to the server */
   authrize (values: Authrizer): Observable<T> {
     return this.http.post<T>(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
       tap((heroSaved: T) => {
@@ -50,6 +51,16 @@ export class GeneriCrudService<T> {
       catchError(this.handleError<T>('adding'))
     );
   }
+  /** POST: add a new transaction to the server */
+  createtransaction (values: Transactions): Observable<T> {
+    return this.http.post<T>(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
+      tap((transact: T) => {
+        console.log('transaction Created ');
+      }),
+      catchError(this.handleError<T>('adding'))
+    );
+  }
+
 
   private handleError<M> (operation = 'operation', result?: M) {
     return (error: any): Observable<M> => {

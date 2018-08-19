@@ -1,4 +1,4 @@
-export interface Delivery {
+export class Delivery {
   id: number;
   delivery_comment: string;
   delivery_postal_code: string;
@@ -7,4 +7,7 @@ export interface Delivery {
   delivery_town: string;
   delivery_county: string;
   delivery_country: string;
+
+  constructor() {
+  }
 }

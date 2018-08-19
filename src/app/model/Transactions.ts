@@ -7,7 +7,7 @@ import {FeeAllocation} from './FeeAllocation';
 import {TradeRole} from './TradeRole';
 import {Delivery} from './Delivery';
 
-export interface Transactions {
+export class Transactions {
   id: number;
   created_at: string;
   updated_at: string;
@@ -33,12 +33,16 @@ export interface Transactions {
   overpayment_amount: number;
   agent_disburseable_amount: number;
   seller_disburseable_amount: number;
-  items: Item[];
+  items: Array<Item>;
   status: Status;
   user: User;
-  trade_roles: TradeRole[];
+  trade_roles: Array<TradeRole>;
   agent_fee_type: AgentFeeType;
   classification: Classification;
   fee_allocation: FeeAllocation;
-  delivery: Delivery[];
+  delivery: Array< Delivery>;
+
+
+  constructor() {
+  }
 }

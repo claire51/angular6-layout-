@@ -37,7 +37,7 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field class="full-width-input">
-            <input matInput type="password"  placeholder="ID Number" formControlName="national_id" required>
+            <input matInput type="text"  placeholder="ID Number" formControlName="national_id" required>
             <mat-error *ngIf="isFieldInvalid('national_id')">
               Enter valid ID Number
             </mat-error>
@@ -48,12 +48,15 @@
               Enter valid Email
             </mat-error>
           </mat-form-field>
-          <mat-form-field class="full-width-input">
-            <input matInput type="password"  placeholder="Password" formControlName="password" required>
+          <mat-form-field   class="full-width-input">
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
             <mat-error *ngIf="isFieldInvalid('password')">
               Enter valid Password(Should have atleast 4 character)
             </mat-error>
           </mat-form-field>
+
+
 
           <button mat-raised-button color="primary" type="submit">Sign Up</button>
         </form>

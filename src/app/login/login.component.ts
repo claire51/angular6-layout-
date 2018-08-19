@@ -8,6 +8,7 @@ import {AppConfig} from '../common/config/app.config';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
 import {ProgressBarService} from '../services/progress-bar.service';
+import {User} from '../model/User';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,16 +21,17 @@ export class LoginComponent implements OnInit {
   error: string;
   color = 'primary';
   status: boolean;
+  kevol: string;
   private formSubmitAttempt: boolean;
   constructor(private fb: FormBuilder, private loginservice: Login, private authservice: AuthService,
-              private router: Router,  private snackBar: MatSnackBar, private progressBarService: ProgressBarService) {
+              private router: Router) {
   }
 
   ngOnInit() {
     this.status = true;
     this.authservice.showloading = false;
     this.form = this.fb.group({
-      email: ['', Validators.required],
+      email: ['', Validators.required, Validators.email],
       password: ['', Validators.required]
     });
   }
@@ -43,7 +45,8 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       this.status = false;
-      console.log(this.form.value.email);
+      this.kevol = this.form.value.email;
+      console.log(this.kevol);
       this.login(this.form.value);
     }
     this.formSubmitAttempt = true;
@@ -56,7 +59,14 @@ export class LoginComponent implements OnInit {
         if ( this.tokens.status) {
           localStorage.setItem('token', this.tokens.token);
           localStorage.setItem('expires_in', '' + (Number(0) + this.tokens.expires_in));
-          localStorage.setItem('user', '' + (this.tokens.user));
+          localStorage.setItem('email', '' + (this.tokens.user.email));
+          localStorage.setItem('phone_number', '' + (this.tokens.user.phone_number));
+          localStorage.setItem('firstname', '' + (this.tokens.user.first_name));
+          localStorage.setItem('lastname', '' + (this.tokens.user.last_name));
+          localStorage.setItem('idnumber', '' + (this.tokens.user.id_number));
+          localStorage.setItem('county', '' + (this.tokens.user.county));
+          localStorage.setItem('id', '' + (this.tokens.user.id));
+console.log((Number(localStorage.getItem('id'))));
           this.authservice.login();
           this.status = true;
           this.router.navigate(['/dashboard']);
@@ -64,16 +74,11 @@ export class LoginComponent implements OnInit {
       }, (response: Response) => {
         if (response.status <= 500) {
           this.status = true;
-          this.showSnackBar(' Invalid Password or Username');
+          this.authservice.showSnackBar(' Invalid Password or Username');
           this.error = 'Invalid Password or Username';
         }
       });
     }
-  }
-    showSnackBar(name): void {
-      const config: any = new MatSnackBarConfig();
-    config.duration = AppConfig.snackBarDuration;
-    this.snackBar.open(name, 'OK', config);
   }
 
 

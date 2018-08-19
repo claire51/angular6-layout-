@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {Router} from '@angular/router';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
+import {AppConfig} from './common/config/app.config';
 
 
 // why do you need defining window as any?
@@ -17,7 +19,7 @@ export class AuthService {
     return this.loggedIn.asObservable();
   }
 
-  constructor( private router: Router) {
+  constructor( private router: Router, private snackBar: MatSnackBar) {
     this.showloading = false;
   }
 
@@ -35,5 +37,11 @@ export class AuthService {
     if (localStorage.getItem('token') !== '' ) {
       return localStorage.getItem('token');
     }
+  }
+
+  showSnackBar(name): void {
+    const config: any = new MatSnackBarConfig();
+    config.duration = AppConfig.snackBarDuration;
+    this.snackBar.open(name, 'OK', config);
   }
 }

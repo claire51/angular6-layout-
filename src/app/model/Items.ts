@@ -1,4 +1,4 @@
-export interface Item {
+export class Item {
   id: number;
   created_at: string;
   updated_at: string;
@@ -7,4 +7,7 @@ export interface Item {
   quantity: number;
   unit_of_measures_id: number;
   transactions_id: number;
+
+  constructor() {
+  }
 }

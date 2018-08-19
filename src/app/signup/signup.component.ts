@@ -22,9 +22,12 @@ export class SignupComponent implements OnInit {
   status: boolean;
   registrationresponse: RegistrationResponse;
   error: string;
+  hide: boolean;
   private formSubmitAttempt: boolean;
   constructor(private fb: FormBuilder , private registeruser: RegisterService, private router: Router,
-              private snackBar: MatSnackBar, private auth: AuthService) { }
+              private snackBar: MatSnackBar, private auth: AuthService) {
+    this.hide = true;
+  }
 
   ngOnInit() {
     this.auth.showloading = false;
@@ -35,7 +38,7 @@ export class SignupComponent implements OnInit {
       last_name: ['', Validators.required],
       phone_number: ['', Validators.required],
       national_id: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', Validators.required, Validators.email],
       password: ['', Validators.required]
     });
   }

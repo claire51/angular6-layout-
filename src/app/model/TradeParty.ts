@@ -1,4 +1,4 @@
-export interface TradeParty {
+export class TradeParty {
   id: number;
   full_names: string;
   id_number: string;
@@ -6,4 +6,6 @@ export interface TradeParty {
   address: string;
   email: string;
   user_id: number;
+  constructor() {
+  }
 }
