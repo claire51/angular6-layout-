@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     this.status = true;
     this.authservice.showloading = false;
     this.form = this.fb.group({
-      email: ['', Validators.required, Validators.email],
+      email: ['', Validators.required],
       password: ['', Validators.required]
     });
   }

@@ -19,6 +19,10 @@ const routes: Routes = [
   { path: 'dashboard',
     loadChildren: '../app/main/dashboard.module#DashboardModule'
   },
+  { path: 'roles',
+    loadChildren: '../app/main/roleboard.module#RoleboardModule'
+  },
+
   { path: 'recover',
     loadChildren: '../app/Component/shared.module#SharedModule'
   },

@@ -1,22 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
-import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AppMaterialModule} from '../app-material/app-material.module';
+import {RoleboardComponent} from './roleboard/roleboard.component';
+import {RoleboardRoutingModule} from './roleboard-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    DashboardRoutingModule,
+    RoleboardRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     AppMaterialModule,
     FlexLayoutModule
   ],
-  declarations: [DashboardComponent
-    ]
+  declarations: [RoleboardComponent]
 })
-export class DashboardModule { }
+export class RoleboardModule { }

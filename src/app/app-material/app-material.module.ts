@@ -7,7 +7,7 @@ import {
   MatMenuModule, MatTableModule, MatPaginatorModule,
   MatSortModule, MatFormFieldModule, MatBadgeModule, MatDividerModule,
   MatStepperModule, MatCheckboxModule, MatProgressBarModule,
-  MatProgressSpinnerModule, MatSliderModule, MatSnackBarModule, MatTooltipModule
+  MatProgressSpinnerModule, MatSliderModule, MatSnackBarModule, MatTooltipModule, MatTabsModule, MatButtonToggleModule
 } from '@angular/material';
 
 
@@ -40,8 +40,9 @@ import {
     MatProgressSpinnerModule,
     MatSliderModule,
     MatSnackBarModule,
-    MatTooltipModule
-
+    MatTooltipModule,
+    MatTabsModule,
+    MatButtonToggleModule
   ]
 })
 export class AppMaterialModule {}
