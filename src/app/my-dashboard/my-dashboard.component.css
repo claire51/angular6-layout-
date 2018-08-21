@@ -112,27 +112,37 @@
 display: flex;
   text-align: center;
   align-content: space-around;
+  align-content: center;
+  padding-top: 5%;
   width: 100%;
 background-color: white;
 }
+.personpartiez{
+  display: flex;
+  align-content: center;
+  text-align: center;
+  align-items: center;
 
-.rowdiv{
-  padding: 4%;
-  flex: 1;
 }
 
 
 
+.rowdiv{
+  flex: 1;
+}
+.content-div{
+  flex: 1;
+  align-content: center;
 
 
-
-
-
+}
+.buttonmargin{
+  padding:50px;
+}
 
 
 
 .labeposition{
-  /*margin-left: 2%;*/
   text-align: center;
   justify-content: center;
   width: 100%;

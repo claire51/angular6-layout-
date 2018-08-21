@@ -11,75 +11,121 @@
 </div>
 <div id="escrow2" class="escrow-container1" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
      fxLayoutAlign="center">
-  <div class="divsign">
-    <mat-tab-group>
-      <mat-tab class="labeposition">
-        <ng-template mat-tab-label>
+
+    <mat-tab-group #tabgroup [selectedIndex]="selected"
+                   (selectedIndexChange)="tabChanged($event)">
+      <mat-tab class="labeposition" >
+        <ng-template mat-tab-label >
           <mat-icon class="icondi-tab-icon">assignment_ind</mat-icon>
           Roles
         </ng-template>
         <div class="divdesign">
-          <div class="rowdiv">
-              <i class="material-icons  largeicon">shopping_cart</i>
-<p><span>Buying some Item</span></p>
-          </div>
-          <div class="rowdiv">
-              <i class="material-icons  largeicon">monetization_on</i>
-            <p><span>Selling some Item</span></p>
-          </div>
-          <div class="rowdiv">
-              <i class="material-icons  largeicon">contact_phone</i>
-              <p><span>Am an Agent</span></p>
-          </div>
+          <mat-radio-group [(ngModel)]="role" >
 
-
+            <mat-radio-button class="buttonmargin"  value="buyer">
+              <div class="rowdiv">
+                <i class="material-icons  largeicon">shopping_cart</i>
+                <p><span>Buying some Item</span></p>
+              </div>
+            </mat-radio-button>
+            <mat-radio-button class="buttonmargin"  value="seller">
+              <div class="rowdiv">
+                <i class="material-icons  largeicon">monetization_on</i>
+                <p><span>Selling some Item</span></p>
+              </div>
+            </mat-radio-button>
+            <mat-radio-button class="buttonmargin" value="agent">
+              <div class="rowdiv">
+                <i class="material-icons  largeicon">contact_phone</i>
+                <p><span>Am an Agent</span></p>
+              </div>
+            </mat-radio-button>
+          </mat-radio-group>
         </div>
+        <button mat-raised-button color="primary" (click)="next()">Next</button>
 
       </mat-tab>
 
       <mat-tab>
-        <ng-template mat-tab-label>
+        <ng-template mat-tab-label >
           <mat-icon class="icondi-tab-icon">person_pin</mat-icon>
           Trade Parties
         </ng-template>
-        <div>
-          Content 1
+        <div class="personpartiez" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+             fxLayoutAlign="center" >
+          <div class="content-div">
+            <p><span style="font-weight: bold"> CounterParty</span></p>
 
+            <p><span>Who is the {{role}} ?</span></p>
+
+          </div>
+        <div class="content-div" style="padding-top: 40px">
+          <p><span>Who is the {{role}} ?</span></p>
+        </div>
+        </div>
+        <div style="margin: auto">
+        <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
+        <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="next()">Next</button></span>
         </div>
       </mat-tab>
       <mat-tab>
-        <ng-template mat-tab-label>
+        <ng-template mat-tab-label >
           <mat-icon class="icondi-tab-icon">description</mat-icon>
           Trade Item description
         </ng-template>
-        <div>
-          Content 1
-
+        <div class="personpartiez"  fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+             fxLayoutAlign="center">
+          <div class="rowdiv">
+            Content 1
+          </div>
+          <div class="rowdiv">
+            Content 1
+          </div>
+        </div>
+        <div style="margin: auto">
+          <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
+          <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="next()">Next</button></span>
         </div>
       </mat-tab>
       <mat-tab>
-        <ng-template mat-tab-label>
+        <ng-template mat-tab-label >
           <mat-icon class="icondi-tab-icon">account_balance</mat-icon>
           Trade value
         </ng-template>
-        <div>
-          Content 1
-
+        <div class="personpartiez" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+             fxLayoutAlign="center">
+          <div class="rowdiv">
+            Content 1
+          </div>
+          <div class="rowdiv">
+            Content 1
+          </div>
+        </div>
+        <div style="margin: auto">
+          <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
+          <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="next()">Next</button></span>
         </div>
       </mat-tab>
       <mat-tab>
-        <ng-template mat-tab-label>
+        <ng-template mat-tab-label >
           <mat-icon class="icondi-tab-icon">local_shipping</mat-icon>
           Delivery Option
         </ng-template>
-        <div>
-          Content 1
-
+        <div class="personpartiez" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+             fxLayoutAlign="center">
+          <div class="rowdiv">
+            Content 1
+          </div>
+          <div class="rowdiv">
+            Content 1
+          </div>
+        </div>
+        <div style="margin: auto">
+          <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
         </div>
       </mat-tab>
     </mat-tab-group>
 
-  </div>
 </div>
 
 
