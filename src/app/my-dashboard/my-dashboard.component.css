@@ -113,6 +113,7 @@ display: flex;
   text-align: center;
   align-content: space-around;
   align-content: center;
+  align-items: center;
   padding-top: 5%;
   width: 100%;
 background-color: white;
@@ -146,15 +147,10 @@ background-color: white;
   align-content: center;
   align-items: center;
   text-align: center;
-
-
 }
 .content-divB{
   flex: 1;
   align-content: center;
-  /*padding-left: 50px;*/
-
-
 }
 .buttonmargin{
   padding:10px;

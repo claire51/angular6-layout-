@@ -23,7 +23,10 @@ export class MyDashboardComponent  implements  OnInit {
   role: string;
   isbuyer: boolean;
   isseller: boolean;
+  broker: boolean;
   isagent: boolean;
+  formavalue: string;
+  formavalueb: string;
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -53,6 +56,31 @@ export class MyDashboardComponent  implements  OnInit {
       id_number: ['' ],
       email: [''],
       address: [''],
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      agent_mobl: [''],
+      agent_email: [''],
+      del_cntry: ['' , Validators.required],
+      del_cnty: ['' , Validators.required],
+      del_twn: ['' , Validators.required],
+      del_strt: ['' , Validators.required],
+      delivery_postal_code: ['' ],
+      del_ln: [''],
+      del_cmt: ['']
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      id: ['1'],
+      name: ['', Validators.required],
+      description: ['' , Validators.required],
+      quantity: ['3' , Validators.required],
+      unit_of_measures_id: ['1'],
+      transactions_id: ['0']
+    });
+    this.fourthFormGroup = this._formBuilder.group({
+      invoice_amount: ['', Validators.required],
+      period: ['1' , Validators.required],
+      inspection_period: ['1' , Validators.required],
+      agent_fee_value: ['10']
     });
   }
 
@@ -140,11 +168,20 @@ export class MyDashboardComponent  implements  OnInit {
     if (this.selectedb.value === 1) {
       if (this.role === 'buyer') {
        this.isseller = true;
+       this.formavalue = 'Seller';
+        this.formavalueb = 'Agent';
+        this.isagent = false;
       }
       if (this.role === 'seller') {
        this.isbuyer = true;
+        this.formavalue = 'Buyer';
+        this.formavalueb = 'Agent';
+        this.isagent = false;
       }
       if (this.role === 'agent') {
+        this.isagent = true;
+        this.formavalue = 'Buyer';
+        this.formavalueb = 'Seller';
         this.isbuyer = true;
         this.isseller = true;
       }

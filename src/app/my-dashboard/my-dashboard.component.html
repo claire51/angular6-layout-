@@ -19,7 +19,10 @@
           <mat-icon class="icondi-tab-icon">assignment_ind</mat-icon>
           Roles
         </ng-template>
-        <div class="divdesign">
+        <!--<div class="divdesign">-->
+          <div class="personpartiez" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+               fxLayoutAlign="center" >
+            <div class="rowdiv" style="padding-top: 5%">
           <mat-radio-group [(ngModel)]="role" >
 
             <mat-radio-button class="buttonmargin"  value="buyer">
@@ -38,12 +41,15 @@
               <div class="rowdiv">
                 <i class="material-icons  largeicon">contact_phone</i>
                 <p><span>Am an Agent</span></p>
+
               </div>
             </mat-radio-button>
           </mat-radio-group>
         </div>
-        <button mat-raised-button color="primary" (click)="next()">Next</button>
-
+          </div>
+        <div style="text-align: right; padding-right: 100px">
+          <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="next()">Next</button></span>
+        </div>
       </mat-tab>
 
       <mat-tab>
@@ -54,54 +60,45 @@
         <div class="personpartiez" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
              fxLayoutAlign="center" >
           <div class="content-divA">
+            <p><span style="font-size: 20px; font-weight: bold">Who is the {{formavalue}} ?</span></p>
             <form [formGroup]="firstFormGroup" (ngSubmit)="onsubmitformone()">
-            <ng-template>Buyer/Seller Detail</ng-template>
             <mat-form-field >
-              <input matInput type="tel"  placeholder="Buyer/Seller Mobile No" formControlName="phone_number" required><br>
-            </mat-form-field>
-            <mat-form-field >
-              <input matInput type="text"  placeholder="Buyer/Seller Full Name" formControlName="full_names" required><br>
+              <input matInput type="tel"  placeholder="Mobile Number" formControlName="phone_number" required><br>
             </mat-form-field>
             <mat-form-field >
-              <input matInput type="text"  placeholder="Buyer/Seller ID Number" formControlName="id_number" required><br>
+              <input matInput type="text"  placeholder="Full Name" formControlName="full_names" required><br>
             </mat-form-field>
-            <mat-form-field *ngIf="!isbuyer ">
-              <input matInput type="email" placeholder=" Enter Buyer Email" formControlName="email" >
+            <mat-form-field >
+              <input matInput type="text"  placeholder="Id Number" formControlName="id_number" required><br>
             </mat-form-field>
-              <mat-form-field *ngIf="isbuyer ">
-              <input matInput type="email" placeholder="Enter Seller Email" formControlName="email" >
-              </mat-form-field>
-              <mat-form-field >
-              <input matInput type="address" placeholder="Enter Address" formControlName="address" >
-              </mat-form-field>
+            <mat-form-field>
+              <input matInput type="email" placeholder="Email" formControlName="email" >
+            </mat-form-field>
             </form>
            </div>
-        <div class="content-divB" style="padding-top: 0px">
-          <form [formGroup]="firstFormGroup" (ngSubmit)="onsubmitformone()">
-            <ng-template>Buyer/Seller Detail</ng-template>
-            <mat-form-field >
-              <input matInput type="tel"  placeholder="Buyer/Seller Mobile No" formControlName="phone_number" required><br>
-            </mat-form-field>
-            <mat-form-field >
-              <input matInput type="text"  placeholder="Buyer/Seller Full Name" formControlName="full_names" required><br>
-            </mat-form-field>
-            <mat-form-field >
-              <input matInput type="text"  placeholder="Buyer/Seller ID Number" formControlName="id_number" required><br>
-            </mat-form-field>
-            <mat-form-field *ngIf="!isbuyer ">
-              <input matInput type="email" placeholder=" Enter Buyer Email" formControlName="email" >
-            </mat-form-field>
-            <mat-form-field *ngIf="isbuyer ">
-              <input matInput type="email" placeholder="Enter Seller Email" formControlName="email" >
-            </mat-form-field>
-            <mat-form-field >
-              <input matInput type="address" placeholder="Enter Address" formControlName="address" >
-            </mat-form-field>
-          </form>
+        <div class="content-divB" >
+            <mat-checkbox style="padding-top: 4px" [(ngModel)]="broker" *ngIf="!isagent" >Should a Lead Agent or Broker Be Added to This Transaction?</mat-checkbox>
+          <div *ngIf="isagent || broker">
+            <p><span style="font-size: 20px; font-weight: bold">Who is the {{formavalueb}} ?</span></p>
+            <form [formGroup]="firstFormGroup" (ngSubmit)="onsubmitformone()" >
+              <mat-form-field >
+                <input matInput type="tel"  placeholder="Mobile Number" formControlName="phone_number" required><br>
+              </mat-form-field>
+              <mat-form-field >
+                <input matInput type="text"  placeholder="Full Name" formControlName="full_names" required><br>
+              </mat-form-field>
+              <mat-form-field >
+                <input matInput type="text"  placeholder="ID Number" formControlName="id_number" required><br>
+              </mat-form-field>
+              <mat-form-field >
+                <input matInput type="email" placeholder="Email" formControlName="email" >
+              </mat-form-field>
+            </form>
+
+          </div>
         </div>
-          <!--</form>-->
         </div>
-        <div style="margin-left: 10%">
+        <div style="text-align: right; padding-right: 100px">
         <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
         <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="next()">Next</button></span>
         </div>
@@ -114,13 +111,21 @@
         <div class="personpartiez"  fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
              fxLayoutAlign="center">
           <div class="rowdiv">
-            Content 1
-          </div>
-          <div class="rowdiv">
-            Content 1
+            <form [formGroup]="thirdFormGroup"  class="escrow-form" >
+              <p><span style="font-size: 20px; font-weight: bold">Add item to Cart</span></p>
+              <mat-form-field >
+                <input matInput type="text"  placeholder="Enter Item Name" formControlName="name" required><br>
+              </mat-form-field>
+              <mat-form-field >
+                <input matInput type="number"  placeholder="Enter Item Quantity" formControlName="quantity" required><br>
+              </mat-form-field>
+              <mat-form-field >
+                <input matInput type="tel"  placeholder="Enter item description" formControlName="description" required><br>
+              </mat-form-field>
+            </form>
           </div>
         </div>
-        <div style="margin: auto">
+        <div style="text-align: right; padding-right: 100px">
           <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
           <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="next()">Next</button></span>
         </div>
@@ -133,13 +138,24 @@
         <div class="personpartiez" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
              fxLayoutAlign="center">
           <div class="rowdiv">
-            Content 1
-          </div>
-          <div class="rowdiv">
-            Content 1
+            <form [formGroup]="fourthFormGroup"  class="escrow-form"  >
+              <p><span style="font-size: 20px; font-weight: bold">Transaction detail</span></p>
+              <mat-form-field >
+                <input matInput type="number"  placeholder="Invoice Amount" formControlName="invoice_amount" required><br>
+              </mat-form-field>
+              <mat-form-field >
+                <input matInput type="number"  placeholder="Delivery Period" formControlName="period" required><br>
+              </mat-form-field>
+              <mat-form-field >
+                <input matInput type="number"  placeholder="Inspection Period" formControlName="inspection_period" required><br>
+              </mat-form-field>
+              <mat-form-field *ngIf="broker">
+                <input matInput type="number"  placeholder="Enter Agent Amount" formControlName="agent_fee_value" ><br>
+              </mat-form-field>
+            </form>
           </div>
         </div>
-        <div style="margin: auto">
+        <div style="text-align: right; padding-right: 100px">
           <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
           <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="next()">Next</button></span>
         </div>
@@ -151,17 +167,53 @@
         </ng-template>
         <div class="personpartiez" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
              fxLayoutAlign="center">
+
           <div class="rowdiv">
-            Content 1
+            <form [formGroup]="secondFormGroup"  class="escrow-form"   >
+              <p><span style="font-size: 20px;text-align: center; font-weight: bold">Where Item will be delivered</span></p>
+              <mat-form-field >
+                <input matInput type="text" placeholder="Delivery Country" formControlName="del_cntry" >
+              </mat-form-field>
+              <mat-form-field >
+                <input matInput type="text" placeholder="Delivery County" formControlName="del_cnty" >
+              </mat-form-field>
+              <mat-form-field >
+                <input matInput type="text" placeholder="Delivery Town" formControlName="del_twn" >
+              </mat-form-field>
+              <mat-form-field >
+                <input matInput type="text" placeholder="Delivery Comment" formControlName="del_cmt" >
+              </mat-form-field>
+              <mat-form-field >
+                <input matInput type="text" placeholder="Enter postal code" formControlName="delivery_postal_code" >
+              </mat-form-field>
+            </form>
           </div>
+          <!--<div class="rowdiv">-->
+            <!--Content 1-->
+          <!--</div>-->
+        </div>
+        <div style="text-align: right; padding-right: 100px">
+          <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
+          <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="next()">Skip</button></span>
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label >
+          <mat-icon class="icondi-tab-icon">local_shipping</mat-icon>
+         Complete Trade
+        </ng-template>
+        <div class="personpartiez" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+             fxLayoutAlign="center">
           <div class="rowdiv">
-            Content 1
+            <p><span style="font-size: 20px; font-weight: bold">Complete trade ,Ensure all required field are entered </span></p>
+            <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="next()">FINISH</button></span>
           </div>
         </div>
-        <div style="margin: auto">
+        <div style="text-align: left; padding-left: 100px">
           <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
         </div>
       </mat-tab>
+
     </mat-tab-group>
 
 </div>
