@@ -124,7 +124,12 @@ background-color: white;
   align-items: center;
 
 }
-
+.personpartiezb{
+  display: flex;
+  /*align-content: center;*/
+  text-align: left;
+  /*align-items: center;*/
+}
 
 
 .rowdiv{
@@ -136,8 +141,23 @@ background-color: white;
 
 
 }
+.content-divA{
+  flex: 1;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+
+
+}
+.content-divB{
+  flex: 1;
+  align-content: center;
+  /*padding-left: 50px;*/
+
+
+}
 .buttonmargin{
-  padding:50px;
+  padding:10px;
 }
 
 
@@ -167,3 +187,11 @@ background-color: white;
   margin-right: 10px;
 }
 
+.escrow-form{
+  align-content: center;
+
+}
+.mat-form-field{
+/*padding-left: 20px;*/
+  width: 60%;
+}

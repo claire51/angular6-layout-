@@ -53,17 +53,55 @@
         </ng-template>
         <div class="personpartiez" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
              fxLayoutAlign="center" >
-          <div class="content-div">
-            <p><span style="font-weight: bold"> CounterParty</span></p>
-
-            <p><span>Who is the {{role}} ?</span></p>
-
-          </div>
-        <div class="content-div" style="padding-top: 40px">
-          <p><span>Who is the {{role}} ?</span></p>
+          <div class="content-divA">
+            <form [formGroup]="firstFormGroup" (ngSubmit)="onsubmitformone()">
+            <ng-template>Buyer/Seller Detail</ng-template>
+            <mat-form-field >
+              <input matInput type="tel"  placeholder="Buyer/Seller Mobile No" formControlName="phone_number" required><br>
+            </mat-form-field>
+            <mat-form-field >
+              <input matInput type="text"  placeholder="Buyer/Seller Full Name" formControlName="full_names" required><br>
+            </mat-form-field>
+            <mat-form-field >
+              <input matInput type="text"  placeholder="Buyer/Seller ID Number" formControlName="id_number" required><br>
+            </mat-form-field>
+            <mat-form-field *ngIf="!isbuyer ">
+              <input matInput type="email" placeholder=" Enter Buyer Email" formControlName="email" >
+            </mat-form-field>
+              <mat-form-field *ngIf="isbuyer ">
+              <input matInput type="email" placeholder="Enter Seller Email" formControlName="email" >
+              </mat-form-field>
+              <mat-form-field >
+              <input matInput type="address" placeholder="Enter Address" formControlName="address" >
+              </mat-form-field>
+            </form>
+           </div>
+        <div class="content-divB" style="padding-top: 0px">
+          <form [formGroup]="firstFormGroup" (ngSubmit)="onsubmitformone()">
+            <ng-template>Buyer/Seller Detail</ng-template>
+            <mat-form-field >
+              <input matInput type="tel"  placeholder="Buyer/Seller Mobile No" formControlName="phone_number" required><br>
+            </mat-form-field>
+            <mat-form-field >
+              <input matInput type="text"  placeholder="Buyer/Seller Full Name" formControlName="full_names" required><br>
+            </mat-form-field>
+            <mat-form-field >
+              <input matInput type="text"  placeholder="Buyer/Seller ID Number" formControlName="id_number" required><br>
+            </mat-form-field>
+            <mat-form-field *ngIf="!isbuyer ">
+              <input matInput type="email" placeholder=" Enter Buyer Email" formControlName="email" >
+            </mat-form-field>
+            <mat-form-field *ngIf="isbuyer ">
+              <input matInput type="email" placeholder="Enter Seller Email" formControlName="email" >
+            </mat-form-field>
+            <mat-form-field >
+              <input matInput type="address" placeholder="Enter Address" formControlName="address" >
+            </mat-form-field>
+          </form>
         </div>
+          <!--</form>-->
         </div>
-        <div style="margin: auto">
+        <div style="margin-left: 10%">
         <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
         <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="next()">Next</button></span>
         </div>
