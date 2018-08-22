@@ -28,6 +28,11 @@ export class MyDashboardComponent  implements  OnInit {
   formavalue: string;
   formavalueb: string;
 
+  mobilez: string;
+  fullnamez: string;
+  idnumberz: string;
+  emailz: string;
+
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
@@ -95,9 +100,11 @@ export class MyDashboardComponent  implements  OnInit {
       this.tradeparty.address = this.firstFormGroup.value.address;
       this.tradeparty.email = this.firstFormGroup.value.email;
       this.tradeparty.user_id = null;
-      if (this.isbuyer) {
+      if ( this.isseller ) {
         this.traderole.trading_party_id = 2;
-      } else {  this.traderole.trading_party_id = 1; }
+      } else if (this.isbuyer = true) {
+        this.traderole.trading_party_id = 1;
+        }
       this.traderole.trade_party = this.tradeparty;
       this.traderolelist.push(this.traderole);
       // user deetail
@@ -110,17 +117,44 @@ export class MyDashboardComponent  implements  OnInit {
       this.tradeparty.address = localStorage.getItem('county');
       this.tradeparty.email = localStorage.getItem('email');
       this.tradeparty.user_id = null;
-      if (this.isbuyer) {
+      if ( this.isseller ) {
         this.traderole.trading_party_id = 1;
-      } else {  this.traderole.trading_party_id = 2; }
-
+      } else if (this.isbuyer = true) {
+        this.traderole.trading_party_id = 2;
+      } else if (this.isagent = true) {
+        this.traderole.trading_party_id = 3;
+      }
       this.traderole.trade_party = this.tradeparty;
       this.traderolelist.push(this.traderole);
+// agent
+      if ( this.isagent || this.broker) {
+        this.addbroker();
+      }
+
+
 
       console.log(this.firstFormGroup.value.email);
     }
   }
 
+  addbroker() {
+    this.traderole = new TradeRole();
+    this.tradeparty = new TradeParty();
+    this.tradeparty.full_names = this.fullnamez;
+    this.tradeparty.id_number = this.fullnamez;
+    this.tradeparty.phone_number = this.mobilez;
+    this.tradeparty.address = '234,thika';
+    this.tradeparty.email = this.emailz;
+    this.tradeparty.user_id = null;
+    if ( this.broker ) {
+      this.traderole.trading_party_id = 3;
+    }  else if (this.isagent = true) {
+      this.traderole.trading_party_id = 2;
+    }
+    this.traderole.trade_party = this.tradeparty;
+    this.traderolelist.push(this.traderole);
+
+  }
 
 
 
@@ -182,8 +216,6 @@ export class MyDashboardComponent  implements  OnInit {
         this.isagent = true;
         this.formavalue = 'Buyer';
         this.formavalueb = 'Seller';
-        this.isbuyer = true;
-        this.isseller = true;
       }
     }
   }

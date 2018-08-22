@@ -61,20 +61,20 @@
              fxLayoutAlign="center" >
           <div class="content-divA">
             <p><span style="font-size: 20px; font-weight: bold">Who is the {{formavalue}} ?</span></p>
-            <form [formGroup]="firstFormGroup" (ngSubmit)="onsubmitformone()">
+            <!--<form [formGroup]="firstFormGroup" (ngSubmit)="onsubmitformone()">-->
             <mat-form-field >
-              <input matInput type="tel"  placeholder="Mobile Number" formControlName="phone_number" required><br>
+              <input matInput type="tel"  placeholder="Mobile Number" [(ngModel)]="mobilez"  required><br>
             </mat-form-field>
             <mat-form-field >
-              <input matInput type="text"  placeholder="Full Name" formControlName="full_names" required><br>
+              <input matInput type="text"  placeholder="Full Name" [(ngModel)]="fullnamez" required><br>
             </mat-form-field>
             <mat-form-field >
-              <input matInput type="text"  placeholder="Id Number" formControlName="id_number" required><br>
+              <input matInput type="text"  placeholder="Id Number"[(ngModel)]="idnumberz" required><br>
             </mat-form-field>
             <mat-form-field>
-              <input matInput type="email" placeholder="Email" formControlName="email" >
+              <input matInput type="email" placeholder="Email" [(ngModel)]="emailz" >
             </mat-form-field>
-            </form>
+            <!--</form>-->
            </div>
         <div class="content-divB" >
             <mat-checkbox style="padding-top: 4px" [(ngModel)]="broker" *ngIf="!isagent" >Should a Lead Agent or Broker Be Added to This Transaction?</mat-checkbox>
