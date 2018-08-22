@@ -74,6 +74,10 @@
             <mat-form-field>
               <input matInput type="email" placeholder="Email" formControlName="email" >
             </mat-form-field>
+              <div style="text-align: right; padding-right: 100px">
+                <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
+                <span style="margin-left: 50px"><button type="submit" mat-raised-button color="primary" (click)="next()">Next</button></span>
+              </div>
             </form>
            </div>
         <div class="content-divB" >
@@ -98,10 +102,7 @@
           </div>
         </div>
         </div>
-        <div style="text-align: right; padding-right: 100px">
-        <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
-        <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="next()">Next</button></span>
-        </div>
+
       </mat-tab>
       <mat-tab>
         <ng-template mat-tab-label >
@@ -111,7 +112,7 @@
         <div class="personpartiez"  fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
              fxLayoutAlign="center">
           <div class="rowdiv">
-            <form [formGroup]="thirdFormGroup"  class="escrow-form" >
+            <form [formGroup]="thirdFormGroup"  class="escrow-form"  (ngSubmit)="onsubmitformthree()" >
               <p><span style="font-size: 20px; font-weight: bold">Add item to Cart</span></p>
               <mat-form-field >
                 <input matInput type="text"  placeholder="Enter Item Name" formControlName="name" required><br>
@@ -122,13 +123,14 @@
               <mat-form-field >
                 <input matInput type="tel"  placeholder="Enter item description" formControlName="description" required><br>
               </mat-form-field>
+              <div style="text-align: right; padding-right: 100px">
+                <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
+                <span style="margin-left: 50px"><button type="submit" mat-raised-button color="primary" (click)="next()">Next</button></span>
+              </div>
             </form>
           </div>
         </div>
-        <div style="text-align: right; padding-right: 100px">
-          <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
-          <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="next()">Next</button></span>
-        </div>
+
       </mat-tab>
       <mat-tab>
         <ng-template mat-tab-label >
@@ -138,7 +140,7 @@
         <div class="personpartiez" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
              fxLayoutAlign="center">
           <div class="rowdiv">
-            <form [formGroup]="fourthFormGroup"  class="escrow-form"  >
+            <form [formGroup]="fourthFormGroup"  class="escrow-form" (ngSubmit)="onsubmitformfourth()" >
               <p><span style="font-size: 20px; font-weight: bold">Transaction detail</span></p>
               <mat-form-field >
                 <input matInput type="number"  placeholder="Invoice Amount" formControlName="invoice_amount" required><br>
@@ -152,13 +154,14 @@
               <mat-form-field *ngIf="broker">
                 <input matInput type="number"  placeholder="Enter Agent Amount" formControlName="agent_fee_value" ><br>
               </mat-form-field>
+              <div style="text-align: right; padding-right: 100px">
+                <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
+                <span style="margin-left: 50px"><button type="submit" mat-raised-button color="primary" (click)="next()">Next</button></span>
+              </div>
             </form>
           </div>
         </div>
-        <div style="text-align: right; padding-right: 100px">
-          <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
-          <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="next()">Next</button></span>
-        </div>
+
       </mat-tab>
       <mat-tab>
         <ng-template mat-tab-label >
@@ -169,7 +172,7 @@
              fxLayoutAlign="center">
 
           <div class="rowdiv">
-            <form [formGroup]="secondFormGroup"  class="escrow-form"   >
+            <form [formGroup]="secondFormGroup"  class="escrow-form" (ngSubmit)="onsubmitformtwo()"  >
               <p><span style="font-size: 20px;text-align: center; font-weight: bold">Where Item will be delivered</span></p>
               <mat-form-field >
                 <input matInput type="text" placeholder="Delivery Country" formControlName="del_cntry" >
@@ -186,16 +189,17 @@
               <mat-form-field >
                 <input matInput type="text" placeholder="Enter postal code" formControlName="delivery_postal_code" >
               </mat-form-field>
+              <div style="text-align: right; padding-right: 100px">
+                <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
+                <span style="margin-left: 50px"><button type="submit" mat-raised-button color="primary" (click)="next()">Skip</button></span>
+              </div>
             </form>
           </div>
           <!--<div class="rowdiv">-->
             <!--Content 1-->
           <!--</div>-->
         </div>
-        <div style="text-align: right; padding-right: 100px">
-          <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
-          <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="next()">Skip</button></span>
-        </div>
+
       </mat-tab>
       <mat-tab>
         <ng-template mat-tab-label >
@@ -206,7 +210,7 @@
              fxLayoutAlign="center">
           <div class="rowdiv">
             <p><span style="font-size: 20px; font-weight: bold">Complete trade ,Ensure all required field are entered </span></p>
-            <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="next()">FINISH</button></span>
+            <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="finishtransaction()">FINISH</button></span>
           </div>
         </div>
         <div style="text-align: left; padding-left: 100px">

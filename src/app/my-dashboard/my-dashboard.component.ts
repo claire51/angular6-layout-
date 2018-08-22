@@ -58,12 +58,10 @@ export class MyDashboardComponent  implements  OnInit {
       address: [''],
     });
     this.secondFormGroup = this._formBuilder.group({
-      agent_mobl: [''],
-      agent_email: [''],
-      del_cntry: ['' , Validators.required],
-      del_cnty: ['' , Validators.required],
-      del_twn: ['' , Validators.required],
-      del_strt: ['' , Validators.required],
+      del_cntry: ['' ],
+      del_cnty: ['' ],
+      del_twn: ['' ],
+      del_strt: ['' ],
       delivery_postal_code: ['' ],
       del_ln: [''],
       del_cmt: ['']
@@ -122,7 +120,69 @@ export class MyDashboardComponent  implements  OnInit {
   }
 
 
+  onsubmitformtwo() {
+    this.delivery.delivery_comment = this.secondFormGroup.value.del_cmt;
+    this.delivery.delivery_postal_code = this.secondFormGroup.value.delivery_postal_code;
+    this.delivery.delivery_lane = this.secondFormGroup.value.del_ln;
+    this.delivery.delivery_street = this.secondFormGroup.value.del_strt;
+    this.delivery.delivery_town = this.secondFormGroup.value.del_twn;
+    this.delivery.delivery_county = this.secondFormGroup.value.del_cnty;
+    this.delivery.delivery_country = this.secondFormGroup.value.del_cntry;
+    this.deliverylist.push(this.delivery)
+    console.log(this.deliverylist);
+  }
 
+
+  onsubmitformthree() {
+    if (this.thirdFormGroup.valid) {
+      this.item.name  = this.thirdFormGroup.value.name;
+      this.item.description  = this.thirdFormGroup.value.description;
+      this.item.quantity  = this.thirdFormGroup.value.quantity;
+      console.log('waaaaaaaaaaaa' + this.thirdFormGroup.value.description);
+      this.item.unit_of_measures_id  = 1;
+      this.itemlist.push(this.item);
+    }
+
+  }
+
+  onsubmitformfourth() {
+    if (this.fourthFormGroup.valid) {
+      this.transaction.invoice_amount = this.fourthFormGroup.value.invoice_amount;
+      this.transaction.period =  this.fourthFormGroup.value.period;
+      this.transaction.inspection_period = this.fourthFormGroup.value.inspection_period;
+      this.transaction.agent_fee_amount = this.fourthFormGroup.value.agent_fee_value;
+      this.transaction.agent_fee_type_id = 1;
+      console.log(this.fourthFormGroup.value.invoice_amount);
+    }
+  }
+
+  finishtransaction() {
+    this.feeallocation.id = 1;
+    this.classification.id = 1;
+    if (this.broker) { this.agentfeetype.id = 1; }
+    this.transaction.items = this.itemlist;
+    // this.user = JSON.parse(localStorage.getItem('user'));
+    // user trade role
+    this.transaction.classification = this.classification;
+    this.transaction.trade_roles = this.traderolelist;
+    this.transaction.agent_fee_type = this.agentfeetype;
+    this.transaction.fee_allocation = this.feeallocation;
+    this.transaction.delivery = this.deliverylist;
+
+    this.transactionsvc.createtransaction(this.transaction).subscribe((transaresp) => {
+        this.transaction = transaresp;
+        if (this.transaction.id !== 0) {
+          console.log(this.transaction.id);
+          this.auth.showSnackBar(' Order place succefully');
+        }
+      },
+      (response: Response) => {
+        if (response.status <= 500) {
+          this.auth.showSnackBar(' ooops! Something  wrong happenned');
+        }
+      });
+
+  }
 
 
 
