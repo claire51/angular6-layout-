@@ -162,7 +162,7 @@ export class MyDashboardComponent  implements  OnInit {
     this.delivery.delivery_town = this.secondFormGroup.value.del_twn;
     this.delivery.delivery_county = this.secondFormGroup.value.del_cnty;
     this.delivery.delivery_country = this.secondFormGroup.value.del_cntry;
-    this.deliverylist.push(this.delivery)
+    this.deliverylist.push(this.delivery);
     console.log(this.deliverylist);
   }
 
