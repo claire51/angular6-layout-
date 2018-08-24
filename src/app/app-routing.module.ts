@@ -12,10 +12,10 @@ const routes: Routes = [
 
   { path: 'createtrade', component: MyDashboardComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'datatable', component: MyTableComponent , canActivate: [AuthGuardGuard]},
+  { path: 'datatable', component: MyTableComponent },
   { path: '', component: HomeComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'apicontent', component: ApitestComponent },
+  { path: 'apicontent', component: ApitestComponent , canActivate: [AuthGuardGuard]},
   { path: 'dashboard',
     loadChildren: '../app/main/dashboard.module#DashboardModule'
   },

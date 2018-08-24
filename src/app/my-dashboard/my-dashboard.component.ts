@@ -186,14 +186,13 @@ export class MyDashboardComponent  implements  OnInit {
       this.transaction.inspection_period = this.fourthFormGroup.value.inspection_period;
       this.transaction.agent_fee_amount = this.fourthFormGroup.value.agent_fee_value;
       this.transaction.agent_fee_type_id = 1;
-      console.log(this.fourthFormGroup.value.invoice_amount);
     }
   }
 
   finishtransaction() {
     this.feeallocation.id = 1;
     this.classification.id = 1;
-    if (this.broker) { this.agentfeetype.id = 1; }
+   this.agentfeetype.id = 1;
     this.transaction.items = this.itemlist;
     // this.user = JSON.parse(localStorage.getItem('user'));
     // user trade role

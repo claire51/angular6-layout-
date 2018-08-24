@@ -1,10 +1,11 @@
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import {Resource} from '../model/Resource';
 import {AppConfig} from '../common/config/app.config';
+import {Router} from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,7 +15,8 @@ export abstract class CrudService<T extends Resource> {
   baseurl: string;
    constructor(
     private http: HttpClient,
-    private endpoint: string) {
+    private endpoint: string,
+    private routerz: Router) {
      this.baseurl = AppConfig.repositoryURL;
    }
  // get data generic
@@ -81,11 +83,18 @@ export abstract class CrudService<T extends Resource> {
 
   private handleError<M> (operation = 'operation', result?: M) {
     return (error: any): Observable<M> => {
-
-      // TODO: send the error to remote logging infrastructure
+    if (error instanceof HttpErrorResponse) {
       console.error(error); // log to console instead
+      // TODO: send the error to remote logging infrastructure
 
-      // TODO: better job of transforming error for user consumption
+      if (error.status === 401) {
+        this.routerz.navigate(['/login']);
+      }    else if (error.status <= 500) {
+        throw error;
+      } else {
+        alert('Something went wrong try again ...');
+      }
+    }
       this.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.

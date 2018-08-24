@@ -1,7 +1,7 @@
 import {Permission, Role} from './Role';
+import {Resource} from "./Resource";
 
-export class User {
-  id: number;
+export class User extends Resource {
   first_name: string;
   middle_name: string;
   last_name: string;
@@ -14,6 +14,6 @@ export class User {
   updated_at: string;
   permissions: Array<Permission>;
   roles: Array<Role>;
-  constructor() {
+  constructor() { super();
 }
 }
