@@ -1,6 +1,6 @@
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator, MatSort } from '@angular/material';
-import { map } from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 import {User} from '../model/User';
 import {UserdataService} from '../localService/userdata';
@@ -18,8 +18,8 @@ import {AuthService} from '../auth.service';
  * (including sorting, pagination, and filtering).
  */
 export class MyTableDataSource extends DataSource<User> {
-
   data: Array<User> =  new Array<User>();
+
   constructor(private paginator: MatPaginator, private sort: MatSort,
               private userdata: UserdataService , private authservice: AuthService) {
     super();
@@ -42,6 +42,8 @@ export class MyTableDataSource extends DataSource<User> {
   connect(): Observable<Array<User>> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
+    this.loadvalues();
+    this.data = this.authservice.data;
     const dataMutations = [
       observableOf(this.data),
       this.paginator.page,

@@ -3,6 +3,7 @@ import { MatPaginator, MatSort } from '@angular/material';
 import { MyTableDataSource } from './my-table-datasource';
 import {UserdataService} from '../localService/userdata';
 import {AuthService} from '../auth.service';
+import {User} from '../model/User';
 
 @Component({
   selector: 'my-table',
@@ -10,7 +11,8 @@ import {AuthService} from '../auth.service';
   styleUrls: ['./my-table.component.css']
 })
 export class MyTableComponent implements OnInit {
-  constructor(  public userdata: UserdataService , public authservice: AuthService) {
+  data: Array<User> =  new Array<User>();
+  constructor(  public userdata: UserdataService , public authservice: AuthService ) {
   }
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -21,7 +23,6 @@ export class MyTableComponent implements OnInit {
 
 
   ngOnInit() {
-    this.dataSource.loadvalues();
     this.dataSource = new MyTableDataSource(this.paginator, this.sort,
       this.userdata , this.authservice);
   }

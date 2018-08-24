@@ -3,6 +3,7 @@ import {BehaviorSubject} from 'rxjs';
 import {Router} from '@angular/router';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 import {AppConfig} from './common/config/app.config';
+import {User} from './model/User';
 
 
 // why do you need defining window as any?
@@ -14,7 +15,9 @@ import {AppConfig} from './common/config/app.config';
 })
 export class AuthService {
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
   showloading: boolean;
+  data: Array<User> =  new Array<User>();
   isAuthenticated() {
     return this.loggedIn.asObservable();
   }
