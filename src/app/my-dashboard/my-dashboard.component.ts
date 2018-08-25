@@ -33,6 +33,11 @@ export class MyDashboardComponent  implements  OnInit {
   idnumberz: string;
   emailz: string;
 
+  phone_numberz: string;
+  full_namesz: string;
+  id_numberz: string;
+  emailzz: string;
+
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
@@ -88,20 +93,24 @@ export class MyDashboardComponent  implements  OnInit {
   }
 
   onsubmitformone() {
-    if (this.firstFormGroup.valid) {
+
       this.tradeparty = new TradeParty();
       this.traderole = new TradeRole();
       this.traderolelist.length = 0;
-      this.tradeparty.full_names =  this.firstFormGroup.value.full_names;
-      this.tradeparty.id_number = this.firstFormGroup.value.id_number;
-      this.tradeparty.phone_number = this.firstFormGroup.value.phone_number;
-      this.tradeparty.address = this.firstFormGroup.value.address;
-      this.tradeparty.email = this.firstFormGroup.value.email;
+      this.tradeparty.full_names =  this.full_namesz;
+      this.tradeparty.id_number = this.id_numberz;
+      this.tradeparty.phone_number = this.phone_numberz;
+      this.tradeparty.address = '';
+      this.tradeparty.email = this.emailzz;
       this.tradeparty.user_id = null;
       if ( this.isseller ) {
         this.traderole.trading_party_id = 2;
+        this.traderole.transaction_role_id = 2;
+        this.traderole.id = 2;
       } else if (this.isbuyer = true) {
         this.traderole.trading_party_id = 1;
+        this.traderole.transaction_role_id = 1;
+        this.traderole.id = 1;
         }
       this.traderole.trade_party = this.tradeparty;
       this.traderolelist.push(this.traderole);
@@ -117,10 +126,16 @@ export class MyDashboardComponent  implements  OnInit {
       this.tradeparty.user_id = null;
       if ( this.isseller ) {
         this.traderole.trading_party_id = 1;
+        this.traderole.transaction_role_id = 1;
+        this.traderole.id = 1;
       } else if (this.isbuyer = true) {
         this.traderole.trading_party_id = 2;
+        this.traderole.transaction_role_id = 2;
+        this.traderole.id = 2;
       } else if (this.isagent = true) {
         this.traderole.trading_party_id = 3;
+        this.traderole.transaction_role_id = 3;
+        this.traderole.id = 3;
       }
       this.traderole.trade_party = this.tradeparty;
       this.traderolelist.push(this.traderole);
@@ -129,16 +144,14 @@ export class MyDashboardComponent  implements  OnInit {
         this.addbroker();
       }
 
-
-
-      console.log(this.firstFormGroup.value.email);
-    }
+this.next();
   }
 
   addbroker() {
     this.traderole = new TradeRole();
     this.tradeparty = new TradeParty();
     this.tradeparty.full_names = this.fullnamez;
+    console.log(this.fullnamez);
     this.tradeparty.id_number = this.fullnamez;
     this.tradeparty.phone_number = this.mobilez;
     this.tradeparty.address = '234,thika';
@@ -146,8 +159,12 @@ export class MyDashboardComponent  implements  OnInit {
     this.tradeparty.user_id = null;
     if ( this.broker ) {
       this.traderole.trading_party_id = 3;
+      this.traderole.transaction_role_id = 3;
+      this.traderole.id = 3;
     }  else if (this.isagent = true) {
       this.traderole.trading_party_id = 2;
+      this.traderole.transaction_role_id = 2;
+      this.traderole.id = 2;
     }
     this.traderole.trade_party = this.tradeparty;
     this.traderolelist.push(this.traderole);
@@ -155,6 +172,7 @@ export class MyDashboardComponent  implements  OnInit {
   }
 
   onsubmitformtwo() {
+    this.deliverylist.length = 0;
     this.delivery.delivery_comment = this.secondFormGroup.value.del_cmt;
     this.delivery.delivery_postal_code = this.secondFormGroup.value.delivery_postal_code;
     this.delivery.delivery_lane = this.secondFormGroup.value.del_ln;
@@ -169,6 +187,7 @@ export class MyDashboardComponent  implements  OnInit {
 
   onsubmitformthree() {
     if (this.thirdFormGroup.valid) {
+      this.itemlist.length = 0;
       this.item.name  = this.thirdFormGroup.value.name;
       this.item.description  = this.thirdFormGroup.value.description;
       this.item.quantity  = this.thirdFormGroup.value.quantity;
@@ -184,7 +203,8 @@ export class MyDashboardComponent  implements  OnInit {
       this.transaction.invoice_amount = this.fourthFormGroup.value.invoice_amount;
       this.transaction.period =  this.fourthFormGroup.value.period;
       this.transaction.inspection_period = this.fourthFormGroup.value.inspection_period;
-      this.transaction.agent_fee_amount = this.fourthFormGroup.value.agent_fee_value;
+      this.transaction.agent_fee_amount = 100;
+      this.transaction.agent_fee_value = 1;
       this.transaction.agent_fee_type_id = 1;
     }
   }

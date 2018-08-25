@@ -143,14 +143,16 @@ background-color: white;
 
 }
 .content-divA{
-  flex: 1;
+  flex: 50%;
   align-content: center;
   align-items: center;
   text-align: center;
+
 }
 .content-divB{
-  flex: 1;
+  flex: 50%;
   align-content: center;
+  text-align: center;
 }
 .buttonmargin{
   padding:10px;
@@ -173,7 +175,7 @@ background-color: white;
   align-content: center;
 }
 .icondi-tab-icon{
-  color: blue;
+  color: #125aaa;
   font-size: 30px;
   margin-right: 10px;
 }

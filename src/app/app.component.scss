@@ -71,25 +71,11 @@ height: 100px;
 }
 //mobile
 @media all and (max-width: 800px) {
-  .progress-bar {
-    margin-top: 53px; width: 100%;
-    display: flex;
-    align-content: center;
-    align-items: center;
-    height: calculateRem(5px);
-  }
+
 
 }
 
 /* Small screens */
 @media all and (max-width: 500px) {
-
-  .progress-bar {
-    margin-top: 53px; width: 100%;
-    display: flex;
-    align-content: center;
-    align-items: center;
-    height: calculateRem(5px);
-  }
 
 }
