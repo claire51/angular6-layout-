@@ -1,7 +1,12 @@
 <div class="mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
 
-    <!-- Id Column -->
+  <mat-table #table [dataSource]="dataSource"  [trackBy]="trackByUid" class="animate" matSort aria-label="Elements">
+<!-- Id Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
@@ -27,17 +32,22 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.email}}</mat-cell>
     </ng-container>
-
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-raised-button  color="primary" (click)="openDialog(row)">Edit</button>
+      </mat-cell>
+    </ng-container>
 
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
   </mat-table>
 
-  <mat-paginator #paginator
-    [length]="dataSource.data.length"
-    [pageIndex]="0"
-    [pageSize]="50"
-    [pageSizeOptions]="[25, 50, 100, 250]">
-  </mat-paginator>
+  <!--<mat-paginator #paginator-->
+    <!--[length]="dataSource.data.length"-->
+    <!--[pageIndex]="0"-->
+    <!--[pageSize]="50"-->
+    <!--[pageSizeOptions]="[25, 50, 100, 250]">-->
+  <!--</mat-paginator>-->
 </div>
