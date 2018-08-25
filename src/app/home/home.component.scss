@@ -6,7 +6,7 @@
 align-items: center;
   padding-top:9%;
   background-size: 100% 100%;
-  background-color: blue;
+  background-color: #125aaa;
   height: 500px;
 }
 .personal_container{
@@ -22,7 +22,7 @@ align-items: center;
 .whentouse-container{
   display: flex;
   width:100%;
-  background-color: blue;
+  background-color: #125aaa;
   align-items: center;
   padding-top:2%;
   flex-wrap: wrap;
@@ -60,7 +60,7 @@ justify-content: center;
   align-content: stretch;
   text-align: left;
   padding-left: 4%;
-  background-color: blue;
+  background-color: #125aaa;
   padding-top: 2%;
   padding-bottom: 1%;
   overflow:visible;
@@ -110,7 +110,7 @@ justify-content: center;
 .z-depth:hover {
   box-shadow: 0 8px 8px rgba(10,16,20,.24), 0 0 8px rgba(10,16,20,.12) !important;
   transform: translate3d(0,0,0);
-  background-color: blue;
+  background-color: #125aaa;
   transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
 }
 .why_header{
@@ -305,7 +305,7 @@ justify-content: center;
     width:100%;
     flex-direction: row;
     align-items: center;
-    background-color: blue;
+    background-color: #125aaa;
     height: 100%;
   }
 
