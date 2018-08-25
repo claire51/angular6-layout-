@@ -14,7 +14,6 @@ export class MyTableComponent implements  AfterViewInit {
   }
   @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<any>;
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'first_name', 'middle_name', 'phone_number', 'email', 'edit'];
 
