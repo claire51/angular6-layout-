@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from '../Component/dashboard/dashboard.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AppMaterialModule} from '../app-material/app-material.module';
+import {Recoverpassword} from '../localService/recoverpassword';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import {AppMaterialModule} from '../app-material/app-material.module';
     FlexLayoutModule
   ],
   declarations: [DashboardComponent
-    ]
+    ],
 })
 export class DashboardModule { }

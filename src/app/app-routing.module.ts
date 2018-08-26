@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardGuard } from './guard/auth-guard.guard';
-import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { MyTableComponent } from './my-table/my-table.component';
 import { HomeComponent } from './home/home.component';
@@ -10,21 +9,23 @@ import {ApitestComponent} from './apitest/apitest.component';
 
 const routes: Routes = [
 
-  { path: 'createtrade', component: MyDashboardComponent},
+
   { path: 'login', component: LoginComponent },
   { path: 'datatable', component: MyTableComponent },
   { path: '', component: HomeComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'apicontent', component: ApitestComponent , canActivate: [AuthGuardGuard]},
   { path: 'dashboard',
-    loadChildren: '../app/main/dashboard.module#DashboardModule'
+    loadChildren: '../app/modules/dashboard.module#DashboardModule'
   },
-  { path: 'roles',
-    loadChildren: '../app/main/roleboard.module#RoleboardModule'
-  },
-
   { path: 'recover',
-    loadChildren: '../app/Component/shared.module#SharedModule'
+    loadChildren: '../app/modules/shared.module#SharedModule'
+  },
+  { path: 'createtrade',
+    loadChildren: '../app/modules/createtrade.module#CreatetradeModule'
+  },
+  { path: 'viewtrade',
+    loadChildren: '../app/modules/viewtrades.module#ViewtradesModule'
   },
   { path: '**', redirectTo: '' },
   {

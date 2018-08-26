@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PassRecoverComponent } from './pass-recover/pass-recover.component';
+import { DashboardComponent } from '../Component/dashboard/dashboard.component';
+
 
 const routes: Routes = [
   { path: '',
-  component: PassRecoverComponent }
+  component: DashboardComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SharedRoutingModule { }
+export class DashboardRoutingModule { }

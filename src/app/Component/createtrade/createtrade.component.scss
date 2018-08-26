@@ -35,7 +35,7 @@
   align-content: space-around;
   padding-bottom: 1%;
 
-//background-color: white;
+  //background-color: white;
 }
 .card-design{
   background-color: #ebebeb;
@@ -109,14 +109,14 @@
 }
 
 .divdesign{
-display: flex;
+  display: flex;
   text-align: center;
   align-content: space-around;
   align-content: center;
   align-items: center;
   padding-top: 5%;
   width: 100%;
-background-color: white;
+  background-color: white;
 }
 .personpartiez{
   display: flex;
@@ -190,11 +190,11 @@ background-color: white;
 
 }
 .mat-form-field{
-/*padding-left: 20px;*/
+  /*padding-left: 20px;*/
   width: 60%;
 }
-  .mat-purple  {
-    background-color: purple;
-    color: #fff;
-    height: 40px;
-  }
+.mat-purple  {
+  background-color: purple;
+  color: #fff;
+  height: 40px;
+}

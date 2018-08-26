@@ -13,7 +13,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LayoutModule} from '@angular/cdk/layout';
 import {APP_CONFIG, AppConfig} from './common/config/app.config';
 
-import {MyDashboardComponent} from './my-dashboard/my-dashboard.component';
 import {MyTableComponent} from './my-table/my-table.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
@@ -29,14 +28,12 @@ import {ProgressBarService} from './services/progress-bar.service';
 import {TimingInterceptor} from './common/interceptors/timing.interceptor';
 import {ProgressInterceptor} from './common/interceptors/progress.interceptor';
 import {Login} from './localService/login';
-import {AuthInterceptor} from "./common/interceptors/auth-interceptor";
-import {Transactionservc} from './localService/transactionservc';
-import {UserdataService} from "./localService/userdata";
+import {AuthInterceptor} from './common/interceptors/auth-interceptor';
+import {UserdataService} from './localService/userdata';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MyDashboardComponent,
     MyTableComponent,
     LoginComponent,
     HomeComponent,
@@ -62,7 +59,7 @@ import {UserdataService} from "./localService/userdata";
     {provide: HTTP_INTERCEPTORS, useClass: ProgressInterceptor, multi: true, deps: [ProgressBarService]},
     {provide: HTTP_INTERCEPTORS, useClass: TimingInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-    KevolService, RegisterService, Login, Transactionservc , UserdataService],
+   KevolService, RegisterService, Login, UserdataService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

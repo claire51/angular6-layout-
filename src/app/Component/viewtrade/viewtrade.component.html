@@ -1,0 +1,57 @@
+<div class="mat-elevation-z8">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource"  [trackBy]="trackByUid" nclass="animate" matSort aria-label="Elements">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Transaction code</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.transaction_code}}</mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Invoic Amt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Amount</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.invoice_amount}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="total Fee Amt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Total Fee</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.total_fee_amount}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Deposit amt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Deposited Amount</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.deposited_amount}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.transaction_status_id}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Created At">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Created At</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.created_at}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-raised-button  color="primary" (click)="openDialog(row)">Edit</button>
+      </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
+  </mat-table>
+
+  <!--<mat-paginator #paginator-->
+  <!--[length]="dataSource.data.length"-->
+  <!--[pageIndex]="0"-->
+  <!--[pageSize]="50"-->
+  <!--[pageSizeOptions]="[25, 50, 100, 250]">-->
+  <!--</mat-paginator>-->
+</div>

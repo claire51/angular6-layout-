@@ -1,0 +1,255 @@
+<div id="escrow" class="escrow-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+     fxLayoutAlign="center">
+  <div class="tradeA">
+    <div class="card-design">
+      <p><span class="header_text">
+       Create New Trades
+      </span>
+      </p>
+    </div>
+  </div>
+</div>
+<div id="escrow2" class="escrow-container1" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+     fxLayoutAlign="center">
+
+  <mat-tab-group #tabgroup [selectedIndex]="selected"
+                 (selectedIndexChange)="tabChanged($event)">
+    <mat-tab class="labeposition" >
+      <ng-template mat-tab-label >
+        <mat-icon class="icondi-tab-icon">assignment_ind</mat-icon>
+        Roles
+      </ng-template>
+      <!--<div class="divdesign">-->
+      <div class="personpartiez" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+           fxLayoutAlign="center" >
+        <div class="rowdiv" style="padding-top: 5%">
+          <mat-radio-group [(ngModel)]="role" >
+
+            <mat-radio-button class="buttonmargin"  value="buyer">
+              <div class="rowdiv">
+                <i class="material-icons  largeicon">shopping_cart</i>
+                <p><span>Buying some Item</span></p>
+              </div>
+            </mat-radio-button>
+            <mat-radio-button class="buttonmargin"  value="seller">
+              <div class="rowdiv">
+                <i class="material-icons  largeicon">monetization_on</i>
+                <p><span>Selling some Item</span></p>
+              </div>
+            </mat-radio-button>
+            <mat-radio-button class="buttonmargin" value="agent">
+              <div class="rowdiv">
+                <i class="material-icons  largeicon">contact_phone</i>
+                <p><span>Am an Agent</span></p>
+
+              </div>
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div style="text-align: right; padding-right: 100px">
+        <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="next()">Next</button></span>
+      </div>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label >
+        <mat-icon class="icondi-tab-icon">person_pin</mat-icon>
+        Trade Parties
+      </ng-template>
+      <div class="personpartiez" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+           fxLayoutAlign="center" >
+
+
+        <div class="content-divA">
+          <p><span style="font-size: 17px; font-weight: bold">Who is the {{formavalue}} ?</span></p>
+          <!--<form [formGroup]="firstFormGroup" (ngSubmit)="onsubmitformone()">-->
+          <mat-form-field >
+            <input matInput type="tel"  placeholder="Mobile Number" [(ngModel)]="phone_numberz"   required><br>
+          </mat-form-field>
+          <mat-form-field >
+            <input matInput type="text"  placeholder="Full Name" [(ngModel)]="full_namesz"  required><br>
+          </mat-form-field>
+          <mat-form-field >
+            <input matInput type="text"  placeholder="Id Number" [(ngModel)]="id_numberz"  required><br>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="email" placeholder="Email" [(ngModel)]="emailzz" >
+          </mat-form-field>
+
+
+          <!--</form>-->
+        </div>
+        <div class="content-divB" >
+          <p style="margin-top: 4%" >
+            <mat-checkbox [(ngModel)]="broker" *ngIf="!isagent" >Add a Lead Agent or Broker Be Added to This Transaction?</mat-checkbox>
+          </p>
+          <div *ngIf="isagent || broker">
+            <p><span style="font-size: 20px; font-weight: bold">Who is the {{formavalueb}} ?</span></p>
+            <mat-form-field >
+              <input matInput type="tel"  placeholder="Mobile Number" [(ngModel)]="mobilez"  required><br>
+            </mat-form-field>
+            <mat-form-field >
+              <input matInput type="text"  placeholder="Full Name" [(ngModel)]="fullnamez" required><br>
+            </mat-form-field>
+            <mat-form-field >
+              <input matInput type="text"  placeholder="Id Number"[(ngModel)]="idnumberz" required><br>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="email" placeholder="Email" [(ngModel)]="emailz" >
+            </mat-form-field>
+          </div>
+          <div style="text-align: right; padding-right: 100px; padding-top: 3%">
+            <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
+            <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="onsubmitformone()">Next</button></span>
+          </div>
+        </div>
+
+      </div>
+
+
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label >
+        <mat-icon class="icondi-tab-icon">description</mat-icon>
+        Trade Item description
+      </ng-template>
+      <div class="personpartiez"  fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+           fxLayoutAlign="center">
+        <div class="rowdiv">
+          <form [formGroup]="thirdFormGroup"  class="escrow-form"  (ngSubmit)="onsubmitformthree()" >
+            <p><span style="font-size: 20px; font-weight: bold">Add item to Cart</span></p>
+            <mat-form-field >
+              <input matInput type="text"  placeholder="Enter Item Name" formControlName="name" required><br>
+            </mat-form-field>
+            <mat-form-field >
+              <input matInput type="number"  placeholder="Enter Item Quantity" formControlName="quantity" required><br>
+            </mat-form-field>
+            <mat-form-field >
+              <input matInput type="tel"  placeholder="Enter item description" formControlName="description" required><br>
+            </mat-form-field>
+            <div style="text-align: right; padding-right: 100px">
+              <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
+              <span style="margin-left: 50px"><button type="submit" mat-raised-button color="primary" (click)="next()">Next</button></span>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label >
+        <mat-icon class="icondi-tab-icon">account_balance</mat-icon>
+        Trade value
+      </ng-template>
+      <div class="personpartiez" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+           fxLayoutAlign="center">
+        <div class="rowdiv">
+          <form [formGroup]="fourthFormGroup"  class="escrow-form" (ngSubmit)="onsubmitformfourth()" >
+            <p><span style="font-size: 20px; font-weight: bold">Transaction detail</span></p>
+            <mat-form-field >
+              <input matInput type="number"  placeholder="Invoice Amount" formControlName="invoice_amount" required><br>
+            </mat-form-field>
+            <mat-form-field >
+              <input matInput type="number"  placeholder="Delivery Period" formControlName="period" required><br>
+            </mat-form-field>
+            <mat-form-field >
+              <input matInput type="number"  placeholder="Inspection Period" formControlName="inspection_period" required><br>
+            </mat-form-field>
+            <mat-form-field *ngIf="broker">
+              <input matInput type="number"  placeholder="Enter Agent Amount" formControlName="agent_fee_value" ><br>
+            </mat-form-field>
+            <div style="text-align: right; padding-right: 100px">
+              <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
+              <span style="margin-left: 50px"><button type="submit" mat-raised-button color="primary" (click)="next()">Next</button></span>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label >
+        <mat-icon class="icondi-tab-icon">local_shipping</mat-icon>
+        Delivery Option
+      </ng-template>
+      <div class="personpartiez" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+           fxLayoutAlign="center">
+
+        <div class="rowdiv">
+          <form [formGroup]="secondFormGroup"  class="escrow-form" (ngSubmit)="onsubmitformtwo()"  >
+            <p><span style="font-size: 20px;text-align: center; font-weight: bold">Where Item will be delivered</span></p>
+            <mat-form-field >
+              <input matInput type="text" placeholder="Delivery Country" formControlName="del_cntry" >
+            </mat-form-field>
+            <mat-form-field >
+              <input matInput type="text" placeholder="Delivery County" formControlName="del_cnty" >
+            </mat-form-field>
+            <mat-form-field >
+              <input matInput type="text" placeholder="Delivery Town" formControlName="del_twn" >
+            </mat-form-field>
+            <mat-form-field >
+              <input matInput type="text" placeholder="Delivery Comment" formControlName="del_cmt" >
+            </mat-form-field>
+            <mat-form-field >
+              <input matInput type="text" placeholder="Enter postal code" formControlName="delivery_postal_code" >
+            </mat-form-field>
+            <div style="text-align: right; padding-right: 100px">
+              <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
+              <span style="margin-left: 50px"><button type="submit" mat-raised-button color="primary" (click)="next()">Skip</button></span>
+            </div>
+          </form>
+        </div>
+        <!--<div class="rowdiv">-->
+        <!--Content 1-->
+        <!--</div>-->
+      </div>
+
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label >
+        <mat-icon class="icondi-tab-icon">check_circle</mat-icon>
+        Complete Trade
+      </ng-template>
+      <div class="personpartiez" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+           fxLayoutAlign="center">
+        <div class="rowdiv">
+          <mat-card  style="margin: 2%">
+            <p><span style="font-size: 12px; font-weight: bold">Complete trade ,Ensure all required field are entered </span></p>
+            <mat-card-content>
+              <div style="text-align: center">
+                <p style="text-align: center; "> <span> 1 Item ,Total Invoice Amount: </span>
+                  <span style="text-align: left; padding-left: 2%;font-size:20px; font-weight: bold">{{totalinvoiceamount}}</span> </p>
+                <p style="text-align: center;" > <span style="">Transaction Fee: </span>
+                  <span style="text-align: left ; padding-left: 9%;font-size:20px; font-weight: bold">+ {{fee}}</span> </p>
+                <p style="text-align: center;" > <span style=""> Pay Amount: </span>
+                  <span style="text-align: left; padding-left: 10%; font-size:20px; font-weight: bold;color: #125aaa">KSH {{payamount}}</span> </p>
+
+
+
+              </div>
+
+              <div style="text-align: left; padding-left: 100px;padding-top: 2%">
+                <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
+                <span style="margin-left: 37%; text-align: center"><button mat-raised-button [color]="'purple'" (click)="finishtransaction()">Submit Order</button></span>
+              </div>
+            </mat-card-content>
+
+
+
+
+
+
+          </mat-card>
+
+
+        </div>
+      </div>
+
+    </mat-tab>
+
+  </mat-tab-group>
+
+</div>
+
+
