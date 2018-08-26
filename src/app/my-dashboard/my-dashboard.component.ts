@@ -38,6 +38,11 @@ export class MyDashboardComponent  implements  OnInit {
   id_numberz: string;
   emailzz: string;
 
+
+  totalinvoiceamount: number;
+  fee: number;
+  payamount: number;
+
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
@@ -58,6 +63,9 @@ export class MyDashboardComponent  implements  OnInit {
   constructor(public auth: AuthService , private _formBuilder: FormBuilder, private transactionsvc: Transactionservc) {
     this.role = 'buyer';
     this.selected = 0;
+    this.payamount = 0;
+    this.fee = 0;
+    this.totalinvoiceamount = 0;
   }
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -201,11 +209,14 @@ this.next();
   onsubmitformfourth() {
     if (this.fourthFormGroup.valid) {
       this.transaction.invoice_amount = this.fourthFormGroup.value.invoice_amount;
+      this.totalinvoiceamount  =  this.transaction.invoice_amount;
+      this.fee = 100;
       this.transaction.period =  this.fourthFormGroup.value.period;
       this.transaction.inspection_period = this.fourthFormGroup.value.inspection_period;
       this.transaction.agent_fee_amount = 100;
       this.transaction.agent_fee_value = 1;
       this.transaction.agent_fee_type_id = 1;
+      this.payamount = this.totalinvoiceamount + this.fee;
     }
   }
 

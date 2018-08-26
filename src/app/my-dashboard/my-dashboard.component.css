@@ -193,3 +193,8 @@ background-color: white;
 /*padding-left: 20px;*/
   width: 60%;
 }
+  .mat-purple  {
+    background-color: purple;
+    color: #fff;
+    height: 40px;
+  }

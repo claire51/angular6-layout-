@@ -214,13 +214,38 @@
         <div class="personpartiez" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
              fxLayoutAlign="center">
           <div class="rowdiv">
-            <p><span style="font-size: 20px; font-weight: bold">Complete trade ,Ensure all required field are entered </span></p>
-            <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="finishtransaction()">FINISH</button></span>
+            <mat-card  style="margin: 2%">
+              <p><span style="font-size: 12px; font-weight: bold">Complete trade ,Ensure all required field are entered </span></p>
+              <mat-card-content>
+                 <div style="text-align: center">
+               <p style="text-align: center; "> <span> 1 Item ,Total Invoice Amount: </span>
+                 <span style="text-align: left; padding-left: 2%;font-size:20px; font-weight: bold">{{totalinvoiceamount}}</span> </p>
+             <p style="text-align: center;" > <span style="">Transaction Fee: </span>
+               <span style="text-align: left ; padding-left: 9%;font-size:20px; font-weight: bold">+ {{fee}}</span> </p>
+               <p style="text-align: center;" > <span style=""> Pay Amount: </span>
+                 <span style="text-align: left; padding-left: 10%; font-size:20px; font-weight: bold;color: #125aaa">{{payamount}}</span> </p>
+
+
+
+                </div>
+
+                <div style="text-align: left; padding-left: 100px;padding-top: 2%">
+                  <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
+                  <span style="margin-left: 37%; text-align: center"><button mat-raised-button [color]="'purple'" (click)="finishtransaction()">Submit Order</button></span>
+                </div>
+              </mat-card-content>
+
+
+
+
+
+
+            </mat-card>
+
+
           </div>
         </div>
-        <div style="text-align: left; padding-left: 100px">
-          <span ><button mat-raised-button color="primary" (click)="previous()" >Previous</button></span>
-        </div>
+
       </mat-tab>
 
     </mat-tab-group>
