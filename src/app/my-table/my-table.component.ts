@@ -1,7 +1,8 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component,  ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {UserdataService} from '../localService/userdata';
 import {AuthService} from '../auth.service';
+import {User} from '../model/User';
 
 @Component({
   selector: 'my-table',
@@ -9,7 +10,7 @@ import {AuthService} from '../auth.service';
   styleUrls: ['./my-table.component.css']
 })
 export class MyTableComponent implements  AfterViewInit {
-  // data: Array<User>;
+  users: Array<User>;
   constructor(  public userdata: UserdataService , public authservice: AuthService ) {
   }
   @ViewChild(MatSort) sort: MatSort;
@@ -26,7 +27,8 @@ export class MyTableComponent implements  AfterViewInit {
   ngAfterViewInit() {
     this.userdata.getdata().subscribe((data) => {
       // this.data = newHeroWithId;
-      this.dataSource = new MatTableDataSource(data);
+      this.users = data;
+      this.dataSource = new MatTableDataSource(this.users);
       this.dataSource.sort = this.sort;
     }, (response: Response) => {
       if (response.status <= 500) {

@@ -5,34 +5,34 @@
     </mat-form-field>
   </div>
 
-  <mat-table #table [dataSource]="dataSource"  [trackBy]="trackByUid" nclass="animate" matSort aria-label="Elements">
+  <mat-table #table [dataSource]="dataSourceb"  [trackBy]="trackByUid" nclass="animate" matSort aria-label="Elements">
     <!-- Id Column -->
-    <ng-container matColumnDef="id">
+    <ng-container matColumnDef="transaction_code">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Transaction code</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.transaction_code}}</mat-cell>
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="Invoic Amt">
+    <ng-container matColumnDef="invoice_amount">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Amount</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.invoice_amount}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="total Fee Amt">
+    <ng-container matColumnDef="total_fee_amount">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Total Fee</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.total_fee_amount}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="Deposit amt">
+    <ng-container matColumnDef="deposited_amount">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Deposited Amount</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.deposited_amount}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="Status">
+    <ng-container matColumnDef="transaction_status_id">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.transaction_status_id}}</mat-cell>
     </ng-container>
-    <ng-container matColumnDef="Created At">
+    <ng-container matColumnDef="created_at">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Created At</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.created_at}}</mat-cell>
     </ng-container>
