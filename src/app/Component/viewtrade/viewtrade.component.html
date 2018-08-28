@@ -48,10 +48,5 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
   </mat-table>
 
-  <!--<mat-paginator #paginator-->
-  <!--[length]="dataSource.data.length"-->
-  <!--[pageIndex]="0"-->
-  <!--[pageSize]="50"-->
-  <!--[pageSizeOptions]="[25, 50, 100, 250]">-->
-  <!--</mat-paginator>-->
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>

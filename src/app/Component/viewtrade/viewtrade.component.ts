@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {MatSort, MatTableDataSource} from '@angular/material';
+import {MatSort, MatTableDataSource, MatPaginator} from '@angular/material';
 import {AuthService} from '../../auth.service';
 import {Transactionservc} from '../../localService/transactionservc';
 import {Transactions} from '../../model/Transactions';
@@ -13,6 +13,7 @@ export class ViewtradeComponent implements  AfterViewInit {
   transactions: Array<Transactions>;
   constructor(public transervice: Transactionservc , public authservice: AuthService ) { }
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSourceb: MatTableDataSource<any>;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['transaction_code', 'invoice_amount', 'total_fee_amount', 'deposited_amount', 'transaction_status_id', 'created_at', 'edit'];
@@ -24,6 +25,7 @@ export class ViewtradeComponent implements  AfterViewInit {
 
       this.dataSourceb = new MatTableDataSource( this.transactions);
       this.dataSourceb.sort = this.sort;
+      this.dataSourceb.paginator = this.paginator;
     }, (response: Response) => {
       if (response.status <= 500) {
         this.authservice.showSnackBar(' could not load users');
