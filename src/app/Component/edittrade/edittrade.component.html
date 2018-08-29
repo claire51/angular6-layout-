@@ -1,0 +1,89 @@
+<div class="tradecontainer" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+     fxLayoutAlign="center" >
+  <mat-tab-group #tabgroup [selectedIndex]="selected"
+                 (selectedIndexChange)="tabChanged($event)">
+    <mat-tab>
+      <ng-template mat-tab-label >
+        <mat-icon class="icondi-tab-icon">account_balance</mat-icon>
+        Trade Item description
+      </ng-template>
+      <div class="personpartiez"  fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+           fxLayoutAlign="center">
+        <div class="rowdiv">
+          <form [formGroup]="firstFormGroup"  (ngSubmit)="onSubmit()" >
+          <mat-form-field >
+            <input matInput type="number"  placeholder=" Edit invoice Amount"  formControlName="invoice_amount" required
+                   [errorStateMatcher]="matcher">
+            <mat-error>
+              <span *ngIf="!firstFormGroup.get('invoice_amount').valid && firstFormGroup.get('invoice_amount').touched">Please enter invoice amount</span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field >
+            <input matInput type="number"  placeholder="Inspection period" formControlName="inspection_period"  required
+                   [errorStateMatcher]="matcher">
+            <mat-error>
+              <span *ngIf="!firstFormGroup.get('inspection_period').valid && firstFormGroup.get('inspection_period').touched">Please enter invoice amount</span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field >
+            <input matInput type="number"  placeholder="Agent fee "  formControlName="agent_fee_value" required
+                   [errorStateMatcher]="matcher">
+            <mat-error>
+              <span *ngIf="!firstFormGroup.get('agent_fee_value').valid && firstFormGroup.get('agent_fee_value').touched">Please enter Agent fee value</span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Trade period(in days)"  formControlName="period"
+                   [errorStateMatcher]="matcher">
+            <mat-error>
+              <span *ngIf="!firstFormGroup.get('period').valid && firstFormGroup.get('period').touched">Please enter trade period</span>
+            </mat-error>
+          </mat-form-field>
+            <span style="margin-left: 50px"><button type="submit" mat-raised-button color="primary" >Edit</button></span>
+          </form>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label >
+        <mat-icon class="icondi-tab-icon">description</mat-icon>
+        Edit Item description
+      </ng-template>
+      <div class="personpartiez"  fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+           fxLayoutAlign="center">
+        <div class="rowdiv">
+          <form [formGroup]="secondFormGroup"  (ngSubmit)="onSubmitform()" >
+          <mat-form-field >
+            <input matInput type="tel"  placeholder="Item name" formControlName="name"  required
+                   [errorStateMatcher]="matcher">
+            <mat-error>
+              <span *ngIf="!secondFormGroup.get('name').valid && secondFormGroup.get('name').touched">Please enter item name</span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field >
+            <input matInput type="text"  placeholder="Item description" formControlName="description"  required
+                   [errorStateMatcher]="matcher">
+            <mat-error>
+              <span *ngIf="!secondFormGroup.get('description').valid && secondFormGroup.get('description').touched">Please enter trade period</span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field >
+            <input matInput type="text"  placeholder="quantity" formControlName="quantity" required
+                   [errorStateMatcher]="matcher">
+            <mat-error>
+              <span *ngIf="!secondFormGroup.get('quantity').valid && secondFormGroup.get('quantity').touched">Please enter Item quantity</span>
+            </mat-error>
+          </mat-form-field>
+            <span style="margin-left: 50px"><button type="submit"  [disabled]="!secondFormGroup.valid" mat-raised-button color="primary" >Edit</button></span>
+          </form>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+<div>
+
+
+</div>
+
+
+</div>

@@ -4,8 +4,8 @@
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
   </div>
-
-  <mat-table #table [dataSource]="dataSourceb"  [trackBy]="trackByUid" nclass="animate" matSort aria-label="Elements">
+  <mat-card-content class="data-table-wrapper mat-elevation-z8">
+  <mat-table #table  class="data-table-content" [dataSource]="dataSourceb"  [trackBy]="trackByUid" nclass="animate" matSort aria-label="Elements">
     <!-- Id Column -->
     <ng-container matColumnDef="transaction_code">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Transaction code</mat-header-cell>
@@ -28,18 +28,15 @@
       <mat-cell *matCellDef="let row">{{row.deposited_amount}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="transaction_status_id">
+    <ng-container matColumnDef="status.name">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.transaction_status_id}}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="created_at">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Created At</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.created_at}}</mat-cell>
+      <mat-cell *matCellDef="let row">{{row.status.name}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="edit">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-raised-button  color="primary" (click)="openDialog(row)">Edit</button>
+        <button mat-raised-button  color="primary" (click)="edittransaction(row)"  >Edit</button>
+        <!--<a mat-raised-button color="primary" [routerLink]="['/book-edit', book._id]"><mat-icon>edit</mat-icon></a>-->
       </mat-cell>
     </ng-container>
 
@@ -49,4 +46,5 @@
   </mat-table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </mat-card-content>
 </div>

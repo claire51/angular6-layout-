@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 import {AppConfig} from './common/config/app.config';
 import {User} from './model/User';
+import {Transactions} from './model/Transactions';
 
 
 // why do you need defining window as any?
@@ -18,6 +19,7 @@ export class AuthService {
 
   showloading: boolean;
   data: Array<User> =  new Array<User>();
+  transactionshelper: Transactions = new Transactions();
   isAuthenticated() {
     return this.loggedIn.asObservable();
   }

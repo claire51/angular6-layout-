@@ -26,6 +26,8 @@ const routes: Routes = [
   },
   { path: 'viewtrade',
     loadChildren: '../app/modules/viewtrades.module#ViewtradesModule'
+  }, { path: 'editrade',
+    loadChildren: '../app/modules/editrades.module#EditradesModule'
   },
   { path: '**', redirectTo: '' },
   {

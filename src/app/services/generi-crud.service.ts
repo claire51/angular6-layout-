@@ -32,6 +32,23 @@ export class GeneriCrudService<T> {
       );
   }
 
+  /** PUT: update the hero on the server */
+  updateData (values: T): Observable<any> {
+    return this.http.put(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
+      tap(_ => this.log(`updated value id`)),
+      catchError(this.handleError<any>('updateHero'))
+    );
+  }
+  /** GET data by id. Return `undefined` when id not found */
+  getById(id: number): Observable<T[]> {
+    const url = `${this.baseurl}/${this.endpoint}/?id=${id}`;
+    return this.http.get<T[]>(url)
+      .pipe(
+        tap(heroes => this.log('data ')),
+        catchError(this.handleError('data', []))
+      );
+  }
+
   /** POST: add a new hero to the server */
   create (values: Profile): Observable<T> {
     return this.http.post<T>(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
