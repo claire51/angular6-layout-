@@ -21,79 +21,52 @@ export class EdittradeComponent implements OnInit {
   selected: number;
   selectedb = new FormControl(0);
 
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  firstFormGroupA: FormGroup;
+  secondFormGroupB: FormGroup;
 
   tradevalueedit: Tradevalueedit = new Tradevalueedit();
-  traderolelist: Array<TradeRole> = new Array<TradeRole>();
-  tradeparty: TradeParty = new TradeParty();
-  traderole: TradeRole = new TradeRole() ;
   transaction: Transactions = new Transactions();
-  transactionresp: Transactions = new Transactions();
-  delivery: Delivery = new Delivery();
   item: Item = new Item();
-  itemlist: Array<Item> = new Array<Item>();
-  deliverylist: Array<Delivery> = new Array<Delivery>();
   constructor(public auth: AuthService , private _formBuilder: FormBuilder,
               private transactionseditservice: Transactionedit, private itemservices: ItemeditServices, private router: Router) { }
 
   ngOnInit() {
-    this.getransactiondata();
-    this.firstFormGroup = this._formBuilder.group({
-      id: ['' , Validators.required],
-      period: ['', Validators.required],
-      invoice_amount: ['' ],
-      inspection_period: [''],
-      agent_fee_value: [''],
-      agent_fee_type_id: ['1'],
-      fee_allocation_id: ['1'],
-      classification_id: ['1'],
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      id: ['' ],
-      name: ['' ],
-      description: ['' ],
-      quantity: ['' ],
-      unit_of_measures_id: ['' ]
-    });
-  }
-  getransactiondata() {
     this.transaction = this.auth.transactionshelper;
     this.item = this.transaction.items[0];
-    this.firstFormGroup.setValue({
-      id: this.transaction.id,
-      period: this.transaction.period,
-      agent_fee_value: this.transaction.agent_fee_value,
-      inspection_period: this.transaction.inspection_period,
-      agent_fee_type_id: this.transaction.agent_fee_type_id,
-      classification_id: this.transaction.classification_id
+    this.firstFormGroupA = this._formBuilder.group({
+      id: [this.transaction.id, Validators.required],
+      period: [this.transaction.period, Validators.required],
+      invoice_amount: [this.transaction.invoice_amount ],
+      inspection_period: [this.transaction.inspection_period],
+      agent_fee_value: [this.transaction.agent_fee_value],
+      agent_fee_type_id: [this.transaction.agent_fee_type_id],
+      fee_allocation_id: [this.transaction.fee_allocation_id],
+      classification_id: [ this.transaction.classification_id],
     });
-
-    this.secondFormGroup.setValue({
-      id: this.item .id,
-      name: this.item .name,
-      description: this.item.description ,
-      quantity: this.item.quantity,
-      unit_of_measures_id: this.item.unit_of_measures_id,
+    this.secondFormGroupB = this._formBuilder.group({
+      id: [this.item.id ],
+      name: [this.item .name ],
+      description: [this.item.description ],
+      quantity: [this.item.quantity ],
+      unit_of_measures_id: [this.item.unit_of_measures_id ]
     });
-
-
   }
+
   onSubmit() {
-    if (this.firstFormGroup.valid) {
-      this.submittradevalueedit(this.firstFormGroup.value);
+    if (this.firstFormGroupA.valid) {
+      this.submittradevalueedit(this.firstFormGroupA.value);
     }
   }
 
   onSubmitform() {
-    if (this.secondFormGroup.valid) {
-      this.submittradeitemedit(this.secondFormGroup.value);
+    if (this.secondFormGroupB.valid) {
+      this.submittradeitemedit(this.secondFormGroupB.value);
     }
   }
 
   submittradevalueedit(tradevaluedit: Tradevalueedit) {
     if (tradevaluedit.invoice_amount !== 0 && tradevaluedit.id !== 0 ) {
-      this.transactionseditservice.updateData(this.tradevalueedit).subscribe((transaresp) => {
+      this.transactionseditservice.updateData(tradevaluedit).subscribe((transaresp) => {
           this.auth.transactionshelper = transaresp;
           this.transaction = transaresp;
           if (this.transaction.id > 0) {
@@ -111,13 +84,13 @@ export class EdittradeComponent implements OnInit {
   }
 
   submittradeitemedit(item: Item) {
-    if (this.item.quantity !== 0 && this.item.id !== 0 ) {
-      this.itemservices.updateData(this.item).subscribe((transaresp) => {
+    if (this.item.quantity > 0 && this.item.id > 0 ) {
+      this.itemservices.updateData(item).subscribe((transaresp) => {
           this.auth.transactionshelper = transaresp;
           this.transaction = transaresp;
           if (this.transaction.id > 0) {
             console.log(this.transaction.id);
-            this.auth.showSnackBar(' Transaction' + this.transaction.transaction_code + 'updated Succefully ');
+            this.auth.showSnackBar(' Transaction' + this.transaction.transaction_code + ' Item updated Succefully ');
             // this.router.navigate(['/viewtrade']);
           }
         },

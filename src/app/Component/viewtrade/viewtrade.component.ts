@@ -45,8 +45,8 @@ export class ViewtradeComponent implements  AfterViewInit {
 
   edittransaction(data): void {
     this.authservice.transactionshelper = data;
+    console.log(this.authservice.transactionshelper);
     this.router.navigate(['/editrade']);
-    console.log(data);
   }
 
 }

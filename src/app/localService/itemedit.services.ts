@@ -11,7 +11,7 @@ export class ItemeditServices extends GeneriCrudService<Item> {
   constructor(httpClient: HttpClient, router: Router) {
     super(
       httpClient,
-      'auth/signup',
+      'transactions/editTradeItem',
       router
     );
   }

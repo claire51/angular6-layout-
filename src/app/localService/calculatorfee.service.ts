@@ -1,17 +1,19 @@
 import {Injectable} from '@angular/core';
 import {GeneriCrudService} from '../services/generi-crud.service';
+import {Charges} from '../model/Charges';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {Tradevalueedit} from '../model/Tradevalueedit';
-
+/**
+ * Created by Kelvin on 30.8.18.
+ */
 @Injectable({
   providedIn: 'root'
 })
-export class Transactionedit extends GeneriCrudService<Tradevalueedit> {
+export class CalculatorfeeService extends GeneriCrudService<Charges> {
   constructor(httpClient: HttpClient, router: Router) {
     super(
       httpClient,
-      'transactions/edit',
+      'charges/all',
       router
     );
   }

@@ -93,10 +93,16 @@ justify-content: center;
 .persona_content_detail{
   flex: 1;
   text-align: center;
+  justify-content: center;
+  align-content: center;
 
 
 }
+.calculatz{
+  flex: auto;
+  text-align: center;
 
+}
 .Why-content{
   flex: 1;
   background-color: white;

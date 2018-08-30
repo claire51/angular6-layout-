@@ -8,12 +8,14 @@ import {RecoverPassword} from '../model/RecoverPassword';
 import {Authrizer} from '../model/authrizer';
 import {Router} from '@angular/router';
 import {Transactions} from '../model/Transactions';
+import {assertNumber} from "@angular/core/src/render3/assert";
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 export class GeneriCrudService<T> {
   baseurl: string;
+  id: number;
   constructor(
     private http: HttpClient,
     private endpoint: string,
@@ -24,7 +26,6 @@ export class GeneriCrudService<T> {
 
   // get data generic
   getdata (): Observable<T[]> {
-    this.endpoint = this.endpoint + 'all';
     return this.http.get<T[]>(`${this.baseurl}/${this.endpoint}`)
       .pipe(
         tap(heroes => this.log('data heroes')),

@@ -145,7 +145,41 @@
 
       </div>
     </div>
+<div id="fee-cal" class="howitwork-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div  class="calculatz"  >
+    <p><span style=" font-weight: bolder;font-size: 30px">
+ Calculate Fee to be charged
+      </span>
+    </p>
+    <mat-card>
+      <section  class="progress-bar" [hidden]='status' >
+        <mat-progress-bar
+          color='primary'
+          mode="indeterminate" >
+        </mat-progress-bar>
+      </section>
+      <mat-card-content>
+        <p><span style=" font-weight: bolder;font-size: 30px">
+Fee charged is {{feeamount}}
+      </span>
+        </p>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <mat-form-field class="full-width-input">
+            <input matInput type="number"  placeholder="Enter invoice amount of trade" formControlName="amount" required>
+            <mat-error *ngIf="isFieldInvalid('amount')">
+              Enter valid Amount
+            </mat-error>
+          </mat-form-field>
+          <span class="loginbtn">
+        <button mat-raised-button color="primary" type="submit">Calculate</button>
+        </span>
+        </form>
+      </mat-card-content>
+    </mat-card>
 
+
+  </div>
+</div>
 
 <div id="how-itworks" class="howitwork-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
   <div  class="howitwork"  >
@@ -156,6 +190,7 @@
   </div>
 </div>
 
+
 <div id="footer" class="footer-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
   <div  class="footer-div2"  >
     <p><span style=" font-weight: bolder;font-size: 30px;text-align: right">
@@ -164,7 +199,7 @@ Ready to Start?
     </p>
   </div>
   <div  class="footer-div"  >
-    <p><span>
+    <p style="margin-left: 5%"><span>
  <button mat-button  [color]="'purple'" routerLink="/signup"> Create Account</button>
       </span>
     </p>
