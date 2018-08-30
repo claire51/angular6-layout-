@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroupDirective, FormBuilder, FormGroup,  Validators } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup,  Validators } from '@angular/forms';
 import {MatTabChangeEvent} from '@angular/material';
-import {TradeRole} from '../../model/TradeRole';
-import {TradeParty} from '../../model/TradeParty';
 import {Transactions} from '../../model/Transactions';
-import {Delivery} from '../../model/Delivery';
 import {Item} from '../../model/Items';
 import {AuthService} from '../../auth.service';
 import {Router} from '@angular/router';
@@ -24,7 +21,6 @@ export class EdittradeComponent implements OnInit {
   firstFormGroupA: FormGroup;
   secondFormGroupB: FormGroup;
 
-  tradevalueedit: Tradevalueedit = new Tradevalueedit();
   transaction: Transactions = new Transactions();
   item: Item = new Item();
   constructor(public auth: AuthService , private _formBuilder: FormBuilder,
@@ -44,11 +40,11 @@ export class EdittradeComponent implements OnInit {
       classification_id: [ this.transaction.classification_id],
     });
     this.secondFormGroupB = this._formBuilder.group({
-      id: [this.item.id ],
-      name: [this.item .name ],
-      description: [this.item.description ],
-      quantity: [this.item.quantity ],
-      unit_of_measures_id: [this.item.unit_of_measures_id ]
+      id: [1],
+      name: ['xxxx'],
+      description: ['xxxx'],
+      quantity: [1],
+      unit_of_measures_id: [1]
     });
   }
 

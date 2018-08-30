@@ -79,7 +79,6 @@ export class GeneriCrudService<T> {
   }
   /** POST: add a new transaction to the server */
   createtransaction (values: Transactions): Observable<T> {
-    this.endpoint = this.endpoint + 'create';
     return this.http.post<T>(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
       tap((transact: T) => {
         console.log('transaction Created ');

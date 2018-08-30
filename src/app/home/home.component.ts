@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ProgressBarService} from '../services/progress-bar.service';
 import {AuthService} from '../auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CalculatorfeeService} from "../localService/calculatorfee.service";
-import {Charges} from "../model/Charges";
+import {CalculatorfeeService} from '../localService/calculatorfee.service';
+import {Charges} from '../model/Charges';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -32,6 +32,13 @@ constructor(private progressBarService: ProgressBarService,
       this.progressBarMode = mode;
     });
   }
+  isFieldInvalid(field: string) {
+    return (
+      (!this.form.get(field).valid && this.form.get(field).touched) ||
+      (this.form.get(field).untouched && this.formSubmitAttempt)
+    );
+  }
+
   onSubmit() {
     if (this.form.valid) {
       this.reqAmount = this.form.value.amount;
@@ -41,7 +48,7 @@ constructor(private progressBarService: ProgressBarService,
         this.calcservice.getdata().subscribe((newHeroWithId) => {
           this.chargesz = newHeroWithId;
             this.status = true;
-          console.log('ooooo');
+          console.log(this.chargesz);
         }, (response: Response) => {
           if (response.status <= 500) {
             this.status = true;

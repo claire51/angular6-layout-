@@ -4,6 +4,7 @@ import {AuthService} from '../../auth.service';
 import {Transactionservc} from '../../localService/transactionservc';
 import {Transactions} from '../../model/Transactions';
 import {Router} from '@angular/router';
+import {Item} from '../../model/Items';
 
 @Component({
   selector: 'app-viewtrade',
@@ -12,6 +13,7 @@ import {Router} from '@angular/router';
 })
 export class ViewtradeComponent implements  AfterViewInit {
   transactions: Array<Transactions>;
+  items: Array<Item> = new  Array<Item>();
   constructor(public transervice: Transactionservc , public authservice: AuthService , private router: Router ) { }
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -21,9 +23,8 @@ export class ViewtradeComponent implements  AfterViewInit {
 
   ngAfterViewInit() {
     this.transervice.getdata().subscribe((data) => {
-      // this.transervice.getById((Number(localStorage.getItem('id')))).subscribe((data) => {
-      // this.data = newHeroWithId;
       this.transactions = data;
+      console.log(data)
       this.dataSourceb = new MatTableDataSource( this.transactions);
       this.dataSourceb.sort = this.sort;
       this.dataSourceb.paginator = this.paginator;
@@ -46,6 +47,9 @@ export class ViewtradeComponent implements  AfterViewInit {
   edittransaction(data): void {
     this.authservice.transactionshelper = data;
     console.log(this.authservice.transactionshelper);
+    this.items = this.authservice.transactionshelper.items;
+    console.log(this.items);
+    console.log(this.items[0] + 'fffffffffff');
     this.router.navigate(['/editrade']);
   }
 

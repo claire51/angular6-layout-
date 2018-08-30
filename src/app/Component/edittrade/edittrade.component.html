@@ -7,9 +7,9 @@
         <mat-icon class="icondi-tab-icon">account_balance</mat-icon>
         Trade Item description
       </ng-template>
-      <div class="personpartiez"  fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+      <div class="partiezcontaine"  fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
            fxLayoutAlign="center">
-        <div class="rowdiv">
+        <div class="rowdiva">
           <form [formGroup]="firstFormGroupA"  (ngSubmit)="onSubmit()" >
           <mat-form-field >
             <input matInput type="number"  placeholder=" Edit invoice Amount"  formControlName="invoice_amount" required
@@ -34,12 +34,16 @@
           </mat-form-field>
           <mat-form-field>
             <input matInput type="number" placeholder="Trade period(in days)"  formControlName="period"
-                   [errorStateMatcher]="matcher">
+                   [errorStateMatcher]="matcher"><br>
             <mat-error>
               <span *ngIf="!firstFormGroupA.get('period').valid && firstFormGroupA.get('period').touched">Please enter trade period</span>
             </mat-error>
           </mat-form-field>
-            <span style="margin-left: 50px"><button type="submit" mat-raised-button color="primary" >Edit</button></span>
+            <div style="text-align: right; padding-right: 100px">
+              <p>
+                <span style="margin-left: 50px"><button type="submit"  [disabled]="!firstFormGroupA.valid" mat-raised-button color="primary" >Edit</button></span>
+              </p>
+            </div>
           </form>
         </div>
       </div>
@@ -49,9 +53,9 @@
         <mat-icon class="icondi-tab-icon">description</mat-icon>
         Edit Item description
       </ng-template>
-      <div class="personpartiez"  fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+      <div class="partiezcontaine"  fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
            fxLayoutAlign="center">
-        <div class="rowdiv">
+        <div class="rowdiva">
           <form [formGroup]="secondFormGroupB"  (ngSubmit)="onSubmitform()" >
           <mat-form-field >
             <input matInput type="tel"  placeholder="Item name" formControlName="name"  required
@@ -71,10 +75,14 @@
             <input matInput type="text"  placeholder="quantity" formControlName="quantity" required
                    [errorStateMatcher]="matcher">
             <mat-error>
-              <span *ngIf="!secondFormGroupB.get('quantity').valid && secondFormGroupB.get('quantity').touched">Please enter Item quantity</span>
+              <span *ngIf="!secondFormGroupB.get('quantity').valid && secondFormGroupB.get('quantity').touched">Please enter Item quantity</span><br>
             </mat-error>
           </mat-form-field>
+            <div style="text-align: right; padding-right: 100px">
+            <p>
             <span style="margin-left: 50px"><button type="submit"  [disabled]="!secondFormGroupB.valid" mat-raised-button color="primary" >Edit</button></span>
+            </p>
+            </div>
           </form>
         </div>
       </div>

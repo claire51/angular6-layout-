@@ -18,6 +18,16 @@
   text-align: center;
 }
 
+.partiezcontaine{
+  display: flex;
+  align-content: center;
+  text-align: center;
+  align-items: center;
+
+}
+
+
+
 .header_textb
 { text-align: center;
   font-family: sans-serif;
@@ -68,7 +78,7 @@
   color: #fff;
   height: 40px;
 }
-.rowdiv{
+.rowdiva{
   flex: 1;
 }
 .content-div{
