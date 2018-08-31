@@ -12,7 +12,7 @@ import {AgentFeeType} from '../../model/AgentFeeType';
 import {User} from '../../model/User';
 import {MatTabChangeEvent} from '@angular/material';
 import {Router} from '@angular/router';
-import {Transactionview} from '../../localService/transactionview';
+import {Transactionservc} from '../../localService/transactionservc';
 
 @Component({
   selector: 'app-createtrade',
@@ -64,7 +64,7 @@ export class CreatetradeComponent implements OnInit {
   agentfeetype: AgentFeeType = new AgentFeeType();
   user: User = new User();
   constructor(public auth: AuthService , private _formBuilder: FormBuilder,
-              private transactionsvc: Transactionview, private router: Router) {
+              private transactionsvc: Transactionservc, private router: Router) {
     this.role = 'buyer';
     this.selected = 0;
     this.payamount = 0;

@@ -6,6 +6,8 @@ import {Router} from '@angular/router';
 import {AppConfig} from '../../common/config/app.config';
 import {RegistrationResponse} from '../../model/registrationResponse';
 import {Recoverpassword} from '../../localService/recoverpassword';
+import {Observable} from "rxjs/index";
+import {AuthService} from "../../auth.service";
 
 @Component({
   selector: 'app-pass-recover',
@@ -14,17 +16,23 @@ import {Recoverpassword} from '../../localService/recoverpassword';
 })
 export class PassRecoverComponent implements OnInit {
   form: FormGroup;
+  resetPassword: FormGroup;
   public values: any[];
   registrationresponse: RegistrationResponse;
   error: string;
   status: boolean;
   private formSubmitAttempt: boolean;
+  isLoggedIn$: Observable<boolean>;
   constructor(private fb: FormBuilder, private router: Router,
-              private snackBar: MatSnackBar, private recoverservice: Recoverpassword) { }
+              private snackBar: MatSnackBar, private recoverservice: Recoverpassword, public auth: AuthService) { }
 
   ngOnInit() {
+    this.isLoggedIn$ = this.auth.isAuthenticated();
     this.status = true;
     this.form = this.fb.group({
+      email: ['', Validators.required]
+    });
+    this.resetPassword = this.fb.group({
       email: ['', Validators.required]
     });
   }

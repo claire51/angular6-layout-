@@ -1,5 +1,6 @@
 <div class="container"   fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-  <div class="logindiv">
+  <ng-template #elseBlock>
+  <div class="logindiv"  >
     <mat-card>
       <section  class="progress-bar" [hidden]='status' >
         <mat-progress-bar
@@ -21,6 +22,45 @@
      </span>
           <span class="loginbtn">
         <button mat-raised-button color="primary" type="submit">Recover</button>
+        </span>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  </ng-template>
+
+  <div class="logindiv"  *ngIf="isLoggedIn$ | async as isAuthenticated; else elseBlock" >
+    <mat-card>
+      <section  class="progress-bar" [hidden]='status' >
+        <mat-progress-bar
+          color='primary'
+          mode="indeterminate" >
+        </mat-progress-bar>
+      </section>
+      <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <p>Change Password</p>
+          <mat-form-field class="full-width-input">
+            <input matInput type="password"  placeholder="Current password" formControlName="current-pass" required>
+            <mat-error *ngIf="isFieldInvalid('email')">
+              Enter current password
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width-input">
+    <input matInput type="password"  placeholder="New password" formControlName="new-pass" required>
+            <mat-error *ngIf="isFieldInvalid('new-pass')">
+              Enter new password
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width-input">
+    <input matInput type="password"  placeholder="Confirm password" formControlName="confirm-pass" required>
+            <mat-error *ngIf="isFieldInvalid('confirm-pass')">
+              confirm password
+            </mat-error>
+          </mat-form-field>
+
+          <span class="loginbtn">
+        <button mat-raised-button color="primary" type="submit">Reset</button>
         </span>
         </form>
       </mat-card-content>

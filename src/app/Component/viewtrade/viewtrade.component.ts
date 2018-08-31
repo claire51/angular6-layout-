@@ -1,10 +1,10 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatSort, MatTableDataSource, MatPaginator} from '@angular/material';
 import {AuthService} from '../../auth.service';
-import {Transactionservc} from '../../localService/transactionservc';
 import {Transactions} from '../../model/Transactions';
 import {Router} from '@angular/router';
 import {Item} from '../../model/Items';
+import {Transactionview} from '../../localService/transactionview';
 
 @Component({
   selector: 'app-viewtrade',
@@ -14,7 +14,7 @@ import {Item} from '../../model/Items';
 export class ViewtradeComponent implements  AfterViewInit {
   transactions: Array<Transactions>;
   items: Array<Item> = new  Array<Item>();
-  constructor(public transervice: Transactionservc , public authservice: AuthService , private router: Router ) { }
+  constructor(public transervice: Transactionview , public authservice: AuthService , private router: Router ) { }
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSourceb: MatTableDataSource<any>;
@@ -47,9 +47,6 @@ export class ViewtradeComponent implements  AfterViewInit {
   edittransaction(data): void {
     this.authservice.transactionshelper = data;
     console.log(this.authservice.transactionshelper);
-    this.items = this.authservice.transactionshelper.items;
-    console.log(this.items);
-    console.log(this.items[0] + 'fffffffffff');
     this.router.navigate(['/editrade']);
   }
 

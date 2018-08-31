@@ -11,7 +11,7 @@ export class Transactionservc extends GeneriCrudService<Transactions> {
   constructor(httpClient: HttpClient, router: Router) {
     super(
       httpClient,
-      'transactions/user/all',
+      'transactions/create',
       router
     );
   }

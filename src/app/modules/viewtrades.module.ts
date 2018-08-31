@@ -5,7 +5,7 @@ import {AppMaterialModule} from '../app-material/app-material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {ViewtradesRoutingModule} from './viewtrades-routing.module';
 import {ViewtradeComponent} from '../Component/viewtrade/viewtrade.component';
-import {Transactionservc} from '../localService/transactionservc';
+import {Transactionview} from '../localService/transactionview';
 
 @NgModule({
   imports: [
@@ -18,7 +18,7 @@ import {Transactionservc} from '../localService/transactionservc';
   ],
   declarations: [ViewtradeComponent],
   providers: [
-    Transactionservc
+    Transactionview
   ],
 })
 export class ViewtradesModule { }
