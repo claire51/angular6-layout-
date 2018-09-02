@@ -152,28 +152,21 @@
       </span>
     </p>
     <mat-card>
-      <section  class="progress-bar" [hidden]='status' >
-        <mat-progress-bar
-          color='primary'
-          mode="indeterminate" >
-        </mat-progress-bar>
-      </section>
       <mat-card-content>
         <p><span style=" font-weight: bolder;font-size: 30px">
-Fee charged is {{feeamount}}
+Fee charged is: Ksh  {{feeamount}}
       </span>
         </p>
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <!--<form [formGroup]="form" (ngSubmit)="onSubmit()">-->
           <mat-form-field class="full-width-input">
-            <input matInput type="number"  placeholder="Enter invoice amount of trade" formControlName="amount" required>
-            <mat-error *ngIf="isFieldInvalid('amount')">
-              Enter valid Amount
-            </mat-error>
+            <input matInput type="number"  placeholder="Enter invoice amount of trade" [(ngModel)]="reqAmount"  required>
           </mat-form-field>
+        <div>
           <span class="loginbtn">
-        <button mat-raised-button color="primary" type="submit">Calculate</button>
+        <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Calculate</button>
         </span>
-        </form>
+        </div>
+
       </mat-card-content>
     </mat-card>
 

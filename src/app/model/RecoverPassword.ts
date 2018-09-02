@@ -1,3 +1,7 @@
-export interface RecoverPassword {
+export class RecoverPassword {
   email: string;
+  password: string;
+
+  constructor() {
+  }
 }

@@ -21,6 +21,8 @@ export class HomeComponent implements OnInit {
 constructor(private progressBarService: ProgressBarService,
             private authservice: AuthService , private calcservice: CalculatorfeeService, private formBuilder: FormBuilder) {
   this.feeamount = 0;
+  this.reqAmount =0;
+  this.status = false;
 }
 
   ngOnInit() {
@@ -40,26 +42,42 @@ constructor(private progressBarService: ProgressBarService,
   }
 
   onSubmit() {
-    if (this.form.valid) {
-      this.reqAmount = this.form.value.amount;
-      this.status = false;
-      if ( this.reqAmount > 0) {
+      if (this.reqAmount > 0) {
         if ( this.chargesz.length < 1) {
         this.calcservice.getdata().subscribe((newHeroWithId) => {
           this.chargesz = newHeroWithId;
             this.status = true;
-          console.log(this.chargesz);
+          for (let item of this.chargesz) {
+            let arravalue = item.range.split('-');
+          let min = arravalue[0];
+          let max = arravalue[1];
+            if ( +min <= this.reqAmount && this.reqAmount < +max) {
+           this.feeamount = +item.value;
+            }
+          }
+          this.authservice.showSnackBar('Fee charged is: Ksh ' + this.feeamount);
+
         }, (response: Response) => {
           if (response.status <= 500) {
             this.status = true;
             this.authservice.showSnackBar('ooops something went wrong  ');
           }
         });
+      } else {
+        for (let item of this.chargesz) {
+          let arravalue = item.range.split('-');
+          let min = arravalue[0];
+          let max = arravalue[1];
+          if ( +min <= this.reqAmount && this.reqAmount < +max) {
+            this.feeamount = +item.value;
+          }
+        }
+        this.authservice.showSnackBar('Fee charged is: Ksh ' + this.feeamount);
       }
-        this.authservice.showSnackBar('Your fee is ');
+      } else {
+        this.feeamount = 0;
       }
-    }
-    this.formSubmitAttempt = true;
+
   }
 
 

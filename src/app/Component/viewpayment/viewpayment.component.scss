@@ -1,0 +1,97 @@
+@-webkit-keyframes
+fadeIt 0 % background-color: #FFFFFF 50 % background-color: #98FB98 100 % background-color: #FFFFFF
+
+                                                                        .animate {
+                                                                          background-image: none !important;
+                                                                          animation: fadeIt 1s ease-in-out
+                                                                        }
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+  text-align: right;
+  overflow: auto;
+
+}
+
+
+// Mat-DataTable
+.data-table-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 1%;
+
+  .mobile-label {
+    display: none;
+  }
+  .mat-toolbar{
+    height: 45px;
+  }
+  .data-table-content{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-y: auto;
+  }
+}
+
+@media(max-width: 350px)
+{
+  .data-table-wrapper
+  {
+    .mobile-label {
+      width: 150px;
+      display: inline-block;
+      font-weight: bold;
+    }
+    .mat-header-row {
+      display: none;
+    }
+    .mat-row
+    {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 8px 24px;
+      min-height: 20px;
+      mat-cell:first-child, mat-footer-cell:first-child, mat-header-cell:first-child
+      {
+        padding: 0px;
+      }
+    }
+    .data-table-content{
+      display: block;
+      flex-direction: column;
+    }
+  }
+}
+.escrow-container{
+  display: flex;
+  width:100%;
+  height: 100%;
+  background-color: white;
+  align-items: center;
+  padding-top:0%;
+  flex-wrap: wrap;
+
+}
+.tradeA{
+  flex: auto;
+  margin-left: 0%;
+  justify-content: center;
+  background-color: #ebebeb;
+  padding: 0%;
+  align-content: center;
+  text-align: center;
+
+}
+.card-design{
+  background-color: #ebebeb;
+  padding: 0%;
+}
+.header_text
+{
+  font-family: sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  color: blue;
+
+}

@@ -1,4 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import {RecoverPassword} from '../../model/RecoverPassword';
+import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {ResetpasswordService} from '../../localService/resetpassword.service';
+import {RegistrationResponse} from '../../model/registrationResponse';
+import {AuthService} from '../../auth.service';
+import {ErrorStateMatcher} from '@angular/material';
+import {UsereditService} from '../../localService/useredit.service';
+import {User} from '../../model/User';
+import {Useredit} from '../../model/Useredit';
+
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
+    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
+
+    return (invalidCtrl || invalidParent);
+  }
+}
+
 
 @Component({
   selector: 'app-edituser',
@@ -6,10 +26,137 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edituser.component.scss']
 })
 export class EdituserComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+phone: string;
+resetPassword: FormGroup;
+usereditform: FormGroup;
+email: string;
+firstname: string;
+fullname: string;
+lastname: string;
+idnumber: string;
+county: string;
+id: string;
+ step: number;
+ stepper: number;
+  registrationresponse: RegistrationResponse;
+  useresponse: User;
+  status: boolean;
+  recoverpass: RecoverPassword = new RecoverPassword();
+  matcher = new MyErrorStateMatcher();
+  // useredit: Useredit = new Useredit();
+  private formSubmitAttempt: boolean;
+constructor(private fb: FormBuilder,  private resetpasswordservice: ResetpasswordService, private usereditservice: UsereditService,
+          public auth: AuthService) {
+    this.phone = localStorage.getItem('phone_number');
+    this.email = localStorage.getItem('email');
+    this.fullname = localStorage.getItem('firstname') + ' ' + localStorage.getItem('lastname') ;
+    this.firstname = localStorage.getItem('firstname') ;
+    this.lastname = localStorage.getItem('lastname');
+    this.idnumber = localStorage.getItem('idnumber');
+    this.county = localStorage.getItem('county');
+    this.id = localStorage.getItem('id');
+this.step = 1;
+  this.stepper = 1;
+    console.log((Number(localStorage.getItem('id'))));
   }
 
+  ngOnInit() {
+    this.resetPassword = this.fb.group({
+      currentpass: ['', Validators.required],
+      newpass: ['', Validators.required],
+      confirmpass: ['', Validators.required]
+    }, { validator: this.checkPasswords });
+    this.usereditform = this.fb.group({
+      id: [(Number(localStorage.getItem('id')))],
+      first_name: [localStorage.getItem('firstname'), Validators.required],
+      phone: [localStorage.getItem('phone_number'), Validators.required],
+      national_id: [localStorage.getItem('idnumber'), Validators.required],
+      email: [localStorage.getItem('email'), Validators.required]
+    });
+  }
+
+  checkPasswords(group: FormGroup) { // here we have the 'passwords' group
+    let pass = group.controls.newpass.value;
+    let confirmPass = group.controls.confirmpass.value;
+
+    return pass === confirmPass ? null : { notSame: true }
+}
+  setStep(index: number) {
+    this.step = index;
+  }
+  setStepper(index: number) {
+    this.stepper = index;
+  }
+  // nextStep() {
+  //   this.step++;
+  // }
+  //
+  // prevStep() {
+  //   this.step--;
+  // }
+  isFieldInvalid(field: string) {
+    return (
+      (!this.resetPassword.get(field).valid && this.resetPassword.get(field).touched) ||
+      (this.resetPassword.get(field).untouched && this.formSubmitAttempt)
+    );
+  }
+  isFieldInvalidb(field: string) {
+    return (
+      (!this.usereditform.get(field).valid && this.usereditform.get(field).touched) ||
+      (this.usereditform.get(field).untouched && this.usereditform)
+    );
+  }
+  onSubmitformb() {
+  console.log();
+    if (this.resetPassword.valid) {
+      this.status = false;
+      this.recoverpass.email = localStorage.getItem('email');
+      this.recoverpass.password = this.resetPassword.value.newpass;
+      this.resetpass(this.recoverpass);
+    }
+    this.formSubmitAttempt = true;
+  }
+  onSubmitformuser() {
+    if (this.usereditform.valid) {
+      this.status = false;
+      this.edituserdetail(this.usereditform.value);
+    }
+    this.formSubmitAttempt = true;
+  }
+
+  resetpass(recoverpassword: RecoverPassword): void {
+    this.resetpasswordservice.recover(recoverpassword).subscribe((newHeroWithId) => {
+      this.registrationresponse = newHeroWithId;
+      if ( this.registrationresponse.status) {
+        this.auth.showSnackBar('Password was succesfully changed ');
+        this.status = true;
+      }
+      console.log(this.registrationresponse.status);
+    }, (response: Response) => {
+      if (response.status <= 500) {
+        this.status = true;
+        this.auth.showSnackBar('Error occured Try again ');
+      }
+    });
+  }
+  edituserdetail(useredit: Useredit): void {
+    this.usereditservice.updateuser(useredit).subscribe((newHeroWithId) => {
+      this.useresponse = newHeroWithId;
+      console.log(this.useresponse.id + 'dfffffffffffff');
+      if ( this.useresponse.id) {
+        this.auth.showSnackBar('user detail was succesfully updated ');
+        localStorage.setItem('email', '' + (this.useresponse.email));
+        localStorage.setItem('phone_number', '' + (this.useresponse.phone_number));
+        localStorage.setItem('firstname', '' + (this.useresponse.first_name));
+        localStorage.setItem('idnumber', '' + (this.useresponse.id_number));
+        this.status = true;
+      }
+      console.log(this.useresponse.id);
+    }, (response: Response) => {
+      if (response.status <= 500) {
+        this.status = true;
+        this.auth.showSnackBar('Error occured Try again ');
+      }
+    });
+  }
 }

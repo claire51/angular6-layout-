@@ -28,6 +28,12 @@ const routes: Routes = [
     loadChildren: '../app/modules/viewtrades.module#ViewtradesModule'
   }, { path: 'editrade',
     loadChildren: '../app/modules/editrades.module#EditradesModule'
+  }, { path: 'profile',
+    loadChildren: '../app/modules/profile.module#ProfileModule'
+  }, { path: 'fund',
+    loadChildren: '../app/modules/payment.module#PaymentModule'
+  }, { path: 'viewpayment',
+    loadChildren: '../app/modules/viewpayment.module#ViewpaymentModule'
   },
   { path: '**', redirectTo: '' },
   {

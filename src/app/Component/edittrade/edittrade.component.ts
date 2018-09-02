@@ -40,11 +40,11 @@ export class EdittradeComponent implements OnInit {
       classification_id: [ this.transaction.classification_id],
     });
     this.secondFormGroupB = this._formBuilder.group({
-      id: [1],
-      name: ['xxxx'],
-      description: ['xxxx'],
-      quantity: [1],
-      unit_of_measures_id: [1]
+      id: [this.item.id],
+      name: [this.item.name],
+      description: [this.item.description],
+      quantity: [this.item.quantity],
+      unit_of_measures_id: [this.item.unit_of_measures_id]
     });
   }
 

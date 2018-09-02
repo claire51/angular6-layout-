@@ -31,7 +31,6 @@ import {Login} from './localService/login';
 import {AuthInterceptor} from './common/interceptors/auth-interceptor';
 import {UserdataService} from './localService/userdata';
 import {CalculatorfeeService} from './localService/calculatorfee.service';
-import { EdituserComponent } from './Component/edituser/edituser.component';
 
 @NgModule({
   declarations: [
@@ -40,8 +39,7 @@ import { EdituserComponent } from './Component/edituser/edituser.component';
     LoginComponent,
     HomeComponent,
     SignupComponent,
-    ApitestComponent,
-    EdituserComponent
+    ApitestComponent
   ],
   imports: [
     BrowserModule,

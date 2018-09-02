@@ -1,0 +1,61 @@
+<div id="escrow" class="escrow-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+     fxLayoutAlign="center">
+  <div class="tradeA">
+    <div class="card-design">
+      <p><span class="header_text">
+      Trade payment
+      </span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="mat-elevation-z8">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <mat-card-content class="data-table-wrapper mat-elevation-z8">
+    <mat-table #table  class="data-table-content" [dataSource]="dataSourceb"  [trackBy]="trackByUid" nclass="animate" matSort aria-label="Elements">
+      <!-- Id Column -->
+      <ng-container matColumnDef="transaction_code">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Transaction code</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.transaction_code}}</mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="invoice_amount">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Amount</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.invoice_amount}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="total_fee_amount">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Total Fee</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.total_fee_amount}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="deposited_amount">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Deposited Amount</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.deposited_amount}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status.name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.status.name}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="payment">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Pay Invoice </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-raised-button  color="primary" (click)="edittransaction(row)" >Pay</button>
+        </mat-cell>
+      </ng-container>
+
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </mat-card-content>
+</div>

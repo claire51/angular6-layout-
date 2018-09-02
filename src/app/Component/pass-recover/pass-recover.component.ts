@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RecoverPassword} from '../../model/RecoverPassword';
-import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 import {Router} from '@angular/router';
-import {AppConfig} from '../../common/config/app.config';
 import {RegistrationResponse} from '../../model/registrationResponse';
 import {Recoverpassword} from '../../localService/recoverpassword';
-import {Observable} from "rxjs/index";
-import {AuthService} from "../../auth.service";
+import {Observable} from 'rxjs/index';
+import {AuthService} from '../../auth.service';
 
 @Component({
   selector: 'app-pass-recover',
@@ -16,7 +14,6 @@ import {AuthService} from "../../auth.service";
 })
 export class PassRecoverComponent implements OnInit {
   form: FormGroup;
-  resetPassword: FormGroup;
   public values: any[];
   registrationresponse: RegistrationResponse;
   error: string;
@@ -24,15 +21,12 @@ export class PassRecoverComponent implements OnInit {
   private formSubmitAttempt: boolean;
   isLoggedIn$: Observable<boolean>;
   constructor(private fb: FormBuilder, private router: Router,
-              private snackBar: MatSnackBar, private recoverservice: Recoverpassword, public auth: AuthService) { }
+               private recoverservice: Recoverpassword, public auth: AuthService) { }
 
   ngOnInit() {
     this.isLoggedIn$ = this.auth.isAuthenticated();
     this.status = true;
     this.form = this.fb.group({
-      email: ['', Validators.required]
-    });
-    this.resetPassword = this.fb.group({
       email: ['', Validators.required]
     });
   }
@@ -49,12 +43,13 @@ export class PassRecoverComponent implements OnInit {
     }
     this.formSubmitAttempt = true;
   }
+
  requestpass(recoverpassword: RecoverPassword): void {
     this.error = null;
     this.recoverservice.recover(recoverpassword).subscribe((newHeroWithId) => {
       this.registrationresponse = newHeroWithId;
       if ( this.registrationresponse.status) {
-        this.showSnackBar('Check your Email we have sent you the password ');
+        this.auth.showSnackBar('Check your Email we have sent you the password ');
         this.status = true;
         this.router.navigate(['/login']);
       }
@@ -62,15 +57,10 @@ export class PassRecoverComponent implements OnInit {
     }, (response: Response) => {
       if (response.status <= 500) {
         this.status = true;
-        this.showSnackBar('Account with that Email does not Exist ');
+        this.auth.showSnackBar('Account with that Email does not Exist ');
         this.error = 'account with that email does not exist';
       }
     });
-  }
-  showSnackBar(name): void {
-    const config: any = new MatSnackBarConfig();
-    config.duration = AppConfig.snackBarDuration;
-    this.snackBar.open(name, 'OK', config);
   }
 }
 

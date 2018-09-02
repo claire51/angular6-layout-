@@ -1,27 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { SharedRoutingModule } from './shared-routing.module';
-import { PassRecoverComponent } from '../Component/pass-recover/pass-recover.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppMaterialModule} from '../app-material/app-material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {Recoverpassword} from '../localService/recoverpassword';
+import {ProfileRouting} from './profile-routing';
+import {EdituserComponent} from '../Component/edituser/edituser.component';
+import {ResetpasswordService} from '../localService/resetpassword.service';
+import {UsereditService} from '../localService/useredit.service';
 @NgModule({
   imports: [
     CommonModule,
-    SharedRoutingModule,
+    ProfileRouting,
     FormsModule,
     ReactiveFormsModule,
     AppMaterialModule,
     FlexLayoutModule
   ],
   providers: [
-    Recoverpassword
+    ResetpasswordService,
+    UsereditService
 
-  ],
+],
   declarations: [
-    PassRecoverComponent,
-    ]
+    EdituserComponent,
+]
 })
-export class SharedModule { }
+export class ProfileModule { }

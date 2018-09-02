@@ -1,27 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { SharedRoutingModule } from './shared-routing.module';
-import { PassRecoverComponent } from '../Component/pass-recover/pass-recover.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppMaterialModule} from '../app-material/app-material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {Recoverpassword} from '../localService/recoverpassword';
+import {ViewpaymentComponent} from '../Component/viewpayment/viewpayment.component';
+import {ViewpaymentRouting} from './viewpayment-routing';
+import {ViewpaymentService} from '../localService/viewpayment.service';
+
 @NgModule({
   imports: [
     CommonModule,
-    SharedRoutingModule,
+    ViewpaymentRouting,
     FormsModule,
     ReactiveFormsModule,
     AppMaterialModule,
     FlexLayoutModule
   ],
   providers: [
-    Recoverpassword
-
+    ViewpaymentService
   ],
-  declarations: [
-    PassRecoverComponent,
-    ]
+  declarations:[ ViewpaymentComponent
+  ]
 })
-export class SharedModule { }
+export class ViewpaymentModule { }

@@ -7,7 +7,8 @@ import {
   MatMenuModule, MatTableModule, MatPaginatorModule,
   MatSortModule, MatFormFieldModule, MatBadgeModule, MatDividerModule,
   MatStepperModule, MatCheckboxModule, MatProgressBarModule,
-  MatProgressSpinnerModule, MatSliderModule, MatSnackBarModule, MatTooltipModule, MatTabsModule, MatButtonToggleModule,
+  MatProgressSpinnerModule, MatSliderModule, MatSnackBarModule,
+  MatTooltipModule, MatTabsModule, MatButtonToggleModule, MatExpansionModule,
   MatRadioModule
 } from '@angular/material';
 
@@ -35,6 +36,7 @@ import {
     MatStepperModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatExpansionModule,
 
     MatListModule,
     MatMenuModule,
