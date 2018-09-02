@@ -12,31 +12,29 @@
         <div class="rowdiva">
           <form [formGroup]="firstFormGroupA"  (ngSubmit)="onSubmit()" >
           <mat-form-field >
-            <input matInput type="number"  placeholder=" Edit invoice Amount"  formControlName="invoice_amount" required
-                   [errorStateMatcher]="matcher">
-            <mat-error>
-              <span *ngIf="!firstFormGroupA.get('invoice_amount').valid && firstFormGroupA.get('invoice_amount').touched">Please enter invoice amount</span>
+            <input matInput type="number"  placeholder=" Edit invoice Amount"  formControlName="invoice_amount" required>
+            <mat-error *ngIf="isFieldInvalid('invoice_amount')">
+              Enter valid Email
             </mat-error>
           </mat-form-field>
           <mat-form-field >
-            <input matInput type="number"  placeholder="Inspection period" formControlName="inspection_period"  required
-                   [errorStateMatcher]="matcher">
-            <mat-error>
-              <span *ngIf="!firstFormGroupA.get('inspection_period').valid && firstFormGroupA.get('inspection_period').touched">Please enter Inspection period</span>
+            <input matInput type="number"  placeholder="Inspection period" formControlName="inspection_period"  required >
+            <mat-error *ngIf="isFieldInvalid('inspection_period')">
+              Enter valid Email
             </mat-error>
           </mat-form-field>
           <mat-form-field >
             <input matInput type="number"  placeholder="Agent fee "  formControlName="agent_fee_value" required
-                   [errorStateMatcher]="matcher">
-            <mat-error>
-              <span *ngIf="!firstFormGroupA.get('agent_fee_value').valid && firstFormGroupA.get('agent_fee_value').touched">Please enter Agent fee value</span>
+                >
+            <mat-error *ngIf="isFieldInvalid('agent_fee_value')">
+              Enter valid Email
             </mat-error>
           </mat-form-field>
           <mat-form-field>
             <input matInput type="number" placeholder="Trade period(in days)"  formControlName="period"
-                   [errorStateMatcher]="matcher"><br>
-            <mat-error>
-              <span *ngIf="!firstFormGroupA.get('period').valid && firstFormGroupA.get('period').touched">Please enter trade period</span>
+                   ><br>
+            <mat-error *ngIf="isFieldInvalid('period')">
+              Enter valid Email
             </mat-error>
           </mat-form-field>
             <div style="text-align: right; padding-right: 100px">
@@ -59,23 +57,23 @@
           <form [formGroup]="secondFormGroupB"  (ngSubmit)="onSubmitform()" >
           <mat-form-field >
             <input matInput type="tel"  placeholder="Item name" formControlName="name"  required
-                   [errorStateMatcher]="matcher">
-            <mat-error>
-              <span *ngIf="!secondFormGroupB.get('name').valid && secondFormGroupB.get('name').touched">Please enter item name</span>
+               >
+            <mat-error *ngIf="isFieldInvalidB('name')">
+              Enter valid Item name
             </mat-error>
           </mat-form-field>
           <mat-form-field >
             <input matInput type="text"  placeholder="Item description" formControlName="description"  required
-                   [errorStateMatcher]="matcher">
-            <mat-error>
-              <span *ngIf="!secondFormGroupB.get('description').valid && secondFormGroupB.get('description').touched">Please enter trade period</span>
+                  >
+            <mat-error *ngIf="isFieldInvalidB('description')">
+              Enter valid Item description
             </mat-error>
           </mat-form-field>
           <mat-form-field >
             <input matInput type="text"  placeholder="quantity" formControlName="quantity" required
-                   [errorStateMatcher]="matcher">
-            <mat-error>
-              <span *ngIf="!secondFormGroupB.get('quantity').valid && secondFormGroupB.get('quantity').touched">Please enter Item quantity</span><br>
+                   >
+            <mat-error *ngIf="isFieldInvalidB('quantity')">
+              Enter valid Item Quantity
             </mat-error>
           </mat-form-field>
             <div style="text-align: right; padding-right: 100px">
