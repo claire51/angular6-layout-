@@ -6,6 +6,8 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {Item} from '../../model/Items';
 import {Transactionview} from '../../localService/transactionview';
 import {PaymentService} from "../../localService/payment.service";
+import {Paymentresponse} from "../../model/Paymentresponse";
+import {Resource} from "../../model/Resource";
 
 @Component({
   selector: 'app-viewtrade',
@@ -21,28 +23,28 @@ export class ViewtradeComponent implements  AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSourceb: MatTableDataSource<any>;
   pending: boolean;
-  editable: boolean;
+  paymentresp: Paymentresponse;
   editcolumnvalue: string;
+  resource: Resource;
+   id1: number;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['transaction_code', 'invoice_amount', 'total_fee_amount', 'deposited_amount', 'status.name', 'edit', 'pay'];
 
   ngAfterViewInit() {
 
-    const id1 = +this.route.snapshot.params['id'];
-    console.log(id1 + 'xxxxxxxxxxxxxxxxxx');
-    if (id1 === 1) {
-      editcolumnvalue = 'Edit';
-      pending = true;
-    } else if (id1 === 2) {
-      editcolumnvalue = 'Approve';
-      pending = false;
-      editable = false;
-    } else if (id1 === 3) {
-      editcolumnvalue = 'View';
-      editable = false;
+    this.id1 = +this.route.snapshot.params['id'];
+    console.log(this.id1 + 'xxxxxxxxxxxxxxxxxx');
+    if (this.id1 === 1) {
+      this.editcolumnvalue = 'Edit';
+      this.pending = true;
+    } else if (this.id1 === 2) {
+      this.editcolumnvalue = 'Approve';
+      this.pending  = false;
+    } else if (this.id1 === 3) {
+      this.editcolumnvalue = 'View';
     }
 
-    this.transervice.getById(id1).subscribe((data) => {
+    this.transervice.getById(this.id1).subscribe((data) => {
       this.transactions = data;
       console.log(data)
       this.dataSourceb = new MatTableDataSource( this.transactions);
@@ -65,14 +67,13 @@ export class ViewtradeComponent implements  AfterViewInit {
   }
 
   edittransaction(data): void {
-    if (id1 === 1) {
+    if (this.id1 === 1) {
       this.authservice.transactionshelper = data;
       console.log(this.authservice.transactionshelper);
       this.router.navigate(['/editrade']);
-    } else if (id1 === 2) {
-      editable = false;
+    } else if (this.id1 === 2) {
       this.router.navigate(['/editrade']);
-    } else if (id1 === 3) {
+    } else if (this.id1 === 3) {
       this.authservice.transactionshelper = data;
       this.router.navigate(['/editrade']);
     }
