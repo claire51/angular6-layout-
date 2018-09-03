@@ -87,7 +87,7 @@
               <p>Change Password</p>
               <mat-form-field class="full-width-input">
                 <input matInput type="password"  placeholder="New password" formControlName="newpass"  required>
-                <mat-error *ngIf="resetPassword.hasError('required', 'newpass')">
+                <mat-error *ngIf="isFieldInvalid('newpass')">
                   Enter new password
                 </mat-error>
               </mat-form-field>

@@ -11,29 +11,29 @@ const routes: Routes = [
 
 
   { path: 'login', component: LoginComponent },
-  { path: 'datatable', component: MyTableComponent },
+  { path: 'datatable', component: MyTableComponent , canActivate: [AuthGuardGuard] },
   { path: '', component: HomeComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'apicontent', component: ApitestComponent , canActivate: [AuthGuardGuard]},
   { path: 'dashboard',
-    loadChildren: '../app/modules/dashboard.module#DashboardModule'
+    loadChildren: '../app/modules/dashboard.module#DashboardModule', canActivate: [AuthGuardGuard]
   },
   { path: 'recover',
     loadChildren: '../app/modules/shared.module#SharedModule'
   },
   { path: 'createtrade',
-    loadChildren: '../app/modules/createtrade.module#CreatetradeModule'
+    loadChildren: '../app/modules/createtrade.module#CreatetradeModule' , canActivate: [AuthGuardGuard]
   },
-  { path: 'viewtrade',
-    loadChildren: '../app/modules/viewtrades.module#ViewtradesModule'
+  { path: 'viewtrade/:id',
+    loadChildren: '../app/modules/viewtrades.module#ViewtradesModule' , canActivate: [AuthGuardGuard]
   }, { path: 'editrade',
-    loadChildren: '../app/modules/editrades.module#EditradesModule'
+    loadChildren: '../app/modules/editrades.module#EditradesModule' , canActivate: [AuthGuardGuard]
   }, { path: 'profile',
-    loadChildren: '../app/modules/profile.module#ProfileModule'
+    loadChildren: '../app/modules/profile.module#ProfileModule' , canActivate: [AuthGuardGuard]
   }, { path: 'fund',
-    loadChildren: '../app/modules/payment.module#PaymentModule'
+    loadChildren: '../app/modules/payment.module#PaymentModule' , canActivate: [AuthGuardGuard]
   }, { path: 'viewpayment',
-    loadChildren: '../app/modules/viewpayment.module#ViewpaymentModule'
+    loadChildren: '../app/modules/viewpayment.module#ViewpaymentModule' , canActivate: [AuthGuardGuard]
   },
   { path: '**', redirectTo: '' },
   {
@@ -44,7 +44,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

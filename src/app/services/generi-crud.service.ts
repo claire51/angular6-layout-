@@ -57,7 +57,7 @@ export class GeneriCrudService<T> {
   }
   /** GET data by id. Return `undefined` when id not found */
   getById(id: number): Observable<T[]> {
-    const url = `${this.baseurl}/${this.endpoint}/?id=${id}`;
+    const url = `${this.baseurl}/${this.endpoint}${id}`;
     return this.http.get<T[]>(url)
       .pipe(
         tap(heroes => this.log('data ')),

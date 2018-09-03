@@ -25,10 +25,10 @@ export class ViewtradeComponent implements  AfterViewInit {
   pending: boolean;
   paymentresp: Paymentresponse;
   editcolumnvalue: string;
-  resource: Resource;
+  resource: Resource = new Resource();
    id1: number;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['transaction_code', 'invoice_amount', 'total_fee_amount', 'deposited_amount', 'status.name', 'edit', 'pay'];
+  displayedColumns = ['transaction_code', 'invoice_amount', 'total_fee_amount', 'deposited_amount', 'status.name', 'edit'];
 
   ngAfterViewInit() {
 

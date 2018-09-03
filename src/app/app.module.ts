@@ -31,7 +31,6 @@ import {Login} from './localService/login';
 import {AuthInterceptor} from './common/interceptors/auth-interceptor';
 import {UserdataService} from './localService/userdata';
 import {CalculatorfeeService} from './localService/calculatorfee.service';
-
 @NgModule({
   declarations: [
     AppComponent,

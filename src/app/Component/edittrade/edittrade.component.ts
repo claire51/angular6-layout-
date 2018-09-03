@@ -32,7 +32,7 @@ export class EdittradeComponent implements OnInit {
 
   ngOnInit() {
     this.transaction = this.auth.transactionshelper;
-    // this.item = this.transaction.items[0];
+    this.item = this.transaction.items[0];
     this.statusvalue = this.transaction.status.id;
     if (this.statusvalue === 1) {
       this.iseditable = true;
@@ -48,16 +48,11 @@ export class EdittradeComponent implements OnInit {
       classification_id: [ this.transaction.classification_id],
     });
     this.secondFormGroupB = this._formBuilder.group({
-      id: [1],
-      name: ['ddd'],
-      description: ['dddddddddddd'],
-      quantity: [3],
-      unit_of_measures_id: [1]
-      // id: [this.item.id],
-      // name: [this.item.name],
-      // description: [this.item.description],
-      // quantity: [this.item.quantity],
-      // unit_of_measures_id: [this.item.unit_of_measures_id]
+      id: [this.item.id],
+      name: [this.item.name],
+      description: [this.item.description],
+      quantity: [this.item.quantity],
+      unit_of_measures_id: [this.item.unit_of_measures_id]
     });
   }
   isFieldInvalid(field: string) {
