@@ -33,6 +33,13 @@ export class GeneriCrudService<T> {
         tap(heroes => this.log('data heroes')),
         catchError(this.handleError('getHeroes', []))
       );
+  }  // get data generic
+  getdatabyid (): Observable<T[]> {
+    return this.http.get<T[]>(`${this.baseurl}/${this.endpoint}`)
+      .pipe(
+        tap(heroes => this.log('data heroes')),
+        catchError(this.handleError('getHeroes', []))
+      );
   }
 
   /** PUT: update the hero on the server */

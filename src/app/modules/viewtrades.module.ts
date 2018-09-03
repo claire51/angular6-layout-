@@ -6,6 +6,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {ViewtradesRoutingModule} from './viewtrades-routing.module';
 import {ViewtradeComponent} from '../Component/viewtrade/viewtrade.component';
 import {Transactionview} from '../localService/transactionview';
+import {PaymentService} from '../localService/payment.service';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import {Transactionview} from '../localService/transactionview';
   ],
   declarations: [ViewtradeComponent],
   providers: [
-    Transactionview
+    Transactionview, PaymentService
   ],
 })
 export class ViewtradesModule { }

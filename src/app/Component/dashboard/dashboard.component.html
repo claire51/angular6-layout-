@@ -9,15 +9,18 @@
     </div>
     <div  class="card-design">
       <!--<mat-card class="card-design">-->
-        <a mat-button routerLink="/viewtrade">
+        <a mat-button  [routerLink]="['/viewtrade',1]">
           <i class="material-icons  iconcolor">donut_large</i>
-          Current Trade</a>
-        <a mat-button routerLink="/viewpayment">
-          <i class="material-icons  iconcolor">assignment_turned_in</i>
-          View Trade Payments</a>
-        <a mat-button routerLink="/viewtrade">
+          Pending Trade</a>
+        <a mat-button [routerLink]="['/viewtrade',2]">
           <i class="material-icons  iconcolor">highlight_off</i>
-          Cancelled Trade</a>
+          Active Trade</a>
+      <a mat-button [routerLink]="['/viewtrade',3]">
+        <i class="material-icons  iconcolor">assignment_turned_in</i>
+        Completed Trade</a>
+      <a mat-button routerLink="/viewpayment">
+        <i class="material-icons  iconcolor">monetization_on</i>
+        View Trade Payments</a>
       <!--</mat-card>-->
 
     </div>

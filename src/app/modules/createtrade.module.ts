@@ -6,6 +6,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {CreatetradeRoutingModule} from './createtrade--routing.module';
 import {CreatetradeComponent} from '../Component/createtrade/createtrade.component';
 import {Transactionservc} from '../localService/transactionservc';
+import {CalculatorfeeService} from "../localService/calculatorfee.service";
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import {Transactionservc} from '../localService/transactionservc';
   declarations: [CreatetradeComponent],
 
   providers: [
-    Transactionservc
+    Transactionservc, CalculatorfeeService
   ],
 })
 export class CreatetradeModule { }

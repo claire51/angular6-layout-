@@ -12,7 +12,7 @@
         <div class="rowdiva">
           <form [formGroup]="firstFormGroupA"  (ngSubmit)="onSubmit()" >
           <mat-form-field >
-            <input matInput type="number"  placeholder=" Edit invoice Amount"  formControlName="invoice_amount" required>
+            <input matInput type="number"  placeholder=" Edit invoice Amount"  formControlName="invoice_amount" [disable]="iseditable" required>
             <mat-error *ngIf="isFieldInvalid('invoice_amount')">
               Enter valid Email
             </mat-error>

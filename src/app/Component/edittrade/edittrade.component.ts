@@ -21,6 +21,8 @@ export class EdittradeComponent implements OnInit {
   firstFormGroupA: FormGroup;
   secondFormGroupB: FormGroup;
   status: boolean;
+  iseditable: boolean;
+  statusvalue: number;
   private formSubmitAttempt: boolean;
 
   transaction: Transactions = new Transactions();
@@ -31,6 +33,10 @@ export class EdittradeComponent implements OnInit {
   ngOnInit() {
     this.transaction = this.auth.transactionshelper;
     // this.item = this.transaction.items[0];
+    this.statusvalue = this.transaction.status.id;
+    if (this.statusvalue === 1) {
+      this.iseditable = true;
+    }
     this.firstFormGroupA = this._formBuilder.group({
       id: [this.transaction.id, Validators.required],
       period: [this.transaction.period, Validators.required],

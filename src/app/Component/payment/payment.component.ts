@@ -63,9 +63,8 @@ export class PaymentComponent implements   AfterViewInit  {
       console.log(resp);
     }, (response: Response) => {
       if (response.status <= 500) {
-        this.authservice.showSnackBar(' could not load users');
+        this.authservice.showSnackBar(' could not send request');
       }
     });
-    this.router.navigate(['/editrade']);
   }
 }

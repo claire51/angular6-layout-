@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 constructor(private progressBarService: ProgressBarService,
             private authservice: AuthService , private calcservice: CalculatorfeeService, private formBuilder: FormBuilder) {
   this.feeamount = 0;
-  this.reqAmount =0;
+  this.reqAmount = 0;
   this.status = false;
 }
 

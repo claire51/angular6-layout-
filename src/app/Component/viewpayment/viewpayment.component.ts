@@ -28,7 +28,7 @@ export class ViewpaymentComponent implements AfterViewInit {
       this.dataSourceb.paginator = this.paginator;
     }, (response: Response) => {
       if (response.status <= 500) {
-        this.authservice.showSnackBar(' could not load users');
+        this.authservice.showSnackBar(' could not load payment');
       }
     });
   }

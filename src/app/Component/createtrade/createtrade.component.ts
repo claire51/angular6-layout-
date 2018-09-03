@@ -13,6 +13,8 @@ import {User} from '../../model/User';
 import {MatTabChangeEvent} from '@angular/material';
 import {Router} from '@angular/router';
 import {Transactionservc} from '../../localService/transactionservc';
+import {Charges} from "../../model/Charges";
+import {CalculatorfeeService} from "../../localService/calculatorfee.service";
 
 @Component({
   selector: 'app-createtrade',
@@ -39,8 +41,8 @@ export class CreatetradeComponent implements OnInit {
   full_namesz: string;
   id_numberz: string;
   emailzz: string;
-
-
+  feeamount: number;
+  chargesz: Array<Charges> = new Array<Charges>();
   totalinvoiceamount: number;
   fee: number;
   payamount: number;
@@ -64,12 +66,13 @@ export class CreatetradeComponent implements OnInit {
   agentfeetype: AgentFeeType = new AgentFeeType();
   user: User = new User();
   constructor(public auth: AuthService , private _formBuilder: FormBuilder,
-              private transactionsvc: Transactionservc, private router: Router) {
+              private transactionsvc: Transactionservc, private router: Router ,  private calcservice: CalculatorfeeService) {
     this.role = 'buyer';
     this.selected = 0;
     this.payamount = 0;
     this.fee = 0;
     this.totalinvoiceamount = 0;
+    this.feeamount = 0;
   }
 
   ngOnInit() {
@@ -101,8 +104,16 @@ export class CreatetradeComponent implements OnInit {
       invoice_amount: ['', Validators.required],
       period: ['1' , Validators.required],
       inspection_period: ['1' , Validators.required],
-      agent_fee_value: ['10']
+      agent_fee_value: ['0']
     });
+    this.calcservice.getdata().subscribe((newHeroWithId) => {
+      this.chargesz = newHeroWithId;
+    }, (response: Response) => {
+      if (response.status <= 500) {
+        this.auth.showSnackBar('ooops something went wrong  ');
+      }
+    });
+
   }
 
 
@@ -206,7 +217,6 @@ onsubmitformthree() {
     this.item.name  = this.thirdFormGroup.value.name;
     this.item.description  = this.thirdFormGroup.value.description;
     this.item.quantity  = this.thirdFormGroup.value.quantity;
-    console.log('waaaaaaaaaaaa' + this.thirdFormGroup.value.description);
     this.item.unit_of_measures_id  = 1;
     this.itemlist.push(this.item);
   }
@@ -217,12 +227,20 @@ onsubmitformfourth() {
   if (this.fourthFormGroup.valid) {
     this.transaction.invoice_amount = this.fourthFormGroup.value.invoice_amount;
     this.totalinvoiceamount  =  this.transaction.invoice_amount;
-    this.fee = 100;
     this.transaction.period =  this.fourthFormGroup.value.period;
     this.transaction.inspection_period = this.fourthFormGroup.value.inspection_period;
-    this.transaction.agent_fee_amount = 100;
+    this.transaction.agent_fee_amount = 0;
     this.transaction.agent_fee_value = 1;
     this.transaction.agent_fee_type_id = 1;
+    for (let item of this.chargesz) {
+      let arravalue = item.range.split('-');
+      let min = arravalue[0];
+      let max = arravalue[1];
+      if ( +min <= this.transaction.invoice_amount && this.transaction.invoice_amount < +max) {
+        this.feeamount = +item.value;
+      }
+    }
+    this.fee = this.feeamount;
     this.payamount = this.totalinvoiceamount + this.fee;
   }
 }

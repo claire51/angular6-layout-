@@ -30,16 +30,22 @@
 
     <ng-container matColumnDef="status.name">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.status.name}}</mat-cell>
+      <mat-cell *matCellDef="let row" >{{row.status.name}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="edit">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
-      <mat-cell *matCellDef="let row">
-        <button mat-raised-button  color="primary" (click)="edittransaction(row)"  >Edit</button>
+      <mat-cell *matCellDef="let row" >
+        <button mat-raised-button  color="primary" (click)="edittransaction(row)"  >{{editcolumnvalue}}</button>
         <!--<a mat-raised-button color="primary" [routerLink]="['/book-edit', book._id]"><mat-icon>edit</mat-icon></a>-->
       </mat-cell>
     </ng-container>
-
+    <ng-container matColumnDef="pay" *ngIf="pending">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Pay </mat-header-cell>
+      <mat-cell *matCellDef="let row" >
+        <button mat-raised-button  color="primary" (click)="makepayment(row)"  >Make Payment</button>
+        <!--<a mat-raised-button color="primary" [routerLink]="['/book-edit', book._id]"><mat-icon>edit</mat-icon></a>-->
+      </mat-cell>
+    </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
