@@ -226,6 +226,7 @@ onsubmitformthree() {
 onsubmitformfourth() {
   if (this.fourthFormGroup.valid) {
     this.transaction.invoice_amount = this.fourthFormGroup.value.invoice_amount;
+    this.transaction.transaction_amount = this.fourthFormGroup.value.invoice_amount;
     this.totalinvoiceamount  =  this.transaction.invoice_amount;
     this.transaction.period =  this.fourthFormGroup.value.period;
     this.transaction.inspection_period = this.fourthFormGroup.value.inspection_period;
@@ -242,6 +243,7 @@ onsubmitformfourth() {
     }
     this.fee = this.feeamount;
     this.payamount = this.totalinvoiceamount + this.fee;
+    this.transaction.invoice_amount =  this.transaction.invoice_amount +  this.feeamount;
   }
 }
 
@@ -264,7 +266,7 @@ finishtransaction() {
         console.log(this.transactionresp.id);
         this.auth.showSnackBar(' Order place succefully, your transaction code is ' +
           this.transactionresp.transaction_code + 'You will get SMS Invoice' );
-        this.router.navigate(['/viewtrade']);
+        this.router.navigate(['/viewtrade', 1 ]);
       }
     },
     (response: Response) => {

@@ -25,8 +25,8 @@
       </a>
       <ng-template #persona>
         <a routerLink="/xx" mat-list-item>
-          <mat-icon>supervised_user_circle</mat-icon>
-          Personal
+          <mat-icon>home</mat-icon>
+          Home
         </a>
       </ng-template>
 
@@ -37,15 +37,20 @@
 
       <ng-template #business>
         <a routerLink="/xx" mat-list-item>
-          <mat-icon>business</mat-icon>
-         Business
+          <mat-icon>explore</mat-icon>
+         About
+        </a>
+        <a routerLink="/xx" mat-list-item>
+          <mat-icon>settings_applications</mat-icon>
+         How it works
         </a>
       </ng-template>
       <!--//signup-->
-      <a routerLink="/profile" mat-list-item   *ngIf="isLoggedIn$ | async as isAuthenticated;else elsesignupb" >
-        <mat-icon matBadge="15" matBadgeColor="warn" > message
-      </mat-icon>
-    </a>
+
+      <a routerLink="/login" mat-list-item (click)="onLogout()" *ngIf="isLoggedIn$ | async as isAuthenticated;else elsesignupb" >
+      <mat-icon>settings_power</mat-icon>
+        Logout
+      </a>
 
       <ng-template #elsesignupb>
         <a routerLink="/login" mat-list-item>
@@ -53,10 +58,7 @@
           Login
         </a>
       </ng-template>
-      <a routerLink="/login" mat-list-item (click)="onLogout()" *ngIf="isLoggedIn$ | async as isAuthenticated">
-        <mat-icon>settings_power</mat-icon>
-        Logout
-      </a>
+
 
 
 
@@ -79,44 +81,64 @@
       <div ><img src="./../assets/images/logo.png" class="logo" alt="MLINZI" ></div>
       <div fxShow="true" class="barmenu" fxHide.lt-md="true"   >
         <!-- The following menu items will be hidden on both SM and XS screen sizes -->
-        <a routerLink="/dashboard"  style="color: white ; margin: 1%"  *ngIf="isLoggedIn$ | async as isAuthenticated; else dashboard1">
-          <mat-icon>home</mat-icon> <span style="color: white">dashboard</span>
 
-        </a>
+
+        <span class="header_text">
+       <button mat-button routerLink="/dashboard"
+               *ngIf="isLoggedIn$ | async as isAuthenticated; else dashboard1">
+          <mat-icon>home</mat-icon>
+         Dashboard</button>
+     </span>
+
         <ng-template #dashboard1>
           <a href="#" mat-button >
-            Personal
+            HOME
           </a>
         </ng-template>
 
-        <a routerLink="/createtrade"  style="color: white; margin: 1%" *ngIf="isLoggedIn$ | async as isAuthenticated; else business1">
+
+        <span class="header_text">
+       <button mat-button routerLink="/createtrade"
+               *ngIf="isLoggedIn$ | async as isAuthenticated; else business1">
           <mat-icon>queue</mat-icon>
-            <span style="color: white">New trade</span>
-        </a>
+         Profile</button>
+     </span>
+
+
         <ng-template #business1 style="color: white; margin: 0%">
           <a href="#" mat-button >
-            Business
+            ABOUT
+          </a>
+          <a href="#" mat-button >
+            HOW IT WORKS
           </a>
         </ng-template>
 
-        <mat-icon matBadge="15" matBadgeColor="warn"
-                  *ngIf="isLoggedIn$ | async as isAuthenticated; else elsesignup1s"
-                  routerLink=".">message
-        </mat-icon>
+        <!--<mat-icon matBadge="15" matBadgeColor="warn"-->
+                  <!--*ngIf="isLoggedIn$ | async as isAuthenticated; else elsesignup1s"-->
+                  <!--routerLink=".">message-->
+        <!--</mat-icon>-->
+        <span class="header_text">
+       <button mat-button routerLink="/profile"
+               *ngIf="isLoggedIn$ | async as isAuthenticated; else elsesignup1s" >
+          <mat-icon>account_circle</mat-icon>
+         Profile</button>
+     </span>
+
         <ng-template #elsesignup1s style="color: white; margin: 1%">
           <button mat-button routerLink="/login">Login</button>
         </ng-template>
 
-        <a routerLink="/profile" style="color: white; margin: 4%"  *ngIf="isLoggedIn$ | async as isAuthenticated">
-          <mat-icon>account_circle</mat-icon>
-           <span style="color: white">Profile</span>
-        </a>
+
+
 
 
 
         <span class="header_text">
        <button mat-button (click)="onLogout()"
-               *ngIf="isLoggedIn$ | async as isAuthenticated; else elseBlock1">Logout</button>
+               *ngIf="isLoggedIn$ | async as isAuthenticated; else elseBlock1">
+          <mat-icon>account_circle</mat-icon>
+         Logout</button>
      </span>
 
 

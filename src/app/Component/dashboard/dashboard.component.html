@@ -58,30 +58,27 @@
     </p>
   </div>
 </div>
-<div id="escrow2" class="escrow-container1" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-  <div class="divb-1">
-    <p>
-      <i class="material-icons  bigicon1">
-        explore
-      </i>
-    </p>
-    <p><span>Click 'New Trade' to start transaction</span></p>
-  </div>
-</div>
 
 
-<div id="escrow3" class="escrow-container2" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-  <div class="divb-1">
+<div id="escrow3" class="escrow-containerfinal" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+  <div class="rowdivbtna" >
     <a  class="linkstyle"  mat-button routerLink="/createtrade">
       <i class="material-icons  iconizer">add_to_photos</i>
       New Trade</a>
+  </div>
+  <div class="rowdivbtnb">
     <a mat-button routerLink="/profile" class="linkstyle1" >
-      <!--<i class="material-icons  iconizer">account_circle</i>-->
       <i class="material-icons icon-send-money iconizer">account_circle</i>
       Update account </a>
-    <a mat-button routerLink="/fund"  class="linkstyle2">
+  </div>
+
+  <div class="rowdivbtnc"  >
+    <a  class="linkstyle"  mat-button routerLink="/fund" >
       <i class="material-icons  iconizer">account_balance_wallet</i>
-      Pay Trade</a>
+      Pay Trade
+    </a>
   </div>
 </div>
+
 </mat-card>

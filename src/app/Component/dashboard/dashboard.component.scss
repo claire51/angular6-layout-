@@ -7,6 +7,15 @@
   flex-wrap: wrap;
 
 }
+.escrow-containerfinal{
+  display: flex;
+  width:100%;
+  height: 100%;
+  background-color: white;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 5%;
+}
 .tradeA{
   flex: 2;
   margin-left: 1%;
@@ -50,6 +59,7 @@
   text-align: center;
   align-content: space-around;
   padding-bottom: 1%;
+  padding-top: 6%;
 
   //background-color: white;
 }
@@ -109,23 +119,39 @@ margin: 2%;
 }
 .linkstyle{
  //background-color: #125aaa;
-  padding: 1%;
-  margin-left: 2%;
+  padding: 0%;
+  //margin-left: 2%;
   //color: white;
 }
 .linkstyle1{
-  padding: 1%;margin-left: 2%
+  padding: 0%;
+  margin-left: 2%
 }
 .linkstyle2{
   background-color: white;
-  padding: 1%;margin-left: 2%;
+  padding: 0%;
+  //margin-left: 2%;
 }
 
 .rowdiv{
   flex: 1;
   padding: 1%;
 }
-
+.rowdivbtna {
+  flex: 1;
+  text-align: right;
+  padding: 2%;
+}
+.rowdivbtnb {
+  flex: 1;
+  text-align: center;
+  padding: 2%;
+}.rowdivbtnc {
+  flex: 1;
+  text-align: left;
+  padding: 2%;
+  width: 150px;
+}
 //button customized
 .mat-purple  {
   background-color: purple;
@@ -147,4 +173,57 @@ margin: 2%;
   background-color:green;
   width: 80%;
   color: white;
+}
+
+
+//mobile
+@media all and (max-width: 800px) {
+  .rowdivbtna {
+    flex: 1;
+    text-align: right;
+    padding: 1%;
+  }
+  .rowdivbtnb {
+    flex: 1;
+    text-align: center;
+    padding: 1%;
+  }.rowdivbtnc {
+     flex: 1;
+     text-align: center;
+     padding: 1%;
+   }
+}
+
+/* Small screens */
+@media all and (max-width: 500px) {
+
+  .escrow-containerfinal{
+    display: flex;
+    width:100%;
+    height: 100%;
+    background-color: white;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 1%;
+  }
+
+
+  .rowdivbtna {
+    flex: 1;
+    text-align: center;
+    padding-left: 30%;
+    width: 100px;
+  }
+  .rowdivbtnb {
+    flex: 1;
+    text-align: center;
+    padding-left: 30%;
+    width: 100px;
+  }
+  .rowdivbtnc {
+     flex: 1;
+     text-align: center;
+    padding-left: 30%;
+    width: 100px;
+   }
 }

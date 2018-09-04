@@ -15,6 +15,7 @@ export class Transactions {
   transaction_code: string;
   period: number;
   invoice_amount: number;
+  transaction_amount: number;
   inspection_period: number;
   classification_id: number;
   fee_allocation_id: number;
