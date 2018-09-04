@@ -1,30 +1,41 @@
-<mat-card class="example-card">
-<div id="escrow" class="escrow-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-  <div  class="tradeA"  >
-    <div>
-      <p><span class="header_text">
-        Trades
+<div id="escrowheader" class="escrow-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
+     fxLayoutAlign="center">
+  <div class="tradeAheader">
+    <div class="card-designheader">
+      <p><span class="header_textdashboard">
+       Trade dashboard
       </span>
       </p>
     </div>
-    <div  class="card-design">
-      <!--<mat-card class="card-design">-->
-        <a mat-button  [routerLink]="['/viewtrade',1]">
+  </div>
+</div>
+
+
+<mat-card class="example-card">
+<div id="escrow" class="escrow-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div  class="tradeA"  >
+      <div class="rowdiv">
+        <a  mat-raised-button [color]="'blue'"  [routerLink]="['/viewtrade',1]">
           <i class="material-icons  iconcolor">donut_large</i>
           Pending Trade</a>
-        <a mat-button [routerLink]="['/viewtrade',2]">
-          <i class="material-icons  iconcolor">highlight_off</i>
-          Active Trade</a>
-      <a mat-button [routerLink]="['/viewtrade',3]">
+      </div>
+    <div class="rowdiv">
+      <a  mat-raised-button  [color]="'purple'" [routerLink]="['/viewtrade',2]">
+        <i class="material-icons  iconcolor">highlight_off</i>
+        Active Trade</a>
+      </div>
+    <div class="rowdiv">
+      <a  mat-raised-button [color]="'green'" [routerLink]="['/viewtrade',3]">
         <i class="material-icons  iconcolor">assignment_turned_in</i>
         Completed Trade</a>
-      <a mat-button routerLink="/viewpayment">
+      </div>
+    <div class="rowdiv">
+      <a  mat-raised-button color="grey" routerLink="/viewpayment" >
         <i class="material-icons  iconcolor">monetization_on</i>
         View Trade Payments</a>
-      <!--</mat-card>-->
-
-    </div>
+      </div>
   </div>
+
   <div  class="tradeB"  >
     <div style="text-align: center;">
       <p><span class="header_textb">

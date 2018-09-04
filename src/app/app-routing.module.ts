@@ -16,13 +16,13 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'apicontent', component: ApitestComponent , canActivate: [AuthGuardGuard]},
   { path: 'dashboard',
-    loadChildren: '../app/modules/dashboard.module#DashboardModule', canActivate: [AuthGuardGuard]
+    loadChildren: '../app/modules/dashboard.module#DashboardModule'
   },
   { path: 'recover',
     loadChildren: '../app/modules/shared.module#SharedModule'
   },
   { path: 'createtrade',
-    loadChildren: '../app/modules/createtrade.module#CreatetradeModule' , canActivate: [AuthGuardGuard]
+    loadChildren: '../app/modules/createtrade.module#CreatetradeModule'
   },
   { path: 'viewtrade/:id',
     loadChildren: '../app/modules/viewtrades.module#ViewtradesModule' , canActivate: [AuthGuardGuard]

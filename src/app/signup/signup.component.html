@@ -9,11 +9,11 @@
       </section>
       <mat-card-content>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <p>Sign up </p>
+          <p style="color: blue">Sign up </p>
           <p style="color: red">{{error}}</p>
 
           <mat-form-field class="full-width-input">
-            <input matInput placeholder="First Name" formControlName="first_name" pattern="[a-z]{1,200}" required >
+            <input matInput placeholder="First Name" formControlName="first_name" required >
             <mat-error *ngIf="isFieldInvalid('first_name')">
               Enter Your First Name
             </mat-error>
@@ -55,10 +55,7 @@
               Enter valid Password(Should have atleast 4 character)
             </mat-error>
           </mat-form-field>
-
-
-
-          <button mat-raised-button color="primary" type="submit">Sign Up</button>
+          <button mat-raised-button color="primary" type="submit"  [disabled]="!form.valid">Sign Up</button>
         </form>
       </mat-card-content>
     </mat-card>

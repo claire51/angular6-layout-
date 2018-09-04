@@ -9,47 +9,43 @@
   >
     <mat-toolbar  [color]="'blue'" >Menu</mat-toolbar>
     <mat-nav-list>
-      <p>
       <a routerLink="/dashboard" mat-list-item   *ngIf="isLoggedIn$ | async as isAuthenticated; else dashboard">
         <mat-icon>home</mat-icon>
         dashboard
       </a>
-      </p>
       <ng-template #dashboard>
         <a routerLink="/signup" mat-list-item>
-          <mat-icon>lock</mat-icon>
+          <mat-icon>how_to_reg</mat-icon>
           Sign Up
         </a>
       </ng-template>
-<p>
-      <a routerLink="/profile" mat-list-   *ngIf="isLoggedIn$ | async as isAuthenticated; else persona">
+      <a routerLink="/profile" mat-list-item   *ngIf="isLoggedIn$ | async as isAuthenticated; else persona">
         <mat-icon>account_circle</mat-icon>
         Profile
       </a>
-</p>
       <ng-template #persona>
         <a routerLink="/xx" mat-list-item>
-          <mat-icon>lock</mat-icon>
+          <mat-icon>supervised_user_circle</mat-icon>
           Personal
         </a>
       </ng-template>
-<p>
-      <a routerLink="/createtrade" mat-list-   *ngIf="isLoggedIn$ | async as isAuthenticated; else business">
+
+      <a routerLink="/createtrade" mat-list-item   *ngIf="isLoggedIn$ | async as isAuthenticated; else business">
         <mat-icon>queue</mat-icon>
         New trade
       </a>
-</p>
+
       <ng-template #business>
         <a routerLink="/xx" mat-list-item>
-          <mat-icon>lock</mat-icon>
+          <mat-icon>business</mat-icon>
          Business
         </a>
       </ng-template>
       <!--//signup-->
-      <mat-icon matBadge="15" matBadgeColor="warn"
-                *ngIf="isLoggedIn$ | async as isAuthenticated; else elsesignupb"
-                routerLink="."> message
+      <a routerLink="/profile" mat-list-item   *ngIf="isLoggedIn$ | async as isAuthenticated;else elsesignupb" >
+        <mat-icon matBadge="15" matBadgeColor="warn" > message
       </mat-icon>
+    </a>
 
       <ng-template #elsesignupb>
         <a routerLink="/login" mat-list-item>
@@ -57,12 +53,11 @@
           Login
         </a>
       </ng-template>
-      <p>
-      <a routerLink="/login" mat-list- *ngIf="isLoggedIn$ | async as isAuthenticated">
+      <a routerLink="/login" mat-list-item (click)="onLogout()" *ngIf="isLoggedIn$ | async as isAuthenticated">
         <mat-icon>settings_power</mat-icon>
         Logout
       </a>
-      </p>
+
 
 
 
@@ -94,7 +89,7 @@
           </a>
         </ng-template>
 
-        <a routerLink="/createtrade" style="color: white; margin: 1%" *ngIf="isLoggedIn$ | async as isAuthenticated; else business1">
+        <a routerLink="/createtrade"  style="color: white; margin: 1%" *ngIf="isLoggedIn$ | async as isAuthenticated; else business1">
           <mat-icon>queue</mat-icon>
             <span style="color: white">New trade</span>
         </a>
@@ -130,17 +125,6 @@
             <button mat-button  [color]="'purple'" routerLink="/signup"> Create Account</button>
      </span>
         </ng-template>
-
-        <!--signup-->
-
-
-
-
-        <!--login-->
-
-
-
-
       </div>
 
       </div>
