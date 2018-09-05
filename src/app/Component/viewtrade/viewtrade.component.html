@@ -5,7 +5,7 @@
     </mat-form-field>
   </div>
   <mat-card-content class="data-table-wrapper mat-elevation-z8">
-  <mat-table #table  class="data-table-content" [dataSource]="dataSourceb"  [trackBy]="trackByUid" nclass="animate" matSort aria-label="Elements">
+  <mat-table #table  class="data-table-content" [dataSource]="dataSourceb"  [trackBy]="trackByUid" nclass="animate" matSort aria-label="Elements"  [class.isMobile]="isMobile">>
     <!-- Id Column -->
     <ng-container matColumnDef="transaction_code">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Transaction code</mat-header-cell>

@@ -1,5 +1,3 @@
-@-webkit-keyframes
-fadeIt 0 % background-color: #FFFFFF 50 % background-color: #98FB98 100 % background-color: #FFFFFF
 
  .animate {
     background-image: none !important;
@@ -13,7 +11,9 @@ fadeIt 0 % background-color: #FFFFFF 50 % background-color: #98FB98 100 % backgr
 
 }
 
-
+.mobile-label {
+  display: none;
+}
 // Mat-DataTable
 .data-table-wrapper {
   display: flex;
@@ -34,32 +34,26 @@ fadeIt 0 % background-color: #FFFFFF 50 % background-color: #98FB98 100 % backgr
   }
 }
 
-@media(max-width: 350px)
+@media(max-width: 500px)
 {
-  .data-table-wrapper
-  {
-    .mobile-label {
-      width: 150px;
-      display: inline-block;
-      font-weight: bold;
-    }
-    .mat-header-row {
-      display: none;
-    }
-    .mat-row
-    {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 8px 24px;
-      min-height: 20px;
-      mat-cell:first-child, mat-footer-cell:first-child, mat-header-cell:first-child
-      {
-        padding: 0px;
-      }
-    }
-    .data-table-content{
-      display: block;
-      flex-direction: column;
-    }
+  .mobile-label {
+    width: 80px;
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  .mat-header-row {
+    display: none;
+  }
+
+  .mat-row {
+    flex-direction: column;
+    align-items: start;
+    padding: 8px 24px;
+  }
+  .example-header {
+    text-align: center;
+    overflow: auto;
+
   }
 }
