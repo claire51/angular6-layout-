@@ -20,7 +20,8 @@ export class PaymentComponent implements   AfterViewInit  {
   paymentresp: Paymentresponse;
   items: Array<Item> = new  Array<Item>();
   resource: Resource;
-  constructor(public transervice: Transactionview , public authservice: AuthService , private router: Router, private paymentservice: PaymentService ) { }
+constructor(public transervice: Transactionview ,
+            public authservice: AuthService , private router: Router, private paymentservice: PaymentService ) { }
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSourceb: MatTableDataSource<any>;

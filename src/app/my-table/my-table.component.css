@@ -1,12 +1,33 @@
-@-webkit-keyframes
-fadeIt 0 % background-color: #FFFFFF 50 % background-color: #98FB98 100 % background-color: #FFFFFF
-
-.animate {
-  background-image: none !important;
-  animation: fadeIt 1s ease-in-out
+.example-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
 }
-.example-header {
-  min-height: 64px;
-  padding: 8px 24px 0;
-  text-align: right;
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.mobile-label {
+  display: none;
+}
+
+@media(max-width: 600px) {
+  .mobile-label {
+    width: 80px;
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  .mat-header-row {
+    display: none;
+  }
+
+  .mat-row {
+    flex-direction: column;
+    align-items: start;
+    padding: 8px 24px;
+  }
 }

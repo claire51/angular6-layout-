@@ -1,45 +1,57 @@
-<div class="mat-elevation-z8">
+<div class="example-container mat-elevation-z8">
   <div class="example-header">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
   </div>
-
-  <mat-table #table [dataSource]="dataSource"  [trackBy]="trackByUid" class="animate" matSort aria-label="Elements">
+  <mat-table #table [dataSource]="dataSource"  [trackBy]="trackByUid" matSort aria-label="Elements" >
 <!-- Id Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Total Fee::</span>
+        {{row.id}}
+      </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="first_name">
       <mat-header-cell *matHeaderCellDef mat-sort-header>First name</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.first_name}}</mat-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Total Fee:</span>
+        {{row.first_name}}
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="middle_name">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Middle Name</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.middle_name}}</mat-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Total Fee:</span>
+        {{row.middle_name}}
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="phone_number">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Phone</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.phone_number}}</mat-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Total Fee:</span>
+        {{row.phone_number}}
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="email">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.email}}</mat-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Total Fee:</span>
+        {{row.email}}
+      </mat-cell>
     </ng-container>
     <ng-container matColumnDef="edit">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Edit</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-raised-button  color="primary" (click)="openDialog(row)">Edit</button>
       </mat-cell>
     </ng-container>
-
-
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
   </mat-table>
