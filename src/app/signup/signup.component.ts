@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RegisterService} from '../localService/register.service';
-import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 
 
 
 import {Profile} from '../model/profile';
 import {RegistrationResponse} from '../model/registrationResponse';
 import {Router} from '@angular/router';
-import {AppConfig} from '../common/config/app.config';
 import {AuthService} from '../auth.service';
 
 @Component({
@@ -25,7 +23,7 @@ export class SignupComponent implements OnInit {
   hide: boolean;
   private formSubmitAttempt: boolean;
   constructor(private fb: FormBuilder , private registeruser: RegisterService, private router: Router,
-              private snackBar: MatSnackBar, private auth: AuthService) {
+               private auth: AuthService) {
     this.hide = true;
   }
 
@@ -62,24 +60,20 @@ export class SignupComponent implements OnInit {
     this.registeruser.create(profile).subscribe((newHeroWithId) => {
       this.registrationresponse = newHeroWithId;
       if ( this.registrationresponse.status) {
-        this.showSnackBar('AccountCreated Created Succesfully.. Login to continue ');
+        this.auth.resendphone = profile.phone_number;
+        this.auth.showSnackBar('AccountCreated Created Succesfully.. Login to continue ');
         this.status = true;
-        this.router.navigate(['/login']);
+        this.router.navigate(['/verify']);
       }
     }, (response: Response) => {
       if (response.status <= 500) {
         this.status = true;
-        this.showSnackBar('account with that email Already exist ..Try Another');
+        this.auth.showSnackBar('account with that email Already exist ..Try Another');
         this.error = 'account with that email exist';
       }
     });
   }
-  showSnackBar(name): void {
-      const config: any = new MatSnackBarConfig();
-      config.duration = AppConfig.snackBarDuration;
-      this.snackBar.open(name, 'OK', config);
-    // });
-  }
+
 }
 
 

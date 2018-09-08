@@ -20,12 +20,14 @@ export class AuthService {
   showloading: boolean;
   data: Array<User> =  new Array<User>();
   transactionshelper: Transactions = new Transactions();
+  resendphone: string;
   isAuthenticated() {
     return this.loggedIn.asObservable();
   }
 
   constructor( private router: Router, private snackBar: MatSnackBar) {
     this.showloading = false;
+    this.resendphone =  '';
   }
 
   login() {
