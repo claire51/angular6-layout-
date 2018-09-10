@@ -12,6 +12,7 @@ export class Recoverpassword extends GeneriCrudService<RegistrationResponse> {
     super(
       httpClient,
       'auth/recovery',
+
       router
     );
   }
