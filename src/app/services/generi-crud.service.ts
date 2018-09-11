@@ -11,6 +11,8 @@ import {Transactions} from '../model/Transactions';
 import {assertNumber} from "@angular/core/src/render3/assert";
 import {Useredit} from '../model/Useredit';
 import {Resource} from '../model/Resource';
+import {Verifies} from '../model/Verifies';
+import {Resender} from '../model/Resender';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -55,6 +57,12 @@ export class GeneriCrudService<T> {
       catchError(this.handleError<any>('updateHero'))
     );
   }
+  verifyz (values: Verifies): Observable<any> {
+    return this.http.put(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
+      tap(_ => this.log(`updated value id`)),
+      catchError(this.handleError<any>('updateHero'))
+    );
+  }
   /** GET data by id. Return `undefined` when id not found */
   getById(id: number): Observable<T[]> {
     const url = `${this.baseurl}/${this.endpoint}${id}`;
@@ -90,7 +98,16 @@ export class GeneriCrudService<T> {
       }),
       catchError(this.handleError<T>('adding'))
     );
+  }  /** POST: add a new hero to the server */
+  resend (values: Resender): Observable<T> {
+    return this.http.post<T>(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
+      tap((heroSaved: T) => {
+        console.log('Account Created .. Login to continue');
+      }),
+      catchError(this.handleError<T>('adding'))
+    );
   }
+
   /** recoverpass to the server */
   authrize (values: Authrizer): Observable<T> {
     return this.http.post<T>(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
