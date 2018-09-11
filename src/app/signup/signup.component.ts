@@ -63,13 +63,13 @@ export class SignupComponent implements OnInit {
         this.auth.resendphone = profile.phone_number;
         this.auth.showSnackBar('AccountCreated Created Succesfully.. Login to continue ');
         this.status = true;
-        this.router.navigate(['/verify']);
+        this.router.navigate(['/login']);
       }
     }, (response: Response) => {
       if (response.status <= 500) {
         this.status = true;
-        this.auth.showSnackBar('account with that email Already exist ..Try Another');
-        this.error = 'account with that email exist';
+        this.auth.showSnackBar('account with that email/phone Number Already exist ..Try Another');
+        this.error = 'account with that email/phone Number exist';
       }
     });
   }

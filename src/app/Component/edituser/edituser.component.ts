@@ -26,7 +26,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./edituser.component.scss']
 })
 export class EdituserComponent implements OnInit {
-phone: string;
+  phone_number: string;
 resetPassword: FormGroup;
 usereditform: FormGroup;
 email: string;
@@ -43,11 +43,9 @@ id: string;
   status: boolean;
   recoverpass: RecoverPassword = new RecoverPassword();
   matcher = new MyErrorStateMatcher();
-  // useredit: Useredit = new Useredit();
   private formSubmitAttempt: boolean;
 constructor(private fb: FormBuilder,  private resetpasswordservice: ResetpasswordService, private usereditservice: UsereditService,
           public auth: AuthService) {
-    this.phone = localStorage.getItem('phone_number');
     this.email = localStorage.getItem('email');
     this.fullname = localStorage.getItem('firstname') + ' ' + localStorage.getItem('lastname') ;
     this.firstname = localStorage.getItem('firstname') ;
@@ -57,7 +55,6 @@ constructor(private fb: FormBuilder,  private resetpasswordservice: Resetpasswor
     this.id = localStorage.getItem('id');
 this.step = 1;
   this.stepper = 1;
-    console.log((Number(localStorage.getItem('id'))));
   }
 
   ngOnInit() {
@@ -69,7 +66,7 @@ this.step = 1;
     this.usereditform = this.fb.group({
       id: [(Number(localStorage.getItem('id')))],
       first_name: [localStorage.getItem('firstname'), Validators.required],
-      phone: [localStorage.getItem('phone_number'), Validators.required],
+      phone_number: [localStorage.getItem('phone_number'), Validators.required],
       national_id: [localStorage.getItem('idnumber'), Validators.required],
       email: [localStorage.getItem('email'), Validators.required]
     });
@@ -87,13 +84,7 @@ this.step = 1;
   setStepper(index: number) {
     this.stepper = index;
   }
-  // nextStep() {
-  //   this.step++;
-  // }
-  //
-  // prevStep() {
-  //   this.step--;
-  // }
+
   isFieldInvalid(field: string) {
     return (
       (!this.resetPassword.get(field).valid && this.resetPassword.get(field).touched) ||
@@ -107,10 +98,8 @@ this.step = 1;
     );
   }
   onSubmitformb() {
-  console.log();
-    if (this.resetPassword.valid) {
+    if (this.resetPassword.value.newpass !== '' && this.resetPassword.value.newpass != null) {
       this.status = false;
-      this.recoverpass.email = localStorage.getItem('email');
       this.recoverpass.password = this.resetPassword.value.newpass;
       this.resetpass(this.recoverpass);
     }
@@ -131,7 +120,7 @@ this.step = 1;
         this.auth.showSnackBar('Password was succesfully changed ');
         this.status = true;
       }
-      console.log(this.registrationresponse.status);
+      this.status = true;
     }, (response: Response) => {
       if (response.status <= 500) {
         this.status = true;
@@ -142,7 +131,6 @@ this.step = 1;
   edituserdetail(useredit: Useredit): void {
     this.usereditservice.updateuser(useredit).subscribe((newHeroWithId) => {
       this.useresponse = newHeroWithId;
-      console.log(this.useresponse.id + 'dfffffffffffff');
       if ( this.useresponse.id) {
         this.auth.showSnackBar('user detail was succesfully updated ');
         localStorage.setItem('email', '' + (this.useresponse.email));
@@ -150,12 +138,18 @@ this.step = 1;
         localStorage.setItem('firstname', '' + (this.useresponse.first_name));
         localStorage.setItem('idnumber', '' + (this.useresponse.id_number));
         this.status = true;
+
+        this.phone_number = localStorage.getItem('phone_number');
+        this.email = localStorage.getItem('email');
+        this.fullname = localStorage.getItem('firstname') + ' ' + localStorage.getItem('lastname') ;
+      } else {
+        this.status = true;
+        this.auth.showSnackBar('oooops something bad happenned Try again ');
       }
-      console.log(this.useresponse.id);
     }, (response: Response) => {
       if (response.status <= 500) {
         this.status = true;
-        this.auth.showSnackBar('Error occured Try again ');
+        this.auth.showSnackBar('oooops something bad happenned Try again ');
       }
     });
   }

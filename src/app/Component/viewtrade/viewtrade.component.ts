@@ -8,6 +8,8 @@ import {Transactionview} from '../../localService/transactionview';
 import {PaymentService} from "../../localService/payment.service";
 import {Paymentresponse} from "../../model/Paymentresponse";
 import {Resource} from "../../model/Resource";
+import {TradeRole} from '../../model/TradeRole';
+import {TradeParty} from '../../model/TradeParty';
 
 @Component({
   selector: 'app-viewtrade',
@@ -17,6 +19,8 @@ import {Resource} from "../../model/Resource";
 export class ViewtradeComponent implements  AfterViewInit {
   transactions: Array<Transactions>;
   items: Array<Item> = new  Array<Item>();
+  trade_party: TradeParty = new TradeParty();
+  useridz: number;
   constructor(public transervice: Transactionview , public authservice: AuthService
     , private router: Router, private route: ActivatedRoute, private paymentservice: PaymentService ) { }
   @ViewChild(MatSort) sort: MatSort;
@@ -27,13 +31,13 @@ export class ViewtradeComponent implements  AfterViewInit {
   editcolumnvalue: string;
   resource: Resource = new Resource();
    id1: number;
+   viewstatus: boolean;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['transaction_code', 'invoice_amount', 'total_fee_amount', 'deposited_amount', 'status.name', 'edit'];
 
   ngAfterViewInit() {
-
+this.useridz = (Number(localStorage.getItem('id')));
     this.id1 = +this.route.snapshot.params['id'];
-    console.log(this.id1 + 'xxxxxxxxxxxxxxxxxx');
     if (this.id1 === 1) {
       this.editcolumnvalue = 'Edit';
       this.pending = true;
@@ -46,10 +50,20 @@ export class ViewtradeComponent implements  AfterViewInit {
 
     this.transervice.getById(this.id1).subscribe((data) => {
       this.transactions = data;
-      console.log(data)
       this.dataSourceb = new MatTableDataSource( this.transactions);
       this.dataSourceb.sort = this.sort;
       this.dataSourceb.paginator = this.paginator;
+      for (let transac of this.transactions) {
+        for (let trade of  transac.trade_roles) {
+       if (trade.transaction_role_id === 1) {
+         this.trade_party =  trade.trade_party;
+         if (this.trade_party.user_id !== null && this.trade_party.user_id === this.useridz) {
+           this.viewstatus = true;
+         }
+       } else {this.viewstatus = false;
+       }
+        }
+      }
     }, (response: Response) => {
       if (response.status <= 500) {
         this.authservice.showSnackBar(' could not load users');
@@ -62,6 +76,7 @@ export class ViewtradeComponent implements  AfterViewInit {
     filterValue = filterValue.toLowerCase();
     this.dataSourceb.filter = filterValue;
   }
+
   trackByUid(index, User1) {
     return User1.id;
   }

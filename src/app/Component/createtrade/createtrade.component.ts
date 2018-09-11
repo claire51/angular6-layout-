@@ -76,6 +76,10 @@ export class CreatetradeComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.auth.verified === 0 ) {
+      this.router.navigate(['/verify']);
+    }
+
     this.firstFormGroup = this._formBuilder.group({
       phone_number: ['' , Validators.required],
       full_names: ['', Validators.required],

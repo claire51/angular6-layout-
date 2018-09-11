@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../../auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profiles',
@@ -9,13 +11,16 @@ export class DashboardComponent implements OnInit {
 accountbal: number;
 allocatedbal: number;
 payablebal: number;
-  constructor() {
+  constructor(public auth: AuthService,   private router: Router) {
     this.accountbal = 0.0;
    this. allocatedbal = 0.0;
     this.payablebal = 0.0;
   }
 
   ngOnInit() {
+    if (this.auth.verified === 0 ) {
+      this.router.navigate(['/verify']);
+    }
   }
 
 }

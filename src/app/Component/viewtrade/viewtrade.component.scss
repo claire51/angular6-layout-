@@ -16,6 +16,28 @@
 .mobile-labela{
   display: none;
 }
+//button customized
+.mat-purple  {
+  background-color: purple;
+  width: 80%;
+  color: white;
+}//button customized
+.mat-blue  {
+  background-color: #125aaa;
+  width: 80%;
+  color: white;
+}//button customized
+.mat-grey  {
+
+  background-color:#EEEEEE;
+  width: 80%;
+  color: blue;
+}//button customized
+.mat-green  {
+  background-color:green;
+  width: 80%;
+  color: white;
+}
 
 @media(max-width: 600px) {
   .mobile-label {

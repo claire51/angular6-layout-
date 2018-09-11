@@ -10,10 +10,14 @@ export class User extends Resource {
   country: string;
   county: string;
   email: string;
+  verification_code: string;
+  phone_verified: number;
+  email_verified: number;
   created_at: string;
   updated_at: string;
   permissions: Array<Permission>;
   roles: Array<Role>;
+  mail_verification_code: string;
   constructor() { super();
 }
 }

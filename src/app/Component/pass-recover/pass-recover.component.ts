@@ -52,13 +52,14 @@ export class PassRecoverComponent implements OnInit {
         this.auth.showSnackBar('Check your Email we have sent you the password ');
         this.status = true;
         this.router.navigate(['/login']);
+      } else {
+        this.auth.showSnackBar('Error occured Sending the email,  kindly check your email.. or contact support ');
       }
-      console.log(this.registrationresponse.status);
     }, (response: Response) => {
       if (response.status <= 500) {
         this.status = true;
-        this.auth.showSnackBar('Account with that Email does not Exist ');
-        this.error = 'account with that email does not exist';
+        this.auth.showSnackBar('Error occured Sending the email,  kindly check your email.. or contact support ');
+        this.error = 'Error occured Sending the email';
       }
     });
   }

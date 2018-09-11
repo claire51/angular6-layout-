@@ -3,11 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Login} from '../localService/login';
 import {Authrizer} from '../model/authrizer';
 import {Tokens} from '../model/Tokens';
-import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
-import {AppConfig} from '../common/config/app.config';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
-import {ProgressBarService} from '../services/progress-bar.service';
 import {User} from '../model/User';
 @Component({
   selector: 'app-login',
@@ -16,12 +13,11 @@ import {User} from '../model/User';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  public values: any[];
   tokens: Tokens;
   error: string;
   color = 'primary';
   status: boolean;
-  kevol: string;
+  users: User = new User();
   private formSubmitAttempt: boolean;
   constructor(private fb: FormBuilder, private loginservice: Login, private authservice: AuthService,
               private router: Router) {
@@ -45,8 +41,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       this.status = false;
-      this.kevol = this.form.value.email;
-      console.log(this.kevol);
       this.login(this.form.value);
     }
     this.formSubmitAttempt = true;
@@ -66,10 +60,14 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('idnumber', '' + (this.tokens.user.id_number));
           localStorage.setItem('county', '' + (this.tokens.user.county));
           localStorage.setItem('id', '' + (this.tokens.user.id));
-console.log((Number(localStorage.getItem('id'))));
           this.authservice.login();
+          this.authservice.verified = this.tokens.user.phone_verified;
           this.status = true;
+          if (this.authservice.verified === 0 ) {
+            this.router.navigate(['/verify']);
+          } else {
           this.router.navigate(['/dashboard']);
+        }
         }
       }, (response: Response) => {
         if (response.status <= 500) {

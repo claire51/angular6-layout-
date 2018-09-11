@@ -12,6 +12,6 @@ export const AppConfig: IAppConfig = {
   endpoints: {
     heroes: 'https://nodejs-example-app.herokuapp.com/heroes'
   },
-  snackBarDuration: 3000,
+  snackBarDuration: 7000,
   repositoryURL: 'http://api.mlinzi.co.ke:8080/api'
 };

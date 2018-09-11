@@ -73,9 +73,11 @@ resend: Resender = new Resender();
       if ( this.registrationresponse.status) {
         this.auth.showSnackBar('Account verified succefully ');
         this.status = true;
-        this.router.navigate(['/login']);
+        this.auth.verified = 1;
+        this.router.navigate(['/dashboard']);
+      } else {
+        this.auth.showSnackBar('Wrong verification code ');
       }
-      console.log(this.registrationresponse.status);
     }, (response: Response) => {
       if (response.status <= 500) {
         this.status = true;
@@ -83,19 +85,22 @@ resend: Resender = new Resender();
         this.error = 'Wrong verification code';
       }
     });
-  }  resendz(resend: Resender): void {
+  }
+  resendz(resend: Resender): void {
     this.error = null;
     this.resenderservice.resend(resend).subscribe((newHeroWithId) => {
       this.registrationresponse = newHeroWithId;
       if ( this.registrationresponse.status) {
         this.auth.showSnackBar('Verification code sent succefully ,check your phone');
         this.status = true;
+      } else {
+        this.auth.showSnackBar('Sending error ..Check your Phone number ');
       }
       console.log(this.registrationresponse.status);
     }, (response: Response) => {
       if (response.status <= 500) {
         this.status = true;
-        this.auth.showSnackBar('Check your Phone number ');
+        this.auth.showSnackBar('Sending error ..Check your Phone number ');
         this.error = 'Check your Phone number';
       }
     });

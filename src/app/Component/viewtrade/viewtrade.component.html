@@ -48,10 +48,12 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="edit">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Edit </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Action </mat-header-cell>
       <mat-cell *matCellDef="let row" >
         <button mat-raised-button  color="primary" (click)="edittransaction(row)"  >{{editcolumnvalue}}</button>
-        <button mat-raised-button  color="primary" (click)="makepayment(row)" >Make Payment</button>
+        <div [hidden]='viewstatus' >
+        <button mat-raised-button  [color]="'green'" (click)="makepayment(row)" > Pay</button>
+        </div>
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

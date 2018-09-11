@@ -16,11 +16,11 @@ import {Transactions} from './model/Transactions';
 })
 export class AuthService {
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
   showloading: boolean;
   data: Array<User> =  new Array<User>();
   transactionshelper: Transactions = new Transactions();
   resendphone: string;
+  verified: number;
   isAuthenticated() {
     return this.loggedIn.asObservable();
   }
@@ -28,6 +28,7 @@ export class AuthService {
   constructor( private router: Router, private snackBar: MatSnackBar) {
     this.showloading = false;
     this.resendphone =  '';
+    this.verified = 0;
   }
 
   login() {
