@@ -41,7 +41,7 @@ export class ViewtradeComponent implements  AfterViewInit {
 
   ngAfterViewInit() {
 this.useridz = (Number(localStorage.getItem('id')));
-    this.id1 = +this.route.snapshot.params['id'];
+    this.id1 = + this.route.snapshot.params['id'];
     if (this.id1 === 1) {
       this.editcolumnvalue = 'Edit';
       this.pending = true;

@@ -13,6 +13,7 @@ import {Useredit} from '../model/Useredit';
 import {Resource} from '../model/Resource';
 import {Verifies} from '../model/Verifies';
 import {Resender} from '../model/Resender';
+import {Recoverpass} from '../model/recoverpass';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -84,6 +85,14 @@ export class GeneriCrudService<T> {
     return this.http.post<T>(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
       tap((heroSaved: T) => {
        console.log('payment requested ..');
+      }),
+      catchError(this.handleError<T>('adding'))
+    );
+  }   /** POST: add a new hero to the server */
+  recoverpassword (values: Recoverpass): Observable<T> {
+    return this.http.post<T>(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
+      tap((heroSaved: T) => {
+       console.log('recover password requested ..');
       }),
       catchError(this.handleError<T>('adding'))
     );

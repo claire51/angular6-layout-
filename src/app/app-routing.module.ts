@@ -36,6 +36,8 @@ const routes: Routes = [
     loadChildren: '../app/modules/viewpayment.module#ViewpaymentModule' , canActivate: [AuthGuardGuard]
   }, { path: 'verify',
     loadChildren: '../app/modules/verify.module#VerifyModule' , canActivate: [AuthGuardGuard]
+  }, { path: 'reset_password/:token',
+    loadChildren: '../app/modules/resetpass.module#ResetpassModule'
   },
   { path: '**', redirectTo: '' },
   {
