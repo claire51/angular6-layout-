@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RecoverPassword} from '../../model/RecoverPassword';
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ResetpasswordService} from '../../localService/resetpassword.service';
@@ -27,34 +27,35 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class EdituserComponent implements OnInit {
   phone_number: string;
-resetPassword: FormGroup;
-usereditform: FormGroup;
-email: string;
-firstname: string;
-fullname: string;
-lastname: string;
-idnumber: string;
-county: string;
-id: string;
- step: number;
- stepper: number;
+  resetPassword: FormGroup;
+  usereditform: FormGroup;
+  email: string;
+  firstname: string;
+  fullname: string;
+  lastname: string;
+  idnumber: string;
+  county: string;
+  id: string;
+  step: number;
+  stepper: number;
   registrationresponse: RegistrationResponse;
   useresponse: User;
   status: boolean;
   recoverpass: RecoverPassword = new RecoverPassword();
   matcher = new MyErrorStateMatcher();
   private formSubmitAttempt: boolean;
-constructor(private fb: FormBuilder,  private resetpasswordservice: ResetpasswordService, private usereditservice: UsereditService,
-          public auth: AuthService) {
+
+  constructor(private fb: FormBuilder, private resetpasswordservice: ResetpasswordService, private usereditservice: UsereditService,
+              public auth: AuthService) {
     this.email = localStorage.getItem('email');
-    this.fullname = localStorage.getItem('firstname') + ' ' + localStorage.getItem('lastname') ;
-    this.firstname = localStorage.getItem('firstname') ;
+    this.fullname = localStorage.getItem('firstname') + ' ' + localStorage.getItem('lastname');
+    this.firstname = localStorage.getItem('firstname');
     this.lastname = localStorage.getItem('lastname');
     this.idnumber = localStorage.getItem('idnumber');
     this.county = localStorage.getItem('county');
     this.id = localStorage.getItem('id');
-this.step = 1;
-  this.stepper = 1;
+    this.step = 1;
+    this.stepper = 1;
   }
 
   ngOnInit() {
@@ -62,7 +63,7 @@ this.step = 1;
       currentpass: ['', Validators.required],
       newpass: ['', Validators.required],
       confirmpass: ['', Validators.required]
-    }, { validator: this.checkPasswords });
+    }, {validator: this.checkPasswords});
     this.usereditform = this.fb.group({
       id: [(Number(localStorage.getItem('id')))],
       first_name: [localStorage.getItem('firstname'), Validators.required],
@@ -76,11 +77,13 @@ this.step = 1;
     let pass = group.controls.newpass.value;
     let confirmPass = group.controls.confirmpass.value;
 
-    return pass === confirmPass ? null : { notSame: true }
-}
+    return pass === confirmPass ? null : {notSame: true};
+  }
+
   setStep(index: number) {
     this.step = index;
   }
+
   setStepper(index: number) {
     this.stepper = index;
   }
@@ -91,12 +94,14 @@ this.step = 1;
       (this.resetPassword.get(field).untouched && this.formSubmitAttempt)
     );
   }
+
   isFieldInvalidb(field: string) {
     return (
       (!this.usereditform.get(field).valid && this.usereditform.get(field).touched) ||
       (this.usereditform.get(field).untouched && this.usereditform)
     );
   }
+
   onSubmitformb() {
     if (this.resetPassword.value.newpass !== '' && this.resetPassword.value.newpass != null) {
       this.status = false;
@@ -105,6 +110,7 @@ this.step = 1;
     }
     this.formSubmitAttempt = true;
   }
+
   onSubmitformuser() {
     if (this.usereditform.valid) {
       this.status = false;
@@ -116,7 +122,7 @@ this.step = 1;
   resetpass(recoverpassword: RecoverPassword): void {
     this.resetpasswordservice.recover(recoverpassword).subscribe((newHeroWithId) => {
       this.registrationresponse = newHeroWithId;
-      if ( this.registrationresponse.status) {
+      if (this.registrationresponse.status) {
         this.auth.showSnackBar('Password was succesfully changed ');
         this.status = true;
       }
@@ -128,10 +134,11 @@ this.step = 1;
       }
     });
   }
+
   edituserdetail(useredit: Useredit): void {
     this.usereditservice.updateuser(useredit).subscribe((newHeroWithId) => {
       this.useresponse = newHeroWithId;
-      if ( this.useresponse.id) {
+      if (this.useresponse.id) {
         this.auth.showSnackBar('user detail was succesfully updated ');
         localStorage.setItem('email', '' + (this.useresponse.email));
         localStorage.setItem('phone_number', '' + (this.useresponse.phone_number));
@@ -141,7 +148,7 @@ this.step = 1;
 
         this.phone_number = localStorage.getItem('phone_number');
         this.email = localStorage.getItem('email');
-        this.fullname = localStorage.getItem('firstname') + ' ' + localStorage.getItem('lastname') ;
+        this.fullname = localStorage.getItem('firstname') + ' ' + localStorage.getItem('lastname');
       } else {
         this.status = true;
         this.auth.showSnackBar('oooops something bad happenned Try again ');

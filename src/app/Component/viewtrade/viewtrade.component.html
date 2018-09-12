@@ -4,7 +4,7 @@
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
   </div>
-  <mat-table #table   [dataSource]="dataSourceb"  [trackBy]="trackByUid" nclass="animate" matSort aria-label="Elements" >
+  <mat-table #table [dataSource]="dataSourceb" [trackBy]="trackByUid" nclass="animate" matSort aria-label="Elements">
     <!-- Name Column -->
     <ng-container matColumnDef="transaction_code">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Transaction code</mat-header-cell>
@@ -28,7 +28,7 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Total Fee</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <span class="mobile-label">Total Fee:</span>
-        {{row.total_fee_amount}}
+        {{row.fee_value}}
       </mat-cell>
     </ng-container>
 
@@ -42,17 +42,17 @@
 
     <ng-container matColumnDef="status.name">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
-      <mat-cell *matCellDef="let row" >
+      <mat-cell *matCellDef="let row">
         <span class="mobile-label">Status:</span>
         {{row.status.name}}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="edit">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Action </mat-header-cell>
-      <mat-cell *matCellDef="let row" >
-        <button mat-raised-button  color="primary" (click)="edittransaction(row)"  >{{editcolumnvalue}}</button>
-        <div [hidden]='viewstatus' >
-        <button mat-raised-button  [color]="'green'" (click)="makepayment(row)" > Pay</button>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Action</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-raised-button color="primary" (click)="edittransaction(row)">{{editcolumnvalue}}</button>
+        <div *ngIf='row.isBuyer'>
+          <button mat-raised-button [color]="'green'" (click)="makepayment(row)"> Pay</button>
         </div>
       </mat-cell>
     </ng-container>
