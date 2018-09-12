@@ -54,7 +54,7 @@ export class CreatetradeComponent implements OnInit {
   // model
   traderolelist: Array<TradeRole> = new Array<TradeRole>();
   tradeparty: TradeParty = new TradeParty();
-  traderole: TradeRole = new TradeRole() ;
+  traderole: TradeRole = new TradeRole();
   transaction: Transactions = new Transactions();
   transactionresp: Transactions = new Transactions();
   delivery: Delivery = new Delivery();
@@ -65,8 +65,39 @@ export class CreatetradeComponent implements OnInit {
   classification: Classification = new Classification();
   agentfeetype: AgentFeeType = new AgentFeeType();
   user: User = new User();
-  constructor(public auth: AuthService , private _formBuilder: FormBuilder,
-              private transactionsvc: Transactionservc, private router: Router ,  private calcservice: CalculatorfeeService) {
+
+  classiffications = [
+    {value: 1, viewValue: 'General Goods and Services'},
+    {value: 2, viewValue: 'Agriculture , Livestock and Games'},
+    {value: 3, viewValue: 'Art, Antiques and Collectibles'},
+    {value: 4, viewValue: 'Business Sale and Booking'},
+    {value: 5, viewValue: 'Cars, Bikes and WaterCraft'},
+    {value: 6, viewValue: 'Construction'},
+    {value: 7, viewValue: 'Contract work and Freelancing'},
+    {value: 8, viewValue: 'Diesel , Petrolium and Biofuel'},
+    {value: 9, viewValue: 'Donations and Trusts'},
+    {value: 10, viewValue: 'Films and Productions'},
+    {value: 11, viewValue: 'Holiday Lets and Deposits'},
+    {value: 12, viewValue: 'Investments and Exists'},
+    {value: 13, viewValue: 'Mining , Metals and Minerals'},
+    {value: 14, viewValue: 'Rental Deposits'},
+    {value: 15, viewValue: 'Used Parts'},
+    {value: 16, viewValue: 'Web Dormain Purchases and Tranfers'},
+    {value: 17, viewValue: 'Wedding and Functions'},
+  ];
+
+  feeAllocations = [
+    {value: 1, viewValue: 'Seller'},
+    {value: 2, viewValue: 'Buyer'},
+    {value: 3, viewValue: 'Agent(Broker)'},
+    {value: 4, viewValue: '50-50 Seller/Buyer'},
+    {value: 5, viewValue: '50-50 Seller/Agent(Broker)'},
+    {value: 6, viewValue: '50-50 Buyer/Agent(Broker)'},
+    {value: 7, viewValue: '1:1:1 Seller/Buyer/Agent(Broker)'}
+  ];
+
+  constructor(public auth: AuthService, private _formBuilder: FormBuilder,
+              private transactionsvc: Transactionservc, private router: Router, private calcservice: CalculatorfeeService) {
     this.role = 'buyer';
     this.selected = 0;
     this.payamount = 0;
@@ -102,13 +133,15 @@ export class CreatetradeComponent implements OnInit {
       description: ['', Validators.required],
       quantity: ['3', Validators.required],
       unit_of_measures_id: ['1'],
-      transactions_id: ['0']
+      transactions_id: ['0'],
+      classification_id: ['', Validators.required]
     });
     this.fourthFormGroup = this._formBuilder.group({
       invoice_amount: ['', Validators.required],
       period: ['1', Validators.required],
       inspection_period: ['1', Validators.required],
-      agent_fee_value: ['0']
+      agent_fee_value: ['0'],
+      feeAllocation_id: ['', Validators.required]
     });
     this.calcservice.getdata().subscribe((newHeroWithId) => {
       this.chargesz = newHeroWithId;
@@ -216,6 +249,7 @@ export class CreatetradeComponent implements OnInit {
 
   onsubmitformthree() {
     if (this.thirdFormGroup.valid) {
+      this.classification.id = this.thirdFormGroup.value.classification_id;
       this.itemlist.length = 0;
       this.item.name = this.thirdFormGroup.value.name;
       this.item.description = this.thirdFormGroup.value.description;
@@ -228,6 +262,7 @@ export class CreatetradeComponent implements OnInit {
 
   onsubmitformfourth() {
     if (this.fourthFormGroup.valid) {
+      this.feeallocation.id = this.fourthFormGroup.value.feeAlocation_id;
       this.transaction.invoice_amount = this.fourthFormGroup.value.invoice_amount;
       this.transaction.transaction_amount = this.fourthFormGroup.value.invoice_amount;
       this.totalinvoiceamount = this.transaction.invoice_amount;
@@ -251,8 +286,6 @@ export class CreatetradeComponent implements OnInit {
   }
 
   finishtransaction() {
-    this.feeallocation.id = 1;
-    this.classification.id = 1;
     this.agentfeetype.id = 1;
     this.transaction.items = this.itemlist;
     // this.user = JSON.parse(localStorage.getItem('user'));
