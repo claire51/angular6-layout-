@@ -10,6 +10,8 @@ import {Paymentresponse} from "../../model/Paymentresponse";
 import {Resource} from "../../model/Resource";
 import {TradeRole} from '../../model/TradeRole';
 import {TradeParty} from '../../model/TradeParty';
+import {ApproveService} from "../../localService/approve.service";
+import {RegistrationResponse} from "../../model/registrationResponse";
 
 @Component({
   selector: 'app-viewtrade',
@@ -22,12 +24,14 @@ export class ViewtradeComponent implements  AfterViewInit {
   trade_party: TradeParty = new TradeParty();
   useridz: number;
   constructor(public transervice: Transactionview , public authservice: AuthService
-    , private router: Router, private route: ActivatedRoute, private paymentservice: PaymentService ) { }
+    , private router: Router, private route: ActivatedRoute,
+              private paymentservice: PaymentService, private approveservice: ApproveService ) { }
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSourceb: MatTableDataSource<any>;
   pending: boolean;
   paymentresp: Paymentresponse;
+ approveresp: RegistrationResponse;
   editcolumnvalue: string;
   resource: Resource = new Resource();
    id1: number;
@@ -42,9 +46,11 @@ this.useridz = (Number(localStorage.getItem('id')));
       this.editcolumnvalue = 'Edit';
       this.pending = true;
     } else if (this.id1 === 2) {
+      this.viewstatus = false;
       this.editcolumnvalue = 'Approve';
       this.pending  = false;
     } else if (this.id1 === 3) {
+      this.viewstatus = false;
       this.editcolumnvalue = 'View';
     }
 
@@ -58,7 +64,9 @@ this.useridz = (Number(localStorage.getItem('id')));
        if (trade.transaction_role_id === 1) {
          this.trade_party =  trade.trade_party;
          if (this.trade_party.user_id !== null && this.trade_party.user_id === this.useridz) {
-           this.viewstatus = true;
+           if (this.id1 === 1) {
+             this.viewstatus = true;
+           }
          }
        } else {this.viewstatus = false;
        }
@@ -87,7 +95,7 @@ this.useridz = (Number(localStorage.getItem('id')));
       console.log(this.authservice.transactionshelper);
       this.router.navigate(['/editrade']);
     } else if (this.id1 === 2) {
-      this.router.navigate(['/editrade']);
+      this.approvetranaction(data);
     } else if (this.id1 === 3) {
       this.authservice.transactionshelper = data;
       this.router.navigate(['/editrade']);
@@ -107,6 +115,20 @@ this.useridz = (Number(localStorage.getItem('id')));
     }, (response: Response) => {
       if (response.status <= 500) {
         this.authservice.showSnackBar(' could not send request');
+      }
+    });
+  }
+  approvetranaction(data): void {
+    this.authservice.transactionshelper = data;
+    this.resource.id = this.authservice.transactionshelper.id;
+    this.approveservice.payment( this.resource).subscribe((resp) => {
+      this.approveresp = resp;
+      if (this.approveresp.status) {
+        this.authservice.showSnackBar('Transaction ' + this.resource.id + 'payment was Approved succesfully ' );
+      }
+    }, (response: Response) => {
+      if (response.status <= 500) {
+        this.authservice.showSnackBar(' could not send approve request');
       }
     });
   }

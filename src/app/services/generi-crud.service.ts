@@ -57,6 +57,12 @@ export class GeneriCrudService<T> {
       catchError(this.handleError<any>('updateHero'))
     );
   }
+  approvetransaction (values: Resource): Observable<any> {
+    return this.http.put(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
+      tap(_ => this.log(`updated value id`)),
+      catchError(this.handleError<any>('updateHero'))
+    );
+  }
   verifyz (values: Verifies): Observable<any> {
     return this.http.put(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
       tap(_ => this.log(`updated value id`)),

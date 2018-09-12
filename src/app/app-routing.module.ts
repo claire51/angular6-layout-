@@ -34,7 +34,7 @@ const routes: Routes = [
     loadChildren: '../app/modules/payment.module#PaymentModule' , canActivate: [AuthGuardGuard]
   }, { path: 'viewpayment',
     loadChildren: '../app/modules/viewpayment.module#ViewpaymentModule' , canActivate: [AuthGuardGuard]
-  },{ path: 'verify',
+  }, { path: 'verify',
     loadChildren: '../app/modules/verify.module#VerifyModule' , canActivate: [AuthGuardGuard]
   },
   { path: '**', redirectTo: '' },

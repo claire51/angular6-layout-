@@ -7,6 +7,7 @@ import {ViewtradesRoutingModule} from './viewtrades-routing.module';
 import {ViewtradeComponent} from '../Component/viewtrade/viewtrade.component';
 import {Transactionview} from '../localService/transactionview';
 import {PaymentService} from '../localService/payment.service';
+import {ApproveService} from '../localService/approve.service';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import {PaymentService} from '../localService/payment.service';
   ],
   declarations: [ViewtradeComponent],
   providers: [
-    Transactionview, PaymentService
+    Transactionview, PaymentService, ApproveService
   ],
 })
 export class ViewtradesModule { }
