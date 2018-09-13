@@ -41,7 +41,8 @@ export class Transactions {
   agent_fee_type: AgentFeeType;
   classification: Classification;
   fee_allocation: FeeAllocation;
-  delivery: Array< Delivery>;
+  delivery: Array<Delivery>;
+  isBuyer = false;
 
 
   constructor() {
