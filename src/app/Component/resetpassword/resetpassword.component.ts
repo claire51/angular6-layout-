@@ -69,6 +69,7 @@ export class ResetpasswordComponent implements OnInit {
       this.recoverpass.token = this.tokenz;
       this.recoverpass.email = this.resetPassword.value.email;
       this.recoverpass.password = this.resetPassword.value.newpass;
+      this.recoverpass.password_confirmation = this.resetPassword.value.newpass;
       this.resetpass(this.recoverpass);
     }
     this.formSubmitAttempt = true;
@@ -81,7 +82,6 @@ export class ResetpasswordComponent implements OnInit {
         this.auth.showSnackBar('Password was succesfully changed  .. continue to login');
         this.status = true;
         this.router.navigate(['/login']);
-
       }
       this.status = true;
     }, (response: Response) => {

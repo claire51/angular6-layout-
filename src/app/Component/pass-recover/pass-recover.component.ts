@@ -55,9 +55,10 @@ export class PassRecoverComponent implements OnInit {
       } else {
         this.auth.showSnackBar('Error occured Sending the email,  kindly check your email.. or contact support ');
       }
+      this.status = true;
     }, (response: Response) => {
+      this.status = true;
       if (response.status <= 500) {
-        this.status = true;
         this.auth.showSnackBar('Error occured Sending the email,  kindly check your email.. or contact support ');
         this.error = 'Error occured Sending the email';
       }

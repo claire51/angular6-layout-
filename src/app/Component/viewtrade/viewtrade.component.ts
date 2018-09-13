@@ -65,10 +65,10 @@ this.useridz = (Number(localStorage.getItem('id')));
          this.trade_party =  trade.trade_party;
          if (this.trade_party.user_id !== null && this.trade_party.user_id === this.useridz) {
            if (this.id1 === 1) {
-             this.viewstatus = true;
+             transac.isBuyer = true;
            }
          }
-       } else {this.viewstatus = false;
+       } else {transac.isBuyer = false;
        }
         }
       }
