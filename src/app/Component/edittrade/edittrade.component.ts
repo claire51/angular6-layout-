@@ -35,6 +35,8 @@ export class EdittradeComponent implements OnInit {
     this.item = this.transaction.items[0];
     this.statusvalue = this.transaction.status.id;
     if (this.statusvalue === 1) {
+      this.iseditable = false;
+    } else {
       this.iseditable = true;
     }
     this.firstFormGroupA = this._formBuilder.group({

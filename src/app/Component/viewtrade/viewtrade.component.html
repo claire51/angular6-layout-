@@ -51,7 +51,7 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Action</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-raised-button color="primary" (click)="edittransaction(row)">{{editcolumnvalue}}</button>
-        <div *ngIf='row.isBuyer'>
+        <div  [hidden]='row.isBuyer' >
           <button mat-raised-button [color]="'green'" (click)="makepayment(row)"> Pay</button>
         </div>
       </mat-cell>

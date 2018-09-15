@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../auth.service';
 import {TradeRole} from '../../model/TradeRole';
@@ -15,14 +15,16 @@ import {Router} from '@angular/router';
 import {Transactionservc} from '../../localService/transactionservc';
 import {Charges} from '../../model/Charges';
 import {CalculatorfeeService} from '../../localService/calculatorfee.service';
+import {ClassificationService} from '../../localService/classification.service';
+import {FeeallocationService} from '../../localService/feeallocation.service';
 
 @Component({
   selector: 'app-createtrade',
   templateUrl: './createtrade.component.html',
   styleUrls: ['./createtrade.component.scss']
 })
-export class CreatetradeComponent implements OnInit {
-  selected: number;
+export class CreatetradeComponent implements OnInit , AfterViewInit {
+  selectedtab: number;
   selectedb = new FormControl(0);
   role: string;
   isbuyer: boolean;
@@ -61,45 +63,19 @@ export class CreatetradeComponent implements OnInit {
   item: Item = new Item();
   itemlist: Array<Item> = new Array<Item>();
   deliverylist: Array<Delivery> = new Array<Delivery>();
+  feeallocationz: Array<FeeAllocation> = new Array<FeeAllocation>();
+  classificationz: Array<Classification> = new Array<Classification>();
   feeallocation: FeeAllocation = new FeeAllocation();
   classification: Classification = new Classification();
   agentfeetype: AgentFeeType = new AgentFeeType();
   user: User = new User();
 
-  classiffications = [
-    {value: 1, viewValue: 'General Goods and Services'},
-    {value: 2, viewValue: 'Agriculture , Livestock and Games'},
-    {value: 3, viewValue: 'Art, Antiques and Collectibles'},
-    {value: 4, viewValue: 'Business Sale and Booking'},
-    {value: 5, viewValue: 'Cars, Bikes and WaterCraft'},
-    {value: 6, viewValue: 'Construction'},
-    {value: 7, viewValue: 'Contract work and Freelancing'},
-    {value: 8, viewValue: 'Diesel , Petrolium and Biofuel'},
-    {value: 9, viewValue: 'Donations and Trusts'},
-    {value: 10, viewValue: 'Films and Productions'},
-    {value: 11, viewValue: 'Holiday Lets and Deposits'},
-    {value: 12, viewValue: 'Investments and Exists'},
-    {value: 13, viewValue: 'Mining , Metals and Minerals'},
-    {value: 14, viewValue: 'Rental Deposits'},
-    {value: 15, viewValue: 'Used Parts'},
-    {value: 16, viewValue: 'Web Dormain Purchases and Tranfers'},
-    {value: 17, viewValue: 'Wedding and Functions'},
-  ];
-
-  feeAllocations = [
-    {value: 1, viewValue: 'Seller'},
-    {value: 2, viewValue: 'Buyer'},
-    {value: 3, viewValue: 'Agent(Broker)'},
-    {value: 4, viewValue: '50-50 Seller/Buyer'},
-    {value: 5, viewValue: '50-50 Seller/Agent(Broker)'},
-    {value: 6, viewValue: '50-50 Buyer/Agent(Broker)'},
-    {value: 7, viewValue: '1:1:1 Seller/Buyer/Agent(Broker)'}
-  ];
 
   constructor(public auth: AuthService, private _formBuilder: FormBuilder,
-              private transactionsvc: Transactionservc, private router: Router, private calcservice: CalculatorfeeService) {
+              private transactionsvc: Transactionservc, private router: Router, private calcservice: CalculatorfeeService,
+              private classificationservice: ClassificationService,private feallocationservice: FeeallocationService) {
     this.role = 'buyer';
-    this.selected = 0;
+    this.selectedtab = 0;
     this.payamount = 0;
     this.fee = 0;
     this.totalinvoiceamount = 0;
@@ -110,6 +86,7 @@ export class CreatetradeComponent implements OnInit {
     if (this.auth.verified === 0) {
       this.router.navigate(['/verify']);
     }
+
 
     this.firstFormGroup = this._formBuilder.group({
       phone_number: ['', Validators.required],
@@ -131,7 +108,7 @@ export class CreatetradeComponent implements OnInit {
       id: ['1'],
       name: ['', Validators.required],
       description: ['', Validators.required],
-      quantity: ['3', Validators.required],
+      quantity: ['0', Validators.required],
       unit_of_measures_id: ['1'],
       transactions_id: ['0'],
       classification_id: ['', Validators.required]
@@ -141,7 +118,23 @@ export class CreatetradeComponent implements OnInit {
       period: ['1', Validators.required],
       inspection_period: ['1', Validators.required],
       agent_fee_value: ['0'],
-      feeAllocation_id: ['', Validators.required]
+      feeAlocation_id: ['', Validators.required]
+    });
+  }
+  ngAfterViewInit() {
+    this.classificationservice.getdata().subscribe((newHeroWithId) => {
+      this.classificationz = newHeroWithId;
+    }, (response: Response) => {
+      if (response.status <= 500) {
+        this.auth.showSnackBar('ooops something went wrong  ');
+      }
+    });
+    this.feallocationservice.getdata().subscribe((newHeroWithId) => {
+      this.feeallocationz = newHeroWithId;
+    }, (response: Response) => {
+      if (response.status <= 500) {
+        this.auth.showSnackBar('ooops something went wrong  ');
+      }
     });
     this.calcservice.getdata().subscribe((newHeroWithId) => {
       this.chargesz = newHeroWithId;
@@ -150,9 +143,7 @@ export class CreatetradeComponent implements OnInit {
         this.auth.showSnackBar('ooops something went wrong  ');
       }
     });
-
   }
-
 
   onsubmitformone() {
 
@@ -288,8 +279,7 @@ export class CreatetradeComponent implements OnInit {
   finishtransaction() {
     this.agentfeetype.id = 1;
     this.transaction.items = this.itemlist;
-    // this.user = JSON.parse(localStorage.getItem('user'));
-    // user trade role
+    //  finishup
     this.transaction.classification = this.classification;
     this.transaction.trade_roles = this.traderolelist;
     this.transaction.agent_fee_type = this.agentfeetype;
@@ -315,12 +305,12 @@ export class CreatetradeComponent implements OnInit {
 
 
   next() {
-    this.selected = this.selectedb.value + 1;
+    this.selectedtab = this.selectedb.value + 1;
   }
 
   previous() {
-    if (this.selected > 0) {
-      this.selected = this.selectedb.value - 1;
+    if (this.selectedtab > 0) {
+      this.selectedtab = this.selectedb.value - 1;
     }
   }
 
@@ -349,5 +339,5 @@ export class CreatetradeComponent implements OnInit {
         this.formavalueb = 'Seller';
       }
     }
-  };
+  }
 }

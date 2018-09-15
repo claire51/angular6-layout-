@@ -42,7 +42,7 @@ export class Transactions {
   classification: Classification;
   fee_allocation: FeeAllocation;
   delivery: Array<Delivery>;
-  isBuyer = true;
+  isBuyer: boolean ;
 
 
   constructor() {

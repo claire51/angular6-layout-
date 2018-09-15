@@ -60,18 +60,20 @@ this.useridz = (Number(localStorage.getItem('id')));
       this.dataSourceb.sort = this.sort;
       this.dataSourceb.paginator = this.paginator;
       for (let transac of this.transactions) {
+        transac.isBuyer = true;
+        if(this.id1 === 1) {
         for (let trade of  transac.trade_roles) {
-       if (trade.transaction_role_id === 1) {
-         this.trade_party =  trade.trade_party;
-         if (this.trade_party.user_id !== null && this.trade_party.user_id === this.useridz) {
-           if (this.id1 === 1) {
-             transac.isBuyer = true;
-           }
+          console.log('trade role' + trade.transaction_role_id);
+          console.log('trade user id ' + this.useridz);
+          console.log('trade party id ' + trade.trading_party_id );
+       if (trade.transaction_role_id === 1 ) {
+         if ( transac.user_id !== null && transac.user_id === this.useridz) {
+             transac.isBuyer = false;
          }
-       } else {transac.isBuyer = false;
+         }
        }
         }
-      }
+        }
     }, (response: Response) => {
       if (response.status <= 500) {
         this.authservice.showSnackBar(' could not load users');

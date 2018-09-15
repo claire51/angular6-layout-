@@ -12,7 +12,7 @@
 <div id="escrow2" class="escrow-container1" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
      fxLayoutAlign="center">
 
-  <mat-tab-group #tabgroup [selectedIndex]="selected"
+  <mat-tab-group #tabgroup [selectedIndex]="selectedtab"
                  (selectedIndexChange)="tabChanged($event)">
     <mat-tab class="labeposition">
       <ng-template mat-tab-label>
@@ -69,7 +69,7 @@
             <input matInput type="text" placeholder="Full Name" [(ngModel)]="full_namesz" required><br>
           </mat-form-field>
           <mat-form-field>
-            <input matInput type="text" placeholder="Id Number" [(ngModel)]="id_numberz" required><br>
+            <input matInput type="number" placeholder="Id Number" [(ngModel)]="id_numberz" required><br>
           </mat-form-field>
           <mat-form-field>
             <input matInput type="email" placeholder="Email" [(ngModel)]="emailzz">
@@ -93,7 +93,7 @@
               <input matInput type="text" placeholder="Full Name" [(ngModel)]="fullnamez" required><br>
             </mat-form-field>
             <mat-form-field>
-              <input matInput type="text" placeholder="Id Number" [(ngModel)]="idnumberz" required><br>
+              <input matInput type="number" placeholder="Id Number" [(ngModel)]="idnumberz" required><br>
             </mat-form-field>
             <mat-form-field>
               <input matInput type="email" placeholder="Email" [(ngModel)]="emailz">
@@ -121,9 +121,9 @@
           <form [formGroup]="thirdFormGroup" class="escrow-form" (ngSubmit)="onsubmitformthree()">
             <p><span style="font-size: 20px; font-weight: bold">Add item to Cart</span></p>
             <mat-form-field>
-              <mat-select placeholder="Select trade category" formControlName="classification_id" [(value)]="selected">
-                <mat-option *ngFor="let classiffication of classiffications" [value]="classiffication.value">
-                  {{ classiffication.viewValue }}
+              <mat-select placeholder="Select trade category" formControlName="classification_id" required="">
+                <mat-option *ngFor="let classiffication of classificationz" [value]="classiffication.id">
+                  {{ classiffication.description }}
                 </mat-option>
                 <br>
               </mat-select>
@@ -135,7 +135,7 @@
               <input matInput type="number" placeholder="Enter Item Quantity" formControlName="quantity" required><br>
             </mat-form-field>
             <mat-form-field>
-              <input matInput type="tel" placeholder="Enter item description" formControlName="description"
+              <input matInput type="text" placeholder="Enter item description" formControlName="description"
                      required><br>
             </mat-form-field>
             <div style="text-align: right; padding-right: 100px">
@@ -171,9 +171,9 @@
               <input matInput type="number" placeholder="Enter Agent Amount" formControlName="agent_fee_value"><br>
             </mat-form-field>
             <mat-form-field>
-              <mat-select placeholder="Who will pay the fee" formControlName="feeAlocation_id" [(value)]="selected">
-                <mat-option *ngFor="let feeAllocation of feeAllocations" [value]="feeAllocation.value">
-                  {{ feeAllocation.viewValue }}
+              <mat-select placeholder="Who will pay the fee" formControlName="feeAlocation_id"  required="">
+                <mat-option *ngFor="let feeAllocation of feeallocationz" [value]="feeAllocation.id">
+                  {{ feeAllocation.name }}
                 </mat-option>
                 <br>
               </mat-select>

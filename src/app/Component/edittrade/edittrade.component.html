@@ -38,9 +38,9 @@
               Enter valid Email
             </mat-error>
           </mat-form-field>
-            <div style="text-align: right; padding-right: 100px">
+            <div [hidden]='iseditable' style="text-align: right; padding-right: 100px">
               <p>
-                <span style="margin-left: 50px"><button type="submit"  [disabled]="!firstFormGroupA.valid" mat-raised-button color="primary" >Edit</button></span>
+                <span style="margin-left: 50px"><button type="submit"  [disabled]="!firstFormGroupA.valid " mat-raised-button color="primary" >Edit</button></span>
               </p>
             </div>
           </form>
@@ -77,7 +77,7 @@
               Enter valid Item Quantity
             </mat-error>
           </mat-form-field>
-            <div style="text-align: right; padding-right: 100px">
+            <div style="text-align: right; padding-right: 100px" [hidden]='iseditable' >
             <p>
             <span style="margin-left: 50px"><button type="submit"  [disabled]="!secondFormGroupB.valid" mat-raised-button color="primary" >Edit</button></span>
             </p>
