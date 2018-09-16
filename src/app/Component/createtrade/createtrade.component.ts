@@ -124,20 +124,20 @@ export class CreatetradeComponent implements OnInit , AfterViewInit {
   ngAfterViewInit() {
     this.classificationservice.getdata().subscribe((newHeroWithId) => {
       this.classificationz = newHeroWithId;
-    }, (response: Response) => {
-      if (response.status <= 500) {
-        this.auth.showSnackBar('ooops something went wrong  ');
-      }
-    });
-    this.feallocationservice.getdata().subscribe((newHeroWithId) => {
-      this.feeallocationz = newHeroWithId;
-    }, (response: Response) => {
-      if (response.status <= 500) {
-        this.auth.showSnackBar('ooops something went wrong  ');
-      }
-    });
-    this.calcservice.getdata().subscribe((newHeroWithId) => {
-      this.chargesz = newHeroWithId;
+      this.feallocationservice.getdata().subscribe((newHeroWithIdb) => {
+        this.feeallocationz = newHeroWithIdb;
+        this.calcservice.getdata().subscribe((newHeroWithIdc) => {
+          this.chargesz = newHeroWithIdc;
+        }, (response: Response) => {
+          if (response.status <= 500) {
+            this.auth.showSnackBar('ooops something went wrong  ');
+          }
+        });
+      }, (response: Response) => {
+        if (response.status <= 500) {
+          this.auth.showSnackBar('ooops something went wrong  ');
+        }
+      });
     }, (response: Response) => {
       if (response.status <= 500) {
         this.auth.showSnackBar('ooops something went wrong  ');
