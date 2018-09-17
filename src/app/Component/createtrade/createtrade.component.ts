@@ -69,7 +69,7 @@ export class CreatetradeComponent implements OnInit , AfterViewInit {
   classification: Classification = new Classification();
   agentfeetype: AgentFeeType = new AgentFeeType();
   user: User = new User();
-
+  private formSubmitAttempt: boolean;
 
   constructor(public auth: AuthService, private _formBuilder: FormBuilder,
               private transactionsvc: Transactionservc, private router: Router, private calcservice: CalculatorfeeService,
@@ -144,9 +144,14 @@ export class CreatetradeComponent implements OnInit , AfterViewInit {
       }
     });
   }
-
+  isFieldInvalid(field: string) {
+    return (
+      (!this.firstFormGroup .get(field).valid && this.firstFormGroup.get(field).touched) ||
+      (this.firstFormGroup.get(field).untouched && this.formSubmitAttempt)
+    );
+  }
   onsubmitformone() {
-
+    this.formSubmitAttempt = true;
     this.tradeparty = new TradeParty();
     this.traderole = new TradeRole();
     this.traderolelist.length = 0;
@@ -155,6 +160,7 @@ export class CreatetradeComponent implements OnInit , AfterViewInit {
     this.tradeparty.phone_number = this.phone_numberz;
     this.tradeparty.address = '';
     this.tradeparty.email = this.emailzz;
+
     this.tradeparty.user_id = null;
     if (this.isseller) {
       this.traderole.trading_party_id = 2;

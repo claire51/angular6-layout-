@@ -47,8 +47,8 @@
           </mat-radio-group>
         </div>
       </div>
-      <div style="text-align: right; padding-right: 90px">
-        <span style="margin-left: 40px"><button mat-raised-button color="primary" (click)="next()">Next</button></span>
+      <div style="text-align: right; padding-right: 100px">
+        <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="next()">Next</button></span>
       </div>
     </mat-tab>
 
@@ -63,13 +63,13 @@
           <p><span style="font-size: 17px; font-weight: bold">Who is the {{formavalue}} ?</span></p>
           <!--<form [formGroup]="firstFormGroup" (ngSubmit)="onsubmitformone()">-->
           <mat-form-field>
-            <input matInput type="tel" placeholder="Mobile Number" [(ngModel)]="phone_numberz" required>
+            <input matInput type="tel" placeholder="Mobile Number" [(ngModel)]="phone_numberz" required pattern="^07\d{8}$" ><br>
           </mat-form-field>
           <mat-form-field>
-            <input matInput type="text" placeholder="Full Name" [(ngModel)]="full_namesz" required>
+            <input matInput type="text" placeholder="Full Name" [(ngModel)]="full_namesz" required pattern="^[a-zA-Z0-9_.-]*$"><br>
           </mat-form-field>
           <mat-form-field>
-            <input matInput type="number" placeholder="Id Number" [(ngModel)]="id_numberz" required>
+            <input matInput type="text" placeholder="Id Number" [(ngModel)]="id_numberz" required pattern="^[0-9]*$"><br>
           </mat-form-field>
           <mat-form-field>
             <input matInput type="email" placeholder="Email" [(ngModel)]="emailzz">
@@ -80,33 +80,30 @@
         </div>
         <div class="content-divB">
           <p style="margin-top: 4%">
-            <mat-checkbox [(ngModel)]="broker" *ngIf="!isagent">  <span class="formfont">Add a Lead Agent or Broker ?</span>
+            <mat-checkbox [(ngModel)]="broker" *ngIf="!isagent">Add a Lead Agent or Broker Be Added to This
+              Transaction?
             </mat-checkbox>
           </p>
           <div *ngIf="isagent || broker">
             <p><span style="font-size: 20px; font-weight: bold">Who is the {{formavalueb}} ?</span></p>
             <mat-form-field>
-              <input matInput type="tel" placeholder="Mobile Number" [(ngModel)]="mobilez" required>
+              <input matInput type="tel" placeholder="Mobile Number" [(ngModel)]="mobilez" required pattern="^07\d{8}$" ><br>
             </mat-form-field>
             <mat-form-field>
-              <input matInput type="text" placeholder="Full Name" [(ngModel)]="fullnamez" required>
+              <input matInput type="text" placeholder="Full Name" [(ngModel)]="fullnamez" required pattern="^[a-zA-Z0-9_.-]*$"><br>
             </mat-form-field>
             <mat-form-field>
-              <input matInput type="number" placeholder="Id Number" [(ngModel)]="idnumberz" required>
+              <input matInput type="number" placeholder="Id Number" [(ngModel)]="idnumberz" required pattern="^[0-9]$"><br>
             </mat-form-field>
             <mat-form-field>
               <input matInput type="email" placeholder="Email" [(ngModel)]="emailz">
             </mat-form-field>
           </div>
-          <div class="btnarignment" >
-            <span class="btnposition"><button mat-raised-button color="primary" (click)="previous()">Previous</button></span>
-            <span>
-                  <button mat-raised-button color="primary"
-                          (click)="onsubmitformone()">Next</button></span>
+          <div style="text-align: right; padding-right: 100px; padding-top: 3%">
+            <span><button mat-raised-button color="primary" (click)="previous()">Previous</button></span>
+            <span style="margin-left: 50px"><button mat-raised-button color="primary"
+                                                    (click)="onsubmitformone()">Next</button></span>
           </div>
-
-
-
         </div>
 
       </div>
@@ -124,7 +121,7 @@
           <form [formGroup]="thirdFormGroup" class="escrow-form" (ngSubmit)="onsubmitformthree()">
             <p><span style="font-size: 20px; font-weight: bold">Add item to Cart</span></p>
             <mat-form-field>
-              <mat-select placeholder="Select trade category" formControlName="classification_id" required="">
+              <mat-select placeholder="Select trade category" formControlName="classification_id" >
                 <mat-option *ngFor="let classiffication of classificationz" [value]="classiffication.id">
                   {{ classiffication.description }}
                 </mat-option>
@@ -132,19 +129,18 @@
               </mat-select>
             </mat-form-field>
             <mat-form-field>
-              <input matInput type="text" placeholder="Enter Item Name" formControlName="name" required><br>
+              <input matInput type="text" placeholder="Enter Item Name" formControlName="name" ><br>
             </mat-form-field>
             <mat-form-field>
-              <input matInput type="number" placeholder="Enter Item Quantity" formControlName="quantity" required><br>
+              <input matInput type="number" placeholder="Enter Item Quantity" formControlName="quantity" ><br>
             </mat-form-field>
             <mat-form-field>
               <input matInput type="text" placeholder="Enter item description" formControlName="description"
-                     required><br>
+                     ><br>
             </mat-form-field>
-            <div class="btnarignment" >
-              <span class="btnposition"><button mat-raised-button color="primary" (click)="previous()">Previous</button></span>
-              <span>
-                  <button type="submit" mat-raised-button color="primary" (click)="next()">Next</button></span>
+            <div style="text-align: right; padding-right: 100px">
+              <span><button mat-raised-button color="primary" (click)="previous()">Previous</button></span>
+              <span style="margin-left: 50px"><button type="submit" [disabled]="!thirdFormGroup.valid"  mat-raised-button color="primary" (click)="next()">Next</button></span>
             </div>
           </form>
         </div>
@@ -162,34 +158,30 @@
           <form [formGroup]="fourthFormGroup" class="escrow-form" (ngSubmit)="onsubmitformfourth()">
             <p><span style="font-size: 20px; font-weight: bold">Transaction detail</span></p>
             <mat-form-field>
-              <input matInput type="number" placeholder="Invoice Amount" formControlName="invoice_amount" required><br>
+              <input matInput type="number" placeholder="Invoice Amount" formControlName="invoice_amount" ><br>
             </mat-form-field>
             <mat-form-field>
-              <input matInput type="number" placeholder="Delivery Period" formControlName="period" required><br>
+              <input matInput type="number" placeholder="Delivery Period" formControlName="period" ><br>
             </mat-form-field>
             <mat-form-field>
               <input matInput type="number" placeholder="Inspection Period" formControlName="inspection_period"
-                     required><br>
+                     ><br>
             </mat-form-field>
             <mat-form-field *ngIf="broker">
               <input matInput type="number" placeholder="Enter Agent Amount" formControlName="agent_fee_value"><br>
             </mat-form-field>
             <mat-form-field>
-              <mat-select placeholder="Who will pay the fee" formControlName="feeAlocation_id"  required="">
+              <mat-select placeholder="Who will pay the fee" formControlName="feeAlocation_id"  >
                 <mat-option *ngFor="let feeAllocation of feeallocationz" [value]="feeAllocation.id">
                   {{ feeAllocation.name }}
                 </mat-option>
                 <br>
               </mat-select>
             </mat-form-field>
-
-            <div class="btnarignment" >
-              <span class="btnposition"><button mat-raised-button color="primary" (click)="previous()">Previous</button></span>
-              <span>
-                  <button type="submit" mat-raised-button color="primary" (click)="next()">Next</button></span>
+            <div style="text-align: right; padding-right: 100px">
+              <span><button mat-raised-button color="primary" (click)="previous()">Previous</button></span>
+              <span style="margin-left: 50px"><button type="submit" mat-raised-button color="primary"  [disabled]="!fourthFormGroup.valid" (click)="next()">Next</button></span>
             </div>
-
-
           </form>
         </div>
       </div>
@@ -222,13 +214,10 @@
             <mat-form-field>
               <input matInput type="text" placeholder="Enter postal code" formControlName="delivery_postal_code">
             </mat-form-field>
-
-            <div class="btnarignment" >
-              <span class="btnposition"><button mat-raised-button color="primary" (click)="previous()">Previous</button></span>
-              <span>
-                <button type="submit" mat-raised-button color="primary" (click)="next()">Skip</button></span>
+            <div style="text-align: right; padding-right: 100px">
+              <span><button mat-raised-button color="primary" (click)="previous()">Previous</button></span>
+              <span style="margin-left: 50px"><button type="submit"  mat-raised-button color="primary" (click)="next()">Skip</button></span>
             </div>
-
           </form>
         </div>
       </div>
@@ -259,10 +248,10 @@
                 </p>
               </div>
 
-              <div class="btnarignment" >
-                <span class="btnposition"><button mat-raised-button color="primary" (click)="previous()">Previous</button></span>
-                <span>
-                  <button mat-raised-button [color]="'purple'"  (click)="finishtransaction()">Submit Order</button></span>
+              <div style="text-align: left; padding-left: 100px;padding-top: 2%">
+                <span><button mat-raised-button color="primary" (click)="previous()">Previous</button></span>
+                <span style="margin-left: 37%; text-align: center"><button mat-raised-button [color]="'purple'"
+                                                                           (click)="finishtransaction()">Submit Order</button></span>
               </div>
             </mat-card-content>
 
