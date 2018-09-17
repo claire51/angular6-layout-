@@ -37,7 +37,7 @@ resend: Resender = new Resender();
       verification_code: ['', Validators.required]
     });
     this.formresend = this.fb.group({
-      phone_number: [this.auth.resendphone, Validators.required]
+      phone_number: [this.auth.resendphone, Validators.compose([Validators.required, Validators.pattern(/^07\d{8}$/)]) ],
     });
   }
   isFieldInvalid(field: string) {

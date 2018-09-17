@@ -73,7 +73,7 @@ export class CreatetradeComponent implements OnInit , AfterViewInit {
 
   constructor(public auth: AuthService, private _formBuilder: FormBuilder,
               private transactionsvc: Transactionservc, private router: Router, private calcservice: CalculatorfeeService,
-              private classificationservice: ClassificationService,private feallocationservice: FeeallocationService) {
+              private classificationservice: ClassificationService, private feallocationservice: FeeallocationService) {
     this.role = 'buyer';
     this.selectedtab = 0;
     this.payamount = 0;
@@ -89,36 +89,36 @@ export class CreatetradeComponent implements OnInit , AfterViewInit {
 
 
     this.firstFormGroup = this._formBuilder.group({
-      phone_number: ['', Validators.required],
-      full_names: ['', Validators.required],
-      id_number: [''],
-      email: [''],
-      address: [''],
+      phone_number: ['', Validators.compose([Validators.required, Validators.pattern(/^07\d{8}$/)]) ],
+      full_names: ['', Validators.compose([ Validators.required, Validators.minLength(3), Validators.pattern(/[A-Za-z]/)])],
+      id_number: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
+      email: ['', Validators.compose([Validators.required, Validators.email]) ],
+      address: ['', Validators.compose([ Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9_.-]*$/)])],
     });
     this.secondFormGroup = this._formBuilder.group({
-      del_cntry: [''],
-      del_cnty: [''],
-      del_twn: [''],
-      del_strt: [''],
-      delivery_postal_code: [''],
-      del_ln: [''],
-      del_cmt: ['']
+      del_cntry: ['', Validators.compose([ Validators.minLength(2), Validators.pattern(/^[a-zA-Z0-9_.-]*$/)])],
+      del_cnty: ['', Validators.compose([ Validators.minLength(2), Validators.pattern(/^[a-zA-Z0-9_.-]*$/)])],
+      del_twn: ['', Validators.compose([ Validators.minLength(2), Validators.pattern(/^[a-zA-Z0-9_.-]*$/)])],
+      del_strt: ['', Validators.compose([ Validators.minLength(2), Validators.pattern(/^[a-zA-Z0-9_.-]*$/)])],
+      delivery_postal_code: ['',  Validators.pattern(/^[0-9]/)],
+      del_ln: ['', Validators.compose([ Validators.minLength(2), Validators.pattern(/^[a-zA-Z0-9_.-]*$/)])],
+      del_cmt: ['', Validators.compose([ Validators.minLength(2), Validators.pattern(/^[a-zA-Z0-9_.-]*$/)])],
     });
     this.thirdFormGroup = this._formBuilder.group({
       id: ['1'],
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      quantity: ['0', Validators.required],
-      unit_of_measures_id: ['1'],
-      transactions_id: ['0'],
-      classification_id: ['', Validators.required]
+      name: ['', Validators.compose([ Validators.required, Validators.minLength(3), Validators.pattern(/[A-Za-z]/)])],
+      description: ['', Validators.compose([ Validators.required, Validators.minLength(3), Validators.pattern(/[A-Za-z]/)])],
+      quantity: ['0', Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
+      unit_of_measures_id: ['1', Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
+      transactions_id: ['0', Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
+      classification_id: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
     });
     this.fourthFormGroup = this._formBuilder.group({
-      invoice_amount: ['', Validators.required],
-      period: ['1', Validators.required],
-      inspection_period: ['1', Validators.required],
-      agent_fee_value: ['0'],
-      feeAlocation_id: ['', Validators.required]
+      invoice_amount: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
+      period: ['0', Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
+      inspection_period: ['0', Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
+      agent_fee_value: ['0',  Validators.pattern(/^[0-9]/)],
+      feeAlocation_id: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
     });
   }
   ngAfterViewInit() {

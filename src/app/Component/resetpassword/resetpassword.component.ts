@@ -42,8 +42,8 @@ export class ResetpasswordComponent implements OnInit {
     this.tokenz =  this.route.snapshot.params['token'];
     console.log(this.tokenz)
     this.resetPassword = this.fb.group({
-      email: ['', Validators.required],
-      newpass: ['', Validators.required],
+      email: ['',  Validators.compose([Validators.required, Validators.email]) ],
+      newpass: ['', Validators.compose([ Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9_.-]*$/)])],
       confirmpass: ['', Validators.required]
     }, { validator: this.checkPasswords });
   }

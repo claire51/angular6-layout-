@@ -13,49 +13,50 @@
           <p style="color: red">{{error}}</p>
 
           <mat-form-field class="full-width-input">
-            <input matInput placeholder="First Name" formControlName="first_name" required >
-            <mat-error *ngIf="isFieldInvalid('first_name')">
+            <input matInput placeholder="First Name" formControlName="first_name"  autocomplete="off">
+            <mat-error *ngIf="!form.get('first_name').valid && form.get('first_name').touched" >
               Enter Your First Name
             </mat-error>
           </mat-form-field>
           <mat-form-field class="full-width-input">
-            <input matInput placeholder="Middle Name" formControlName="middle_name" required>
-            <mat-error *ngIf="isFieldInvalid('middle_name')">
+            <input matInput placeholder="Middle Name" formControlName="middle_name"  autocomplete="off">
+            <mat-error *ngIf="!form.get('middle_name').valid && form.get('middle_name').touched">
               Enter Your Middle Name
             </mat-error>
           </mat-form-field>
           <mat-form-field class="full-width-input">
-            <input matInput placeholder="Last Name" formControlName="last_name" required>
-            <mat-error *ngIf="isFieldInvalid('last_name')">
+            <input matInput placeholder="Last Name" formControlName="last_name"  autocomplete="off">
+            <mat-error *ngIf="!form.get('last_name').valid && form.get('last_name').touched">
               Enter valid Last name
             </mat-error>
           </mat-form-field>
           <mat-form-field class="full-width-input">
-            <input matInput  type="tel" placeholder="Phone Number " formControlName="phone_number" required>
-            <mat-error *ngIf="isFieldInvalid('phone_number')">
+            <input matInput  type="tel" placeholder="Phone Number " formControlName="phone_number"  autocomplete="off">
+            <mat-error *ngIf="!form.get('phone_number').valid && form.get('phone_number').touched">
               Enter valid  Mobile Number
             </mat-error>
           </mat-form-field>
           <mat-form-field class="full-width-input">
-            <input matInput type="text"  placeholder="ID Number" formControlName="national_id" required>
-            <mat-error *ngIf="isFieldInvalid('national_id')">
+            <input matInput type="text"  placeholder="ID Number" formControlName="national_id"  autocomplete="off">
+            <mat-error *ngIf="!form.get('national_id').valid && form.get('national_id').touched">
               Enter valid ID Number
             </mat-error>
           </mat-form-field>
           <mat-form-field class="full-width-input">
-            <input matInput type="email"  placeholder="Email" formControlName="email" required>
-            <mat-error *ngIf="isFieldInvalid('email')">
+            <input matInput type="email"  placeholder="Email" formControlName="email"  autocomplete="off"   >
+            <mat-error *ngIf="!form.get('email').valid && form.get('email').touched">
               Enter valid Email
             </mat-error>
           </mat-form-field>
           <mat-form-field   class="full-width-input">
-            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password"  autocomplete="off">
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-            <mat-error *ngIf="isFieldInvalid('password')">
+            <mat-error *ngIf="!form.get('password').valid && form.get('password').touched">
               Enter valid Password(Should have atleast 4 character)
             </mat-error>
           </mat-form-field>
-          <button mat-raised-button color="primary" type="submit"  [disabled]="!form.valid">Sign Up</button>
+          <!--[disabled]="!form.valid"-->
+          <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid"  >Sign Up</button>
         </form>
       </mat-card-content>
     </mat-card>

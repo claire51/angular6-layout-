@@ -28,7 +28,7 @@ constructor(private progressBarService: ProgressBarService,
   ngOnInit() {
     this.authservice.showloading = true;
     this.form = this.formBuilder.group({
-      amount: [0, Validators.required]
+      amount: [0,  Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ]
     });
     this.progressBarService.updateProgressBar$.subscribe((mode: string) => {
       this.progressBarMode = mode;

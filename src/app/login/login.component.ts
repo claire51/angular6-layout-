@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
     this.status = true;
     this.authservice.showloading = false;
     this.form = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ['', Validators.compose([Validators.required, Validators.email]) ],
+      password: ['', Validators.compose([ Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9_.-]*$/)])],
     });
   }
   isFieldInvalid(field: string) {
