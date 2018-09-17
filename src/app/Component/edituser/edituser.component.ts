@@ -60,16 +60,16 @@ export class EdituserComponent implements OnInit {
 
   ngOnInit() {
     this.resetPassword = this.fb.group({
-      currentpass: ['', Validators.required],
-      newpass: ['', Validators.required],
+      currentpass: ['',  Validators.compose([Validators.required, Validators.email]) ],
+      newpass: ['', Validators.compose([ Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9_.-]*$/)])],
       confirmpass: ['', Validators.required]
     }, {validator: this.checkPasswords});
     this.usereditform = this.fb.group({
       id: [(Number(localStorage.getItem('id')))],
-      first_name: [localStorage.getItem('firstname'), Validators.required],
-      phone_number: [localStorage.getItem('phone_number'), Validators.required],
-      national_id: [localStorage.getItem('idnumber'), Validators.required],
-      email: [localStorage.getItem('email'), Validators.required]
+      first_name: [localStorage.getItem('firstname'), Validators.compose([ Validators.required, Validators.minLength(3), Validators.pattern(/[A-Za-z]/)])],
+      phone_number: [localStorage.getItem('phone_number'), Validators.compose([Validators.required, Validators.pattern(/^07\d{8}$/)]) ],
+      national_id: [localStorage.getItem('idnumber'), Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
+      email: [localStorage.getItem('email'), Validators.compose([Validators.required, Validators.email]) ]
     });
   }
 

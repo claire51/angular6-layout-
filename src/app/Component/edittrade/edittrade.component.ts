@@ -40,21 +40,21 @@ export class EdittradeComponent implements OnInit {
       this.iseditable = true;
     }
     this.firstFormGroupA = this._formBuilder.group({
-      id: [this.transaction.id, Validators.required],
-      period: [this.transaction.period, Validators.required],
-      invoice_amount: [this.transaction.invoice_amount ],
-      inspection_period: [this.transaction.inspection_period],
-      agent_fee_value: [10],
-      agent_fee_type_id: [this.transaction.agent_fee_type_id],
-      fee_allocation_id: [this.transaction.fee_allocation_id],
-      classification_id: [ this.transaction.classification_id],
+      id: [this.transaction.id],
+      period: [this.transaction.period, Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
+      invoice_amount: [this.transaction.invoice_amount, Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
+      inspection_period: [this.transaction.inspection_period, Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
+      agent_fee_value: [0, Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
+      agent_fee_type_id: [this.transaction.agent_fee_type_id, Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
+      fee_allocation_id: [this.transaction.fee_allocation_id, Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
+      classification_id: [ this.transaction.classification_id, Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
     });
     this.secondFormGroupB = this._formBuilder.group({
       id: [this.item.id],
-      name: [this.item.name],
-      description: [this.item.description],
-      quantity: [this.item.quantity],
-      unit_of_measures_id: [this.item.unit_of_measures_id]
+      name: [this.item.name, Validators.pattern(/[A-Za-z]/)],
+      description: [this.item.description, Validators.pattern(/[A-Za-z]/)],
+      quantity: [this.item.quantity, Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
+      unit_of_measures_id: [this.item.unit_of_measures_id, Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
     });
   }
   isFieldInvalid(field: string) {

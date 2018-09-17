@@ -31,15 +31,19 @@ export class SignupComponent implements OnInit {
     this.auth.showloading = false;
     this.status = true;
     this.form = this.fb.group({
-      first_name: ['', Validators.required],
-      middle_name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      phone_number: ['', Validators.required],
-      national_id: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      first_name: ['', Validators.compose([ Validators.required, Validators.minLength(3), Validators.pattern(/[A-Za-z]/)])],
+      middle_name: ['', Validators.pattern(/[A-Za-z]/)],
+      last_name: ['',  Validators.compose([ Validators.required, Validators.minLength(3), Validators.pattern(/[A-Za-z]/)])],
+      phone_number: ['', Validators.compose([Validators.required, Validators.pattern(/^07\d{8}$/)]) ],
+      national_id: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
+      email: ['', Validators.compose([Validators.required, Validators.email]) ],
+      password: ['',  Validators.compose([ Validators.required, Validators.minLength(3)])],
     });
   }
+
+
+
+
   isFieldInvalid(field: string) {
     return (
       (!this.form.get(field).valid && this.form.get(field).touched) ||
@@ -73,6 +77,8 @@ export class SignupComponent implements OnInit {
       }
     });
   }
+
+
 
 }
 

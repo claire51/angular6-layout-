@@ -27,7 +27,7 @@ export class PassRecoverComponent implements OnInit {
     this.isLoggedIn$ = this.auth.isAuthenticated();
     this.status = true;
     this.form = this.fb.group({
-      email: ['', Validators.required]
+      email: ['',  Validators.compose([Validators.required, Validators.email]) ]
     });
   }
   isFieldInvalid(field: string) {
