@@ -106,8 +106,29 @@ justify-content: center;
 .Why-content{
   flex: 1;
   background-color: white;
+  text-align: center;
 
 }
+
+.icondi-tab-icon{
+  color: #0071c5;
+  font-size: 30px;
+  margin-right: 10px;
+}
+.largeicon{
+  color: #0071c5;
+  font-size: 130px;
+  margin-right: 10px;
+  align-content: center;
+  align-items: center;
+}
+
+
+
+
+
+
+
 .z-depth {
   height: 180px;
   box-shadow: 0 6px 6px rgba(10,16,20,.15), 0 0 52px rgba(10,16,20,.12) !important;
@@ -391,6 +412,7 @@ font-size: 16px;
   //}
   .paratext{
     font-size: 13px;
+    text-align: center;
   }
 
 

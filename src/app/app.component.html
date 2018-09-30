@@ -82,42 +82,12 @@
       <div fxShow="true" class="barmenu" fxHide.lt-md="true"   >
         <!-- The following menu items will be hidden on both SM and XS screen sizes -->
 
-
-        <span class="header_text">
-       <button mat-button routerLink="/dashboard"
-               *ngIf="isLoggedIn$ | async as isAuthenticated; else dashboard1">
-          <mat-icon>home</mat-icon>
-         Dashboard</button>
-     </span>
-
-        <ng-template #dashboard1>
-          <a href="#landingpage" mat-button >
-            HOME
-          </a>
-        </ng-template>
-
-
         <span class="header_text">
        <button mat-button routerLink="/createtrade"
-               *ngIf="isLoggedIn$ | async as isAuthenticated; else business1">
+               *ngIf="isLoggedIn$ | async as isAuthenticated">
           <mat-icon>queue</mat-icon>
          New trade</button>
      </span>
-
-
-        <ng-template #business1 style="color: white; margin: 0%">
-          <a href="#when-to-use" mat-button >
-            ABOUT
-          </a>
-          <a href="#personal" mat-button >
-            HOW IT WORKS
-          </a>
-        </ng-template>
-
-        <!--<mat-icon matBadge="15" matBadgeColor="warn"-->
-                  <!--*ngIf="isLoggedIn$ | async as isAuthenticated; else elsesignup1s"-->
-                  <!--routerLink=".">message-->
-        <!--</mat-icon>-->
         <span class="header_text">
        <button mat-button routerLink="/profile"
                *ngIf="isLoggedIn$ | async as isAuthenticated; else elsesignup1s" >
@@ -125,8 +95,8 @@
          Profile</button>
      </span>
 
-        <ng-template #elsesignup1s style="color: white; margin: 1%">
-          <button mat-button routerLink="/login">Login</button>
+        <ng-template #elsesignup1s >
+          <button  style="color: white; margin-left: 51%; padding: auto"  mat-button routerLink="/login">Login</button>
         </ng-template>
 
 
@@ -142,7 +112,7 @@
      </span>
 
 
-        <ng-template #elseBlock1 style="color: white">
+        <ng-template #elseBlock1 >
           <span class="header_text">
             <button mat-button  [color]="'purple'" routerLink="/signup"> Create Account</button>
      </span>
@@ -160,5 +130,6 @@
 
     <!-- Add Content Here -->
         <router-outlet></router-outlet>
+
   </mat-sidenav-content>
 </mat-sidenav-container>
