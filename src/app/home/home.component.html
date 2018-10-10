@@ -140,34 +140,7 @@ w" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
 
       </div>
     </div>
-<div id="fee-cal" class="howitwork-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-  <div  class="calculatz"  >
-    <p><span style=" font-weight: bolder;font-size: 30px">
- Calculate Fee to be charged
-      </span>
-    </p>
-    <mat-card>
-      <mat-card-content>
-        <p><span style=" font-weight: bolder;font-size: 30px">
-Fee charged is: Ksh  {{feeamount}}
-      </span>
-        </p>
-        <!--<form [formGroup]="form" (ngSubmit)="onSubmit()">-->
-          <mat-form-field class="full-width-input">
-            <input matInput type="number"  placeholder="Enter invoice amount of trade" [(ngModel)]="reqAmount"  required>
-          </mat-form-field>
-        <div>
-          <span class="loginbtn">
-        <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Calculate</button>
-        </span>
-        </div>
 
-      </mat-card-content>
-    </mat-card>
-
-
-  </div>
-</div>
 
 <div id="how-itworks" class="howitwork-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
       <div class="Why-content">
@@ -261,24 +234,35 @@ Ready to Start ?
     </p>
   </div>
 </div>
+<div id="fee-cal" class="howitwork-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div  class="calculatz"  >
+    <p><span style=" font-weight: bolder;font-size: 25px">
+What does it cost ?
+      </span>
+    </p>
+    <p><span style=" font-weight: bolder;font-size: 18px">
+Use our quick calculator to know your transaction cost
+      </span>
+    </p>
+    <mat-card>
+      <mat-card-content>
+        <p><span style=" font-weight: bolder;font-size: 20px">
+Fee charged is: Ksh  {{feeamount}}
+      </span>
+        </p>
+        <mat-form-field class="full-width-input">
+          <input matInput type="number"  placeholder="Enter total trade amount" [(ngModel)]="reqAmount"  required>
+        </mat-form-field>
+        <div>
+          <span class="loginbtn">
+        <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Calculate</button>
+        </span>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
 
 
-<div id="aboutus" class="howitwork-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-  <div class="Why-content">
-    <p>dddddddddd</p>
   </div>
-  <div class="Why-content">
-    <p>dddddddddd</p>
-  </div>
-  <div class="Why-content">
-    <p>dddddddddd</p>
-  </div>
-  <div class="Why-content">
-    <p>dddddddddd</p>
-  </div>
-
 </div>
-<div id="copyright" class="howitwork-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-<p>Legal | Terms and condition Copyright &copy; 2018 Mlinzi Technologies </p>
 
-</div>

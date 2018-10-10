@@ -1,64 +1,67 @@
-<div class="container"   fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-  <div class="signup-div1">
-    <mat-card>
-      <section  class="progress-bar" [hidden]='status' >
-        <mat-progress-bar
-          color='primary'
-          mode="indeterminate" >
-        </mat-progress-bar>
-      </section>
-      <mat-card-content>
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <p style="color: blue">Sign up </p>
-          <p style="color: red">{{error}}</p>
 
-          <mat-form-field class="full-width-input">
-            <input matInput placeholder="First Name" formControlName="first_name"  autocomplete="off">
-            <mat-error *ngIf="!form.get('first_name').valid && form.get('first_name').touched" >
-              Enter Your First Name
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="full-width-input">
-            <input matInput placeholder="Middle Name" formControlName="middle_name"  autocomplete="off">
-            <mat-error *ngIf="!form.get('middle_name').valid && form.get('middle_name').touched">
-              Enter Your Middle Name
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="full-width-input">
-            <input matInput placeholder="Last Name" formControlName="last_name"  autocomplete="off">
-            <mat-error *ngIf="!form.get('last_name').valid && form.get('last_name').touched">
-              Enter valid Last name
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="full-width-input">
-            <input matInput  type="tel" placeholder="Phone Number " formControlName="phone_number"  autocomplete="off">
-            <mat-error *ngIf="!form.get('phone_number').valid && form.get('phone_number').touched">
-              Enter valid  Mobile Number
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="full-width-input">
-            <input matInput type="text"  placeholder="ID Number" formControlName="national_id"  autocomplete="off">
-            <mat-error *ngIf="!form.get('national_id').valid && form.get('national_id').touched">
-              Enter valid ID Number
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="full-width-input">
-            <input matInput type="email"  placeholder="Email" formControlName="email"  autocomplete="off"   >
-            <mat-error *ngIf="!form.get('email').valid && form.get('email').touched">
-              Enter valid Email
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field   class="full-width-input">
-            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password"  autocomplete="off">
-            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-            <mat-error *ngIf="!form.get('password').valid && form.get('password').touched">
-              Enter valid Password(Should have atleast 4 character)
-            </mat-error>
-          </mat-form-field>
-          <!--[disabled]="!form.valid"-->
-          <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid"  >Sign Up</button>
-        </form>
-      </mat-card-content>
-    </mat-card>
+
+
+<div id="aboutus" class="howitwork-containersignup " fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div class="Why-contentsignupa">
+    <p><span style="font-size: 25px; font-weight: bolder"> Mlinzi helps you trade  </span>  </p>
+    <p><span style="font-size: 30px; font-weight: bolder"> with absolute confidence </span>  </p>
+
+    <p style="text-align: center">
+      <i class="material-icons  largeicon">cloud_done</i>
+
+
+    </p>
   </div>
+  <div class="Why-contentsignup">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <p style="color: blue"><span style="font-size: 25px; font-weight: bolder"> Create Account </span></p>
+    <p style="color: red">{{error}}</p>
+
+    <mat-form-field class="full-width-inputA">
+    <input class="inputlook" matInput placeholder="First Name" formControlName="first_name"  autocomplete="off">
+    <mat-error *ngIf="!form.get('first_name').valid && form.get('first_name').touched" >
+    Enter Your First Name
+    </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width-inputB">
+    <input class="inputlook" matInput placeholder="Last Name" formControlName="last_name"  autocomplete="off">
+    <mat-error *ngIf="!form.get('last_name').valid && form.get('last_name').touched">
+    Enter valid Last name
+    </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="full-width-input">
+    <input matInput class="inputlook"  type="tel" placeholder="Phone Number " formControlName="phone_number"  autocomplete="off">
+    <mat-error *ngIf="!form.get('phone_number').valid && form.get('phone_number').touched">
+    Enter valid  Mobile Number
+    </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width-input">
+    <input matInput class="inputlook" type="text"  placeholder="ID Number" formControlName="national_id"  autocomplete="off">
+    <mat-error *ngIf="!form.get('national_id').valid && form.get('national_id').touched">
+    Enter valid ID Number
+    </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width-input">
+    <input matInput class="inputlook" type="email"  placeholder="Email" formControlName="email"  autocomplete="off"   >
+    <mat-error *ngIf="!form.get('email').valid && form.get('email').touched">
+    Enter valid Email
+    </mat-error>
+    </mat-form-field>
+    <mat-form-field   class="full-width-input">
+    <input matInput class="inputlook" placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password"  autocomplete="off">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    <mat-error *ngIf="!form.get('password').valid && form.get('password').touched">
+    Enter valid Password(Should have atleast 4 character)
+    </mat-error>
+    </mat-form-field>
+
+      <br>
+    <!--[disabled]="!form.valid"-->
+    <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid"  >Sign Up</button>
+    </form>
+  </div>
+
+
 </div>

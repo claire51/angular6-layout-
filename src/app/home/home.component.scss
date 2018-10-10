@@ -36,6 +36,14 @@ align-items: center;
   //padding-top:1%;
   flex-wrap: wrap;
 }
+.howitwork-containerfooter{
+  display: flex;
+  width:100%;
+  background-color: grey;
+  align-items: center;
+  //padding-top:1%;
+  flex-wrap: wrap;
+}
 
 .container3{
   display:flex;
@@ -109,6 +117,12 @@ justify-content: center;
   text-align: center;
 
 }
+.Why-contentfooter{
+  flex: 1;
+  //background-color: white;
+  text-align: center;
+
+}
 
 .icondi-tab-icon{
   color: #0d46a0;
@@ -170,7 +184,7 @@ font-size: 16px;
   flex: auto;
   text-align: center;
   overflow: visible;
-  padding-bottom: 2%;
+  padding-bottom: 0%;
   color: #0d46a0;
 }
 .listing{

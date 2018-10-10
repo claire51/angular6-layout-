@@ -16,7 +16,6 @@ import {AuthService} from '../auth.service';
 })
 export class SignupComponent implements OnInit {
   form: FormGroup;
-  profile: Profile;
   status: boolean;
   registrationresponse: RegistrationResponse;
   error: string;

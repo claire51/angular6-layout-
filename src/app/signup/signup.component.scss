@@ -5,9 +5,19 @@ md-card {
 }
 
 .full-width-input {
-  width: 100%;
+  width: 60%;
+}
+.full-width-inputA {
+  width: 30%;
+  margin-right: 1%;
+}
+.full-width-inputB {
+  width:30%;
 }
 
+.inputlook{
+  background-color: white;
+}
 
 
 .container{
@@ -15,10 +25,97 @@ md-card {
   padding-top: 5%;
   width:100%;
   flex-direction:column;
-
+margin-bottom: 4%;
 }
 .signup-div1{
   flex: auto;
   margin-top: 0%;
   max-width: 500px;
+}
+
+.howitwork-containersignup{
+  display: flex;
+  width:100%;
+  background-color: #575756;
+  align-items: center;
+  //padding-top:1%;
+  flex-wrap: wrap;
+}
+
+.Why-contentsignup{
+  flex: 1;
+  background-color: #d3d3d3;
+  text-align: center;
+  padding-bottom: 5%;
+}
+.Why-contentsignupa{
+  flex: 1;
+  background-color: #d3d3d3	;
+  text-align: center;
+  padding-bottom: 5%;
+  color: #0d46a0;
+}
+.largeicon{
+  padding-top: 5%;
+  color: #0d46a0;
+  font-size: 180px;
+  margin-right: 10px;
+  align-content: center;
+  align-items: center;
+}
+
+
+
+//mobile
+@media all and (max-width: 800px) {
+  .Why-contentsignupa{
+    flex: 1;
+    order: 2;
+    background-color: #d3d3d3	;
+    text-align: center;
+    padding-bottom: 5%;
+    color: #0d46a0;
+  }
+  .largeicon{
+    padding-top: 5%;
+    color: #0d46a0;
+    font-size: 90px;
+    margin-right: 5px;
+    align-content: center;
+    align-items: center;
+  }
+}
+
+/* Small screens */
+@media all and (max-width: 500px) {
+  .Why-contentsignupa{
+    flex: 1;
+    order: 2;
+    background-color: #d3d3d3	;
+    text-align: center;
+    padding-bottom: 5%;
+    color: #0d46a0;
+  }
+  .largeicon{
+    padding-top: 5%;
+    color: #0d46a0;
+    font-size: 60px;
+    margin-right: 3px;
+    align-content: center;
+    align-items: center;
+  }
+
+  .full-width-input {
+    width: 60%;
+  }
+  .full-width-inputA {
+    width: 30%;
+    margin-right: 1%;
+
+  }
+  .full-width-inputB {
+    width:30%;
+  }
+
+
 }

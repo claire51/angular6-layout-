@@ -4,6 +4,7 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Observable} from 'rxjs';
 import {AuthService} from './auth.service';
 import {ProgressBarService} from './services/progress-bar.service';
+import {Spinkit} from 'ng-http-loader';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent implements OnInit {
   isLoggedIn$: Observable<boolean>;
   progressBarMode: string;
   color = 'primary';
+  public spinkit = Spinkit;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -22,6 +24,7 @@ export class AppComponent implements OnInit {
 
   constructor(private breakpointObserver: BreakpointObserver , public auth: AuthService,  private progressBarService: ProgressBarService) {
     this.auth.showloading = false;
+
   }
 
   ngOnInit() {

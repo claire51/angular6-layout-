@@ -78,7 +78,9 @@
       <!--<span>basic</span>-->
       <!--<span class="header_text">MLINZI</span>-->
       <div class="menudiv">
-      <div ><img src="./../assets/images/logo.png" class="logo" alt="MLINZI" ></div>
+      <div >
+      <a href="#"> <img src="./../assets/images/logo.png" class="logo" alt="MLINZI" ></a>
+      </div>
       <div fxShow="true" class="barmenu" fxHide.lt-md="true"   >
         <!-- The following menu items will be hidden on both SM and XS screen sizes -->
 
@@ -129,7 +131,41 @@
     </section>
 
     <!-- Add Content Here -->
+    <ng-http-loader
+      [backgroundColor]="'#0d46a0'"
+      [spinner]="spinkit.skWave"
+      [debounceDelay]="100"
+      [minDuration]="300"
+      [extraDuration]="300">
+    </ng-http-loader>
         <router-outlet></router-outlet>
+
+    <div id="aboutus" class="howitwork-containerfooter" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+      <div class="Why-contentfooter">
+        <p ><a href="#" class="footerlinkcolor">About us</a></p>
+        <p><a href="#" class="footerlinkcolor">Contact us</a></p>
+        <p><a href="#" class="footerlinkcolor">Support </a></p>
+        <p><a href="#" class="footerlinkcolor">Job </a></p>
+        <p><a href="#" class="footerlinkcolor">Blog </a></p>
+      </div>
+      <div class="Why-contentfooter">
+        <p><a href="#personal_content" class="footerlinkcolor">Why Mlinzi</a></p>
+        <p><a href="#how-itworks" class="footerlinkcolor">How it works</a></p>
+        <p><a href="#fee-cal" class="footerlinkcolor">What does it cost </a></p>
+      </div>
+      <div class="Why-contentfooter">
+        <p><a href="#" class="footerlinkcolor"> Mlinzi Escrow</a></p>
+        <p><a href="#" class="footerlinkcolor">Mlinzi API</a></p>
+        <p><a href="#" class="footerlinkcolor">Mlinzi Market place</a></p>
+        <p><a href="#" class="footerlinkcolor">Term & Conditions</a></p>
+      </div>
+
+
+    </div>
+    <div id="copyright" class="howitwork-containerfooterd" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+      <p>Legal | Terms and condition Copyright &copy; 2018 Mlinzi Technologies </p>
+    </div>
+
 
   </mat-sidenav-content>
 </mat-sidenav-container>

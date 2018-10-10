@@ -27,6 +27,7 @@ import {ProgressInterceptor} from './common/interceptors/progress.interceptor';
 import {Login} from './localService/login';
 import {AuthInterceptor} from './common/interceptors/auth-interceptor';
 import {CalculatorfeeService} from './localService/calculatorfee.service';
+import {NgHttpLoaderModule} from 'ng-http-loader';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import {CalculatorfeeService} from './localService/calculatorfee.service';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    NgHttpLoaderModule,
     FlexLayoutModule,
     AppMaterialModule,
     FormsModule,
