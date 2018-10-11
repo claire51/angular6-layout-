@@ -6,7 +6,9 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from '../Component/dashboard/dashboard.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AppMaterialModule} from '../app-material/app-material.module';
-import {Recoverpassword} from '../localService/recoverpassword';
+import {Transactionview} from '../localService/transactionview';
+import {PaymentService} from '../localService/payment.service';
+import {ApproveService} from '../localService/approve.service';
 
 @NgModule({
   imports: [
@@ -19,5 +21,8 @@ import {Recoverpassword} from '../localService/recoverpassword';
   ],
   declarations: [DashboardComponent
     ],
+  providers: [
+    Transactionview, PaymentService, ApproveService
+  ],
 })
 export class DashboardModule { }

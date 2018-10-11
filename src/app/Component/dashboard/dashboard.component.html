@@ -1,78 +1,50 @@
-<div id="escrowheader" class="escrow-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
-     fxLayoutAlign="center">
-  <div class="tradeAheader">
-    <div class="card-designheader">
-      <p><span class="header_textdashboard">
-       Trade dashboard
-      </span>
-      </p>
-    </div>
+
+<div id="aboutus" class="howitwork-containerdashboard  " fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div class="Why-contentdashboarda">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title><span style="font-size: 18px; font-weight: bold">Hi {{fullname}}</span></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p> <a routerLink="/profile" >
+          Edit profile
+        </a></p>
+      </mat-card-content>
+    </mat-card>
+<p><span style="font-size: 20px; color: #0d46a0">Your Account</span></p>
+    <br>
+    <br>
+    <br>
+<p><span style="font-size: 20px; color: #0d46a0">Amount deposited in escrow:    Ksh 0.0</span></p>
+<p><span style="font-size: 20px; color: #0d46a0">Amount to receive from escrow: Ksh 0.0</span></p>
+
   </div>
+  <div class="Why-contentdashboardaa">
+    <a routerLink="/createtrade" mat-list-item >
+      <mat-icon>queue</mat-icon>
+      New trade
+    </a>
+    <br>
+    <br>
+    <br>
+    <p><span style="font-size: 30px; color: #0d46a0; text-decoration: underline">Pending Transactions</span></p>
+    <br>
+    <br>
+    <br>
+    loading...
+    <p><span style="font-size: 30px; color: #0d46a0; text-decoration: underline">Active Transactions</span></p>
+    <br>
+    <br>
+    <br>
+    loading...
+
+    <p><span style="font-size: 30px; color: #0d46a0; text-decoration: underline">Complete Transactions</span></p>
+    <br>
+    <br>
+    <br>
+    loading...
+  </div>
+
+
 </div>
-
-
-<mat-card class="example-card">
-<div id="escrow" class="escrow-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-  <div  class="tradeA"  >
-      <div class="rowdiv">
-        <a  mat-raised-button [color]="'blue'"  [routerLink]="['/viewtrade',1]">
-          <i class="material-icons  iconcolor">donut_large</i>
-          Pending Trade</a>
-      </div>
-    <div class="rowdiv">
-      <a  mat-raised-button  [color]="'purple'" [routerLink]="['/viewtrade',2]">
-        <i class="material-icons  iconcolor">highlight_off</i>
-        Active Trade</a>
-      </div>
-    <div class="rowdiv">
-      <a  mat-raised-button [color]="'green'" [routerLink]="['/viewtrade',3]">
-        <i class="material-icons  iconcolor">assignment_turned_in</i>
-        Completed Trade</a>
-      </div>
-    <div class="rowdiv">
-      <a  mat-raised-button color="grey" routerLink="/viewpayment" >
-        <i class="material-icons  iconcolor">monetization_on</i>
-        View Trade Payments</a>
-      </div>
-  </div>
-
-  <div  class="tradeB">
-    <div style="text-align: center;">
-      <p><span class="header_textb">
-        Account balance
-      </span>
-    </p>
-    </div>
-
-   <span class="header_text-small">
-     Escrow Account Balance:ksh {{accountbal}}
-      </span>
-    <p><span class="header_text-small">
-      Funds in Escrow Payable to You:ksh {{payablebal}}
-      </span>
-    </p>
-  </div>
-</div>
-
-  <div class="personpartiez" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%"
-       fxLayoutAlign="center">
-    <div class="rowdivnewtrade">
-
-            <a  class="linkstyle"  mat-button routerLink="/createtrade">
-            <i class="material-icons  iconizer">add_to_photos</i>
-              <p><span>New Trade</span></p></a>
-
-
-            <a mat-button routerLink="/profile" class="linkstyle" >
-            <i class="material-icons icon-send-money iconizer">account_circle</i>
-              <p><span>Update account</span></p></a>
-
-
-            <a  class="linkstyle"  mat-button routerLink="/fund" >
-            <i class="material-icons  iconizer">account_balance_wallet</i>
-              <p><span>Pay Trade</span></p></a>
-
-    </div>
-  </div>
-
-</mat-card>

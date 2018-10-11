@@ -7,290 +7,61 @@
   flex-wrap: wrap;
 
 }
-.personpartiez{
-  display: flex;
-  align-content: center;
-  text-align: center;
-  align-items: center;
 
+.container{
+  display: flex;
+  padding-top: 5%;
+  width:100%;
+  flex-direction:column;
+  margin-bottom: 4%;
 }
-.escrow-containerfinal{
+.signup-div1{
+  flex: auto;
+  margin-top: 0%;
+  max-width: 500px;
+}
+.howitwork-containerdashboard{
   display: flex;
   width:100%;
-  height: 100%;
-  background-color: white;
+  background-color: #d3d3d3;
   align-items: center;
   flex-wrap: wrap;
-  margin-top:1%;
 }
-.tradeA{
+
+.Why-contentdashboardaa{
   flex: 2;
-  margin-left: 1%;
-  justify-content: center;
-  //background-color: #ebebeb;
-  padding: 0%;
-  height: 20%;
+  background-color: #ffffff;
+  text-align: center;
+  padding-bottom: 20%;
+}
+.Why-contentdashboarda{
+  flex: 1;
+  background-color: #ffffff	;
+  text-align: center;
+  padding-bottom: 20%;
+  color: #0d46a0;
+}
+.largeicon{
+  padding-top: 5%;
+  color: #0d46a0;
+  font-size: 180px;
+  margin-right: 10px;
   align-content: center;
-  text-align: center;
-
-}
-.tradeAheader{
-  flex: auto;
-  margin-left: 0%;
-  justify-content: center;
-  background-color: #ebebeb;
-  padding: 0%;
-  align-content: center;
-  text-align: center;
-
-}
-.card-designheader{
-
-    background-color: #ebebeb;
-    padding: 0%;
-
-}
-.tradeB{
-  flex: 1;
-  margin-right: 1%;
-  //background-color: #ebebeb;
-  justify-content: center;
-  padding:1.2%;
-  height: 45%;
-  align-content: center;
-  text-align: center;
-
-}
-.divb-1{
-  flex: auto;
-  text-align: center;
-  align-content: space-around;
-  padding-bottom: 1%;
-  padding-top: 6%;
-
-  //background-color: white;
-}
-.example-card{
-margin: 1%;
+  align-items: center;
 }
 
-.header_text
-{  font-family: sans-serif;
-  font-size: 28px;
-  font-weight: bold;
-  color: #0071c5;
-}
-.header_textdashboard
-{ font-family: sans-serif;
-  font-size: 20px;
-  font-weight: bold;
-  color: #0071c5;
-}
-.header_textb
-{ text-align: left;
-  font-family: sans-serif;
-  font-size: 18px;
-  font-weight: bold;
-  color: #0071c5;
-}
-.header_text-bigger{
-  font-family: sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-}
-.header_text-small{
-  font-family: sans-serif;
-  font-size: 12px;
-  font-weight: bold;
-}
-.material-icons.iconcolor {
-  //color: blue;
-  font-size: 20px;
-}
-
-.material-icons.bigicon {
-    backgro5nd-color: #125aaa;
-  font-size: 100px;
-}.material-icons.bigicon1 {
-   color: #888888;
-  font-size: 100px;
-}
-
-.material-icons.md-48 { font-size: 48px;
-}
-.iconizer{
-  color: #125aaa;
-  font-size: 50px;
-}
-.linkstyle{
-  padding: 1%;
-  margin: 5%;
-}
-
-.rowdiv{
-  flex: 1;
-  padding: 1%;
-}
-.rowdivbtna {
-  flex: 1;
-  text-align: right;
-  padding: 2%;
-}
-.rowdivbtnb {
-  flex: 1;
-  text-align: center;
-  padding: 2%;
-}
-.rowdivbtnc {
-  flex: 1;
-  text-align: left;
-  padding: 2%;
+.example-header-image {
+  background-image: url('../../../assets/images/userprof.png');
+  background-size: cover;
+  height: 150px;
   width: 150px;
 }
-//button customized
-.mat-purple  {
-  background-color: purple;
-  width: 80%;
-  color: white;
-}//button customized
-.mat-blue  {
-  background-color: #125aaa;
-  width: 80%;
-  color: white;
-}//button customized
-.mat-grey  {
-
-  background-color:#EEEEEE;
-  width: 80%;
-  color: blue;
-}//button customized
-.mat-green  {
-  background-color:green;
-  width: 80%;
-  color: white;
-}
-.rowdivnewtrade{
-  flex: 1;
-  padding-top: 2%
-}
-
 //mobile
 @media all and (max-width: 800px) {
-  .rowdivbtna {
-    flex: 1;
-    text-align: right;
-    padding: 1%;
-  }
-  .rowdivbtnb {
-    flex: 1;
-    text-align: center;
-    padding: 1%;
-  }
-  .rowdivbtnc {
-     flex: 1;
-     text-align: center;
-     padding: 1%;
-   }
-  .header_text-bigger{
-    font-family: sans-serif;
-    font-size: 9px;
-    font-weight: bold;
-  }
-  .header_text-small{
-    font-family: sans-serif;
-    font-size: 8px;
-    font-weight: bold;
-  }
 
-  .linkstyle{
-    padding: 1%;
-    margin: 2%;
-  }
-  .iconizer{
-    color: #125aaa;
-    font-size: 30px;
-  }
-  .rowdivnewtrade{
-    flex: 1;
-    margin-top: 10%
-  }
 }
 
 /* Small screens */
 @media all and (max-width: 500px) {
 
-  .escrow-containerfinal{
-    display: flex;
-    width:100%;
-    height: 100%;
-    background-color: white;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 1%;
-    margin-bottom: 2%;
-  }
-  .tradeA{
-    flex: 2;
-    margin-left: 1%;
-    margin-bottom: 2%;
-    justify-content: center;
-    //background-color: #ebebeb;
-    padding: 0%;
-    height: 40%;
-    align-content: center;
-    text-align: center;
-
-  }
-  .tradeB{
-    display: none;
-    //flex: 1;
-    //margin-right: 0%;
-    ////background-color: #ebebeb;
-    //justify-content: center;
-    //height: 10%;
-    //align-content: center;
-    //text-align: center;
-
-  }
-
-  .rowdivbtna {
-    flex: 1;
-    text-align: center;
-  }
-  .rowdivbtnb {
-    flex: 1;
-    text-align: center;
-    //padding-left: 30%;
-    //width: 100px;
-  }
-  .rowdivbtnc {
-     flex: 1;
-     text-align: center;
-    //padding-left: 30%;
-    //width: 100px;
-   }
-
-  .header_text-bigger{
-    font-family: sans-serif;
-    font-size: 9px;
-    font-weight: bold;
-  }
-  .header_text-small{
-    font-family: sans-serif;
-    font-size: 8px;
-    font-weight: bold;
-  }
-
-  .linkstyle{
-    padding: 1%;
-    margin: 2%;
-  }
-  .iconizer{
-    color: #125aaa;
-    font-size: 20px;
-  }
-  .rowdivnewtrade{
-    flex: 1;
-    margin-top: 10%
-  }
 }

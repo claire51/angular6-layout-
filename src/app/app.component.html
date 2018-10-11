@@ -85,6 +85,12 @@
         <!-- The following menu items will be hidden on both SM and XS screen sizes -->
 
         <span class="header_text">
+       <button mat-button routerLink="/dashboard"
+               *ngIf="isLoggedIn$ | async as isAuthenticated">
+          <mat-icon>home</mat-icon>
+         Dashboard</button>
+     </span>
+        <span class="header_text">
        <button mat-button routerLink="/createtrade"
                *ngIf="isLoggedIn$ | async as isAuthenticated">
           <mat-icon>queue</mat-icon>

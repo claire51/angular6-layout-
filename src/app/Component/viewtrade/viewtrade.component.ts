@@ -8,7 +8,6 @@ import {Transactionview} from '../../localService/transactionview';
 import {PaymentService} from "../../localService/payment.service";
 import {Paymentresponse} from "../../model/Paymentresponse";
 import {Resource} from "../../model/Resource";
-import {TradeRole} from '../../model/TradeRole';
 import {TradeParty} from '../../model/TradeParty';
 import {ApproveService} from "../../localService/approve.service";
 import {RegistrationResponse} from "../../model/registrationResponse";
