@@ -4,25 +4,26 @@
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
   </div>
-  <mat-table #table [dataSource]="dataSourceb" [trackBy]="trackByUid" nclass="animate" matSort aria-label="Elements">
-    <!-- Name Column -->
-    <ng-container matColumnDef="transaction_code">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Transaction code</mat-header-cell>
-      <mat-cell *matCellDef="let row">
-        <span class="mobile-labela">Code:</span>
-        {{row.transaction_code}}
-      </mat-cell>
-    </ng-container>
+
+    <mat-table #table [dataSource]="dataSourceb" [trackBy]="trackByUid" nclass="animate" matSort aria-label="Elements">
+      <!-- Name Column -->
+      <ng-container matColumnDef="transaction_code">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Transaction code</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <span class="mobile-labela">Code:</span>
+          {{row.transaction_code}}
+        </mat-cell>
+      </ng-container>
 
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="invoice_amount">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Amount</mat-header-cell>
-      <mat-cell *matCellDef="let row">
-        <span class="mobile-label">Invoice Amount:</span>
-        {{row.invoice_amount}}
-      </mat-cell>
-    </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="invoice_amount">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Amount</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <span class="mobile-label">Invoice Amount:</span>
+          {{row.invoice_amount}}
+        </mat-cell>
+      </ng-container>
 
     <ng-container matColumnDef="total_fee_amount">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Total Fee</mat-header-cell>

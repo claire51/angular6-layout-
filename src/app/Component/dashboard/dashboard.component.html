@@ -12,7 +12,7 @@
         </a></p>
       </mat-card-content>
     </mat-card>
-<p><span style="font-size: 20px; color: #0d46a0">Your Account</span></p>
+<p><span style="font-size: 12px; color: #0d46a0">Your Account</span></p>
     <br>
     <br>
     <br>
@@ -21,29 +21,81 @@
 
   </div>
   <div class="Why-contentdashboardaa">
+    <p style="padding-top: 1%; padding-left: 5%">
     <a routerLink="/createtrade" mat-list-item >
       <mat-icon>queue</mat-icon>
       New trade
     </a>
-    <br>
-    <br>
-    <br>
-    <p><span style="font-size: 30px; color: #0d46a0; text-decoration: underline">Pending Transactions</span></p>
-    <br>
-    <br>
-    <br>
-    loading...
-    <p><span style="font-size: 30px; color: #0d46a0; text-decoration: underline">Active Transactions</span></p>
-    <br>
-    <br>
-    <br>
-    loading...
+    </p>
+    <p><span style="font-size: 20px; color: #0d46a0; text-decoration: underline;  text-align: left">Pending Transactions</span></p>
+    <mat-table #table [dataSource]="dataSourcepending" [trackBy]="trackByUid" nclass="animate"  aria-label="Elements">
+      <!-- Name Column -->
+      <ng-container matColumnDef="transaction_code" sticky>
+        <mat-header-cell *matHeaderCellDef >Transaction code</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <span class="mobile-labela">Code:</span>
+          {{row.transaction_code}}
+        </mat-cell>
+      </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="invoice_amount" stickyEnd>
+        <mat-header-cell *matHeaderCellDef >Invoice Amount</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <span class="mobile-label">Invoice Amount:</span>
+          {{row.invoice_amount}}
+        </mat-cell>
+      </ng-container>
 
-    <p><span style="font-size: 30px; color: #0d46a0; text-decoration: underline">Complete Transactions</span></p>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
+    </mat-table>
+    <p><span style="font-size: 20px; color: #0d46a0; text-decoration: underline; text-align: left">Active Transactions</span></p>
     <br>
+    <mat-table #table [dataSource]="dataSourceActive" [trackBy]="trackByUid" nclass="animate"  aria-label="Elements">
+      <!-- Name Column -->
+      <ng-container matColumnDef="transaction_code" sticky>
+        <mat-header-cell *matHeaderCellDef >Transaction code</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <span class="mobile-labela">Code:</span>
+          {{row.transaction_code}}
+        </mat-cell>
+      </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="invoice_amount" stickyEnd>
+        <mat-header-cell *matHeaderCellDef >Invoice Amount</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <span class="mobile-label">Invoice Amount:</span>
+          {{row.invoice_amount}}
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
+    </mat-table>
+
+    <p><span style="font-size: 20px; color: #0d46a0; text-decoration: underline; text-align: left">Complete Transactions</span></p>
     <br>
-    <br>
-    loading...
+    <mat-table #table [dataSource]="dataSourceComplete" [trackBy]="trackByUid" nclass="animate"  aria-label="Elements">
+      <!-- Name Column -->
+      <ng-container matColumnDef="transaction_code" sticky>
+        <mat-header-cell *matHeaderCellDef >Transaction code</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <span class="mobile-labela">Code:</span>
+          {{row.transaction_code}}
+        </mat-cell>
+      </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="invoice_amount" stickyEnd>
+        <mat-header-cell *matHeaderCellDef >Invoice Amount</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <span class="mobile-label">Invoice Amount:</span>
+          {{row.invoice_amount}}
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
+    </mat-table>
   </div>
 
 

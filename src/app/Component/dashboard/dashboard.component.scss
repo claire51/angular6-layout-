@@ -7,7 +7,11 @@
   flex-wrap: wrap;
 
 }
+.example-card {
+  max-width: 100%;
+  background-color: #d3d3d3;
 
+}
 .container{
   display: flex;
   padding-top: 5%;
@@ -23,20 +27,21 @@
 .howitwork-containerdashboard{
   display: flex;
   width:100%;
-  background-color: #d3d3d3;
+  background-color: #575756;
   align-items: center;
   flex-wrap: wrap;
 }
 
 .Why-contentdashboardaa{
   flex: 2;
-  background-color: #ffffff;
-  text-align: center;
+  background-color: #d3d3d3;
+  text-align: left;
+  padding-left: 1%;
   padding-bottom: 20%;
 }
 .Why-contentdashboarda{
   flex: 1;
-  background-color: #ffffff	;
+  background-color: #d3d3d3	;
   text-align: center;
   padding-bottom: 20%;
   color: #0d46a0;

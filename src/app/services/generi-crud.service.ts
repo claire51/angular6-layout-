@@ -75,7 +75,7 @@ export class GeneriCrudService<T> {
     const url = `${this.baseurl}/${this.endpoint}${id}`;
     return this.http.get<T[]>(url)
       .pipe(
-        tap(heroes => this.log('data ')),
+        tap(heroes => this.log(' ')),
         catchError(this.handleError('data', []))
       );
   }

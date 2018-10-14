@@ -102,6 +102,7 @@ this.useridz = (Number(localStorage.getItem('id')));
       this.router.navigate(['/editrade']);
     }
   }
+
   makepayment(data): void {
     this.authservice.transactionshelper = data;
     this.resource.id = this.authservice.transactionshelper.id;
