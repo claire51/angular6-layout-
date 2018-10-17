@@ -48,11 +48,8 @@ constructor(private progressBarService: ProgressBarService,
           this.chargesz = newHeroWithId;
             this.status = true;
           for (let item of this.chargesz) {
-            let arravalue = item.range.split('-');
-          let min = arravalue[0];
-          let max = arravalue[1];
-            if ( +min <= this.reqAmount && this.reqAmount < +max) {
-           this.feeamount = +item.value;
+            if ( item.lower_limit <= this.reqAmount && this.reqAmount < item.higher_limit) {
+             this.feeamount = item.percentage / 100 * this.reqAmount + item.flat_amount;
             }
           }
           this.authservice.showSnackBar('Fee charged is: Ksh ' + this.feeamount);
@@ -65,11 +62,8 @@ constructor(private progressBarService: ProgressBarService,
         });
       } else {
         for (let item of this.chargesz) {
-          let arravalue = item.range.split('-');
-          let min = arravalue[0];
-          let max = arravalue[1];
-          if ( +min <= this.reqAmount && this.reqAmount < +max) {
-            this.feeamount = +item.value;
+          if ( item.lower_limit <= this.reqAmount && this.reqAmount < item.higher_limit) {
+            this.feeamount = item.percentage / 100 * this.reqAmount + item.flat_amount;
           }
         }
         this.authservice.showSnackBar('Fee charged is: Ksh ' + this.feeamount);

@@ -35,12 +35,14 @@ export class CreatetradeComponent implements OnInit , AfterViewInit {
   formavalueb: string;
 
   mobilez: string;
-  fullnamez: string;
+  first_namez: string;
+  last_namez: string;
   idnumberz: string;
   emailz: string;
 
   phone_numberz: string;
-  full_namesz: string;
+  first_name: string;
+  last_name: string;
   id_numberz: string;
   emailzz: string;
   feeamount: number;
@@ -90,7 +92,8 @@ export class CreatetradeComponent implements OnInit , AfterViewInit {
 
     this.firstFormGroup = this._formBuilder.group({
       phone_number: ['', Validators.compose([Validators.required, Validators.pattern(/^07\d{8}$/)]) ],
-      full_names: ['', Validators.compose([ Validators.required, Validators.minLength(3), Validators.pattern(/[A-Za-z]/)])],
+      first_name: ['', Validators.compose([ Validators.required, Validators.minLength(3), Validators.pattern(/[A-Za-z]/)])],
+      last_name: ['', Validators.compose([ Validators.required, Validators.minLength(3), Validators.pattern(/[A-Za-z]/)])],
       id_number: ['', Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
       email: ['', Validators.compose([Validators.required, Validators.email]) ],
       address: ['', Validators.compose([ Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9_.-]*$/)])],
@@ -155,7 +158,8 @@ export class CreatetradeComponent implements OnInit , AfterViewInit {
     this.tradeparty = new TradeParty();
     this.traderole = new TradeRole();
     this.traderolelist.length = 0;
-    this.tradeparty.full_names = this.full_namesz;
+    this.tradeparty.first_name = this.first_name;
+    this.tradeparty.last_name = this.last_name;
     this.tradeparty.id_number = this.id_numberz;
     this.tradeparty.phone_number = this.phone_numberz;
     this.tradeparty.address = '';
@@ -177,7 +181,8 @@ export class CreatetradeComponent implements OnInit , AfterViewInit {
     //      transaction role , id 1 buyer, 2 seller , 3 agent
     this.tradeparty = new TradeParty();
     this.traderole = new TradeRole();
-    this.tradeparty.full_names = localStorage.getItem('firstname');
+    this.tradeparty.first_name = localStorage.getItem('firstname');
+    this.tradeparty.last_name = localStorage.getItem('lastname');
     this.tradeparty.id_number = localStorage.getItem('idnumber');
     this.tradeparty.phone_number = localStorage.getItem('phone_number');
     this.tradeparty.address = localStorage.getItem('county');
@@ -209,11 +214,11 @@ export class CreatetradeComponent implements OnInit , AfterViewInit {
   addbroker() {
     this.traderole = new TradeRole();
     this.tradeparty = new TradeParty();
-    this.tradeparty.full_names = this.fullnamez;
-    console.log(this.fullnamez);
-    this.tradeparty.id_number = this.fullnamez;
+    this.tradeparty.first_name = this.first_namez;
+    this.tradeparty.first_name = this.last_namez;
+    this.tradeparty.id_number = this.id_numberz;
     this.tradeparty.phone_number = this.mobilez;
-    this.tradeparty.address = '234,thika';
+    this.tradeparty.address = ' z';
     this.tradeparty.email = this.emailz;
     this.tradeparty.user_id = null;
     if (this.broker) {
@@ -269,11 +274,8 @@ export class CreatetradeComponent implements OnInit , AfterViewInit {
       this.transaction.agent_fee_value = 1;
       this.transaction.agent_fee_type_id = 1;
       for (let item of this.chargesz) {
-        let arravalue = item.range.split('-');
-        let min = arravalue[0];
-        let max = arravalue[1];
-        if (+min <= this.transaction.invoice_amount && this.transaction.invoice_amount < +max) {
-          this.feeamount = +item.value;
+        if ( item.lower_limit <= this.transaction.invoice_amount && this.transaction.invoice_amount < item.higher_limit) {
+          this.feeamount = item.percentage / 100 * this.transaction.invoice_amount + item.flat_amount;
         }
       }
       this.fee = this.feeamount;
@@ -291,6 +293,7 @@ export class CreatetradeComponent implements OnInit , AfterViewInit {
     this.transaction.agent_fee_type = this.agentfeetype;
     this.transaction.fee_allocation = this.feeallocation;
     this.transaction.delivery = this.deliverylist;
+    this.transaction.fee_value = this.feeamount;
 
     this.transactionsvc.createtransaction(this.transaction).subscribe((transaresp) => {
         this.transactionresp = transaresp;

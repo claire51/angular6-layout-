@@ -4,92 +4,141 @@
     <mat-card class="example-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title><span style="font-size: 18px; font-weight: bold">Hi {{fullname}}</span></mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p> <a routerLink="/profile" >
-          Edit profile
-        </a></p>
-      </mat-card-content>
-    </mat-card>
-<p><span style="font-size: 12px; color: #0d46a0">Your Account</span></p>
-    <br>
-    <br>
-    <br>
-<p><span style="font-size: 20px; color: #0d46a0">Amount deposited in escrow:    Ksh 0.0</span></p>
-<p><span style="font-size: 20px; color: #0d46a0">Amount to receive from escrow: Ksh 0.0</span></p>
+        <mat-card-title><p class="editstyle">Hi {{fullname}}</p></mat-card-title>
 
+        </mat-card-header>
+        <mat-card-content>
+          <p><a routerLink="/profile" >
+            Edit profile </a></p>
+        </mat-card-content>
+    </mat-card>
+<p><span  class="accheader">Your Account</span></p>
+<p><span class="spanaccbal" >Amount deposited in escrow:    Ksh 0.0</span></p>
+<p><span class="spanaccbal">Amount to receive from escrow: Ksh 0.0</span></p>
   </div>
   <div class="Why-contentdashboardaa">
-    <p style="padding-top: 1%; padding-left: 5%">
+    <p style="padding-top: 1%; text-align: center !important;">
     <a routerLink="/createtrade" mat-list-item >
       <mat-icon>queue</mat-icon>
       New trade
     </a>
     </p>
-    <p><span style="font-size: 20px; color: #0d46a0; text-decoration: underline;  text-align: left">Pending Transactions</span></p>
-    <mat-table #table [dataSource]="dataSourcepending" [trackBy]="trackByUid" nclass="animate"  aria-label="Elements">
+    <p><span class="dashboardtrasaction" >Pending Transactions</span></p>
+    <mat-table #table [dataSource]="dataSourcepending" [trackBy]="trackByUid"  class="datatble"  aria-label="Elements">
       <!-- Name Column -->
       <ng-container matColumnDef="transaction_code" sticky>
-        <mat-header-cell *matHeaderCellDef >Transaction code</mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <span class="mobile-labela">Code:</span>
-          {{row.transaction_code}}
+        <mat-header-cell *matHeaderCellDef class="tablefont">Date</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="tablefont">
+          {{row.created_at | date:'dd/MM/yyyy'}}
         </mat-cell>
       </ng-container>
       <!-- Name Column -->
-      <ng-container matColumnDef="invoice_amount" stickyEnd>
+      <ng-container matColumnDef="item" sticky>
+        <mat-header-cell *matHeaderCellDef class="tablefont">Code</mat-header-cell>
+        <mat-cell *matCellDef="let row"  class="tablefont">{{row.transaction_code}}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="invoice_amount" sticky>
         <mat-header-cell *matHeaderCellDef >Invoice Amount</mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <span class="mobile-label">Invoice Amount:</span>
+        <mat-cell *matCellDef="let row" class="tablefont">
           {{row.invoice_amount}}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="edit" sticky>
+        <mat-header-cell *matHeaderCellDef >Action</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="tablefont">
+          <button mat-raised-button color="primary" (click)="edittransaction(row)" >Edit</button>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="pay" stickyEnd>
+        <mat-header-cell *matHeaderCellDef ></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <div  [hidden]='row.isBuyer' >
+            <button mat-raised-button [color]="'green'" (click)="makepayment(row)" >Pay</button>
+          </div>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
+    </mat-table>
+    <p><span  class="dashboardtrasaction" >Active Transactions</span></p>
+    <br>
+    <mat-table #table [dataSource]="dataSourceActive" [trackBy]="trackByUid" class="datatble"  aria-label="Elements">
+      <!-- Name Column -->
+      <ng-container matColumnDef="transaction_code" sticky>
+        <mat-header-cell *matHeaderCellDef >Date</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="tablefont">
+          {{row.created_at | date:'dd/MM/yyyy'}}
+        </mat-cell>
+      </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="item" sticky>
+        <mat-header-cell *matHeaderCellDef >Item</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef >Code</mat-header-cell>
+        <mat-cell *matCellDef="let row"  class="tablefont">{{row.transaction_code}}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="invoice_amount" sticky>
+        <mat-header-cell *matHeaderCellDef >Invoice Amount</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="tablefont">
+          {{row.invoice_amount}}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="edit" stickyEnd>
+        <mat-header-cell *matHeaderCellDef >Action</mat-header-cell>
+        <mat-cell *matCellDef="let row" >
+          <button mat-raised-button color="primary" (click)="edittransaction(row)" >Edit</button>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="pay" stickyEnd>
+        <mat-header-cell *matHeaderCellDef ></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <div  [hidden]='row.isBuyer' >
+            <button mat-raised-button [color]="'green'" (click)="makepayment(row)" >Pay</button>
+          </div>
         </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
     </mat-table>
-    <p><span style="font-size: 20px; color: #0d46a0; text-decoration: underline; text-align: left">Active Transactions</span></p>
+
+    <p><span  class="dashboardtrasaction" >Complete Transactions</span></p>
     <br>
-    <mat-table #table [dataSource]="dataSourceActive" [trackBy]="trackByUid" nclass="animate"  aria-label="Elements">
+
+    <mat-table #table [dataSource]="dataSourceComplete" [trackBy]="trackByUid" class="datatble"  aria-label="Elements">
       <!-- Name Column -->
       <ng-container matColumnDef="transaction_code" sticky>
-        <mat-header-cell *matHeaderCellDef >Transaction code</mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <span class="mobile-labela">Code:</span>
-          {{row.transaction_code}}
+        <mat-header-cell *matHeaderCellDef >Date</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="tablefont">
+          {{row.created_at | date:'dd/MM/yyyy'}}
         </mat-cell>
       </ng-container>
       <!-- Name Column -->
-      <ng-container matColumnDef="invoice_amount" stickyEnd>
+      <ng-container matColumnDef="item" sticky>
+        <mat-header-cell *matHeaderCellDef >Item</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef >Code</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="tablefont" >{{row.transaction_code}}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="invoice_amount" sticky>
         <mat-header-cell *matHeaderCellDef >Invoice Amount</mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <span class="mobile-label">Invoice Amount:</span>
+        <mat-cell *matCellDef="let row" class="tablefont">
           {{row.invoice_amount}}
         </mat-cell>
       </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
-    </mat-table>
-
-    <p><span style="font-size: 20px; color: #0d46a0; text-decoration: underline; text-align: left">Complete Transactions</span></p>
-    <br>
-    <mat-table #table [dataSource]="dataSourceComplete" [trackBy]="trackByUid" nclass="animate"  aria-label="Elements">
-      <!-- Name Column -->
-      <ng-container matColumnDef="transaction_code" sticky>
-        <mat-header-cell *matHeaderCellDef >Transaction code</mat-header-cell>
+      <ng-container matColumnDef="edit" sticky>
+        <mat-header-cell *matHeaderCellDef >Action</mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <span class="mobile-labela">Code:</span>
-          {{row.transaction_code}}
+          <button mat-raised-button color="primary"  (click)="edittransaction(row)" >Edit</button>
         </mat-cell>
       </ng-container>
-      <!-- Name Column -->
-      <ng-container matColumnDef="invoice_amount" stickyEnd>
-        <mat-header-cell *matHeaderCellDef >Invoice Amount</mat-header-cell>
+      <ng-container matColumnDef="pay" stickyEnd>
+        <mat-header-cell *matHeaderCellDef ></mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <span class="mobile-label">Invoice Amount:</span>
-          {{row.invoice_amount}}
+          <div  [hidden]='row.isBuyer' >
+          <button mat-raised-button [color]="'green'" (click)="makepayment(row)" >Pay</button>
+          </div>
         </mat-cell>
       </ng-container>
 

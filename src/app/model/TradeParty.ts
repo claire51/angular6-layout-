@@ -1,6 +1,7 @@
 export class TradeParty {
   id: number;
-  full_names: string;
+  first_name: string;
+  last_name: string;
   id_number: string;
   phone_number: string;
   address: string;

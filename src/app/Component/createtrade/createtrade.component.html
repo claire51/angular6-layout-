@@ -65,8 +65,11 @@
           <mat-form-field>
             <input matInput type="tel" placeholder="Mobile Number" [(ngModel)]="phone_numberz" required pattern="^07\d{8}$" ><br>
           </mat-form-field>
-          <mat-form-field>
-            <input matInput type="text" placeholder="Full Name" [(ngModel)]="full_namesz" required pattern="^[a-zA-Z0-9_.-]*$"><br>
+          <mat-form-field class="full-width-inputA">
+            <input matInput type="text" placeholder="First Name" [(ngModel)]="first_name" required pattern="^[a-zA-Z0-9_.-]*$">
+          </mat-form-field>
+          <mat-form-field class="full-width-inputB">
+            <input matInput type="text" placeholder="Last Name" [(ngModel)]="last_name" required pattern="^[a-zA-Z0-9_.-]*$">
           </mat-form-field>
           <mat-form-field>
             <input matInput type="text" placeholder="Id Number" [(ngModel)]="id_numberz" required pattern="^[0-9]*$"><br>
@@ -90,7 +93,8 @@
               <input matInput type="tel" placeholder="Mobile Number" [(ngModel)]="mobilez" required pattern="^07\d{8}$" ><br>
             </mat-form-field>
             <mat-form-field>
-              <input matInput type="text" placeholder="Full Name" [(ngModel)]="fullnamez" required pattern="^[a-zA-Z0-9_.-]*$"><br>
+              <input matInput type="text" placeholder="First Name" [(ngModel)]="first_namez" required pattern="^[a-zA-Z0-9_.-]*$">
+              <input matInput type="text" placeholder="Last Name" [(ngModel)]="last_namez" required pattern="^[a-zA-Z0-9_.-]*$"><br>
             </mat-form-field>
             <mat-form-field>
               <input matInput type="number" placeholder="Id Number" [(ngModel)]="idnumberz" required pattern="^[0-9]$"><br>
