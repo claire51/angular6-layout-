@@ -23,6 +23,7 @@
       New trade
     </a>
     </p>
+    <!--pending -->
     <p><span class="dashboardtrasaction" >Pending Transactions</span></p>
     <mat-table #table [dataSource]="dataSourcepending" [trackBy]="trackByUid"  class="datatble"  aria-label="Elements">
       <!-- Name Column -->
@@ -56,11 +57,17 @@
           <div  [hidden]='row.isBuyer' >
             <button mat-raised-button [color]="'green'" (click)="makepayment(row)" >Pay</button>
           </div>
+          <div  [hidden]='row.isAgreed' >
+            <button mat-raised-button [color]="'green'" (click)="makepayment(row)" >Agree</button>
+          </div>
         </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
     </mat-table>
+
+
+    <!--//active-->
     <p><span  class="dashboardtrasaction" >Active Transactions</span></p>
     <br>
     <mat-table #table [dataSource]="dataSourceActive" [trackBy]="trackByUid" class="datatble"  aria-label="Elements">
@@ -87,14 +94,14 @@
       <ng-container matColumnDef="edit" stickyEnd>
         <mat-header-cell *matHeaderCellDef >Action</mat-header-cell>
         <mat-cell *matCellDef="let row" >
-          <button mat-raised-button color="primary" (click)="edittransaction(row)" >Edit</button>
+          <button mat-raised-button color="primary" (click)="edittransaction(row)" >View</button>
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="pay" stickyEnd>
         <mat-header-cell *matHeaderCellDef ></mat-header-cell>
         <mat-cell *matCellDef="let row">
           <div  [hidden]='row.isBuyer' >
-            <button mat-raised-button [color]="'green'" (click)="makepayment(row)" >Pay</button>
+            <button mat-raised-button [color]="'green'" (click)="makepayment(row)" >Approve</button>
           </div>
         </mat-cell>
       </ng-container>
@@ -103,9 +110,11 @@
       <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
     </mat-table>
 
+    <!--//complete-->
+
+
     <p><span  class="dashboardtrasaction" >Complete Transactions</span></p>
     <br>
-
     <mat-table #table [dataSource]="dataSourceComplete" [trackBy]="trackByUid" class="datatble"  aria-label="Elements">
       <!-- Name Column -->
       <ng-container matColumnDef="transaction_code" sticky>
@@ -127,23 +136,15 @@
           {{row.invoice_amount}}
         </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="edit" sticky>
+      <ng-container matColumnDef="edit" stickyEnd>
         <mat-header-cell *matHeaderCellDef >Action</mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <button mat-raised-button color="primary"  (click)="edittransaction(row)" >Edit</button>
-        </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="pay" stickyEnd>
-        <mat-header-cell *matHeaderCellDef ></mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <div  [hidden]='row.isBuyer' >
-          <button mat-raised-button [color]="'green'" (click)="makepayment(row)" >Pay</button>
-          </div>
+          <button mat-raised-button color="primary"  (click)="edittransaction(row)" >View</button>
         </mat-cell>
       </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;" class="animate"></mat-row>
+      <mat-header-row *matHeaderRowDef="displayedColumnscomplete"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumnscomplete;" class="animate"></mat-row>
     </mat-table>
   </div>
 

@@ -49,6 +49,7 @@ payablebal: number;
   viewstatus: boolean;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['transaction_code', 'item', 'invoice_amount', 'edit', 'pay'];
+  displayedColumnscomplete = ['transaction_code', 'item', 'invoice_amount', 'edit'];
   constructor(public auth: AuthService, public transervice: Transactionview ,    private paymentservice: PaymentService,
               private router: Router, public authservice: AuthService, private approveservice: ApproveService) {
     this.accountbal = 0.0;
@@ -70,22 +71,42 @@ payablebal: number;
   }
   ngAfterViewInit() {
     this.id1 = 0;
+    this.useridz = (Number(localStorage.getItem('id')));
     if (this.transactions.length < 1) {
       this.transervice.getById(this.id1).subscribe((data) => {
         this.transactions = data;
         for (let transac of this.transactions) {
-          this.transactionspending = this.transactions;
-          this.dataSourcepending = new MatTableDataSource( this.transactions);
-          this.dataSourceActive= new MatTableDataSource( this.transactions);
-          this.dataSourceComplete = new MatTableDataSource( this.transactions);
+          if (transac.transaction_status_id === 1 ) {
+            transac.isBuyer = true;
+            transac.isAgreed = true
+            for (let trade of  transac.trade_roles) {
+              if (trade.transaction_role_id === 1 ) {
+                if ( trade.trade_party.user_id !== null && transac.user_id === trade.trade_party.user_id) {
+                  transac.isBuyer = false;
+                  console.log('dddddddddddddddddddddddddd');
+                }
+              }
+              if (trade.transaction_role_id === 2 ) {
+                if ( trade.trade_party.user_id !== null && transac.user_id === trade.trade_party.user_id) {
+                  if (transac.agreed_status === 1) {
+                    transac.isAgreed = true;
+                  } else {transac.isAgreed = false}
+                }
+              }
+            }
+            this.transactionspending.push(transac);
+          } else if (transac.transaction_status_id === 2) {
+         this.transactionsactive.push(transac) ;
+            this.viewstatus = false;
+          } else if ( transac.transaction_status_id === 3) {
+            this.transactionscomplete.push(transac) ;
+            this.viewstatus = false;
+          }
         }
-        this.transactionspending = this.transactions;
-        this.dataSourcepending = new MatTableDataSource( this.transactions);
-        this.dataSourceActive = new MatTableDataSource( this.transactions);
-        this.dataSourceComplete = new MatTableDataSource( this.transactions);
-
-        this.transactionscomplete = this.transactions;
-        this.transactionsactive = this.transactions;
+        this.dataSourcepending = new MatTableDataSource( this.transactionspending);
+        this.dataSourceActive = new MatTableDataSource( this.transactionsactive);
+        this.dataSourceComplete = new MatTableDataSource( this.transactionscomplete);
+        console.log(this.transactionspending);
       }, (response: Response) => {
         if (response.status <= 500) {
           this.authservice.showSnackBar(' could not load users');

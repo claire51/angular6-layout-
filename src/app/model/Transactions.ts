@@ -34,6 +34,9 @@ export class Transactions {
   overpayment_amount: number;
   agent_disburseable_amount: number;
   seller_disburseable_amount: number;
+  isDisbursed : number;
+  agent_fee_calculated_value: number;
+  agreed_status: number;
   items: Array<Item>;
   status: Status;
   user: User;
@@ -43,6 +46,7 @@ export class Transactions {
   fee_allocation: FeeAllocation;
   delivery: Array<Delivery>;
   isBuyer: boolean ;
+  isAgreed: boolean ;
 
 
   constructor() {

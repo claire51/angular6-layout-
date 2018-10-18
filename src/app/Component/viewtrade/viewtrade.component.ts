@@ -62,9 +62,6 @@ this.useridz = (Number(localStorage.getItem('id')));
         transac.isBuyer = true;
         if(this.id1 === 1) {
         for (let trade of  transac.trade_roles) {
-          console.log('trade role' + trade.transaction_role_id);
-          console.log('trade user id ' + this.useridz);
-          console.log('trade party id ' + trade.trading_party_id );
        if (trade.transaction_role_id === 1 ) {
          if ( transac.user_id !== null && transac.user_id === this.useridz) {
              transac.isBuyer = false;
