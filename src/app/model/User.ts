@@ -12,7 +12,8 @@ export class User extends Resource {
   email: string;
   verification_code: string;
   phone_verified: number;
-  email_verified: number;
+  email_verified: number
+  has_otp: number;
   created_at: string;
   updated_at: string;
   permissions: Array<Permission>;

@@ -30,17 +30,17 @@
 
 .Why-contentdashboardaa{
   flex: 2;
-  background-color: #d3d3d3;
+  background-color: #ffffff;
   text-align: left;
   padding-left: 1%;
   padding-bottom: 20%;
 }
 .datatble{
-  background-color: #d3d3d3;
+  background-color: #ffffff;
 }
 .Why-contentdashboarda{
   flex: 1;
-  background-color: #d3d3d3	;
+  background-color: #ffffff	;
   text-align: center;
   padding-bottom: 20%;
   color: #0d46a0;
@@ -56,7 +56,7 @@
 
 .example-card {
   max-width: 400px;
-  background-color: #d3d3d3	;
+  background-color: #ffffff	;
 
 }
 .editstyle{
@@ -65,7 +65,7 @@
 .example-header-image {
   width: 200px;
   height: 200px;
-  background-image: url('../../../assets/images/user.jpeg');
+  background-image: url('../../../assets/images/user.png');
   background-size: cover;
 }
 .spanaccbal{
@@ -88,6 +88,11 @@
   width: 80%;
   color: white;
 }
+.mat-blue  {
+  background-color:#0d46a0;
+  width: 80%;
+  color: white;
+}
 
 //mobile
 @media all and (max-width: 800px) {
@@ -100,17 +105,17 @@
   }
   .Why-contentdashboardaa{
     flex: 2;
-    background-color: #d3d3d3;
+    background-color: #ffffff;
     text-align: left;
     padding-left: 1%;
     padding-bottom: 10%;
   }
   .datatble{
-    background-color: #d3d3d3;
+    background-color: #ffffff;
   }
   .Why-contentdashboarda{
     flex: 1;
-    background-color: #d3d3d3	;
+    background-color: #ffffff	;
     text-align: center;
     padding-bottom: 20%;
     color: #0d46a0;
@@ -126,7 +131,7 @@
 
   .example-card {
     max-width: 300px;
-    background-color: #d3d3d3	;
+    background-color: #ffffff	;
 
   }
   .editstyle{
@@ -135,7 +140,7 @@
   .example-header-image {
     width: 150px;
     height: 150px;
-    background-image: url('../../../assets/images/user.jpeg');
+    background-image: url('../../../assets/images/user.png');
     background-size: cover;
   }
   .spanaccbal{
@@ -164,17 +169,17 @@
   }
   .Why-contentdashboardaa{
     flex: 2;
-    background-color: #d3d3d3;
+    background-color: #ffffff;
     text-align: left;
     padding-left: 1%;
     padding-bottom: 20%;
   }
   .datatble{
-    background-color: #d3d3d3;
+    background-color: #ffffff;
   }
   .Why-contentdashboarda{
     flex: 1;
-    background-color: #d3d3d3	;
+    background-color: #ffffff	;
     text-align: center;
     padding-bottom: 2%;
     color: #0d46a0;
@@ -190,7 +195,7 @@
 
   .example-card {
     max-width: 90%;
-    background-color: #d3d3d3	;
+    background-color: #ffffff	;
 
   }
   .editstyle{
@@ -199,7 +204,7 @@
   .example-header-image {
     width: 80px;
     height: 80px;
-    background-image: url('../../../assets/images/user.jpeg');
+    background-image: url('../../../assets/images/user.png');
     background-size: cover;
   }
   .spanaccbal{
@@ -210,7 +215,7 @@
     font-size: 10px; color: #0d46a0;
   }
   .datatble{
-    background-color: #d3d3d3;
+    background-color: #ffffff;
   }
   .dashboardtrasaction{
     font-size: 13px; color: #0d46a0;

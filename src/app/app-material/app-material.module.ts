@@ -9,7 +9,7 @@ import {
   MatStepperModule, MatCheckboxModule, MatProgressBarModule,
   MatProgressSpinnerModule, MatSliderModule, MatSnackBarModule,
   MatTooltipModule, MatTabsModule, MatButtonToggleModule, MatExpansionModule,
-  MatRadioModule
+  MatRadioModule, MatChipsModule
 } from '@angular/material';
 
 
@@ -46,7 +46,9 @@ import {
     MatSnackBarModule,
     MatTooltipModule,
     MatTabsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatChipsModule,
+    MatDialogModule
   ]
 })
 export class AppMaterialModule {}

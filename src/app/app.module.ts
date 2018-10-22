@@ -28,12 +28,20 @@ import {Login} from './localService/login';
 import {AuthInterceptor} from './common/interceptors/auth-interceptor';
 import {CalculatorfeeService} from './localService/calculatorfee.service';
 import {NgHttpLoaderModule} from 'ng-http-loader';
+import {DialogboxviewComponent} from './Component/dialogboxview/dialogboxview.component';
+import {Transactionview} from './localService/transactionview';
+import {PaymentService} from './localService/payment.service';
+import {ApproveService} from './localService/approve.service';
+import {AgreeService} from './localService/agree.service';
+import {DashboardComponent} from './Component/dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    SignupComponent
+    SignupComponent,
+    DashboardComponent,
+    DialogboxviewComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +63,10 @@ import {NgHttpLoaderModule} from 'ng-http-loader';
     {provide: HTTP_INTERCEPTORS, useClass: ProgressInterceptor, multi: true, deps: [ProgressBarService]},
     {provide: HTTP_INTERCEPTORS, useClass: TimingInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-    RegisterService, Login, CalculatorfeeService],
+    RegisterService, Login, CalculatorfeeService, Transactionview, PaymentService, ApproveService, AgreeService],
+  entryComponents: [
+  DialogboxviewComponent
+],
   bootstrap: [AppComponent]
 })
 export class AppModule {

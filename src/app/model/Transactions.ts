@@ -47,6 +47,8 @@ export class Transactions {
   delivery: Array<Delivery>;
   isBuyer: boolean ;
   isAgreed: boolean ;
+  selleragree: boolean ;
+  itemname: string ;
 
 
   constructor() {

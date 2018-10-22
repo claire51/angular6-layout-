@@ -13,7 +13,7 @@
         </mat-card-content>
     </mat-card>
 <p><span  class="accheader">Your Account</span></p>
-<p><span class="spanaccbal" >Amount deposited in escrow:    Ksh 0.0</span></p>
+<p><span class="spanaccbal" >Amount deposited in escrow:  Ksh 0.0</span></p>
 <p><span class="spanaccbal">Amount to receive from escrow: Ksh 0.0</span></p>
   </div>
   <div class="Why-contentdashboardaa">
@@ -23,6 +23,8 @@
       New trade
     </a>
     </p>
+
+
     <!--pending -->
     <p><span class="dashboardtrasaction" >Pending Transactions</span></p>
     <mat-table #table [dataSource]="dataSourcepending" [trackBy]="trackByUid"  class="datatble"  aria-label="Elements">
@@ -35,8 +37,8 @@
       </ng-container>
       <!-- Name Column -->
       <ng-container matColumnDef="item" sticky>
-        <mat-header-cell *matHeaderCellDef class="tablefont">Code</mat-header-cell>
-        <mat-cell *matCellDef="let row"  class="tablefont">{{row.transaction_code}}
+        <mat-header-cell *matHeaderCellDef class="tablefont">Item</mat-header-cell>
+        <mat-cell *matCellDef="let row"  class="tablefont">{{row.itemname}}
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="invoice_amount" sticky>
@@ -47,18 +49,29 @@
       </ng-container>
       <ng-container matColumnDef="edit" sticky>
         <mat-header-cell *matHeaderCellDef >Action</mat-header-cell>
-        <mat-cell *matCellDef="let row" class="tablefont">
-          <button mat-raised-button color="primary" (click)="edittransaction(row)" >Edit</button>
+        <mat-cell *matCellDef="let row">
+          <mat-chip-list>
+            <mat-chip [color]="'blue'" (click)="edittransaction(row)" >Edit </mat-chip>
+          </mat-chip-list>
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="pay" stickyEnd>
         <mat-header-cell *matHeaderCellDef ></mat-header-cell>
         <mat-cell *matCellDef="let row">
           <div  [hidden]='row.isBuyer' >
-            <button mat-raised-button [color]="'green'" (click)="makepayment(row)" >Pay</button>
+            <mat-chip-list>
+              <mat-chip [color]="'green'" (click)="makepayment(row)" >Make Payment </mat-chip>
+            </mat-chip-list>
+          </div>
+          <div  [hidden]='row.selleragree' >
+            <mat-chip-list>
+              <mat-chip  disabled >Pending seller approval </mat-chip>
+            </mat-chip-list>
           </div>
           <div  [hidden]='row.isAgreed' >
-            <button mat-raised-button [color]="'green'" (click)="makepayment(row)" >Agree</button>
+            <mat-chip-list>
+              <mat-chip [color]="'green'" (click)="openDialog(row)" >Agree </mat-chip>
+            </mat-chip-list>
           </div>
         </mat-cell>
       </ng-container>
@@ -81,8 +94,7 @@
       <!-- Name Column -->
       <ng-container matColumnDef="item" sticky>
         <mat-header-cell *matHeaderCellDef >Item</mat-header-cell>
-        <mat-header-cell *matHeaderCellDef >Code</mat-header-cell>
-        <mat-cell *matCellDef="let row"  class="tablefont">{{row.transaction_code}}
+        <mat-cell *matCellDef="let row"  class="tablefont">{{row.itemname}}
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="invoice_amount" sticky>
@@ -94,14 +106,18 @@
       <ng-container matColumnDef="edit" stickyEnd>
         <mat-header-cell *matHeaderCellDef >Action</mat-header-cell>
         <mat-cell *matCellDef="let row" >
-          <button mat-raised-button color="primary" (click)="edittransaction(row)" >View</button>
+          <mat-chip-list>
+            <mat-chip [color]="'blue'" (click)="edittransaction(row)" >View </mat-chip>
+          </mat-chip-list>
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="pay" stickyEnd>
         <mat-header-cell *matHeaderCellDef ></mat-header-cell>
         <mat-cell *matCellDef="let row">
           <div  [hidden]='row.isBuyer' >
-            <button mat-raised-button [color]="'green'" (click)="makepayment(row)" >Approve</button>
+            <mat-chip-list>
+              <mat-chip [color]="'blue'" (click)="approvetranaction(row)" >Approve </mat-chip>
+            </mat-chip-list>
           </div>
         </mat-cell>
       </ng-container>
@@ -126,8 +142,7 @@
       <!-- Name Column -->
       <ng-container matColumnDef="item" sticky>
         <mat-header-cell *matHeaderCellDef >Item</mat-header-cell>
-        <mat-header-cell *matHeaderCellDef >Code</mat-header-cell>
-        <mat-cell *matCellDef="let row" class="tablefont" >{{row.transaction_code}}
+        <mat-cell *matCellDef="let row" class="tablefont" >{{row.itemname}}
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="invoice_amount" sticky>
@@ -139,7 +154,9 @@
       <ng-container matColumnDef="edit" stickyEnd>
         <mat-header-cell *matHeaderCellDef >Action</mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <button mat-raised-button color="primary"  (click)="edittransaction(row)" >View</button>
+          <mat-chip-list>
+            <mat-chip [color]="'blue'" (click)="edittransaction(row)" >View </mat-chip>
+          </mat-chip-list>
         </mat-cell>
       </ng-container>
 

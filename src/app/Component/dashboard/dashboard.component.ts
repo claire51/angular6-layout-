@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {AuthService} from '../../auth.service';
 import {Router} from '@angular/router';
-import {MatTableDataSource} from '@angular/material';
+import {MatDialog, MatTableDataSource} from '@angular/material';
 import {Transactions} from '../../model/Transactions';
 import {Item} from '../../model/Items';
 import {TradeParty} from '../../model/TradeParty';
@@ -11,6 +11,9 @@ import {PaymentService} from '../../localService/payment.service';
 import {Paymentresponse} from '../../model/Paymentresponse';
 import {RegistrationResponse} from '../../model/registrationResponse';
 import {ApproveService} from '../../localService/approve.service';
+import {AgreeService} from '../../localService/agree.service';
+import {Agreetransaction} from '../../model/Agreetransaction';
+import {DialogboxviewComponent} from '../dialogboxview/dialogboxview.component';
 
 @Component({
   selector: 'app-profiles',
@@ -40,10 +43,12 @@ payablebal: number;
   idnumber: string;
   county: string;
   editcolumnvalue: string;
+  agreestatuz: number;
   dataSourcepending: MatTableDataSource<any>;
   dataSourceActive: MatTableDataSource<any>;
   dataSourceComplete: MatTableDataSource<any>;
   resource: Resource = new Resource();
+  agreeresource: Agreetransaction = new Agreetransaction();
   paymentresp: Paymentresponse;
   approveresp: RegistrationResponse;
   viewstatus: boolean;
@@ -51,7 +56,8 @@ payablebal: number;
   displayedColumns = ['transaction_code', 'item', 'invoice_amount', 'edit', 'pay'];
   displayedColumnscomplete = ['transaction_code', 'item', 'invoice_amount', 'edit'];
   constructor(public auth: AuthService, public transervice: Transactionview ,    private paymentservice: PaymentService,
-              private router: Router, public authservice: AuthService, private approveservice: ApproveService) {
+              private router: Router, public authservice: AuthService, private approveservice: ApproveService,
+              private agreeservice: AgreeService, public dialog: MatDialog) {
     this.accountbal = 0.0;
    this. allocatedbal = 0.0;
     this.payablebal = 0.0;
@@ -76,18 +82,26 @@ payablebal: number;
       this.transervice.getById(this.id1).subscribe((data) => {
         this.transactions = data;
         for (let transac of this.transactions) {
+          for (let item of transac.items) {
+            transac.itemname = item.name;
+          }
+
           if (transac.transaction_status_id === 1 ) {
             transac.isBuyer = true;
-            transac.isAgreed = true
+            transac.isAgreed = true;
+            transac.selleragree = true;
             for (let trade of  transac.trade_roles) {
               if (trade.transaction_role_id === 1 ) {
-                if ( trade.trade_party.user_id !== null && transac.user_id === trade.trade_party.user_id) {
-                  transac.isBuyer = false;
-                  console.log('dddddddddddddddddddddddddd');
+                if ( trade.trade_party.user_id !== null &&  this.useridz  === trade.trade_party.user_id) {
+                  if (transac.agreed_status === 1) {
+                    transac.isBuyer = false;
+                  } else {
+                    transac.selleragree = false;
+                  }
                 }
               }
               if (trade.transaction_role_id === 2 ) {
-                if ( trade.trade_party.user_id !== null && transac.user_id === trade.trade_party.user_id) {
+                if ( trade.trade_party.user_id !== null &&  this.useridz  === trade.trade_party.user_id) {
                   if (transac.agreed_status === 1) {
                     transac.isAgreed = true;
                   } else {transac.isAgreed = false}
@@ -96,7 +110,16 @@ payablebal: number;
             }
             this.transactionspending.push(transac);
           } else if (transac.transaction_status_id === 2) {
-         this.transactionsactive.push(transac) ;
+            transac.isBuyer = true;
+            for (let trade of  transac.trade_roles) {
+            if (trade.transaction_role_id === 1 ) {
+              if ( trade.trade_party.user_id !== null &&  this.useridz  === trade.trade_party.user_id) {
+                if (transac.agreed_status === 1) {
+                  transac.isBuyer = false;
+                }
+              }
+            }}
+           this.transactionsactive.push(transac) ;
             this.viewstatus = false;
           } else if ( transac.transaction_status_id === 3) {
             this.transactionscomplete.push(transac) ;
@@ -143,7 +166,7 @@ payablebal: number;
   approvetranaction(data): void {
     this.authservice.transactionshelper = data;
     this.resource.id = this.authservice.transactionshelper.id;
-    this.approveservice.payment( this.resource).subscribe((resp) => {
+    this.approveservice.paymentapprove( this.resource).subscribe((resp) => {
       this.approveresp = resp;
       if (this.approveresp.status) {
         this.authservice.showSnackBar('Transaction ' + this.resource.id + 'payment was Approved succesfully ' );
@@ -154,4 +177,65 @@ payablebal: number;
       }
     });
   }
+   agreetotransaction(data) {
+     this.authservice.transactionshelper = data;
+     this.resource.id = this.authservice.transactionshelper.id;
+     this.agreeresource.id = this.resource.id;
+     this.agreeresource.status = 1;
+     this.agreeservice.agreetrade( this.agreeresource).subscribe((resp) => {
+       this.approveresp = resp;
+       if (this.approveresp.status) {
+         this.authservice.showSnackBar('You agreed to trade , transaction no: ' + this.resource.id + '  the buyer will be notified to go on  to trade payment  ' );
+       }
+     }, (response: Response) => {
+       if (response.status <= 500) {
+         this.authservice.showSnackBar(' could not send Agreement request');
+       }
+     });
+
+   }
+
+   declinetransaction(data) {
+     this.authservice.transactionshelper = data;
+     this.resource.id = this.authservice.transactionshelper.id;
+     this.agreeresource.id = this.resource.id;
+     this.agreeresource.status = 2;
+     this.agreeservice.agreetrade( this.agreeresource).subscribe((resp) => {
+       this.approveresp = resp;
+       if (this.approveresp.status) {
+         this.authservice.showSnackBar('You Delcined to trade , transaction no : ' + this.resource.id  );
+       }
+     }, (response: Response) => {
+       if (response.status <= 500) {
+         this.authservice.showSnackBar(' could not send decline request');
+       }
+     });
+
+   }
+
+  openDialog(data): void {
+    this.authservice.transactionshelper = data;
+    const dialogRef = this.dialog.open(DialogboxviewComponent, {
+      width: '500px',
+      autoFocus: true,
+      data: this.authservice.transactionshelper
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.agreestatuz = result;
+      if (this.agreestatuz === 1) {
+        this.agreetotransaction(data);
+      } else if ( this.agreestatuz === 2) {
+        this.declinetransaction(data);
+      } else {
+        console.log('dialog closed');
+      }
+    });
   }
+
+
+
+
+
+}
+

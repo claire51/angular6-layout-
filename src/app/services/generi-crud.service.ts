@@ -14,6 +14,7 @@ import {Resource} from '../model/Resource';
 import {Verifies} from '../model/Verifies';
 import {Resender} from '../model/Resender';
 import {Recoverpass} from '../model/recoverpass';
+import {Agreetransaction} from '../model/Agreetransaction';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -81,10 +82,28 @@ export class GeneriCrudService<T> {
   }
 
   /** POST: add a new hero to the server */
+  agreetrade (values: Agreetransaction): Observable<T> {
+    return this.http.put<T>(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
+      tap((heroSaved: T) => {
+       console.log('payment requested ..');
+      }),
+      catchError(this.handleError<T>('adding'))
+    );
+  }
+  /** POST: add a new hero to the server */
   payment (values: Resource): Observable<T> {
     return this.http.post<T>(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
       tap((heroSaved: T) => {
        console.log('payment requested ..');
+      }),
+      catchError(this.handleError<T>('adding'))
+    );
+  }
+  /** POST: add a new hero to the server */
+  paymentapprove (values: Resource): Observable<T> {
+    return this.http.put<T>(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
+      tap((heroSaved: T) => {
+       console.log('payment approval requested ..');
       }),
       catchError(this.handleError<T>('adding'))
     );
@@ -108,6 +127,15 @@ export class GeneriCrudService<T> {
   /** POST: add a new hero to the server */
   recover (values: RecoverPassword): Observable<T> {
     return this.http.post<T>(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
+      tap((heroSaved: T) => {
+        console.log('Account Created .. Login to continue');
+      }),
+      catchError(this.handleError<T>('adding'))
+    );
+  }
+  /** POST: add a new hero to the server */
+  changepass (values: RecoverPassword): Observable<T> {
+    return this.http.put<T>(`${this.baseurl}/${this.endpoint}`, values, httpOptions).pipe(
       tap((heroSaved: T) => {
         console.log('Account Created .. Login to continue');
       }),

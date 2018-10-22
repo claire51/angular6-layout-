@@ -20,7 +20,9 @@ export class AuthService {
   data: Array<User> =  new Array<User>();
   transactionshelper: Transactions = new Transactions();
   resendphone: string;
+  otpmessage: string;
   verified: number;
+  hasotp: number;
   isAuthenticated() {
     return this.loggedIn.asObservable();
   }
@@ -29,6 +31,8 @@ export class AuthService {
     this.showloading = false;
     this.resendphone =  '';
     this.verified = 0;
+    this.hasotp = 0;
+    this.otpmessage = ' ';
   }
 
   login() {

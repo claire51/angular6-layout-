@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.authservice.showloading = false;
     this.form = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.email]) ],
-      password: ['', Validators.compose([ Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9_.-]*$/)])],
+      password: ['', Validators.compose([ Validators.required, Validators.minLength(3)])],
     });
   }
   isFieldInvalid(field: string) {
@@ -62,11 +62,17 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('id', '' + (this.tokens.user.id));
           this.authservice.login();
           this.authservice.verified = this.tokens.user.phone_verified;
+          this.authservice.hasotp = this.tokens.user.has_otp;
           this.status = true;
           if (this.authservice.verified === 0 ) {
             this.router.navigate(['/verify']);
           } else {
+            if ( this.authservice.hasotp === 0 ) {
           this.router.navigate(['/dashboard']);
+            } else {
+              this.authservice.otpmessage = 'You have one time password please update with password of choice';
+              this.router.navigate(['/profile']);
+            }
         }
         }
       }, (response: Response) => {

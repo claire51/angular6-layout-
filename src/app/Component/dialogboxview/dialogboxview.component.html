@@ -1,0 +1,15 @@
+<h5 mat-dialog-title><span style="color: #0d46a0" >Do you agree with trade created by  {{buyername}}</span></h5>
+<div mat-dialog-content>
+  <p> <span style="color: #0d46a0" >Date</span> :{{transactin.created_at | date:'dd/MM/yyyy'}} </p>
+  <p><span style="color: #0d46a0" >Item</span> :{{itemname}} </p>
+  <p><span style="color: #0d46a0" >Description</span> :{{description}} </p>
+  <p><span style="color: #0d46a0" >Inv Amount</span> :{{transactin.invoice_amount}} </p>
+  <p><span style="color: #0d46a0" >Transaction fee</span> :{{transactin.fee_value}} </p>
+  <p><span style="color: #0d46a0" >Delivery Period</span> :{{transactin.period}} </p>
+  <p><span style="color: #0d46a0" >Inspection Period</span> :{{transactin.inspection_period}} </p>
+</div>
+<div mat-dialog-actions class="fontdesgn">
+  <button mat-button [mat-dialog-close]="agreestatus" cdkFocusInitial>I Agree</button>
+  <button mat-button [mat-dialog-close]="declinestatus" cdkFocusInitial>Decline</button>
+  <!--<button mat-button (click)="onNoClick()">Decline</button>-->
+</div>

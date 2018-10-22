@@ -31,6 +31,7 @@ export class EdituserComponent implements OnInit {
   usereditform: FormGroup;
   email: string;
   firstname: string;
+  otpmessage: string;
   fullname: string;
   lastname: string;
   idnumber: string;
@@ -56,9 +57,11 @@ export class EdituserComponent implements OnInit {
     this.id = localStorage.getItem('id');
     this.step = 1;
     this.stepper = 1;
+    this.otpmessage = this.auth.otpmessage;
   }
 
   ngOnInit() {
+    this.otpmessage = this.auth.otpmessage;
     this.resetPassword = this.fb.group({
       currentpass: ['',  Validators.compose([Validators.required, Validators.email]) ],
       newpass: ['', Validators.compose([ Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9_.-]*$/)])],
@@ -120,7 +123,7 @@ export class EdituserComponent implements OnInit {
   }
 
   resetpass(recoverpassword: RecoverPassword): void {
-    this.resetpasswordservice.recover(recoverpassword).subscribe((newHeroWithId) => {
+    this.resetpasswordservice.changepass(recoverpassword).subscribe((newHeroWithId) => {
       this.registrationresponse = newHeroWithId;
       if (this.registrationresponse.status) {
         this.auth.showSnackBar('Password was succesfully changed ');

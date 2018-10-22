@@ -4,6 +4,7 @@ import { AuthGuardGuard } from './guard/auth-guard.guard';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
+import {DashboardComponent} from './Component/dashboard/dashboard.component';
 
 const routes: Routes = [
 
@@ -11,9 +12,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: HomeComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'dashboard',
-    loadChildren: '../app/modules/dashboard.module#DashboardModule' , canActivate: [AuthGuardGuard]
-  },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardGuard] },
+  // { path: 'dashboard',
+  //   loadChildren: '../app/modules/dashboard.module#DashboardModule' , canActivate: [AuthGuardGuard]
+  // },
   { path: 'recover',
     loadChildren: '../app/modules/shared.module#SharedModule'
   },
