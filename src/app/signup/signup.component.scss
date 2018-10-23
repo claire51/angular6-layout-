@@ -34,7 +34,7 @@ margin-bottom: 4%;
   width:100%;
   background-color: #575756;
   align-items: center;
-  //padding-top:1%;
+  padding-top:5%;
   flex-wrap: wrap;
 }
 
@@ -84,6 +84,16 @@ margin-bottom: 4%;
 
 /* Small screens */
 @media all and (max-width: 500px) {
+  .howitwork-containersignup{
+    display: flex;
+    width:100%;
+    background-color: #575756;
+    align-items: center;
+    padding-top:5%;
+    flex-wrap: wrap;
+  }
+
+
   .Why-contentsignupa{
     flex: 1;
     order: 2;

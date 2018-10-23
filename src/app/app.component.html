@@ -19,45 +19,35 @@
           Sign Up
         </a>
       </ng-template>
+
+      <a routerLink="/dashboard" mat-list-item   *ngIf="isLoggedIn$ | async as isAuthenticated">
+        <mat-icon>home</mat-icon>
+        Dashboard
+      </a>
+
       <a routerLink="/profile" mat-list-item   *ngIf="isLoggedIn$ | async as isAuthenticated; else persona">
         <mat-icon>account_circle</mat-icon>
         Profile
       </a>
       <ng-template #persona>
-        <a href="#landingpage"  mat-list-item>
-          <mat-icon>home</mat-icon>
-          Home
-        </a>
-      </ng-template>
-
-      <a routerLink="/createtrade" mat-list-item   *ngIf="isLoggedIn$ | async as isAuthenticated; else business">
-        <mat-icon>queue</mat-icon>
-        New trade
-      </a>
-
-      <ng-template #business>
-        <a href="#when-to-use"  mat-list-item>
-          <mat-icon>explore</mat-icon>
-         About
-        </a>
-        <a href="#personal"  mat-list-item>
-          <mat-icon>settings_applications</mat-icon>
-         How it works
-        </a>
-      </ng-template>
-      <!--//signup-->
-
-      <a routerLink="/login" mat-list-item (click)="onLogout()" *ngIf="isLoggedIn$ | async as isAuthenticated;else elsesignupb" >
-      <mat-icon>settings_power</mat-icon>
-        Logout
-      </a>
-
-      <ng-template #elsesignupb>
         <a routerLink="/login" mat-list-item>
           <mat-icon>lock</mat-icon>
           Login
         </a>
       </ng-template>
+
+      <a routerLink="/createtrade" mat-list-item   *ngIf="isLoggedIn$ | async as isAuthenticated">
+        <mat-icon>queue</mat-icon>
+        New trade
+      </a>
+
+
+      <!--//signup-->
+
+      <a routerLink="/login" mat-list-item (click)="onLogout()" *ngIf="isLoggedIn$ | async as isAuthenticated" >
+      <mat-icon>settings_power</mat-icon>
+        Logout
+      </a>
 
 
 
@@ -66,7 +56,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar [color]="'blue'" >
+    <mat-toolbar [color]="'blue'"  style=" position: fixed;   z-index: 2;">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -129,6 +119,7 @@
 
       </div>
     </mat-toolbar>
+
     <section  class="progress-bar" [hidden]='this.auth.showloading' >
       <mat-progress-bar
         [color]='color'
