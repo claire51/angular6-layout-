@@ -97,6 +97,21 @@
          New trade</button>
      </span>
         <span class="header_text">
+          <button mat-button [matMenuTriggerFor]="menu" *ngIf="isLoggedIn$ | async as isAuthenticated">
+             <mat-icon>account_circle</mat-icon> Profile</button>
+<mat-menu #menu="matMenu">
+   <button mat-button routerLink="/profile">
+          <mat-icon>account_circle</mat-icon>
+         Profile</button>
+  <button mat-button routerLink="/logout">
+          <mat-icon>account_circle</mat-icon>
+         Logout</button>
+
+</mat-menu>
+
+
+
+
        <button mat-button routerLink="/profile"
                *ngIf="isLoggedIn$ | async as isAuthenticated; else elsesignup1s" >
           <mat-icon>account_circle</mat-icon>
