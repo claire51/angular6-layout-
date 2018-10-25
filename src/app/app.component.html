@@ -86,15 +86,15 @@
           <mat-icon>queue</mat-icon>
          New trade</button>
      </span>
-        <span class="header_text">
-          <button mat-button [matMenuTriggerFor]="menu" *ngIf="isLoggedIn$ | async as isAuthenticated">
+
+          <button mat-button [matMenuTriggerFor]="menu" *ngIf="isLoggedIn$ | async as isAuthenticated ; else elseBlock1">
              <mat-icon>account_circle</mat-icon> Profile</button>
 <mat-menu #menu="matMenu">
-   <button mat-button routerLink="/profile">
+   <button mat-button  routerLink="/profile" >
           <mat-icon>account_circle</mat-icon>
-         Profile</button>
-  <button mat-button routerLink="/logout">
-          <mat-icon>account_circle</mat-icon>
+         Profile</button> <br>
+  <button mat-button (click)="onLogout()" routerLink="/logout">
+          <mat-icon>settings_power</mat-icon>
          Logout</button>
 
 </mat-menu>
@@ -102,34 +102,16 @@
 
 
 
-       <button mat-button routerLink="/profile"
-               *ngIf="isLoggedIn$ | async as isAuthenticated; else elsesignup1s" >
-          <mat-icon>account_circle</mat-icon>
-         Profile</button>
-     </span>
 
-        <ng-template #elsesignup1s >
-          <button  style="color: white; margin-left: 51%; padding: auto"  mat-button routerLink="/login">Login</button>
-        </ng-template>
-
-
-
-
-
-
-        <span class="header_text">
-       <button mat-button (click)="onLogout()"
-               *ngIf="isLoggedIn$ | async as isAuthenticated; else elseBlock1">
-          <mat-icon>account_circle</mat-icon>
-         Logout</button>
-     </span>
-
-
+        <!---->
         <ng-template #elseBlock1 >
-          <span class="header_text">
-            <button mat-button  [color]="'purple'" routerLink="/signup"> Create Account</button>
+          <span class="header_text" >
+             <button mat-button   style="color: white; margin: 3%" routerLink="/login"> Login</button>
+            <button mat-button   style="margin: 1%"  [color]="'purple'" routerLink="/signup"> Create Account</button>
+
      </span>
         </ng-template>
+
       </div>
 
       </div>
