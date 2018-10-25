@@ -5,6 +5,7 @@
   flex-direction: row;
 align-items: center;
   padding-top:9%;
+  font-family: sans-serif;
   background-size: 100% 100%;
   background-color: #0d46a0;
   height: 500px;
@@ -16,11 +17,13 @@ align-items: center;
   background-color: white;
   align-items: center;
   overflow: hidden;
+  font-family: sans-serif;
   padding-top:2%;
 
 }
 .whentouse-container{
   display: flex;
+  font-family: sans-serif;
   width:100%;
   background-color: #0d46a0;
   align-items: center;
@@ -30,6 +33,7 @@ align-items: center;
 }
 .howitwork-container{
   display: flex;
+  font-family: sans-serif;
   width:100%;
   background-color: white;
   align-items: center;
@@ -40,6 +44,7 @@ align-items: center;
   display: flex;
   width:100%;
   background-color: grey;
+  font-family: sans-serif;
   align-items: center;
   //padding-top:1%;
   flex-wrap: wrap;
@@ -49,13 +54,15 @@ align-items: center;
   display:flex;
   height: 5%;
   background-color:purple;
+  font-family: sans-serif;
 }
 .divb-1{
   flex: auto;
   text-align: center;
   overflow: visible;
-  padding-bottom: 4%;
-
+  padding-bottom: 7%;
+  text-align: left;
+padding-left: 10%;
   //background-color: white;
 }
 
@@ -106,6 +113,10 @@ justify-content: center;
 
 
 }
+//.fontalignleft{
+//  text-align: left;
+//  padding-left: 15%;
+//}
 .calculatz{
   flex: auto;
   text-align: center;
@@ -121,6 +132,7 @@ justify-content: center;
   flex: 1;
   //background-color: white;
   text-align: center;
+  font-family: sans-serif;
 
 }
 
@@ -156,13 +168,6 @@ justify-content: center;
   transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
 }
 
-//.z-depth:hover {
-//  box-shadow: 0 8px 8px rgba(10,16,20,.24), 0 0 8px rgba(10,16,20,.12) !important;
-//  transform: translate3d(0,0,0);
-//  background-color: #5471d2;
-//  color: white;
-//  transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
-//}
 .why_header{
   text-decoration: underline;
   font-weight: bolder;
@@ -176,6 +181,14 @@ justify-content: center;
   text-align: center;
   overflow: visible;
   padding-bottom: 2%;
+  padding-left: 10%;
+}
+
+.listfont{
+  font-family: sans-serif;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
 }
 .paratext{
 font-size: 16px;
@@ -228,9 +241,9 @@ font-size: 16px;
 }
 
 .spanA{
-  font-size: 40px;
-  font-weight: 400;
-
+  font-size: 30px;
+  font-family: sans-serif;
+  font-weight: bolder;
   text-align: left;
 }
 .spanb{
@@ -355,6 +368,7 @@ font-size: 16px;
     font-size: 30px;
     font-weight: 300;
     text-align: left;
+    font-family: sans-serif;
   }
   .why_header{
     text-decoration: underline;

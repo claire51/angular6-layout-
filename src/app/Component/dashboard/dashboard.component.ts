@@ -73,6 +73,8 @@ payablebal: number;
   ngOnInit() {
     if (this.auth.verified === 0 ) {
       this.router.navigate(['/verify']);
+    } else {
+
     }
   }
   ngAfterViewInit() {

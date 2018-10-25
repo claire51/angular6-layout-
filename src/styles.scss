@@ -7,3 +7,14 @@ body { margin: 0; }
 .contentz{
 padding-bottom: 20%;
 }
+.paddingtopdesign{
+  font-family: sans-serif;
+  padding-top:4% !important;
+}
+///* Small screens */
+@media all and (max-width: 500px) {
+  .paddingtopdesign{
+    font-family: sans-serif;
+    padding-top:10% !important;
+  }
+}

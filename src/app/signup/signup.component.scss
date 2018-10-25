@@ -34,12 +34,12 @@ margin-bottom: 4%;
   width:100%;
   background-color: #575756;
   align-items: center;
-  padding-top:5%;
+  padding-top:4.5%;
   flex-wrap: wrap;
 }
 
 .Why-contentsignup{
-  flex: 1;
+  flex: 2;
   background-color: #ffffff;
   text-align: center;
   padding-bottom: 5%;
@@ -64,6 +64,14 @@ margin-bottom: 4%;
 
 //mobile
 @media all and (max-width: 800px) {
+  .howitwork-containersignup{
+    display: flex;
+    width:100%;
+    background-color: #575756;
+    align-items: center;
+    padding-top:10%;
+    flex-wrap: wrap;
+  }
   .Why-contentsignupa{
     flex: 1;
     order: 2;
@@ -89,10 +97,16 @@ margin-bottom: 4%;
     width:100%;
     background-color: #575756;
     align-items: center;
-    padding-top:5%;
+    padding-top:10%;
     flex-wrap: wrap;
   }
 
+  .Why-contentsignup{
+    flex: 1;
+    background-color: #ffffff;
+    text-align: center;
+    padding-bottom: 4.5%;
+  }
 
   .Why-contentsignupa{
     flex: 1;

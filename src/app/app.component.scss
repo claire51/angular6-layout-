@@ -2,10 +2,12 @@
 
 .sidenav-container {
   height: 100%;
+  font-family: sans-serif;
 }
 
 .sidenav {
   width: 200px;
+  font-family: sans-serif;
 }
 
 .mat-toolbar.mat-primary {
@@ -19,6 +21,7 @@
 .header_text {
   font-family: sans-serif;
   font-size: 12px;
+  font-family: sans-serif;
   font-weight: bold;
 
 }
@@ -66,6 +69,7 @@ height: 60px;
   margin-top: 0px;
   align-content: center;
   align-items: center;
+  font-family: sans-serif;
   height: calculateRem(5px);
 }
 
