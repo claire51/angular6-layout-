@@ -71,6 +71,9 @@ payablebal: number;
   }
 
   ngOnInit() {
+
+
+    console.log(screen.width)
     if (this.auth.verified === 0 ) {
       this.router.navigate(['/verify']);
     } else {
