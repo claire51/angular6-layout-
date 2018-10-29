@@ -40,11 +40,12 @@
 
 .divb-1{
   flex: auto;
-  text-align: center;
   align-content: space-around;
-  padding-bottom: 1%;
-
-  //background-color: white;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: white;
+  align-items: center;
+  align-content: stretch;
 }
 .card-design{
   background-color: #ebebeb;

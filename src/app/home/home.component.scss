@@ -9,14 +9,20 @@ align-items: center;
   background-size: 100% 100%;
   background-color: #0d46a0;
   height: 90vh;
+
+
+}
+.textpadding{
+  text-align: left !important;
+  padding-left: 8% !important; ;
+}.textpaddingb{
+  text-align: left !important;
+  padding-left: 11% !important; ;
 }
 .personal_container{
   display: flex;
   width:100%;
   flex-direction: row;
-  background-color: white;
-  align-items: center;
-  overflow: hidden;
   font-family: sans-serif;
   padding-top:2%;
 
@@ -26,7 +32,7 @@ align-items: center;
   font-family: sans-serif;
   width:100%;
   background-color: #0d46a0;
-  align-items: center;
+  //align-items: center;
   margin-top:2%;
   flex-wrap: wrap;
 
@@ -73,8 +79,7 @@ justify-content: center;
   color: white;
   align-items: center;
   align-content: stretch;
-  text-align: left;
-  padding-left: 4%;
+
   background-color: #0d46a0;
   padding-top: 2%;
   padding-bottom: 1%;
@@ -91,7 +96,9 @@ justify-content: center;
 }
 .home_div_crtAcc{
  text-align:left;
-  padding-left: 14%;
+  padding-top: 3%;
+  //padding-left: 14%;
+
 }
 
 .divb_selection1{
@@ -119,7 +126,7 @@ justify-content: center;
 //}
 .calculatz{
   flex: auto;
-  text-align: center;
+  //text-align: center;
 
 }
 .Why-content{
@@ -152,7 +159,7 @@ justify-content: center;
 
 .largeiconlast{
   color: #0d46a0;
-  font-size: 80px;
+  font-size: 100px;
   margin-right: 3px;
   align-content: center;
   align-items: center;
@@ -178,10 +185,11 @@ justify-content: center;
 
 .when-to-use {
   flex: auto;
-  text-align: center;
+  text-align: left;
   overflow: visible;
   padding-bottom: 2%;
-  padding-left: 10%;
+  color: white;
+  //padding-left: 10%;
 }
 
 .listfont{
@@ -233,7 +241,7 @@ font-size: 16px;
 .footer-div2{
   flex: 1;
   justify-content: center;
-  text-align: center;
+  text-align: left;
 }
 
 .paratext{
@@ -273,8 +281,9 @@ font-size: 16px;
   width: 150px;
 }
 .homepic{
-  width: 300px;
+  width: 290px;
   padding-right: 80px ;
+  padding-top: 30%;
 }
 
 .mat-purple {
@@ -296,8 +305,13 @@ font-size: 16px;
   align-items: center;
   height: calculateRem(5px);
 }
-
-
+.iconimagedeppo {
+  height: 100px;
+  width: 100px;
+}
+.innerpadding{
+  padding-left: 8%;
+}
 
 
 //mobile
@@ -395,7 +409,7 @@ font-size: 16px;
   }
   .largeiconlast{
     color: #0d46a0;
-    font-size: 50px;
+    font-size: 70px;
     margin-right: 3px;
     align-content: center;
     align-items: center;
@@ -454,7 +468,6 @@ font-size: 16px;
   .spanA{
     font-size: 25px;
     font-weight: 250;
-    text-align: left;
   }
   .spanb{
     font-size: 25px;
