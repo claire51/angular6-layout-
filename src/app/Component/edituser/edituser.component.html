@@ -15,7 +15,30 @@
   <div class="rowdiv">
     <mat-card class="example-card">
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
+        <div mat-card-avatar class="example-header-image">
+          <label class="image-upload-container btn btn-bwm">
+            <span>Select Image</span>
+            <input class="inputk" #imageInput
+                   type="file"
+                   accept="image/*"
+                   (change)="processFile(imageInput)">
+          </label>
+
+
+          <div *ngIf="selectedFile" class="img-preview-container">
+
+            <div class="img-preview{{selectedFile.status === 'fail' ? '-error' : ''}}"
+                 [ngStyle]="{'background-image': 'url('+ selectedFile.src + ')'}">
+            </div>
+
+            <div *ngIf="selectedFile.pending" class="img-loading-overlay">
+              <div class="img-spinning-circle"></div>
+            </div>
+
+            <div *ngIf="selectedFile.status === 'ok'" class="alert alert-success"> Image Uploaded Succesfuly!</div>
+            <div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Image Upload Failed!</div>
+          </div>
+        </div>
         <mat-card-title><span style="font-size: 18px; font-weight: bold">{{fullname}}</span></mat-card-title>
         <mat-card-subtitle><span style="font-weight: bold">{{phone_number}}</span></mat-card-subtitle>
         <mat-card-subtitle><span style="font-weight: bold">{{email}}</span></mat-card-subtitle>
@@ -52,8 +75,8 @@
                 </mat-error>
               </mat-form-field>
               <mat-form-field class="full-width-input">
-                <input matInput type="text"  placeholder="National Id" formControlName="national_id"  required>
-                <mat-error *ngIf="isFieldInvalidb('national_id')">
+                <input matInput type="text"  placeholder="National Id" formControlName="id_number"  required>
+                <mat-error *ngIf="isFieldInvalidb('id_number')">
                   Enter new valid national id number
                 </mat-error>
               </mat-form-field>

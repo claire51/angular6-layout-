@@ -8,6 +8,7 @@ import {ErrorStateMatcher} from '@angular/material';
 import {UsereditService} from '../../localService/useredit.service';
 import {User} from '../../model/User';
 import {Useredit} from '../../model/Useredit';
+import {ImageSnippet} from '../../model/ImageSnippet';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -26,6 +27,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./edituser.component.scss']
 })
 export class EdituserComponent implements OnInit {
+  selectedFile: ImageSnippet;
+
+
+
   phone_number: string;
   resetPassword: FormGroup;
   usereditform: FormGroup;
@@ -71,10 +76,16 @@ export class EdituserComponent implements OnInit {
       id: [(Number(localStorage.getItem('id')))],
       first_name: [localStorage.getItem('firstname'), Validators.compose([ Validators.required, Validators.minLength(3), Validators.pattern(/[A-Za-z]/)])],
       phone_number: [localStorage.getItem('phone_number'), Validators.compose([Validators.required, Validators.pattern(/^07\d{8}$/)]) ],
-      national_id: [localStorage.getItem('idnumber'), Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
+      id_number: [localStorage.getItem('idnumber'), Validators.compose([Validators.required, Validators.pattern(/^[0-9]/)]) ],
       email: [localStorage.getItem('email'), Validators.compose([Validators.required, Validators.email]) ]
     });
   }
+
+
+
+
+
+
 
   checkPasswords(group: FormGroup) { // here we have the 'passwords' group
     let pass = group.controls.newpass.value;
@@ -163,4 +174,44 @@ export class EdituserComponent implements OnInit {
       }
     });
   }
+
+
+
+
+
+
+  private onSuccess() {
+    this.selectedFile.pending = false;
+    this.selectedFile.status = 'ok';
+  }
+
+  private onError() {
+    this.selectedFile.pending = false;
+    this.selectedFile.status = 'fail';
+    this.selectedFile.src = '';
+  }
+
+  processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', (event: any) => {
+
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+console.log(this.selectedFile)
+      this.selectedFile.pending = true;
+      // this.imageService.uploadImage(this.selectedFile.file).subscribe(
+      //   (res) => {
+      //     this.onSuccess();
+      //   },
+      //   (err) => {
+      //     this.onError();
+      //   })
+    });
+
+    reader.readAsDataURL(file);
+  }
+
 }
+
+

@@ -16,9 +16,13 @@ export class User extends Resource {
   has_otp: number;
   created_at: string;
   updated_at: string;
+  image_name: string;
   permissions: Array<Permission>;
   roles: Array<Role>;
   mail_verification_code: string;
+
+
+
   constructor() { super();
 }
 }

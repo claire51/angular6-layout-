@@ -14,6 +14,8 @@ import {ApproveService} from '../../localService/approve.service';
 import {AgreeService} from '../../localService/agree.service';
 import {Agreetransaction} from '../../model/Agreetransaction';
 import {DialogboxviewComponent} from '../dialogboxview/dialogboxview.component';
+import {AccountService} from '../../localService/account.service';
+import {Mlinziaccount} from '../../model/Mlinziaccount';
 
 @Component({
   selector: 'app-profiles',
@@ -26,6 +28,7 @@ allocatedbal: number;
   id1: number;
 payablebal: number;
   transactions: Array<Transactions> = new Array<Transactions>();
+  account: Mlinziaccount = new Mlinziaccount();
   transactionspending: Array<Transactions> = new Array<Transactions>();
   transactionscomplete: Array<Transactions> = new Array<Transactions>();
   transactionsactive: Array<Transactions> = new Array<Transactions>();
@@ -55,7 +58,7 @@ payablebal: number;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['transaction_code', 'item', 'invoice_amount', 'edit', 'pay'];
   displayedColumnscomplete = ['transaction_code', 'item', 'invoice_amount', 'edit'];
-  constructor(public auth: AuthService, public transervice: Transactionview ,    private paymentservice: PaymentService,
+  constructor(public auth: AuthService, public accountservice: AccountService ,   public transervice: Transactionview ,    private paymentservice: PaymentService,
               private router: Router, public authservice: AuthService, private approveservice: ApproveService,
               private agreeservice: AgreeService, public dialog: MatDialog) {
     this.accountbal = 0.0;
@@ -71,7 +74,13 @@ payablebal: number;
   }
 
   ngOnInit() {
-
+    this.accountservice.getsingledata().subscribe((data) => {
+      this.account = data;
+    }, (response: Response) => {
+      if (response.status <= 500) {
+        this.authservice.showSnackBar(' could not load users');
+      }
+    });
 
     console.log(screen.width)
     if (this.auth.verified === 0 ) {
@@ -81,6 +90,9 @@ payablebal: number;
     }
   }
   ngAfterViewInit() {
+    this.logicchecktransaction();
+  }
+  logicchecktransaction() {
     this.id1 = 0;
     this.useridz = (Number(localStorage.getItem('id')));
     if (this.transactions.length < 1) {
@@ -117,14 +129,14 @@ payablebal: number;
           } else if (transac.transaction_status_id === 2) {
             transac.isBuyer = true;
             for (let trade of  transac.trade_roles) {
-            if (trade.transaction_role_id === 1 ) {
-              if ( trade.trade_party.user_id !== null &&  this.useridz  === trade.trade_party.user_id) {
-                if (transac.agreed_status === 1) {
-                  transac.isBuyer = false;
+              if (trade.transaction_role_id === 1 ) {
+                if ( trade.trade_party.user_id !== null &&  this.useridz  === trade.trade_party.user_id) {
+                  if (transac.agreed_status === 1) {
+                    transac.isBuyer = false;
+                  }
                 }
-              }
-            }}
-           this.transactionsactive.push(transac) ;
+              }}
+            this.transactionsactive.push(transac) ;
             this.viewstatus = false;
           } else if ( transac.transaction_status_id === 3) {
             this.transactionscomplete.push(transac) ;
@@ -141,7 +153,12 @@ payablebal: number;
         }
       });
     }
+
   }
+
+
+
+
   trackByUid(index, User1) {
     return User1.id;
   }
@@ -160,6 +177,7 @@ payablebal: number;
         this.authservice.showSnackBar('Transaction ' + this.resource.id + 'payment was '
           + this.paymentresp.CustomerMessage + '  Request code is '
           + this.paymentresp.transaction_code + ' Check your phone to complete payment' );
+        this.logicchecktransaction();
       }
       console.log(resp);
     }, (response: Response) => {
@@ -175,6 +193,7 @@ payablebal: number;
       this.approveresp = resp;
       if (this.approveresp.status) {
         this.authservice.showSnackBar('Transaction ' + this.resource.id + 'payment was Approved succesfully ' );
+        this.logicchecktransaction();
       }
     }, (response: Response) => {
       if (response.status <= 500) {
@@ -191,6 +210,7 @@ payablebal: number;
        this.approveresp = resp;
        if (this.approveresp.status) {
          this.authservice.showSnackBar('You agreed to trade , transaction no: ' + this.resource.id + '  the buyer will be notified to go on  to trade payment  ' );
+       this.logicchecktransaction();
        }
      }, (response: Response) => {
        if (response.status <= 500) {
@@ -209,6 +229,7 @@ payablebal: number;
        this.approveresp = resp;
        if (this.approveresp.status) {
          this.authservice.showSnackBar('You Delcined to trade , transaction no : ' + this.resource.id  );
+         this.logicchecktransaction();
        }
      }, (response: Response) => {
        if (response.status <= 500) {

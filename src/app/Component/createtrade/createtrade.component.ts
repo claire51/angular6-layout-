@@ -301,7 +301,7 @@ export class CreatetradeComponent implements OnInit , AfterViewInit {
           console.log(this.transactionresp.id);
           this.auth.showSnackBar(' Order place succefully, your transaction code is ' +
             this.transactionresp.transaction_code + 'You will get SMS Invoice');
-          this.router.navigate(['/viewtrade', 1]);
+          this.router.navigate(['/dashboard']);
         }
       },
       (response: Response) => {

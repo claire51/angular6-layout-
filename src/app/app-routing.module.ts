@@ -13,26 +13,18 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardGuard] },
-  // { path: 'dashboard',
-  //   loadChildren: '../app/modules/dashboard.module#DashboardModule' , canActivate: [AuthGuardGuard]
-  // },
+
   { path: 'recover',
     loadChildren: '../app/modules/shared.module#SharedModule'
   },
   { path: 'createtrade',
     loadChildren: '../app/modules/createtrade.module#CreatetradeModule'
-  },
-  { path: 'viewtrade/:id',
-    loadChildren: '../app/modules/viewtrades.module#ViewtradesModule' , canActivate: [AuthGuardGuard]
   }, { path: 'editrade',
     loadChildren: '../app/modules/editrades.module#EditradesModule' , canActivate: [AuthGuardGuard]
   }, { path: 'profile',
     loadChildren: '../app/modules/profile.module#ProfileModule' , canActivate: [AuthGuardGuard]
-  }, { path: 'fund',
-    loadChildren: '../app/modules/payment.module#PaymentModule' , canActivate: [AuthGuardGuard]
-  }, { path: 'viewpayment',
-    loadChildren: '../app/modules/viewpayment.module#ViewpaymentModule' , canActivate: [AuthGuardGuard]
-  }, { path: 'verify',
+  },
+  { path: 'verify',
     loadChildren: '../app/modules/verify.module#VerifyModule' , canActivate: [AuthGuardGuard]
   }, { path: 'reset_password/:token',
     loadChildren: '../app/modules/resetpass.module#ResetpassModule'

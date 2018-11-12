@@ -1,3 +1,43 @@
+.howitwork-containerdashboard{
+  display: flex;
+  width:100%;
+  font-family: sans-serif;
+  background-color: #575756;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.Why-contentdashboardaa{
+  flex: 2;
+  background-color: #ffffff;
+  text-align: left;
+  padding-left: 1%;
+  padding-bottom: 20%;
+  font-family: sans-serif;
+}
+.datatble{
+  background-color: #ffffff;
+}
+.Why-contentdashboarda{
+  flex: 1;
+  background-color: #ffffff	;
+  text-align: center;
+  padding-bottom: 20%;
+  font-family: sans-serif;
+  color: #0d46a0;
+}
+
+.iconimagedeppo {
+  height: 300px;
+  width: 300px;
+}
+
+
+
+
+
+
+
 .escrow-container{
   display: flex;
   width:100%;
@@ -50,6 +90,7 @@
   padding-bottom: 20%;
   font-family: sans-serif;
   color: #0d46a0;
+  padding-top: 2%;
 }
 .largeicon{
   padding-top: 5%;
@@ -66,8 +107,13 @@
 }
 .example-carda {
   max-width: 400px;
-  padding-bottom: 30%;
+  padding-bottom: 90%;
   background-color: #ffffff	;
+  text-align: left;
+}
+.accountstyl{
+  padding-top:5% ;
+  padding-left: 4%;
 }
 .editstyle{
  font-size: 18px;
@@ -133,6 +179,7 @@
     text-align: center;
     padding-bottom: 20%;
     color: #0d46a0;
+    padding-top: 1%;
   }
   .largeicon{
     padding-top: 5%;

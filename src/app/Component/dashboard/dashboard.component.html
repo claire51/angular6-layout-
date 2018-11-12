@@ -13,10 +13,12 @@
         </mat-card-content>
     </mat-card>
     <mat-card class="example-carda">
+      <div class="accountstyl">
 <p><span  class="accheader">Your Account</span></p>
-<p><span class="spanaccbal" >Amount deposited in escrow:  Ksh 0.0</span></p>
-<p><span class="spanaccbal">Amount to receive from escrow: Ksh 0.0</span>
+<p><span class="spanaccbal" >Amount deposited in escrow:  Ksh {{account.depositedAmount}}</span></p>
+<p><span class="spanaccbal">Amount to receive from escrow: Ksh {{account.expectedAmount}}</span>
 </p>
+      </div>
     </mat-card>
   </div>
 
@@ -159,7 +161,7 @@
         <mat-header-cell *matHeaderCellDef >Action</mat-header-cell>
         <mat-cell *matCellDef="let row">
           <mat-chip-list>
-            <mat-chip [color]="'blue'" (click)="edittransaction(row)" >View </mat-chip>
+            <mat-chip [color]="'green'" (click)="edittransaction(row)" >View </mat-chip>
           </mat-chip-list>
         </mat-cell>
       </ng-container>

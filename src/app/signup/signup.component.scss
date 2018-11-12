@@ -35,8 +35,7 @@ margin-bottom: 4%;
   background-color: #575756;
   align-items: center;
   padding-top:4.5%;
-  flex-wrap: wrap;
-  height: 95vh !important;
+  height: 100vh;
 }
 
 .Why-contentsignup{
@@ -60,7 +59,10 @@ margin-bottom: 4%;
   align-content: center;
   align-items: center;
 }
-
+.iconimagedeppo {
+  height: 300px;
+  width: 300px;
+}
 
 
 //mobile
@@ -81,6 +83,11 @@ margin-bottom: 4%;
     padding-bottom: 5%;
     color: #0d46a0;
   }
+
+  .iconimagedeppo {
+    height: 100px;
+    width: 100px;
+  }
   .largeicon{
     padding-top: 5%;
     color: #0d46a0;
@@ -88,37 +95,49 @@ margin-bottom: 4%;
     margin-right: 5px;
     align-content: center;
     align-items: center;
+
+  }
+
+  .Why-contentsignup{
+    flex: 2;
+    background-color: #ffffff;
+    text-align: center;
+    padding-bottom: 5%;
   }
 }
 
 /* Small screens */
 @media all and (max-width: 500px) {
-  .howitwork-containersignup{
+  .howitwork-containersignup {
     display: flex;
-    width:100%;
+    width: 100%;
     background-color: #575756;
     align-items: center;
-    padding-top:10%;
+    padding-top: 10%;
     flex-wrap: wrap;
+    height: 100%;
   }
 
-  .Why-contentsignup{
+  .Why-contentsignup {
     flex: 1;
     background-color: #ffffff;
-    text-align: center;
+    text-align: left;
     padding-bottom: 4.5%;
+    padding-left: 2%;
   }
 
-  .Why-contentsignupa{
+  .Why-contentsignupa {
     flex: 1;
     order: 2;
-    background-color: #ffffff	;
-    text-align: center;
-    padding-bottom: 10%;
-    padding-top:  10%;
+    background-color: #ffffff;
+    text-align: left;
+    //padding-bottom: 10%;
+    margin-bottom: 2%;
+    padding-top: 10%;
     color: #0d46a0;
+    padding-left: 2%;
   }
-  .largeicon{
+  .largeicon {
     padding-top: 5%;
     color: #0d46a0;
     font-size: 60px;
@@ -128,7 +147,7 @@ margin-bottom: 4%;
   }
 
   .full-width-input {
-    width: 60%;
+    width: 100%;
   }
   .full-width-inputA {
     width: 30%;
@@ -136,8 +155,23 @@ margin-bottom: 4%;
 
   }
   .full-width-inputB {
-    width:30%;
+    width: 30%;
   }
 
+  .iconimagedeppo {
+    height: 200px;
+    width: 200px;
+  }
+  .full-width-inputA {
+    width: 100%;
+    margin-right: 1%;
+  }
+  .full-width-inputB {
+    width: 100%;
+  }
 
+  .signupbtn {
+    padding-left: 18%;
+    //text-align: center !important;
+  }
 }
