@@ -18,7 +18,7 @@
 
 </div>
 
-<div id="personal" class="personal_container " fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+<div id="personal" class="personal_containerwhydiv " fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
 <div class="divb-1">
   <span  class="spanA" >WHY MLINZI ?</span>
 </div>
@@ -33,7 +33,7 @@
        <p class="paratext">
          Reduce Risk Of Fraud/Bad Debt
        </p>
- 
+
   </div>
   <div class="Why-content">
             <p style="text-align: center">
@@ -195,15 +195,9 @@ Use our quick calculator to know your transaction cost
       </span>
     </p>
     <mat-card style="text-align: center">
-
-
-
-
-
-
       <mat-card-content>
         <p><span style=" font-weight: bolder;font-size: 20px">
-Fee charged is: Ksh  {{feeamount}}
+  Fee charged is: Ksh  {{feeamount}}
       </span>
         </p>
         <mat-form-field class="full-width-input">
@@ -222,3 +216,40 @@ Fee charged is: Ksh  {{feeamount}}
   </div>
 </div>
 
+<div id="personal3" class="personal_containerwhydiv " fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div class="divb-1">
+    <span  class="spanA" >Testimonials </span>
+  </div>
+</div>
+
+<div id="footerws" class="footer-container " fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div  class="footer-div2 textpadding"  >
+    <div style="margin-bottom:25px">
+      <div style="display:block;"
+           [style.width]="width">
+        <slideshow #slideshow
+                   [imageUrls]="imageUrls"
+                   [height]="height"
+                   [minHeight]="minHeight"
+                   [arrowSize]="arrowSize"
+                   [showArrows]="showArrows"
+                   [disableSwiping]="disableSwiping"
+                   [autoPlay]="autoPlay"
+                   [stopAutoPlayOnSlide]="stopAutoPlayOnSlide"
+                   [debug]="debug"
+                   [backgroundSize]="backgroundSize"
+                   [backgroundPosition]="backgroundPosition"
+                   [backgroundRepeat]="backgroundRepeat"
+                   [showDots]="showDots"
+                   [dotColor]="dotColor"
+                   [showCaptions]="showCaptions"
+                   [captionColor]="captionColor"
+                   [captionBackground]="captionBackground"
+                   [lazyLoad]="lazyLoad"
+                   [hideOnNoSlides]="hideOnNoSlides">
+        </slideshow>
+      </div>
+    </div>
+
+  </div>
+</div>

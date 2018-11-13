@@ -1,12 +1,46 @@
 
-<div id="aboutus" class="howitwork-containerdashboard paddingtopdesign  " fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-  <div class="Why-contentdashboarda">
+<div id="aboutus" class="createtradecontainer paddingtopdesign  " fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div class="tradeleft">
         <div mat-card-avatar class="example-header-image"></div>
   </div>
 
-  <div class="Why-contentdashboardaa">
-ccccccccccccccc
+  <div class="traderight">
+    <mat-tab-group #tabgroup [selectedIndex]="selectedtab"
+                   (selectedIndexChange)="tabChanged($event)" >
+      <mat-tab class="labeposition"  #tab [disabled]='!tab.isActive'  >
+        <ng-template mat-tab-label>
+          <mat-icon class="icondi-tab-icon">assignment_ind</mat-icon>
+          Roles
+        </ng-template>
+          <div class="rowdivnewtrade">
+            <mat-radio-group [(ngModel)]="role">
 
+              <mat-radio-button class="buttonmargin" value="buyer">
+                <div class="rowdiv">
+                  <i class="material-icons  largeicon">shopping_cart</i>
+                  <p><span>Buying some Item</span></p>
+                </div>
+              </mat-radio-button>
+              <mat-radio-button class="buttonmargin" value="seller">
+                <div class="rowdiv">
+                  <i class="material-icons  largeicon">monetization_on</i>
+                  <p><span>Selling some Item</span></p>
+                </div>
+              </mat-radio-button>
+              <mat-radio-button class="buttonmargin" value="agent">
+                <div class="rowdiv">
+                  <i class="material-icons  largeicon">contact_phone</i>
+                  <p><span>Am an Agent</span></p>
+
+                </div>
+              </mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div style="text-align: right; padding-right: 100px">
+          <span style="margin-left: 50px"><button mat-raised-button color="primary" (click)="next()">Next</button></span>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
 
 
 </div>

@@ -15,11 +15,20 @@ align-items: center;
 .textpadding{
   text-align: left !important;
   padding-left: 8% !important; ;
-}.textpaddingb{
+}
+.textpaddingb{
   text-align: left !important;
   padding-left: 11% !important; ;
 }
 .personal_container{
+  display: flex;
+  width:100%;
+  flex-direction: row;
+  font-family: sans-serif;
+  padding-top:2%;
+
+}
+.personal_containerwhydiv{
   display: flex;
   width:100%;
   flex-direction: row;
@@ -343,7 +352,7 @@ font-size: 16px;
     background: #0d46a0;
     justify-content: center;
     background-size: 100% 100%;
-    padding-right: 30px ;
+    //padding-right: 30px ;
     //margin: auto;
     display: block;
   }
@@ -417,21 +426,21 @@ font-size: 16px;
   .home_div_subselectionA{
     flex: 2;
     justify-content: center;
-    flex-wrap: wrap;
+    //flex-wrap: wrap;
     color: white;
     align-items: center;
     align-content: stretch;
     text-align: left;
-    padding-left: 4%;
     background-color: #0d46a0;
-    padding-top: 1%;
+padding-top: 25% !important;
     padding-bottom: 1%;
   }
   .home_div_subselectionB {
     flex: 1;
     justify-content: center;
     background-size: 100% 100%;
-    padding-right: 0%;
+    text-align: center;
+    padding: 2%;
     margin: auto;
     display: block;
   }
@@ -440,10 +449,11 @@ font-size: 16px;
   .home_div_crtAcc {
     /* On small screens, we are no longer using row direction but column */
     flex-direction: column;
-    text-align:center;
+    text-align:left;
     padding:1%;
     margin-bottom: 3%;
     margin-top: -5px;
+    padding-left: 2%;
 
 
   }
@@ -467,7 +477,7 @@ font-size: 16px;
 
   .spanA{
     font-size: 25px;
-    font-weight: 250;
+    font-weight: 500;
   }
   .spanb{
     font-size: 25px;
@@ -475,8 +485,11 @@ font-size: 16px;
     text-align: center;
   }
   .homepic{
-    width: 100%;
-    height: 570px;
+    width: 90%;
+    height: 430px;
+    padding-left: 2%;
+    padding-right: 2%;
+    text-align: center;
   }
   .button_font{
     font-size: 70px;
@@ -491,14 +504,6 @@ font-size: 16px;
     transform: translate3d(0,0,0);
     transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
   }
-
-  //.z-depth:hover {
-  //  box-shadow: 0 8px 8px rgba(10,16,20,.24), 0 0 8px rgba(10,16,20,.12) !important;
-  //  transform: translate3d(0,0,0);
-  //  background-color: #5471d2;
-  //  color: white;
-  //  transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
-  //}
 
   .largeicon{
     color: #0d46a0;
@@ -518,7 +523,32 @@ font-size: 16px;
 {
   text-align: center;
 }
+  .divb-1{
+    flex: auto;
+    text-align: center;
+    overflow: visible;
+    padding-bottom: 7%;
+    text-align: left;
+    padding-left: 2%;
+    //background-color: white;
+  }
+  .personal_containerwhydiv{
+    display: flex;
+    width:100%;
+    flex-direction: row;
+    font-family: sans-serif;
+    padding-top:2%;
+    margin-top: 5%;
 
+  }
+  .textpadding{
+    text-align: left !important;
+    padding: 2% !important; ;
+  }
+  .textpaddingb{
+    text-align: left !important;
+    padding-left:2% !important; ;
+  }
 }
 
 

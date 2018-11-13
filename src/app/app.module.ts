@@ -34,6 +34,7 @@ import {PaymentService} from './localService/payment.service';
 import {ApproveService} from './localService/approve.service';
 import {AgreeService} from './localService/agree.service';
 import {DashboardComponent} from './Component/dashboard/dashboard.component';
+import {SlideshowModule} from "ng-simple-slideshow";
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +55,7 @@ import {DashboardComponent} from './Component/dashboard/dashboard.component';
     FormsModule,
     ReactiveFormsModule,
     LayoutModule,
+    SlideshowModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [AuthGuardGuard,
