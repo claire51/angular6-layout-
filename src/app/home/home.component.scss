@@ -16,6 +16,11 @@ align-items: center;
   text-align: left !important;
   padding-left: 8% !important; ;
 }
+
+.textpaddingcarousel{
+  text-align: left !important;
+  padding-left: 0% !important;
+}
 .textpaddingb{
   text-align: left !important;
   padding-left: 11% !important; ;
@@ -80,7 +85,14 @@ align-items: center;
 padding-left: 10%;
   //background-color: white;
 }
-
+.divb-testimoniaal{
+  flex: auto;
+  text-align: center;
+  overflow: visible;
+  text-align: left;
+  padding-left: 10%;
+  //background-color: white;
+}
 .home_div_subselectionA{
   flex: 2;
 justify-content: center;
@@ -236,8 +248,15 @@ font-size: 16px;
 .footer-container{
   display: flex;
   width:100%;
-  //background-color: #0d46a0 !important;
-
+  background-color: #0d46a0;
+  align-items: center;
+  padding-top:2%;
+  flex-wrap: wrap;
+}
+.footer-containercorousel{
+  display: flex;
+  width:100%;
+  background-color: #ffffff;
   align-items: center;
   padding-top:2%;
   flex-wrap: wrap;
@@ -321,7 +340,12 @@ font-size: 16px;
 .innerpadding{
   padding-left: 8%;
 }
-
+.testimonial{
+  display: flex;
+  width:100%;
+  flex-direction: row;
+  font-family: sans-serif;
+}
 
 //mobile
 @media all and (max-width: 800px) {
@@ -403,7 +427,12 @@ font-size: 16px;
   .paratext{
     font-size: 13px;
   }
-
+  .testimonial{
+    display: flex;
+    width:100%;
+    flex-direction: row;
+    font-family: sans-serif;
+  }
 }
 
 /* Small screens */
@@ -532,6 +561,22 @@ padding-top: 25% !important;
     padding-left: 2%;
     //background-color: white;
   }
+  .divb-testimoniaal{
+    flex: auto;
+    text-align: center;
+    overflow: visible;
+    text-align: left;
+    padding-left: 10%;
+    //background-color: white;
+  }
+  .divb-testimoniaal{
+    flex: auto;
+    text-align: center;
+    overflow: visible;
+    text-align: left;
+    padding-left: 2%;
+    //background-color: white;
+  }
   .personal_containerwhydiv{
     display: flex;
     width:100%;
@@ -539,7 +584,12 @@ padding-top: 25% !important;
     font-family: sans-serif;
     padding-top:2%;
     margin-top: 5%;
-
+  }
+  .testimonial{
+    display: flex;
+    width:100%;
+    flex-direction: row;
+    font-family: sans-serif;
   }
   .textpadding{
     text-align: left !important;
@@ -549,6 +599,11 @@ padding-top: 25% !important;
     text-align: left !important;
     padding-left:2% !important; ;
   }
+  .textpaddingcarousel{
+    text-align: left !important;
+    padding-left: 0% !important; ;
+  }
+
 }
 
 

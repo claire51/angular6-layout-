@@ -168,63 +168,9 @@
       </div>
 </div>
 
-
-
-<div id="footer" class="footer-container " fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-  <div  class="footer-div2 textpadding"  >
-    <p><span class="spanA" >
-Ready to Start ?
-      </span>
-    </p>
-  </div>
-  <div  class="footer-div"  >
-    <p style="margin-left: 5%"><span>
- <button mat-button  [color]="'purple'" routerLink="/signup"> Create Account  </button>
-      </span>
-    </p>
-  </div>
-</div>
-<div id="fee-cal" class="howitwork-container textpadding" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-  <div  class="calculatz"  >
-    <p ><span  class="spanA " style="text-align: left !important;" >
-What does it cost ?
-      </span>
-    </p>
-    <p><span style=" font-weight: bolder;font-size: 18px; text-align: center">
-Use our quick calculator to know your transaction cost
-      </span>
-    </p>
-    <mat-card style="text-align: center">
-      <mat-card-content>
-        <p><span style=" font-weight: bolder;font-size: 20px">
-  Fee charged is: Ksh  {{feeamount}}
-      </span>
-        </p>
-        <mat-form-field class="full-width-input">
-          <input matInput type="number"  placeholder="Enter total trade amount" [(ngModel)]="reqAmount"  required>
-        </mat-form-field>
-        <div>
-          <span class="loginbtn">
-        <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Calculate</button>
-        </span>
-        </div>
-
-      </mat-card-content>
-    </mat-card>
-
-
-  </div>
-</div>
-
-<div id="personal3" class="personal_containerwhydiv " fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-  <div class="divb-1">
-    <span  class="spanA" >Testimonials </span>
-  </div>
-</div>
-
-<div id="footerws" class="footer-container " fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-  <div  class="footer-div2 textpadding"  >
-    <div style="margin-bottom:25px">
+<div id="footerws" class="footer-containercorousel " fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div  class="footer-div2 textpaddingcarousel"  >
+    <div style="margin-bottom:0px">
       <div style="display:block;"
            [style.width]="width">
         <slideshow #slideshow
@@ -253,3 +199,57 @@ Use our quick calculator to know your transaction cost
 
   </div>
 </div>
+
+<div id="footer" class="footer-container " fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div  class="footer-div2 textpadding"  >
+    <p><span class="spanA" >
+Ready to Start ?
+      </span>
+    </p>
+  </div>
+  <div  class="footer-div"  >
+    <p style="margin-left: 5%"><span>
+ <button mat-button  [color]="'purple'" routerLink="/signup"> Create Account  </button>
+      </span>
+    </p>
+  </div>
+</div>
+<div id="fee-cal" class="howitwork-container textpadding" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div  class="calculatz"  >
+    <p ><span  class="spanA " style="text-align: left !important;" >
+What does it cost ?
+      </span>
+    </p>
+  <div style="text-align: center">
+    <p>
+      <span style=" font-weight: bolder;font-size: 18px; text-align: center !important;">
+Use our quick calculator to know your transaction cost
+      </span>
+    </p>
+  </div>
+
+    <mat-card style="text-align: center">
+      <mat-card-content>
+        <p><span style=" font-weight: bolder;font-size: 20px">
+  Fee charged is: Ksh  {{feeamount}}
+      </span>
+        </p>
+        <mat-form-field class="full-width-input">
+          <input matInput type="number"  placeholder="Enter total trade amount" [(ngModel)]="reqAmount"  required>
+        </mat-form-field>
+        <div>
+          <span class="loginbtn">
+        <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Calculate</button>
+        </span>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+
+
+  </div>
+</div>
+
+
+
+
