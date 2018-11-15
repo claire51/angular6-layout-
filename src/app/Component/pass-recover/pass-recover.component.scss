@@ -1,11 +1,13 @@
 md-card {
   max-width: 50%;
   text-align: center;
+  margin-top: 2%;
+
 
 }
 
 .full-width-input {
-  width: 1000%;
+  width: 100%;
 }
 
 
@@ -15,13 +17,15 @@ md-card {
   padding-top: 9%;
   width:100%;
   flex-direction:column;
-  min-height: 90vh;
+  min-height: 100vh;
 
 }
 .logindiv{
   flex: auto;
-  margin-top: 2%;
+  margin-top: 4%;
   max-width: 500px;
+  padding-top: 2%;
+
 }
 .forgotpass{
 

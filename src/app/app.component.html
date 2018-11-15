@@ -9,34 +9,30 @@
   >
     <mat-toolbar  [color]="'blue'" >Menu</mat-toolbar>
     <mat-nav-list>
-      <a routerLink="/dashboard" mat-list-item   *ngIf="isLoggedIn$ | async as isAuthenticated; else dashboard">
+      <a routerLink="/dashboard" mat-list-item   (click)="drawer.toggle()"  *ngIf="isLoggedIn$ | async as isAuthenticated; else dashboard">
         <mat-icon>home</mat-icon>
         dashboard
       </a>
       <ng-template #dashboard>
-        <a routerLink="/signup" mat-list-item>
+        <a routerLink="/signup"  (click)="drawer.toggle()" mat-list-item>
           <mat-icon>how_to_reg</mat-icon>
           Sign Up
         </a>
       </ng-template>
 
-      <a routerLink="/dashboard" mat-list-item   *ngIf="isLoggedIn$ | async as isAuthenticated">
-        <mat-icon>home</mat-icon>
-        Dashboard
-      </a>
 
-      <a routerLink="/profile" mat-list-item   *ngIf="isLoggedIn$ | async as isAuthenticated; else persona">
+      <a routerLink="/profile" mat-list-item   (click)="drawer.toggle()"  *ngIf="isLoggedIn$ | async as isAuthenticated; else persona">
         <mat-icon>account_circle</mat-icon>
         Profile
       </a>
       <ng-template #persona>
-        <a routerLink="/login" mat-list-item>
+        <a routerLink="/login"  (click)="drawer.toggle()"  mat-list-item>
           <mat-icon>lock</mat-icon>
           Login
         </a>
       </ng-template>
 
-      <a routerLink="/createtrade" mat-list-item   *ngIf="isLoggedIn$ | async as isAuthenticated">
+      <a routerLink="/createtrade" mat-list-item   (click)="drawer.toggle()"  *ngIf="isLoggedIn$ | async as isAuthenticated">
         <mat-icon>queue</mat-icon>
         New trade
       </a>
@@ -44,7 +40,7 @@
 
       <!--//signup-->
 
-      <a routerLink="/login" mat-list-item (click)="onLogout()" *ngIf="isLoggedIn$ | async as isAuthenticated" >
+      <a routerLink="/login" mat-list-item (click)="onLogout()"   (click)="drawer.toggle()"  *ngIf="isLoggedIn$ | async as isAuthenticated" >
       <mat-icon>settings_power</mat-icon>
         Logout
       </a>
