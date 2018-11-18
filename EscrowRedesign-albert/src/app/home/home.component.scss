@@ -1,0 +1,360 @@
+@import "../common/styles/mixins";
+.home_container{
+  display: flex;
+  width:100%;
+  flex-direction: row;
+align-items: center;
+  padding-top:9%;
+  background-size: 100% 100%;
+  background-color: blue;
+  height: 500px;
+}
+.personal_container{
+  display: flex;
+  width:100%;
+  flex-direction: row;
+  background-color: white;
+  align-items: center;
+  overflow: hidden;
+  padding-top:2%;
+
+}
+.whentouse-container{
+  display: flex;
+  width:100%;
+  background-color: blue;
+  align-items: center;
+  padding-top:2%;
+  flex-wrap: wrap;
+
+}
+.howitwork-container{
+  display: flex;
+  width:100%;
+  background-color: white;
+  align-items: center;
+  padding-top:2%;
+  flex-wrap: wrap;
+}
+
+.container3{
+  display:flex;
+  height: 5%;
+  background-color:purple;
+}
+.divb-1{
+  flex: auto;
+  text-align: center;
+  overflow: visible;
+  padding-bottom: 4%;
+
+  //background-color: white;
+}
+
+.home_div_subselectionA{
+  flex: 2;
+justify-content: center;
+  flex-wrap: wrap;
+  color: white;
+  align-items: center;
+  align-content: stretch;
+  text-align: left;
+  padding-left: 4%;
+  background-color: blue;
+  padding-top: 2%;
+  padding-bottom: 1%;
+  overflow:visible;
+}
+
+.home_div_subselectionB {
+  flex: available;
+  justify-content: center;
+  padding-right: 0%;
+  margin: auto;
+  height: 500px;
+  overflow:visible;
+}
+.home_div_crtAcc{
+ text-align:left;
+  padding-left: 14%;
+}
+
+.divb_selection1{
+  flex: 1;
+  background-size: 100% 100%;
+  background-color: white;
+}
+.divb_selection2{
+  flex: 1;
+  background-size: 100% 100%;
+  background-color: white;
+}
+
+.persona_content_detail{
+  flex: 1;
+  text-align: center;
+
+
+}
+
+.Why-content{
+  flex: 1;
+  background-color: white;
+}
+.z-depth {
+  box-shadow: 0 6px 6px rgba(10,16,20,.15), 0 0 52px rgba(10,16,20,.12) !important;
+  transform: translate3d(0,0,0);
+  transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+}
+
+.z-depth:hover {
+  box-shadow: 0 8px 8px rgba(10,16,20,.24), 0 0 8px rgba(10,16,20,.12) !important;
+  transform: translate3d(0,0,0);
+  background-color: blue;
+  transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+}
+.why_header{
+  text-decoration: underline;
+  font-weight: bolder;
+
+}
+
+.when-to-use {
+  flex: auto;
+  text-align: center;
+  overflow: visible;
+  padding-bottom: 2%;
+}
+.howitwork-container{
+  flex: auto;
+  text-align: center;
+  overflow: visible;
+  padding-bottom: 2%;
+  color: blue;
+}
+.listing{
+  text-align: center;
+  align-content: center;
+  align-items: center;
+}
+.mat-list .mat-list-item {
+  color: white;
+
+
+  min-height: 48px;
+  height: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer-container{
+  display: flex;
+  width:100%;
+  background-color: blue;
+  align-items: center;
+  padding-top:2%;
+  flex-wrap: wrap;
+}
+.footer-div{
+  flex: 1;
+  justify-content: center;
+}
+.footer-div2{
+  flex: 1;
+  justify-content: center;
+  text-align: center;
+}
+
+
+
+.spanA{
+  font-size: 60px;
+  font-weight: 400;
+
+  text-align: left;
+}
+.spanb{
+  font-size: 30px;
+  font-weight: 300;
+  text-align: left;
+}
+.header_text
+{
+  font-family: sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+
+}
+.button_font{
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+//button customized
+.mat-purple {
+  background-color: purple;
+  color: #fff;
+  height: 50px;
+  width: 150px;
+}
+.homepic{
+  width: 300px;
+  padding-right: 18%;
+}
+
+.mat-purple {
+  background-color: purple;
+  color: #fff;
+  height: 40px;
+}
+
+.mat-blue{
+  background-color: purple;
+  color: blue;
+  height: 40px;
+}
+
+
+.progress-bar {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: calculateRem(5px);
+}
+
+
+
+
+//mobile
+@media all and (max-width: 800px) {
+  .home_container{
+    display: flex;
+    width:100%;
+    flex-direction: row;
+    align-items: center;
+    background-color: blue;
+    height: 100%;
+  }
+
+  .home_div_subselectionA{
+    flex: 2;
+    justify-content: center;
+    flex-wrap: wrap;
+    color: white;
+    align-items: center;
+    align-content: stretch;
+    text-align: left;
+    padding-left: 4%;
+    background-color: blue;
+    padding-top: 2%;
+    padding-bottom: 1%;
+  }
+  .home_div_subselectionB {
+    flex: 1;
+    background: blue;
+    justify-content: center;
+    background-size: 100% 100%;
+    padding-right: 0%;
+    //margin: auto;
+    display: block;
+  }
+  .Why-content{
+    flex: 1;
+    background-color: white;
+  }
+  .z-depth {
+    box-shadow: 0 6px 6px rgba(10,16,20,.15), 0 0 52px rgba(10,16,20,.12) !important;
+    transform: translate3d(0,0,0);
+    transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  }
+
+  .z-depth:hover {
+    box-shadow: 0 8px 8px rgba(10,16,20,.24), 0 0 8px rgba(10,16,20,.12) !important;
+    transform: translate3d(0,0,0);
+    background-color: blue;
+    transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  }
+
+
+  .home_div_crtAcc {
+    /* When on medium sized screens, we center it by evenly distributing empty space around items */
+    justify-content: space-around;
+    text-align: center;
+    padding-left: 1%;
+  }
+
+  .spanA{
+    font-size: 50px;
+    font-weight: 400;
+    text-align: left;
+  }
+  .spanb{
+    font-size: 30px;
+    font-weight: 300;
+    text-align: left;
+  }
+}
+
+/* Small screens */
+@media all and (max-width: 500px) {
+  .home_container{
+    display: flex;
+    width:100%;
+    flex-direction: row;
+    align-items: center;
+    background-color: blue;
+    height: 100%;
+  }
+
+  .home_div_subselectionA{
+    flex: 2;
+    justify-content: center;
+    flex-wrap: wrap;
+    color: white;
+    align-items: center;
+    align-content: stretch;
+    text-align: left;
+    padding-left: 4%;
+    background-color: blue;
+    padding-top: 2%;
+    padding-bottom: 1%;
+  }
+  .home_div_subselectionB {
+    flex: 1;
+    justify-content: center;
+    background-size: 100% 100%;
+    padding-right: 0%;
+    margin: auto;
+    display: block;
+  }
+
+
+  .home_div_crtAcc {
+    /* On small screens, we are no longer using row direction but column */
+    flex-direction: column;
+    text-align:center;
+    padding-left: 1%;
+
+  }
+
+  .spanA{
+    font-size: 40px;
+    font-weight: 400;
+    text-align: left;
+  }
+  .spanb{
+    font-size: 20px;
+    font-weight: 300;
+    text-align: left;
+  }
+  .homepic{
+    //width: 300px;
+    height: 400px;
+  }
+
+}
+
+

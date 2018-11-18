@@ -1,0 +1,30 @@
+<div class="container"   fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div class="logindiv">
+    <mat-card>
+      <section  class="progress-bar" [hidden]='status' >
+        <mat-progress-bar
+          color='primary'
+          mode="indeterminate" >
+        </mat-progress-bar>
+      </section>
+      <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <p>Submit your Email to Recover your Password</p>
+          <mat-form-field class="full-width-input">
+            <input matInput type="email"  placeholder="Email" formControlName="email" required>
+            <mat-error *ngIf="isFieldInvalid('email')">
+              Enter valid Email
+            </mat-error>
+          </mat-form-field>
+          <span class="forgotpass">
+            <a mat-button  [color]="'purple'" routerLink="/login"> Login </a>
+     </span>
+          <span class="loginbtn">
+        <button mat-raised-button color="primary" type="submit">Recover</button>
+        </span>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>

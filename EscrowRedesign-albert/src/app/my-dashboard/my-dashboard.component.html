@@ -1,0 +1,96 @@
+<div id="escrow" class="escrow-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div  class="escrow-div"  >
+      <mat-card class="dashboard-card">
+        <mat-card-header style="justify-content: center">
+          <mat-card-title>
+          <span style="font-weight: bolder ; font-size: large ; text-align: center;"> Start A New Escrow Transaction</span>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div style="justify-content: center">
+            <div >
+            <mat-horizontal-stepper [linear]="isLinear" #stepper>
+
+              <mat-step [stepControl]="firstFormGroup" >
+                <mat-checkbox class="example-margin" [(ngModel)]="buyer">AM A BUYER</mat-checkbox>
+                <form [formGroup]="firstFormGroup"  class="escrow-form">
+                  <ng-template ng  matStepLabel>BUYER or SELLER DETAIL</ng-template>
+
+                  <mat-form-field >
+                    <input matInput type="tel"  placeholder="Buyer/Seller Mobile No" formControlName="mobile_No" required><br>
+                  </mat-form-field>
+                  <mat-form-field >
+                    <input matInput type="tel"  placeholder="Buyer/Seller Full Name" formControlName="buyer_Fullname" required><br>
+                  </mat-form-field>
+                  <mat-form-field >
+                    <input matInput type="tel"  placeholder="Buyer/Seller ID Number" formControlName="buyer_Idno" required><br>
+                  </mat-form-field>
+                  <mat-form-field *ngIf="!buyer ">
+                    <input matInput type="email" placeholder=" Enter Buyer Email" formControlName="buyer_Email" >
+                  </mat-form-field>
+                  <mat-form-field *ngIf="buyer ">
+                    <input matInput type="email" placeholder="Enter Seller Email" formControlName="seller_Email" >
+                  </mat-form-field>
+                  <div>
+                    <button mat-button matStepperNext>Next</button>
+                  </div>
+                </form>
+
+
+              </mat-step>
+
+              <mat-step [stepControl]="secondFormGroup">
+                <mat-checkbox class="example-margin" [(ngModel)]="broker">Agent involved</mat-checkbox>
+                <form [formGroup]="secondFormGroup"  class="escrow-form">
+                  <ng-template matStepLabel>TRANSACTION DETAIL</ng-template>
+                  <mat-form-field >
+                    <input matInput type="text" placeholder="Delivery Country" formControlName="del_cntry" >
+                  </mat-form-field>
+                  <mat-form-field >
+                    <input matInput type="text" placeholder="Delivery County" formControlName="del_cnty" >
+                  </mat-form-field>
+                  <mat-form-field >
+                    <input matInput type="text" placeholder="Delivery Town" formControlName="del_twn" >
+                  </mat-form-field>
+                  <mat-form-field >
+                    <input matInput type="text" placeholder="Delivery Street" formControlName="del_strt" >
+                  </mat-form-field>
+                  <mat-form-field >
+                    <input matInput type="text" placeholder="Delivery Lane" formControlName="del_ln" >
+                  </mat-form-field>
+                  <mat-form-field >
+                    <input matInput type="text" placeholder="Delivery Comment" formControlName="del_cmt" >
+                  </mat-form-field>
+                  <mat-form-field *ngIf="broker ">
+                    <input matInput type="tel" placeholder="Agent Mobile No" formControlName="agent_mobl" >
+                  </mat-form-field>
+                  <mat-form-field *ngIf="broker ">
+                    <input matInput type="email" placeholder="Agent Email" formControlName="agent_email" >
+                  </mat-form-field>
+
+                  <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                  </div>
+                </form>
+              </mat-step>
+              <mat-step>
+                <ng-template matStepLabel>Item Detail</ng-template>
+                You are now done.
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button (click)="stepper.reset()">Reset</button>
+                </div>
+              </mat-step>
+
+            </mat-horizontal-stepper>
+            </div>
+
+
+
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+  </div>
+</div>

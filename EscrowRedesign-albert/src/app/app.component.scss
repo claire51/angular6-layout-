@@ -1,0 +1,87 @@
+@import "./common/styles/mixins";
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.mat-toolbar.mat-primary {
+  position: fixed;
+  top: 0;
+  //position: fixed;
+  z-index: 2;
+}
+
+
+.header_text {
+  font-family: sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+
+}
+
+
+
+
+
+
+.logo{
+height: 100px;
+}
+.menudiv{
+  display: flex;
+  width: 100%;
+
+}
+.barmenu{
+
+  flex: 1;
+  //justify-content: right;
+  margin: auto;
+  //align-items: baseline;
+  align-content: flex-end;
+  align-content: space-between;
+  margin-left: 40%;
+}
+
+
+//button customized
+.mat-purple {
+  background-color: purple;
+  color: #fff;
+  height: 40px;
+}
+.progress-bar {
+  width: 100%;
+  margin-top: 63px;
+  align-content: center;
+  align-items: center;
+  height: calculateRem(5px);
+}
+//mobile
+@media all and (max-width: 800px) {
+  .progress-bar {
+    margin-top: 53px; width: 100%;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: calculateRem(5px);
+  }
+
+}
+
+/* Small screens */
+@media all and (max-width: 500px) {
+
+  .progress-bar {
+    margin-top: 53px; width: 100%;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: calculateRem(5px);
+  }
+
+}

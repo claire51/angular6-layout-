@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {ProgressBarService} from '../services/progress-bar.service';
 import {AuthService} from '../auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CalculatorfeeService} from '../localService/calculatorfee.service';
-import {Charges} from '../model/Charges';
 import {IImage} from 'ng-simple-slideshow';
 @Component({
   selector: 'app-home',
@@ -17,7 +15,6 @@ export class HomeComponent implements OnInit {
   form: FormGroup;
   error: string;
   status: boolean;
-  chargesz: Array<Charges> = new Array<Charges>();
   private formSubmitAttempt: boolean;
 
 
@@ -53,7 +50,7 @@ export class HomeComponent implements OnInit {
 
 
   constructor(private progressBarService: ProgressBarService,
-            private authservice: AuthService , private calcservice: CalculatorfeeService, private formBuilder: FormBuilder) {
+            private authservice: AuthService , private formBuilder: FormBuilder) {
   this.feeamount = 0;
   this.reqAmount = 0;
   this.status = false;

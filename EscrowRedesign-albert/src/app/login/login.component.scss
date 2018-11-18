@@ -1,0 +1,45 @@
+@import "../common/styles/mixins";
+
+md-card {
+  max-width: 50%;
+  text-align: center;
+
+}
+
+.full-width-input {
+  width: 100%;
+}
+
+
+
+.container{
+  display: flex;
+  padding-top: 9%;
+  width:100%;
+  flex-direction:column;
+
+}
+.logindiv{
+  flex: auto;
+  margin-top: 2%;
+  max-width: 500px;
+}
+.forgotpass{
+    font-family: sans-serif;
+    font-size: 28px;
+text-align: left;
+  margin-top: -20px;
+}
+
+.loginbtn{
+  font-family: sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  padding-left: 40%;
+  text-align: right;
+}
+.progress-bar {
+  align-content: center;
+  align-items: center;
+  height: calculateRem(5px);
+}
